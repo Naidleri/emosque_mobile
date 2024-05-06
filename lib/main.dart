@@ -1,5 +1,6 @@
 // import 'package:emosque_mobile/views/persetujuanSaldoKas.dart';
-import 'package:emosque_mobile/views/persetujuanSaldoKas.dart';
+import 'package:emosque_mobile/views/deletePersetujuanSaldoKas.dart';
+// import 'package:emosque_mobile/views/persetujuanSaldoKas.dart';
 // import 'package:emosque_mobile/views/updatePersetujuanSaldoKas.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: persetujuanSaldoKas(),
+      home: DeletePersetujuanSaldoKas(),
     );
   }
 }

@@ -6,8 +6,8 @@ import 'package:emosque_mobile/widgets/formDeskripsi.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PersetujuanSaldoKas extends StatelessWidget {
-  const PersetujuanSaldoKas({super.key});
+class DeletePersetujuanSaldoKas extends StatelessWidget {
+  const DeletePersetujuanSaldoKas({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +48,6 @@ class PersetujuanSaldoKas extends StatelessWidget {
                 
                 SizedBox(
                   height: 201,
-                ),
-                fillButton(
-                  text: "Cetak Persetujuan",
-                ),
-                SizedBox(
-                  height: 11,
                 ),
                 Button(text: "Hapus Persetujuan"),
                 SizedBox(height: 21,)
