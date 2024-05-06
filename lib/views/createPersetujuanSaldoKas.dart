@@ -1,13 +1,13 @@
 // ignore_for_file: file_names
-import 'package:emosque_mobile/widgets/button.dart';
+import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:emosque_mobile/widgets/fillButton.dart';
 import 'package:emosque_mobile/widgets/form.dart';
 import 'package:emosque_mobile/widgets/formDeskripsi.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class persetujuanSaldoKas extends StatelessWidget {
-  const persetujuanSaldoKas({super.key});
+class CreatePersetujuanSaldoKas extends StatelessWidget {
+  const CreatePersetujuanSaldoKas({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,22 +41,16 @@ class persetujuanSaldoKas extends StatelessWidget {
                   title: "Deskripsi",
                   hint: "Masukkan Deskripsi Pemasukan",
                 ),
-                formDeskripsi(
-                  title: "Keterangan",
-                  hint: "Telah Disetujui Takmir",
-                ),
-                
+                calender(),
                 SizedBox(
-                  height: 201,
+                  height: 49,
                 ),
                 fillButton(
-                  text: "Cetak Persetujuan",
+                  text: "Kirim Persetujuan",
                 ),
                 SizedBox(
-                  height: 11,
-                ),
-                Button(text: "Hapus Persetujuan"),
-                SizedBox(height: 21,)
+                  height: 36,
+                )
               ],
             ),
           ],
