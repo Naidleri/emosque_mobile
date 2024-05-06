@@ -31,19 +31,19 @@ class DeletePersetujuanSaldoKas extends StatelessWidget {
               children: [
                 form(
                   title: "Judul Persetujuan",
-                  hint: "Masukkan Judul Persetujuan",
+                  hint: "Minggu 2 April",
                 ),
                 form(
                   title: "Nominal",
-                  hint: "Masukkan Nominal",
+                  hint: "Rp 50.000",
                 ),
                 formDeskripsi(
                   title: "Deskripsi",
-                  hint: "Masukkan Deskripsi Pemasukan",
+                  hint: "-",
                 ),
                 formDeskripsi(
                   title: "Keterangan",
-                  hint: "Telah Disetujui Takmir",
+                  hint: "Tidak Disetujui Nominal Tidak Sesuai",
                 ),
                 
                 SizedBox(
