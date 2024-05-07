@@ -1,3 +1,4 @@
+import 'package:emosque_mobile/widgets/fillButton.dart';
 import 'package:emosque_mobile/widgets/listTile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -103,6 +104,8 @@ class _MyWidgetState extends State<ReadPersetujuanSaldoKas> {
             tanggalPengajuan: "13 Apr 2024",
             nominal: "Rp 550.000",
           ),
+          SizedBox(height: 500,),
+          fillButton(text: "Tambah Persetujuan")
         ],
       ),
     );
