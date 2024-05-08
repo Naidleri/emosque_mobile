@@ -1,5 +1,6 @@
 import 'package:emosque_mobile/widgets/picker_date.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PengeluaranBendaharaPage extends StatefulWidget {
   const PengeluaranBendaharaPage({super.key});
@@ -10,7 +11,6 @@ class PengeluaranBendaharaPage extends StatefulWidget {
 }
 
 class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
-
   Widget search() {
     return Container(
       height: 60,
@@ -57,7 +57,7 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
               children: [
                 Text(
                   judul,
-                  style: const TextStyle(
+                  style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: Colors.black),
@@ -67,7 +67,7 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
                 ),
                 Text(
                   tanggal,
-                  style: const TextStyle(
+                  style:  GoogleFonts.poppins(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
                       color: Colors.grey),
@@ -76,7 +76,7 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
             ),
             Text(
               uang,
-              style: const TextStyle(fontWeight: FontWeight.w700),
+              style:  GoogleFonts.poppins(fontWeight: FontWeight.w700),
             ),
           ],
         ),
@@ -84,19 +84,19 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Pengeluaran",
-          style: TextStyle(
+          style: GoogleFonts.poppins(
               fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green),
         ),
         centerTitle: true,
       ),
-      body: ListView(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const PickerDate(),
           search(),
@@ -129,7 +129,9 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
               left: 20,
               bottom: 25,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/createpemasukan');
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.green),
                   shape: MaterialStateProperty.all(
@@ -139,9 +141,9 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
                     ),
                   ),
                 ),
-                child: const Text(
+                child: Text(
                   "Tambahkan Pengeluaran",
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                       color: Colors.white),

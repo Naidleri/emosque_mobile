@@ -8,8 +8,8 @@ class PickerDate extends StatefulWidget {
   _PickerDateState createState() => _PickerDateState();
 }
 class _PickerDateState extends State<PickerDate> {
-  int pilihBulan = 0;
-  int pilihTahun = 0;
+  int pilihBulan = 1;
+  int pilihTahun = 2024;
 
   final Map<int, String> _bulan = {
     1: "Januari",
@@ -116,7 +116,7 @@ class _PickerDateState extends State<PickerDate> {
                 ),
                 onSelectedItemChanged: (int value) {
                   setState(() {
-                    pilihTahun = value + 2000;
+                    pilihTahun = value;
                   });
                 },
                 children: _generateTahunItems(),
