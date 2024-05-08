@@ -2,6 +2,7 @@
 // import 'package:emosque_mobile/views/deletePersetujuanSaldoKas.dart';
 import 'package:emosque_mobile/views/bendahara/create_pemasukan_bendahara_page.dart';
 import 'package:emosque_mobile/views/bendahara/homepage_bendahara.dart';
+import 'package:emosque_mobile/views/bendahara/pemasukan_bendahara_page.dart';
 import 'package:emosque_mobile/views/bendahara/pengeluaran_bendahara_page.dart';
 // import 'package:emosque_mobile/views/readPersetujuanSaldoKas.dart';
 // import 'package:emosque_mobile/views/persetujuanSaldoKas.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/pengeluaran': (cotext) => const PengeluaranBendaharaPage(),
+        '/pemasukan':(context) => const PemasukanBendaharaPage(),
         '/createpemasukan': (cotext) => CreatePemasukanBendaharaPage(),
       },
       home: const HomePageBendahara(),

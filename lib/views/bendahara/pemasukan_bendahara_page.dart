@@ -2,15 +2,15 @@ import 'package:emosque_mobile/widgets/picker_date.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PengeluaranBendaharaPage extends StatefulWidget {
-  const PengeluaranBendaharaPage({super.key});
+class PemasukanBendaharaPage extends StatefulWidget {
+  const PemasukanBendaharaPage({super.key});
 
   @override
-  State<PengeluaranBendaharaPage> createState() =>
-      _PengeluaranBendaharaPageState();
+  State<PemasukanBendaharaPage> createState() =>
+      _PemasukanBendaharaPageState();
 }
 
-class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
+class _PemasukanBendaharaPageState extends State<PemasukanBendaharaPage> {
   Widget search() {
     return Container(
       height: 60,
@@ -40,7 +40,7 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
     );
   }
 
-  Widget cardHistoryPengeluaran(String judul, String tanggal, String uang) {
+  Widget cardHistoryPemasukan(String judul, String tanggal, String uang) {
     return InkWell(
       onLongPress: () {},
       child: Container(
@@ -89,7 +89,7 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Pengeluaran",
+          "Pemasukan",
           style: GoogleFonts.poppins(
               fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green),
         ),
@@ -100,19 +100,19 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
         children: [
           const PickerDate(),
           search(),
-          cardHistoryPengeluaran(
+          cardHistoryPemasukan(
               "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
-          cardHistoryPengeluaran(
+          cardHistoryPemasukan(
               "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
-          cardHistoryPengeluaran(
+          cardHistoryPemasukan(
               "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
-          cardHistoryPengeluaran(
+          cardHistoryPemasukan(
               "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
-          cardHistoryPengeluaran(
+          cardHistoryPemasukan(
               "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
-          cardHistoryPengeluaran(
+          cardHistoryPemasukan(
               "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
-          cardHistoryPengeluaran(
+          cardHistoryPemasukan(
               "Santunan anak yatim", "15 April 2024", "Rp 550.000")
         ],
       ),
@@ -130,7 +130,7 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
               bottom: 25,
               child: ElevatedButton(
                 onPressed: () {
-                  
+                  Navigator.pushNamed(context, '/createpemasukan');
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.green),
@@ -142,7 +142,7 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
                   ),
                 ),
                 child: Text(
-                  "Tambahkan Pengeluaran",
+                  "Tambahkan Pemasukan",
                   style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,

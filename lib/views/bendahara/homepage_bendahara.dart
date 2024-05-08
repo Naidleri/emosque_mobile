@@ -218,7 +218,9 @@ class HomePageBendahara extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                cardMenu("assets/images/dompet.png", "Pemasukan", () {},
+                cardMenu("assets/images/dompet.png", "Pemasukan", () {
+                  Navigator.pushNamed(context, "/pemasukan");
+                },
                     icon: const Icon(
                       Icons.arrow_back,
                       color: Colors.white,
