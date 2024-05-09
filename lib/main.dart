@@ -1,12 +1,8 @@
-// import 'package:emosque_mobile/views/persetujuanSaldoKas.dart';
-// import 'package:emosque_mobile/views/deletePersetujuanSaldoKas.dart';
 import 'package:emosque_mobile/views/bendahara/create_pemasukan_bendahara_page.dart';
 import 'package:emosque_mobile/views/bendahara/homepage_bendahara.dart';
 import 'package:emosque_mobile/views/bendahara/pemasukan_bendahara_page.dart';
 import 'package:emosque_mobile/views/bendahara/pengeluaran_bendahara_page.dart';
-// import 'package:emosque_mobile/views/readPersetujuanSaldoKas.dart';
-// import 'package:emosque_mobile/views/persetujuanSaldoKas.dart';
-// import 'package:emosque_mobile/views/updatePersetujuanSaldoKas.dart';
+import 'package:emosque_mobile/views/bendahara/readPersetujuanSaldoKas.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,16 +20,9 @@ class MyApp extends StatelessWidget {
         '/pengeluaran': (cotext) => const PengeluaranBendaharaPage(),
         '/pemasukan':(context) => const PemasukanBendaharaPage(),
         '/createpemasukan': (cotext) => CreatePemasukanBendaharaPage(),
+        '/persetujuan':(context) => const ReadPersetujuanSaldoKas(),
       },
       home: const HomePageBendahara(),
     );
   }
-}
-
-class CreatePemasukanBendahara {
-  const CreatePemasukanBendahara();
-}
-
-class ReadPengeluaranBendahara {
-  const ReadPengeluaranBendahara();
 }
