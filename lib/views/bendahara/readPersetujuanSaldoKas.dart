@@ -19,12 +19,6 @@ class _MyWidgetState extends State<ReadPersetujuanSaldoKas> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: () {
-            // Tambahkan fungsi untuk tombol kembali di sini
-          },
-        ),
         title: Text(
           "Persetujuan Saldo Kas",
           style: GoogleFonts.poppins(

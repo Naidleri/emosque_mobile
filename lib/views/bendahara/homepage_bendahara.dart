@@ -239,7 +239,9 @@ class HomePageBendahara extends StatelessWidget {
                 cardMenu(
                   "assets/images/persetujuan.png",
                   "Persetujuan\nSaldo Kas",
-                  () {},
+                  () {
+                    Navigator.pushNamed(context, "/persetujuan");
+                  },
                 ),
               ],
             ),
