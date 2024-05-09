@@ -1,3 +1,4 @@
+import 'package:emosque_mobile/views/bendahara/update_pemasukan_bendahara.dart';
 import 'package:emosque_mobile/widgets/picker_date.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,11 +7,14 @@ class PemasukanBendaharaPage extends StatefulWidget {
   const PemasukanBendaharaPage({super.key});
 
   @override
-  State<PemasukanBendaharaPage> createState() =>
-      _PemasukanBendaharaPageState();
+  State<PemasukanBendaharaPage> createState() => _PemasukanBendaharaPageState();
 }
 
 class _PemasukanBendaharaPageState extends State<PemasukanBendaharaPage> {
+  String judul = "Santunan anak yatim";
+  String date = "15 April 2024";
+  int nominal = 550000;
+  String deskripsi = "Untuk Bulan April";
   Widget search() {
     return Container(
       height: 60,
@@ -40,9 +44,10 @@ class _PemasukanBendaharaPageState extends State<PemasukanBendaharaPage> {
     );
   }
 
-  Widget cardHistoryPemasukan(String judul, String tanggal, String uang) {
+  Widget cardHistoryPemasukan(
+      String judul, String tanggal, int uang, VoidCallback onPressed) {
     return InkWell(
-      onLongPress: () {},
+      onTap: onPressed,
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: const BoxDecoration(
@@ -67,7 +72,7 @@ class _PemasukanBendaharaPageState extends State<PemasukanBendaharaPage> {
                 ),
                 Text(
                   tanggal,
-                  style:  GoogleFonts.poppins(
+                  style: GoogleFonts.poppins(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
                       color: Colors.grey),
@@ -75,8 +80,8 @@ class _PemasukanBendaharaPageState extends State<PemasukanBendaharaPage> {
               ],
             ),
             Text(
-              uang,
-              style:  GoogleFonts.poppins(fontWeight: FontWeight.w700),
+              'Rp $uang',
+              style: GoogleFonts.poppins(fontWeight: FontWeight.w700),
             ),
           ],
         ),
@@ -101,19 +106,75 @@ class _PemasukanBendaharaPageState extends State<PemasukanBendaharaPage> {
           const PickerDate(),
           search(),
           cardHistoryPemasukan(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
+            judul,
+            date,
+            nominal,
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UpdatePemasukanBendahara(
+                      judul: judul, nominal: nominal, deskripsi: deskripsi),
+                ),
+              );
+            },
+          ),
           cardHistoryPemasukan(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
+            judul,
+            date,
+            nominal,
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UpdatePemasukanBendahara(
+                      judul: judul, nominal: nominal, deskripsi: deskripsi),
+                ),
+              );
+            },
+          ),
           cardHistoryPemasukan(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
+            judul,
+            date,
+            nominal,
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UpdatePemasukanBendahara(
+                      judul: judul, nominal: nominal, deskripsi: deskripsi),
+                ),
+              );
+            },
+          ),
           cardHistoryPemasukan(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
+            judul,
+            date,
+            nominal,
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UpdatePemasukanBendahara(
+                      judul: judul, nominal: nominal, deskripsi: deskripsi),
+                ),
+              );
+            },
+          ),
           cardHistoryPemasukan(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
-          cardHistoryPemasukan(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
-          cardHistoryPemasukan(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000")
+            judul,
+            date,
+            nominal,
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UpdatePemasukanBendahara(
+                      judul: judul, nominal: nominal, deskripsi: deskripsi),
+                ),
+              );
+            },
+          ),
         ],
       ),
       bottomSheet: Stack(
