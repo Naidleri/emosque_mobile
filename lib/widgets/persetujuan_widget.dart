@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pengeluaran_bendahara/const.dart';
-import 'package:pengeluaran_bendahara/screen/persetujuan_saldo_kas.dart';
+import 'package:emosque_mobile/utils/const.dart';
+import 'package:emosque_mobile/views/bendahara/persetujuan_saldo_kas.dart';
 
 class PersetujuanSaldoKas extends StatefulWidget {
   const PersetujuanSaldoKas({Key? key}) : super(key: key);

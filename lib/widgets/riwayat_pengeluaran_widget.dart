@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pengeluaran_bendahara/screen/const.dart';
+import 'package:emosque_mobile/utils/const.dart';
 
 
 class RiwayatPengeluaranWidget extends StatelessWidget {

@@ -1,5 +1,5 @@
-import 'package:fe_pengabdian/tambah_zakat.dart';
-import 'package:fe_pengabdian/update_zakat.dart';
+import 'package:emosque_mobile/views/sekertaris/tambah_zakat.dart';
+import 'package:emosque_mobile/views/sekertaris/update_zakat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';

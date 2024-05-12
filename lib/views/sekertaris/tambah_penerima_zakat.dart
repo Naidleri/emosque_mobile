@@ -1,11 +1,12 @@
-import 'package:fe_pengabdian/calendar.dart';
-import 'package:fe_pengabdian/input_form.dart';
-import 'package:fe_pengabdian/zakat_fitrah.dart';
+import 'package:emosque_mobile/widgets/calender.dart';
+import 'package:emosque_mobile/views/sekertaris/tambah_penerima_zakat.dart';
+import 'package:emosque_mobile/views/sekertaris/zakat_fitrah.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'input_form.dart';
 
 class addPenerimaZakat extends StatefulWidget{
   @override

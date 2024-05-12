@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pengabdian_tasya/calender.dart';
-import 'package:pengabdian_tasya/dropdown_qurban.dart';
-import 'package:pengabdian_tasya/form.dart';
+import 'package:emosque_mobile/widgets/calender.dart';
+import 'package:emosque_mobile/views/sekertaris/dropdown_qurban.dart';
+import 'package:emosque_mobile/views/sekertaris/form.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class updateQurban extends StatefulWidget {

@@ -1,6 +1,6 @@
-import 'package:fe_pengabdian/dropdown_zakat.dart';
-import 'package:fe_pengabdian/input_form.dart';
-import 'package:fe_pengabdian/zakat_fitrah.dart';
+import 'package:emosque_mobile/views/sekertaris/dropdown_zakat.dart';
+import 'package:emosque_mobile/views/sekertaris/input_form.dart';
+import 'package:emosque_mobile/views/sekertaris/zakat_fitrah.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pengabdian_tasya/read_sapi.dart';
+import 'package:emosque_mobile/views/sekertaris/read_sapi.dart';
 
 class readQurban extends StatefulWidget {
   @override

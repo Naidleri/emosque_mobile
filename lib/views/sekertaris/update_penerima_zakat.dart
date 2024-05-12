@@ -1,6 +1,6 @@
-import 'package:fe_pengabdian/calendar.dart';
-import 'package:fe_pengabdian/input_form.dart';
-import 'package:fe_pengabdian/zakat_fitrah.dart';
+import 'package:emosque_mobile/widgets/calender.dart';
+import 'package:emosque_mobile/views/sekertaris/input_form.dart';
+import 'package:emosque_mobile/views/sekertaris/yayasan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
