@@ -48,8 +48,10 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
   Widget cardHistoryPengeluaran(String judul, String tanggal, String uang) {
     return InkWell(
       onDoubleTap: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => ubah_pengeluaran(),
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => UbahPengeluaran(),
           ),
         );
       },
@@ -77,7 +79,7 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
                 ),
                 Text(
                   tanggal,
-                  style:  GoogleFonts.poppins(
+                  style: GoogleFonts.poppins(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
                       color: Colors.grey),
@@ -86,7 +88,7 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
             ),
             Text(
               uang,
-              style:  GoogleFonts.poppins(fontWeight: FontWeight.w700),
+              style: GoogleFonts.poppins(fontWeight: FontWeight.w700),
             ),
           ],
         ),
@@ -110,18 +112,15 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
         children: [
           const PickerDate(),
           search(),
-          cardHistoryPengeluaran(
-              "Pembangunan", "19 April 2024", "Rp 850.000"),
+          cardHistoryPengeluaran("Pembangunan", "19 April 2024", "Rp 850.000"),
           cardHistoryPengeluaran(
               "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
           cardHistoryPengeluaran(
               "Konsumsi Rapat", "12 April 2024", "Rp 450.000"),
-          cardHistoryPengeluaran(
-              "Air", "10 April 2024", "Rp 600.000"),
+          cardHistoryPengeluaran("Air", "10 April 2024", "Rp 600.000"),
           cardHistoryPengeluaran(
               "Alat Kebersihan", "8 April 2024", "Rp 312.000"),
-          cardHistoryPengeluaran(
-              "Listrik", "8 April 2024", "Rp 800.000"),
+          cardHistoryPengeluaran("Listrik", "8 April 2024", "Rp 800.000"),
           cardHistoryPengeluaran(
               "Santunan anak yatim", "1 April 2024", "Rp 1.850.000")
         ],
@@ -140,10 +139,12 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
               bottom: 25,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => pengeluaran(),
-                  ),
-                );        
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => UbahPengeluaran(),
+                    ),
+                  );
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.green),

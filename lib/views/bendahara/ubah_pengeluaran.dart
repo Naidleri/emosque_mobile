@@ -6,8 +6,8 @@ import 'package:emosque_mobile/utils/const.dart';
 import '../../widgets/calender.dart';
 
 
-class ubah_pengeluaran extends StatelessWidget {
-  const ubah_pengeluaran({Key? key}) : super(key: key);
+class UbahPengeluaran extends StatelessWidget {
+  const UbahPengeluaran({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

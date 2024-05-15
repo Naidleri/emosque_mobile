@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:emosque_mobile/utils/const.dart';
 import '../../widgets/calender.dart';
-class pengeluaran extends StatelessWidget {
-  const pengeluaran({Key? key}) : super(key: key);
+class Pengeluaran extends StatelessWidget {
+  const Pengeluaran ({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
