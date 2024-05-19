@@ -14,8 +14,14 @@ import 'package:emosque_mobile/views/bendahara/tambah_pengeluaran.dart';
 import 'package:emosque_mobile/views/bendahara/ubah_pengeluaran.dart';
 import 'package:emosque_mobile/views/bendahara/updatePersetujuanSaldoKas.dart';
 import 'package:emosque_mobile/views/bendahara/update_pemasukan_bendahara.dart';
+import 'package:emosque_mobile/views/jamaah/dashboardjamaah.dart';
+import 'package:emosque_mobile/views/jamaah/kalenderjamaah.dart';
+import 'package:emosque_mobile/views/jamaah/profile.dart';
+import 'package:emosque_mobile/views/jamaah/qurbanjamaah.dart';
 import 'package:emosque_mobile/views/sekertaris/create_perizinan.dart';
 import 'package:emosque_mobile/views/sekertaris/edit_perizinan.dart';
+import 'package:emosque_mobile/views/sekertaris/homepage_sekertaris.dart';
+import 'package:emosque_mobile/views/takmir/laporan_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -37,7 +43,7 @@ class MyApp extends StatelessWidget {
             const CreatePersetujuanSaldoKas(),
         '/deletePersetujuanSaldoKasBendahara': (context) =>
             const DeletePersetujuanSaldoKas(),
-        '/homepageBendahara': (context) => const HomePageBendahara(),
+        // '/homepageBendahara': (context) => const HomePageBendahara(),
         '/pemasukanBendahara': (context) => const PemasukanBendaharaPage(),
         '/pengeluaranBendahara': (cotext) => const PengeluaranBendaharaPage(),
         '/persetujuanSaldoKasApproveBendahara': (context) => ApprovePage(),
@@ -53,10 +59,16 @@ class MyApp extends StatelessWidget {
         '/updatePemasukanBendahara': (context) =>
             const UpdatePemasukanBendahara(
                 judul: "init", nominal: 0, deskripsi: "init"),
-        'updatePersetujuanSaldoKasBendahara': (context) =>
+        '/updatePersetujuanSaldoKasBendahara': (context) =>
             const UpdatePersetujuanSaldoKas(),
+        '/dashboardJamaah': (context) => const DashboardJamaah(),
+        '/kalenderJamaah': (context) => const KalenderJamaah(),
+        '/profileJamah': (context) => const ProfileJamaah(),
+        '/qurbanJamaah': (context) => const QurbanJamaah(),
+        '/approveTakmir': (context) => ApprovePage(),
+        'laporanPageTakmir': (context) => LaporanPage(),
       },
-      home: MyCreatePerizinan(),
+      home: MyHomepageSekertaris(),
     );
   }
 }
