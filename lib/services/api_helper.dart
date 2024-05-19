@@ -1,7 +1,7 @@
-part of 'service.dart';
+part of 'services.dart';
 
 class ApiHelper {
-  static const String baseUrl = 'https://chiligrow-api.up.railway.app/api/v1';
+  static const String baseUrl = 'https://localhost:8080/api';
 
   static Map<String, String> getHeaders(String token) {
     return {
