@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+class ProfileJamaah  extends StatelessWidget {
+  const ProfileJamaah ({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -96,8 +96,4 @@ class _DashedLinePainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return false;
   }
-}
-
-void main() {
-  runApp(const Profile());
 }
