@@ -24,21 +24,21 @@ class LoginUser {
   });
 }
 
-class UserData {
+class User {
   final int idUser;
   final String name;
   final String email;
   final int roleId;
 
-  UserData({
+  User({
     required this.idUser,
     required this.name,
     required this.email,
     required this.roleId,
   });
 
-  factory UserData.fromJson(Map<String, dynamic> json) {
-    return UserData(
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
       idUser: json['id_user'] as int,
       name: json['username'] as String,
       email: json['email'] as String,
