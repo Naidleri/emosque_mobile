@@ -67,7 +67,7 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
                 ),
                 Text(
                   tanggal,
-                  style:  GoogleFonts.poppins(
+                  style: GoogleFonts.poppins(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
                       color: Colors.grey),
@@ -76,7 +76,7 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
             ),
             Text(
               uang,
-              style:  GoogleFonts.poppins(fontWeight: FontWeight.w700),
+              style: GoogleFonts.poppins(fontWeight: FontWeight.w700),
             ),
           ],
         ),
@@ -130,14 +130,14 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
               bottom: 25,
               child: ElevatedButton(
                 onPressed: () {
-                  
+                  Navigator.pushNamed(context, "/tambahPengeluaranBendahara");
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.green),
                   shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius:
-                          BorderRadius.circular(10.0), // Set corner radius
+                          BorderRadius.circular(10.0), 
                     ),
                   ),
                 ),

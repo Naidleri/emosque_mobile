@@ -22,9 +22,9 @@ class _MyWidgetState extends State<ReadPersetujuanSaldoKas> {
         title: Text(
           "Persetujuan Saldo Kas",
           style: GoogleFonts.poppins(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.greenAccent[700]),
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.greenAccent[700]),
         ),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(50),
@@ -76,7 +76,7 @@ class _MyWidgetState extends State<ReadPersetujuanSaldoKas> {
           ),
         ),
       ),
-      body: const Column(
+      body: Column(
         children: [
           listTile(
             tanggalAcc: "Minggu 2 April",
@@ -98,12 +98,19 @@ class _MyWidgetState extends State<ReadPersetujuanSaldoKas> {
             tanggalPengajuan: "13 Apr 2024",
             nominal: "Rp 550.000",
           ),
-          SizedBox(height: 500,),
-          fillButton(text: "Tambah Persetujuan")
+          SizedBox(
+            height: 500,
+          ),
+          GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(
+                    context, '/createPersetujuanSaldoKasBendahara');
+              },
+              child: Text(
+                "Tambah Persetujuan",
+              )),
         ],
       ),
     );
   }
 }
-
-

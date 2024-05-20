@@ -219,7 +219,7 @@ class HomePageBendahara extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 cardMenu("assets/images/dompet.png", "Pemasukan", () {
-                  Navigator.pushNamed(context, "/pemasukan");
+                  Navigator.pushNamed(context, "/pemasukanBendahara");
                 },
                     icon: const Icon(
                       Icons.arrow_back,
@@ -228,7 +228,7 @@ class HomePageBendahara extends StatelessWidget {
                     ),
                     color: Colors.green),
                 cardMenu("assets/images/dompet.png", "Pengeluaran", () {
-                  Navigator.pushNamed(context, "/pengeluaran");
+                  Navigator.pushNamed(context, "/pengeluaranBendahara");
                 },
                     icon: const Icon(
                       Icons.arrow_forward,
@@ -240,7 +240,8 @@ class HomePageBendahara extends StatelessWidget {
                   "assets/images/persetujuan.png",
                   "Persetujuan\nSaldo Kas",
                   () {
-                    Navigator.pushNamed(context, "/persetujuan");
+                    Navigator.pushNamed(
+                        context, "/readPersetujuanSaldoKasBendahara");
                   },
                 ),
               ],
@@ -261,7 +262,9 @@ class HomePageBendahara extends StatelessWidget {
                   child: const Text(
                     "Lihat semua",
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, "/riwayatTransaksiBendahara");
+                  },
                 )
               ],
             ),

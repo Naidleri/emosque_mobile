@@ -191,7 +191,7 @@ class _PemasukanBendaharaPageState extends State<PemasukanBendaharaPage> {
               bottom: 25,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/createpemasukan');
+                  Navigator.pushNamed(context, '/createPemasukanBendahara');
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.green),
