@@ -1,3 +1,4 @@
+import 'package:emosque_mobile/views/jamaah/navbarjamaah.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -62,7 +63,8 @@ class DashboardJamaah extends StatelessWidget {
                                 'Total Pemasukan',
                                 style: GoogleFonts.poppins(
                                   fontSize: 14,
-                                  color: Colors.white, // Change text color to white
+                                  color: Colors
+                                      .white, // Change text color to white
                                 ),
                               ),
                               SizedBox(height: 5),
@@ -70,7 +72,8 @@ class DashboardJamaah extends StatelessWidget {
                                 'Rp. 800.000',
                                 style: GoogleFonts.poppins(
                                   fontSize: 20,
-                                  color: Colors.white, // Change text color to white
+                                  color: Colors
+                                      .white, // Change text color to white
                                 ),
                               ),
                             ],
@@ -81,7 +84,8 @@ class DashboardJamaah extends StatelessWidget {
                                 'Total Pengeluaran',
                                 style: GoogleFonts.poppins(
                                   fontSize: 14,
-                                  color: Colors.white, // Change text color to white
+                                  color: Colors
+                                      .white, // Change text color to white
                                 ),
                               ),
                               SizedBox(height: 5),
@@ -89,7 +93,8 @@ class DashboardJamaah extends StatelessWidget {
                                 'Rp. 700.000',
                                 style: GoogleFonts.poppins(
                                   fontSize: 20,
-                                  color: Colors.white, // Change text color to white
+                                  color: Colors
+                                      .white, // Change text color to white
                                 ),
                               ),
                             ],
@@ -122,6 +127,7 @@ class DashboardJamaah extends StatelessWidget {
             ),
           ],
         ),
+        bottomNavigationBar: NavbarJamaah(),
       ),
     );
   }
