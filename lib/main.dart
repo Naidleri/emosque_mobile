@@ -51,7 +51,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
-        'createPemasukanBendahara': (context) => CreatePemasukanBendaharaPage(),
+        '/createPemasukanBendahara': (context) =>
+            CreatePemasukanBendaharaPage(),
         '/createPersetujuanSaldoKasBendahara': (context) =>
             const CreatePersetujuanSaldoKas(),
         '/deletePersetujuanSaldoKasBendahara': (context) =>
@@ -97,7 +98,7 @@ class MyApp extends StatelessWidget {
         '/yayasanSekertaris': (context) => Yayasan(),
         '/zakatFitrahSekertaris': (context) => zakatFitrah(),
       },
-      home: MyHomepageSekertaris(),
+      home: HomePageBendahara(),
     );
   }
 }
