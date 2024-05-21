@@ -47,7 +47,7 @@ class UserProvider extends ChangeNotifier {
   Future<void> logoutUser(BuildContext context) async {
     Navigator.pushNamed(context, '/login');
     final storedToken = await _secureStorage.delete(key: 'token'); 
-     _token = null;
+    _token = null;
   }
 
   Future<void> getProfile() async {

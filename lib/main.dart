@@ -1,5 +1,6 @@
 import 'package:emosque_mobile/views/auth/login.dart';
 import 'package:emosque_mobile/views/auth/register.dart';
+import 'package:emosque_mobile/views/bendahara/bottom_navigasi_bendahara.dart';
 import 'package:emosque_mobile/views/bendahara/createPersetujuanSaldoKas.dart';
 import 'package:emosque_mobile/views/bendahara/create_pemasukan_bendahara_page.dart';
 import 'package:emosque_mobile/views/bendahara/deletePersetujuanSaldokas.dart';
@@ -12,8 +13,6 @@ import 'package:emosque_mobile/views/bendahara/readPersetujuanSaldoKas.dart';
 import 'package:emosque_mobile/views/bendahara/riwayat_transaksi.dart';
 import 'package:emosque_mobile/views/bendahara/tambah_pengeluaran.dart';
 import 'package:emosque_mobile/views/bendahara/ubah_pengeluaran.dart';
-import 'package:emosque_mobile/views/bendahara/updatePersetujuanSaldoKas.dart';
-import 'package:emosque_mobile/views/bendahara/update_pemasukan_bendahara.dart';
 import 'package:emosque_mobile/views/jamaah/dashboardjamaah.dart';
 import 'package:emosque_mobile/views/jamaah/kalenderjamaah.dart';
 import 'package:emosque_mobile/views/jamaah/profile.dart';
@@ -43,7 +42,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -70,11 +68,6 @@ class MyApp extends StatelessWidget {
         '/riwayatTransaksiBendahara': (context) => const riwayat_transaksi(),
         '/tambahPengeluaranBendahara': (context) => const Pengeluaran(),
         '/ubahPengeluaranBendahara': (context) => const UbahPengeluaran(),
-        '/updatePemasukanBendahara': (context) =>
-            const UpdatePemasukanBendahara(
-                judul: "init", nominal: 0, deskripsi: "init"),
-        '/updatePersetujuanSaldoKasBendahara': (context) =>
-            const UpdatePersetujuanSaldoKas(),
         '/dashboardJamaah': (context) => const DashboardJamaah(),
         '/kalenderJamaah': (context) => const KalenderJamaah(),
         '/profileJamah': (context) => const ProfileJamaah(),
@@ -98,7 +91,7 @@ class MyApp extends StatelessWidget {
         '/yayasanSekertaris': (context) => Yayasan(),
         '/zakatFitrahSekertaris': (context) => zakatFitrah(),
       },
-      home: HomePageBendahara(),
+      home: const BottomNavigasiBendahara(),
     );
   }
 }

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileJamaah  extends StatelessWidget {
-  const ProfileJamaah ({Key? key}) : super(key: key);
-
+  const ProfileJamaah ({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,21 +19,21 @@ class ProfileJamaah  extends StatelessWidget {
           ),
         ),
         body: ListView(
-          children: [
+          children: const [
             ListTile(
               title: Text(
                 "Email",
                 style: TextStyle(
-                  color: const Color.fromARGB(
-                                      255, 6, 215, 115) // Set text color to green
+                  color: Color.fromARGB(
+                                      255, 6, 215, 115) 
                 ),
               ),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("emaildummy@mail.unej.ac.id"),
-                  const SizedBox(height: 4),
-                  const DashedLine(height: 1, color: Color.fromARGB(255, 6, 215, 115)),
+                  SizedBox(height: 4),
+                  DashedLine(height: 1, color: Color.fromARGB(255, 6, 215, 115)),
                 ],
               ),
             ),
@@ -44,7 +43,6 @@ class ProfileJamaah  extends StatelessWidget {
     );
   }
 }
-
 class DashedLine extends StatelessWidget {
   final double height;
   final Color color;
