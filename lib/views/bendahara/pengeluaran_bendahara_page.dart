@@ -1,3 +1,4 @@
+import 'package:emosque_mobile/views/bendahara/updatePersetujuanSaldoKas.dart';
 import 'package:emosque_mobile/widgets/picker_date.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,6 +12,10 @@ class PengeluaranBendaharaPage extends StatefulWidget {
 }
 
 class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
+  String judul = "Santunan anak yatim";
+  String date = "15 April 2024";
+  int nominal = 550000;
+  String deskripsi = "Untuk Bulan April";
   Widget search() {
     return Container(
       height: 60,
@@ -40,9 +45,10 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
     );
   }
 
-  Widget cardHistoryPengeluaran(String judul, String tanggal, String uang) {
+  Widget cardHistoryPengeluaran(
+      String judul, String tanggal, String uang, VoidCallback onTap) {
     return InkWell(
-      onLongPress: () {},
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: const BoxDecoration(
@@ -101,19 +107,82 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
           const PickerDate(),
           search(),
           cardHistoryPengeluaran(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
+              "Santunan anak yatim", "15 April 2024", "Rp 550.000", () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => UpdatePersetujuanSaldoKas(
+                          judul: judul,
+                          nominal: nominal,
+                          deskripsi: deskripsi,
+                        )));
+          }),
           cardHistoryPengeluaran(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
+              "Santunan anak yatim", "15 April 2024", "Rp 550.000", () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => UpdatePersetujuanSaldoKas(
+                          judul: judul,
+                          nominal: nominal,
+                          deskripsi: deskripsi,
+                        )));
+          }),
           cardHistoryPengeluaran(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
+              "Santunan anak yatim", "15 April 2024", "Rp 550.000", () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => UpdatePersetujuanSaldoKas(
+                          judul: judul,
+                          nominal: nominal,
+                          deskripsi: deskripsi,
+                        )));
+          }),
           cardHistoryPengeluaran(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
+              "Santunan anak yatim", "15 April 2024", "Rp 550.000", () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => UpdatePersetujuanSaldoKas(
+                          judul: judul,
+                          nominal: nominal,
+                          deskripsi: deskripsi,
+                        )));
+          }),
           cardHistoryPengeluaran(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
+              "Santunan anak yatim", "15 April 2024", "Rp 550.000", () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => UpdatePersetujuanSaldoKas(
+                          judul: judul,
+                          nominal: nominal,
+                          deskripsi: deskripsi,
+                        )));
+          }),
           cardHistoryPengeluaran(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000"),
+              "Santunan anak yatim", "15 April 2024", "Rp 550.000", () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => UpdatePersetujuanSaldoKas(
+                          judul: judul,
+                          nominal: nominal,
+                          deskripsi: deskripsi,
+                        )));
+          }),
           cardHistoryPengeluaran(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000")
+              "Santunan anak yatim", "15 April 2024", "Rp 550.000", () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => UpdatePersetujuanSaldoKas(
+                          judul: judul,
+                          nominal: nominal,
+                          deskripsi: deskripsi,
+                        )));
+          })
         ],
       ),
       bottomSheet: Stack(
@@ -136,8 +205,7 @@ class _PengeluaranBendaharaPageState extends State<PengeluaranBendaharaPage> {
                   backgroundColor: MaterialStateProperty.all(Colors.green),
                   shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(10.0), 
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
                 ),
