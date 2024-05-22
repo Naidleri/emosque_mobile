@@ -1,29 +1,5 @@
 part of 'models.dart';
 
-class RegisterUser {
-  final String name;
-  final String email;
-  final String password;
-  final int roleId;
-
-  RegisterUser({
-    required this.name,
-    required this.email,
-    required this.password,
-    required this.roleId,
-  });
-}
-
-class LoginUser {
-  final String name;
-  final String password;
-
-  LoginUser({
-    required this.name,
-    required this.password,
-  });
-}
-
 class User {
   final int idUser;
   final String name;
@@ -55,3 +31,28 @@ class User {
     };
   }
 }
+
+class RegisterUser {
+  final String name;
+  final String email;
+  final String password;
+  final int roleId;
+
+  RegisterUser({
+    required this.name,
+    required this.email,
+    required this.password,
+    required this.roleId,
+  });
+}
+
+class LoginUser {
+  final String name;
+  final String password;
+
+  LoginUser({
+    required this.name,
+    required this.password,
+  });
+}
+
