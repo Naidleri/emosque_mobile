@@ -17,4 +17,19 @@ class KasService {
       return ApiHelper.handleError(e);
     }
   }
+
+  Future<SaldoKas> getAllKas () async {
+    try{
+      final response = await http.get(
+        url,
+        headers: ApiHelper.getHeaders(''),
+      );
+      final responseData = ApiHelper.handleResponse(response);
+      final allKas = SaldoKas.fromJson(responseData['data']);
+      return allKas;
+    }catch(e){
+      return ApiHelper.handleError(e);
+    }
+
+  }
 }
