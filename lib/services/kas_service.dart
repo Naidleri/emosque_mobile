@@ -20,6 +20,7 @@ class KasService {
 
   Future<SaldoKas> getAllKas () async {
     try{
+      final url = Uri.parse('${ApiHelper.baseUrl}/saldo-kas');
       final response = await http.get(
         url,
         headers: ApiHelper.getHeaders(''),
@@ -30,6 +31,35 @@ class KasService {
     }catch(e){
       return ApiHelper.handleError(e);
     }
+  }
 
+  Future<SaldoKas> updateKas (int idKas, SaldoKas updatedKas, String token) async {
+    try{
+      final url = Uri.parse('${ApiHelper.baseUrl}/saldo-kas/${idKas}');
+      final response = await http.put(
+        url,
+        headers: ApiHelper.getHeaders(token),
+      );
+      final responseData = ApiHelper.handleResponse(response);
+      final updatedKas = SaldoKas.fromJson(responseData['data']);
+      return updatedKas;
+    }catch(e){
+      return ApiHelper.handleError(e);
+    }
+  }
+
+  Future<SaldoKas> deleteKas (int idKas, String token) async {
+    try{
+      final url = Uri.parse('${ApiHelper.baseUrl}/saldo-kas/${idKas}');
+      final response = await http.delete(
+        url,
+        headers: ApiHelper.getHeaders(token),
+      );
+      final responseData = ApiHelper.handleResponse(response);
+      final updatedKas = SaldoKas.fromJson(responseData['data']);
+      return updatedKas;
+    }catch(e){
+      return ApiHelper.handleError(e);
+    }
   }
 }

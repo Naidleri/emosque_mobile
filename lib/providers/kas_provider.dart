@@ -39,7 +39,37 @@ class KasProvider extends ChangeNotifier{
       throw Exception('Failed to get all saldo kas $e');
     }
 
-    _idLoading = false;
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> updateKas (int idKas, SaldoKas updatedKas) async {
+    _isLoading = true;
+    notifyListeners();
+
+    try{
+      final storedToken = await _secureStorage.read(key: 'token');
+      final data = await _kasService.updateKas(idKas, updatedKas, storedToken);
+    }catch(e){
+      print('Error update saldo kas: $e');
+      throw Exception('Failed to update saldo kas $e');
+    }
+    _isLoading = false;
+    notifyListners();
+  }
+
+  Future<void> deleteKas (int idKas) async {
+    _isLoading = true;
+    notifyListeners();
+
+    try{
+      final storedToken = await _secureStorage.read(key: 'token');
+      final data = await _kasService.deleteKas(idKas, storedToken);
+    }catch(e){
+      print('Error delete saldo kas: $e');
+      throw Exception('Failed to delete saldo kas $e');
+    }
+    _isLoading = false;
     notifyListeners();
   }
 }
