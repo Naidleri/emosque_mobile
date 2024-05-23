@@ -55,7 +55,7 @@ class KasProvider extends ChangeNotifier{
       throw Exception('Failed to update saldo kas $e');
     }
     _isLoading = false;
-    notifyListners();
+    notifyListeners();
   }
 
   Future<void> deleteKas (int idKas) async {

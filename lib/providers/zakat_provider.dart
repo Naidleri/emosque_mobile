@@ -35,6 +35,7 @@ class ZakatProvider extends ChangeNotifier {
     try{
       final storedToken = _secureStorage.read(key: 'token');
       final data = await _zakatService.getAllZakat(storedToken);
+      _zakatFitrah.add(data);
     }catch(e){
         print('Error get all zakat fitrah: $e');
       throw Exception('Failed to get all zakat fitrah $e');
@@ -49,6 +50,7 @@ class ZakatProvider extends ChangeNotifier {
     try{
       final storedToken = _secureStorage.read(key: 'token');
       final data = await _zakatService.getZakatById(idZakat, storedToken);
+      _zakatFitrah.add(data);
     }catch(e){
         print('Error get zakat fitrah: $e');
       throw Exception('Failed to get zakat fitrah $e');

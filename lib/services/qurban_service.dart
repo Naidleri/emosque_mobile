@@ -46,4 +46,35 @@ class QurbanService {
       return ApiHelper.handleError(e);
     }
   }
+
+  Future<Qurban> updateQurban (int idQurban, Qurban updatedQurban, String token) async {
+    final url = Uri.parse('${ApiHelper.baseUrl}/qurban/$idQurban');
+    try{
+      final response = await http.put(
+        url,
+        headers: ApiHelper.getHeaders(token),
+        body: jsonEncode(updatedQurban)
+      );
+      final responseData = ApiHelper.handleResponse(response);
+      final updatedQurbanData = Qurban.fromJson(responseData['data']);
+      return updatedQurbanData;
+    }catch(e){
+      return ApiHelper.handleError(e);
+    }
+  }
+
+  Future<Qurban> deleteQurban (int idQurban, String token) async {
+    final url = Uri.parse('${ApiHelper.baseUrl}/qurban/$idQurban');
+    try{
+      final response = await http.delete(
+        url,
+        headers: ApiHelper.getHeaders(token),
+      );
+      final responseData = ApiHelper.handleResponse(response);
+      final deletedQurbanData = Qurban.fromJson(responseData['data']);
+      return deletedQurbanData;
+    }catch(e){
+      return ApiHelper.handleError(e);
+    }
+  }
 }
