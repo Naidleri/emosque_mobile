@@ -56,4 +56,34 @@ class ZakatProvider extends ChangeNotifier {
      _isLoading = true;
     notifyListeners();
   }
+
+   Future<void> updateZakat (int idZakat, Zakat updatedZakat) async {
+    _isLoading = true;
+    notifyListeners();
+
+    try{
+      final storedToken = await _secureStorage.read(key: 'token');
+      final data = await _zakatService.updateZakat(idZakat, updatedZakat, storedToken);
+    }catch(e){
+      print('Error update zakat fitrah: $e');
+      throw Exception('Failed to update zakat fitrah $e');
+    }
+    _isLoading = false;
+    notifyListners();
+  }
+
+  Future<void> deleteZakat (int idZakat) async {
+    _isLoading = true;
+    notifyListeners();
+
+    try{
+      final storedToken = await _secureStorage.read(key: 'token');
+      final data = await _zakatService.deleteZakat(idZakat, storedToken);
+    }catch(e){
+      print('Error delete zakat fitrah: $e');
+      throw Exception('Failed to delete zakat fitrah $e');
+    }
+    _isLoading = false;
+    notifyListners();
+  }
 }
