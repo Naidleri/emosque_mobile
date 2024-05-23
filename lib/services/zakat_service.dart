@@ -31,4 +31,19 @@ class ZakatService {
       return ApiHelper.handleError(e);
     }
   }
+
+  Future<Zakat> getZakatById (int idZakat, String token) async {
+    final url = Uri.parse('${ApiHelper.baseUrl}/zakat-fitrah/$idZakat');
+    try{
+      final response = await http.post(
+        url,
+        headers: ApiHelper.getHeaders(token),
+      );
+      final responseData = ApiHelper.handleResponse(response);
+      final zakatData = Zakat.fromJson(responseData['data']);
+      return zakatData;
+    }catch(e){
+      return ApiHelper.handleError(e);
+    }
+  }
 }
