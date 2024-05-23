@@ -27,4 +27,19 @@ class ZakatProvider extends ChangeNotifier {
      _isLoading = true;
     notifyListeners();
   }
+
+
+  Future<void> getAllZakat () async {
+    _isLoading = true;
+    notifyListeners();
+    try{
+      final storedToken = _secureStorage.read(key: 'token');
+      final data = await _zakatService.getAllZakat(storedToken);
+    }catch(e){
+        print('Error get all zakat fitrah: $e');
+      throw Exception('Failed to get all zakat fitrah $e');
+    }
+     _isLoading = true;
+    notifyListeners();
+  }
 }
