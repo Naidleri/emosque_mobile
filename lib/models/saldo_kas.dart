@@ -6,7 +6,7 @@ class SaldoKas {
   final int saldoMasuk;
   final int saldoKeluar;
   final bool approval;
-  final int kasJenisId;
+  final String jenisKas;
 
   SaldoKas(
     this.idSaldoKas,
@@ -14,7 +14,7 @@ class SaldoKas {
     this.saldoMasuk,
     this.saldoKeluar,
     this.approval,
-    this.kasJenisId,
+    this.jenisKas,
   );
 
   factory SaldoKas.fromJson(Map<String, dynamic> json) {
@@ -24,7 +24,7 @@ class SaldoKas {
       json['saldo_masuk'] as int,
       json['saldo_keluar'] as int,
       json['approval'] as bool,
-      json['kas_jenis_id'] as int,
+      json['kas_jenis_id'] as String,
     );
   }
 
@@ -35,7 +35,7 @@ class SaldoKas {
       'saldo_masuk': saldoMasuk,
       'saldo_keluar': saldoKeluar,
       'approval': approval,
-      'kas_jenis_id': kasJenisId
+      'kas_jenis_id': jenisKas
     };
   }
 }

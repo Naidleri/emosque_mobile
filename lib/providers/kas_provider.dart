@@ -21,7 +21,7 @@ class KasProvider extends ChangeNotifier{
       final data = await _kasService.createKas(newKas, storedToken);
     }catch(e){
       print('Error create saldo kas: $e');
-      throw Exception('Failed to create saldo kas');
+      throw Exception('Failed to create saldo kas $e');
     }
     _isLoading = false;
     notifyListeners();
@@ -55,7 +55,7 @@ class KasProvider extends ChangeNotifier{
       throw Exception('Failed to update saldo kas $e');
     }
     _isLoading = false;
-    notifyListners();
+    notifyListeners();
   }
 
   Future<void> deleteKas (int idKas) async {
