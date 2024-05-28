@@ -113,10 +113,27 @@ class _MyHomepageSekertarisState extends State<MyHomepageSekertaris> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  cardMenu('assets/images/icon-beranda-sekre-1.png', 'Perizinan', () {Navigator.push(context, MaterialPageRoute(builder: (context) => const MyListPerizinan())); }),
-                  cardMenu('assets/images/icon-beranda-sekre-2.png', 'Zakat', () {Navigator.push(context, MaterialPageRoute(builder: (context) => ZakatFitrah())); }),
-                  cardMenu('assets/images/icon-beranda-sekre-3.png', 'Qurban', () {Navigator.push(context, MaterialPageRoute(builder: (context) => ReadQurban())); }),
-                  cardMenu('assets/images/icon-beranda-sekre-3.png', 'Yayasan', () {Navigator.push(context, MaterialPageRoute(builder: (context) => Yayasan())); }),
+                  cardMenu(
+                      'assets/images/icon-beranda-sekre-1.png', 'Perizinan',
+                      () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MyListPerizinan()));
+                  }),
+                  cardMenu('assets/images/icon-beranda-sekre-2.png', 'Zakat',
+                      () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ZakatFitrah()));
+                  }),
+                  cardMenu('assets/images/qurban.png', 'Qurban', () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ReadQurban()));
+                  }),
+                  cardMenu('assets/images/yayasan.png', 'Yayasan', () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Yayasan()));
+                  }),
                 ],
               )
             ],
