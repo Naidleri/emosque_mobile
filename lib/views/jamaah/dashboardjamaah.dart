@@ -32,21 +32,9 @@ class DashboardJamaah extends StatelessWidget {
               children: [
                 mainCard(context),
                 const SizedBox(height: 20),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    cardMenu(
-                        'Zakat Fitrah',
-                        const Color.fromARGB(255, 88, 205, 152),
-                        () {},
-                        context),
-                    const SizedBox(height: 20),
-                    cardMenu('Qurban', const Color.fromARGB(255, 61, 169, 171),
-                        () {
-                      Navigator.pushNamed(context, '/qurbanJamaah');
-                    }, context)
-                  ],
-                )
+                cardMenu('Qurban', const Color.fromARGB(255, 61, 169, 171), () {
+                  Navigator.pushNamed(context, '/qurbanJamaah');
+                }, context)
               ],
             ),
           ],

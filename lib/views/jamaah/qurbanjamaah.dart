@@ -10,13 +10,12 @@ class QurbanJamaah extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        // leading: const Icon(Icons.arrow_back_ios_new),
         title: Text(
           "Qurban",
           style: GoogleFonts.poppins(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: Colors.greenAccent[700]),
+              color: Colors.green),
         ),
       ),
       body: ListView(
@@ -32,38 +31,40 @@ class QurbanJamaah extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(bottom: 8.0),
-                    child: Text("Nama orang qurban",
+                    width: MediaQuery.of(context).size.width * 0.86,
+                    margin: const EdgeInsets.only(bottom: 8.0),
+                    child: Text("Nama: Ace",
                         style: GoogleFonts.poppins(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.greenAccent[700])),
+                            color: Colors.black)),
                   ),
                   Container(
-                    margin: EdgeInsets.only(bottom: 8.0),
-                    child: Text("tgl orang qurban",
+                    margin: const EdgeInsets.only(bottom: 8.0),
+                    child: Text("12 Desember 2024",
                         style: GoogleFonts.poppins(
                             fontSize: 15,
                             fontWeight: FontWeight.normal,
-                            color: Colors.greenAccent[700])),
+                            color: Colors.black)),
                   ),
                   Container(
                     margin: const EdgeInsets.only(bottom: 8.0),
-                    child: Text("deskripsi",
+                    child: Text("Saya ingin berqurban",
                         style: GoogleFonts.poppins(
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.normal,
-                            color: Colors.greenAccent[700])),
+                            color: Colors.black)),
                   ),
                   Container(
+                    width: MediaQuery.of(context).size.width * 0.86,
                     margin: const EdgeInsets.only(bottom: 8.0),
-                    child: Image.network("https://picsum.photos/293/158"),
+                    child: Image.network("https://picsum.photos/293/158",),
                   ),
                   Text("Jenis Qurban",
                       style: GoogleFonts.poppins(
                           fontSize: 15,
                           fontWeight: FontWeight.normal,
-                          color: Colors.greenAccent[700]))
+                          color: Colors.black))
                 ],
               ),
             ),
