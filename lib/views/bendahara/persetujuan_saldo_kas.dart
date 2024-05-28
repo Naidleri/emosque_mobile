@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:emosque_mobile/utils/const.dart';
 import 'package:emosque_mobile/widgets/persetujuan_widget.dart';
-import '../../widgets/persetujuan_widget.dart'; 
 
 class ApprovePage extends StatefulWidget {
   @override

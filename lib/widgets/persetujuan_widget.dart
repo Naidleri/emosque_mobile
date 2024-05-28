@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:emosque_mobile/utils/const.dart';
-import 'package:emosque_mobile/views/bendahara/persetujuan_saldo_kas.dart';
-
 class PersetujuanSaldoKas extends StatefulWidget {
-  const PersetujuanSaldoKas({Key? key}) : super(key: key);
+  const PersetujuanSaldoKas({super.key});
 
   @override
   State<PersetujuanSaldoKas> createState() => _PersetujuanSaldoKasState();

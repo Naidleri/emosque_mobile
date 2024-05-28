@@ -26,7 +26,7 @@ class CreatePersetujuanSaldoKas extends StatelessWidget {
           ),
         ),
         body: ListView(
-          children: const [
+          children: [
             Column(
               children: [
                 form(
@@ -46,7 +46,7 @@ class CreatePersetujuanSaldoKas extends StatelessWidget {
                   height: 49,
                 ),
                 fillButton(
-                  text: "Kirim Persetujuan",
+                  text: "Kirim Persetujuan", onPressed: (){},
                 ),
                 SizedBox(
                   height: 36,

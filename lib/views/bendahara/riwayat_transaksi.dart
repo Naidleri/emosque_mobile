@@ -1,7 +1,3 @@
-import 'package:flutter/widgets.dart';
-import 'package:emosque_mobile/views/bendahara/tambah_pengeluaran.dart';
-import 'package:emosque_mobile/views/bendahara/ubah_pengeluaran.dart';
-
 import '../../widgets/picker_date.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -58,13 +54,11 @@ class _PengeluaranBendaharaPageState extends State<riwayat_transaksi> {
             Row(
               children: [
                 Container(
-                  margin: const EdgeInsets.only(right: 20),
+                  margin: const EdgeInsets.only(right: 10),
                   decoration: BoxDecoration(
-                      color: Colors.green,    
-                      borderRadius: BorderRadius.circular(99),
-                    ),
-
-                  padding: const EdgeInsets.all(8),
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(99)),
+                  padding: const EdgeInsets.all(8.0),
                   child: icon,
                 ),
                 Padding(
@@ -115,7 +109,7 @@ class _PengeluaranBendaharaPageState extends State<riwayat_transaksi> {
         centerTitle: true,
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const PickerDate(),
           search(),
@@ -127,7 +121,6 @@ class _PengeluaranBendaharaPageState extends State<riwayat_transaksi> {
           () {}, 
           350.0, 
           ),
-
           cardRiwayat(
           const Icon(Icons.arrow_back, size: 12, color: Colors.white),
           "Hasil Wakaf",
@@ -136,7 +129,6 @@ class _PengeluaranBendaharaPageState extends State<riwayat_transaksi> {
           () {}, 
           350.0, 
           ),
-
           cardRiwayat(
           const Icon(Icons.arrow_forward, size: 12, color: Colors.white),
           "Pembangunan",
@@ -145,7 +137,7 @@ class _PengeluaranBendaharaPageState extends State<riwayat_transaksi> {
           () {}, 
           350.0, 
           ),
-
+      
           cardRiwayat(
           const Icon(Icons.arrow_back, size: 12, color: Colors.white),
           "Kotak Amal",
@@ -154,7 +146,7 @@ class _PengeluaranBendaharaPageState extends State<riwayat_transaksi> {
           () {}, 
           350.0, 
           ),
-
+      
           cardRiwayat(
           const Icon(Icons.arrow_forward, size: 12, color: Colors.white,),
           "Santunan Anak Yatim",
@@ -163,7 +155,7 @@ class _PengeluaranBendaharaPageState extends State<riwayat_transaksi> {
           () {}, 
           350.0, 
           ),
-
+      
           cardRiwayat(
           const Icon(Icons.arrow_forward, size: 12, color: Colors.white,),
           "Konsumsi Rapat",
@@ -172,7 +164,7 @@ class _PengeluaranBendaharaPageState extends State<riwayat_transaksi> {
           () {}, 
           350.0, 
           ),
-
+      
           cardRiwayat(
           const Icon(Icons.arrow_back, size: 12, color: Colors.white,),
           "Kotak Amal",

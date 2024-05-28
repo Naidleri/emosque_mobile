@@ -302,28 +302,6 @@ class HomePageBendahara extends StatelessWidget {
               "Rp 800.000",
               () {},
               lebar),
-          cardDropDown(
-              const Icon(
-                Icons.arrow_forward,
-                size: 16,
-                color: Colors.white,
-              ),
-              "Pembangunan",
-              "09 April 2024",
-              "Rp 800.000",
-              () {},
-              lebar),
-          cardDropDown(
-              const Icon(
-                Icons.arrow_forward,
-                size: 16,
-                color: Colors.white,
-              ),
-              "Pembangunan",
-              "09 April 2024",
-              "Rp 800.000",
-              () {},
-              lebar),
         ]),
       ),
     );
