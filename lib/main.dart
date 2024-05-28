@@ -1,6 +1,5 @@
 import 'package:emosque_mobile/views/auth/login.dart';
 import 'package:emosque_mobile/views/auth/register.dart';
-import 'package:emosque_mobile/views/bendahara/bottom_navigasi_bendahara.dart';
 import 'package:emosque_mobile/views/bendahara/createPersetujuanSaldoKas.dart';
 import 'package:emosque_mobile/views/bendahara/create_pemasukan_bendahara_page.dart';
 import 'package:emosque_mobile/views/bendahara/deletePersetujuanSaldokas.dart';
@@ -15,18 +14,16 @@ import 'package:emosque_mobile/views/bendahara/tambah_pengeluaran.dart';
 import 'package:emosque_mobile/views/bendahara/ubah_pengeluaran.dart';
 import 'package:emosque_mobile/views/jamaah/dashboardjamaah.dart';
 import 'package:emosque_mobile/views/jamaah/kalenderjamaah.dart';
-import 'package:emosque_mobile/views/jamaah/navbarjamaah.dart';
 import 'package:emosque_mobile/views/jamaah/profile.dart';
 import 'package:emosque_mobile/views/jamaah/qurbanjamaah.dart';
+import 'package:emosque_mobile/views/sekertaris/bottom_bar_Seker.dart';
 import 'package:emosque_mobile/views/sekertaris/calender_seker.dart';
-import 'package:emosque_mobile/views/sekertaris/create_perizinan.dart';
 import 'package:emosque_mobile/views/sekertaris/edit_perizinan.dart';
 import 'package:emosque_mobile/views/sekertaris/homepage_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/list_perizinan.dart';
 import 'package:emosque_mobile/views/sekertaris/read_qurban.dart';
 import 'package:emosque_mobile/views/sekertaris/read_sapi.dart';
 import 'package:emosque_mobile/views/sekertaris/read_yayasan.dart';
-import 'package:emosque_mobile/views/sekertaris/tambah_penerima_zakat.dart';
 import 'package:emosque_mobile/views/sekertaris/tambah_qurban.dart';
 import 'package:emosque_mobile/views/sekertaris/tambah_zakat.dart';
 import 'package:emosque_mobile/views/sekertaris/update_penerima_zakat.dart';
@@ -76,14 +73,12 @@ class MyApp extends StatelessWidget {
         '/approveTakmir': (context) => ApprovePage(),
         'laporanPageTakmir': (context) => LaporanPage(),
         '/calenderSekertaris': (context) => const MyCalenderSeker(),
-        '/createPerizinanSekertaris': (context) => const MyCreatePerizinan(),
         '/editPerizinanSekertaris': (context) => const MyEditPerizinan(),
         '/homepageSekertaris': (context) => const MyHomepageSekertaris(),
         '/listPerizinanSekertaris': (context) => const MyListPerizinan(),
         '/readQurbanSekertaris': (context) => readQurban(),
         '/readSapiSekertaris': (context) => readSapi(),
         '/readYayasanSekertaris': (context) => readYayasan(),
-        '/addPenerimaZakatSekertaris': (context) => addPenerimaZakat(),
         '/tambahQurbanSekertaris': (context) => tambahQurban(),
         '/tambahZakatSekertaris': (context) => tambahZakat(),
         '/updatePenerimaZakatSekertaris': (context) => updatePenerimaZakat(),
@@ -92,7 +87,7 @@ class MyApp extends StatelessWidget {
         '/yayasanSekertaris': (context) => Yayasan(),
         '/zakatFitrahSekertaris': (context) => zakatFitrah(),
       },
-      home: const BottomNavigasiJamaah(),
+      home: const MyBottomBarSeker(),
     );
   }
 }
