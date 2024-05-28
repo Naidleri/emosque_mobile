@@ -1,6 +1,5 @@
 import 'package:emosque_mobile/widgets/calender_picker_date.dart';
 import 'package:emosque_mobile/widgets/form.dart';
-import 'package:emosque_mobile/widgets/formDeskripsi.dart';
 import 'package:emosque_mobile/widgets/textfieldDeskripsi.dart';
 import 'package:flutter/material.dart';
 
@@ -15,13 +14,10 @@ class _MyCreatePerizinanState extends State<MyCreatePerizinan> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
-          leading:
-              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
           centerTitle: true,
-          title: Text(
+          title: const Text(
             'Perizinan',
             style: TextStyle(
                 color: Color(0xff06d773),
@@ -33,8 +29,8 @@ class _MyCreatePerizinanState extends State<MyCreatePerizinan> {
           children: [
             Column(
               children: [
-                form(title: 'Nama Kegiatan', hint: 'Masukkan Nama Kegiatan'),
-                form(title: 'Nama Perizinan', hint: 'Masukkan Nama Perizinan'),
+                const form(title: 'Nama Kegiatan', hint: 'Masukkan Nama Kegiatan'),
+                const form(title: 'Nama Perizinan', hint: 'Masukkan Nama Perizinan'),
                 TextfieldDeskripsi(
                     title: 'deskripsi', hint: 'Masukkan Deskripsi'),
                 CalenderPicker(),
@@ -83,7 +79,6 @@ class _MyCreatePerizinanState extends State<MyCreatePerizinan> {
             )
           ],
         ),
-      ),
     );
   }
 }

@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:badges/badges.dart' as badges;
 
-class ProfileBendahara extends StatelessWidget {
-  const ProfileBendahara({super.key});
+class ProfileSekertaris extends StatelessWidget {
+  const ProfileSekertaris({super.key});
   Widget text(String judul,String text, BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(5),
@@ -60,9 +60,7 @@ class ProfileBendahara extends StatelessWidget {
             text('Email', 'firdhaac02@gmail.com', context),
             text('Role pengurus', 'Ketua Takmir', context),
             SizedBox(height: 20,),
-            fillButton(text: 'Log out', onPressed: (){
-              Navigator.pushReplacementNamed(context, '/login');
-            }),
+            fillButton(text: 'Log out', onPressed: (){}),
           ],
         ),
       ),

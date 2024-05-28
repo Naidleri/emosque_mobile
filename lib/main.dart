@@ -85,7 +85,7 @@ class MyApp extends StatelessWidget {
         '/updateQurbanSekertaris': (context) => updateQurban(),
         '/updateZakatSekertaris': (context) => updateZakat(),
         '/yayasanSekertaris': (context) => Yayasan(),
-        '/zakatFitrahSekertaris': (context) => zakatFitrah(),
+        '/zakatFitrahSekertaris': (context) => ZakatFitrah(),
       },
       home: const MyBottomBarSeker(),
     );

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class zakatFitrah extends StatefulWidget{
+class ZakatFitrah extends StatefulWidget{
   @override
-  State<zakatFitrah> createState() => _zakatFitrahState();
+  State<ZakatFitrah> createState() => _ZakatFitrahState();
 }
 
-class _zakatFitrahState extends State<zakatFitrah> {
+class _ZakatFitrahState extends State<ZakatFitrah> {
   @override
 
   Widget build(BuildContext context) {
