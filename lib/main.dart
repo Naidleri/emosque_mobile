@@ -15,6 +15,7 @@ import 'package:emosque_mobile/views/bendahara/tambah_pengeluaran.dart';
 import 'package:emosque_mobile/views/bendahara/ubah_pengeluaran.dart';
 import 'package:emosque_mobile/views/jamaah/dashboardjamaah.dart';
 import 'package:emosque_mobile/views/jamaah/kalenderjamaah.dart';
+import 'package:emosque_mobile/views/jamaah/navbarjamaah.dart';
 import 'package:emosque_mobile/views/jamaah/profile.dart';
 import 'package:emosque_mobile/views/jamaah/qurbanjamaah.dart';
 import 'package:emosque_mobile/views/sekertaris/calender_seker.dart';
@@ -91,7 +92,7 @@ class MyApp extends StatelessWidget {
         '/yayasanSekertaris': (context) => Yayasan(),
         '/zakatFitrahSekertaris': (context) => zakatFitrah(),
       },
-      home: const BottomNavigasiBendahara(),
+      home: const BottomNavigasiJamaah(),
     );
   }
 }

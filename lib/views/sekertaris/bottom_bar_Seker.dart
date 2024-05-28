@@ -11,7 +11,7 @@ class MyBottomBarSeker extends StatefulWidget {
 class _MyBottomBarSekerState extends State<MyBottomBarSeker> {
   int _selectedIndex = 0;
   final List<Widget> _pages = [
-    MyHomepageSekertaris(),
+    const MyHomepageSekertaris(),
   ];
 
   void _onItemTapped(int index) {
@@ -27,7 +27,7 @@ class _MyBottomBarSekerState extends State<MyBottomBarSeker> {
         body: _pages[
             _selectedIndex], // Menampilkan halaman sesuai dengan _selectedIndex
         bottomNavigationBar: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20.0),
               topRight: Radius.circular(20.0),

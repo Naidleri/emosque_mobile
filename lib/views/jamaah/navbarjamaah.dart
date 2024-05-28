@@ -3,28 +3,26 @@ import 'package:emosque_mobile/views/jamaah/kalenderjamaah.dart';
 import 'package:emosque_mobile/views/jamaah/profile.dart';
 import 'package:flutter/material.dart';
 
-class NavbarJamaah extends StatefulWidget {
-  const NavbarJamaah({super.key});
+class BottomNavigasiJamaah extends StatefulWidget {
+  const BottomNavigasiJamaah({super.key});
 
   @override
-  State<NavbarJamaah> createState() => NavbarJamaahState();
+  State<BottomNavigasiJamaah> createState() =>
+      _BottomNavigasiJamaahState();
 }
 
-class NavbarJamaahState extends State<NavbarJamaah> {
+class _BottomNavigasiJamaahState extends State<BottomNavigasiJamaah> {
   int _selectedIndex = 0;
-
   static const List<Widget> _widgetOptions = <Widget>[
-    KalenderJamaah(),
     DashboardJamaah(),
-    ProfileJamaah(),
+    KalenderJamaah(),
+    ProfileJamaah()
   ];
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,18 +35,24 @@ class NavbarJamaahState extends State<NavbarJamaah> {
             icon: Icon(
               Icons.home_outlined,
               color: Color.fromARGB(255, 6, 215, 115),
+              size: 28,
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.calendar_month_outlined,
+              Icons.calendar_month,
               color: Color.fromARGB(255, 6, 215, 115),
+              size: 28,
             ),
-            label: 'Calendar',
+            label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: Color.fromARGB(255, 6, 215, 115)),
+            icon: Icon(
+              Icons.person,
+              color: Color.fromARGB(255, 6, 215, 115),
+              size: 28,
+            ),
             label: 'Profile',
           ),
         ],

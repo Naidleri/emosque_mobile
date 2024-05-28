@@ -5,7 +5,6 @@ import 'package:table_calendar/table_calendar.dart';
 
 class KalenderJamaah extends StatefulWidget {
   const KalenderJamaah({super.key});
-
   @override
   State<KalenderJamaah> createState() => _MyKalenderJamaahState();
 }
