@@ -27,7 +27,10 @@ class RegisterJamaahPage extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 20.0),
-                  child: Text("Nama"),
+                  child: Text("Nama", style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
@@ -49,7 +52,10 @@ class RegisterJamaahPage extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 20.0),
-                  child: Text("Username"),
+                  child: Text("Username", style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
@@ -71,7 +77,10 @@ class RegisterJamaahPage extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 20.0),
-                  child: Text("Email"),
+                  child: Text("Email", style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
