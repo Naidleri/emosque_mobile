@@ -1,3 +1,4 @@
+import 'package:emosque_mobile/views/bendahara/profile_bendahara.dart';
 import 'package:emosque_mobile/views/sekertaris/homepage_sekertaris.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +11,9 @@ class MyBottomBarSeker extends StatefulWidget {
 
 class _MyBottomBarSekerState extends State<MyBottomBarSeker> {
   int _selectedIndex = 0;
-  final List<Widget> _pages = [
-    const MyHomepageSekertaris(),
+  static const List<Widget> _widgetOptions = <Widget>[
+    MyHomepageSekertaris(),
+    ProfileBendahara()
   ];
 
   void _onItemTapped(int index) {
@@ -24,8 +26,7 @@ class _MyBottomBarSekerState extends State<MyBottomBarSeker> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: _pages[
-            _selectedIndex], // Menampilkan halaman sesuai dengan _selectedIndex
+        body: _widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar: Container(
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
