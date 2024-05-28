@@ -1,5 +1,6 @@
 import 'package:emosque_mobile/views/sekertaris/calender_seker.dart';
 import 'package:emosque_mobile/views/sekertaris/list_perizinan.dart';
+import 'package:emosque_mobile/views/sekertaris/read_qurban.dart';
 import 'package:emosque_mobile/views/sekertaris/yayasan.dart';
 import 'package:emosque_mobile/views/sekertaris/zakat_fitrah.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class _MyHomepageSekertarisState extends State<MyHomepageSekertaris> {
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.only(top: 12),
-        width: 100,
+        width: 90,
         height: 110,
         child: Column(
           children: [
@@ -110,11 +111,11 @@ class _MyHomepageSekertarisState extends State<MyHomepageSekertaris> {
                 height: 40,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   cardMenu('assets/images/icon-beranda-sekre-1.png', 'Perizinan', () {Navigator.push(context, MaterialPageRoute(builder: (context) => const MyListPerizinan())); }),
                   cardMenu('assets/images/icon-beranda-sekre-2.png', 'Zakat', () {Navigator.push(context, MaterialPageRoute(builder: (context) => ZakatFitrah())); }),
-                  cardMenu('assets/images/icon-beranda-sekre-3.png', 'Kalender', () {Navigator.push(context, MaterialPageRoute(builder: (context) => const MyCalenderSeker())); }),
+                  cardMenu('assets/images/icon-beranda-sekre-3.png', 'Qurban', () {Navigator.push(context, MaterialPageRoute(builder: (context) => ReadQurban())); }),
                   cardMenu('assets/images/icon-beranda-sekre-3.png', 'Yayasan', () {Navigator.push(context, MaterialPageRoute(builder: (context) => Yayasan())); }),
                 ],
               )

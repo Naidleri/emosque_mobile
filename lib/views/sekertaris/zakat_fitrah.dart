@@ -15,14 +15,6 @@ class _ZakatFitrahState extends State<ZakatFitrah> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          padding: EdgeInsets.only(left: 20),
-          onPressed: (){},
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: 25,
-            ),
-          ),
           title: Text(
             "Zakat Fitrah",
             style: 

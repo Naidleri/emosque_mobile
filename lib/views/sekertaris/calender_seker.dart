@@ -23,9 +23,6 @@ class _MyCalenderSekerState extends State<MyCalenderSeker> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          leading:
-              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
-          centerTitle: true,
           title: Text(
             'Kalender',
             style: TextStyle(

@@ -2,24 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:emosque_mobile/views/sekertaris/read_sapi.dart';
 
-class readQurban extends StatefulWidget {
+class ReadQurban extends StatefulWidget {
   @override
-  State<readQurban> createState() => _readQurbanState();
+  State<ReadQurban> createState() => _ReadQurbanState();
 }
 
-class _readQurbanState extends State<readQurban> {
+class _ReadQurbanState extends State<ReadQurban> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          padding: EdgeInsets.only(left: 20),
-          onPressed: () {},
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: 25,
-          ),
-        ),
         title: Text(
           "Qurban",
           style: GoogleFonts.poppins(

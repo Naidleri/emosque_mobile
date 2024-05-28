@@ -1,10 +1,10 @@
 import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/views/auth/login.dart';
 import 'package:emosque_mobile/views/auth/register.dart';
+import 'package:emosque_mobile/views/bendahara/bottom_navigasi_bendahara.dart';
 import 'package:emosque_mobile/views/bendahara/createPersetujuanSaldoKas.dart';
 import 'package:emosque_mobile/views/bendahara/create_pemasukan_bendahara_page.dart';
 import 'package:emosque_mobile/views/bendahara/deletePersetujuanSaldokas.dart';
-import 'package:emosque_mobile/views/bendahara/homepage_bendahara.dart';
 import 'package:emosque_mobile/views/bendahara/pemasukan_bendahara_page.dart';
 import 'package:emosque_mobile/views/bendahara/pengeluaran_bendahara_page.dart';
 import 'package:emosque_mobile/views/bendahara/persetujuanSaldoKas.dart';
@@ -13,16 +13,14 @@ import 'package:emosque_mobile/views/bendahara/readPersetujuanSaldoKas.dart';
 import 'package:emosque_mobile/views/bendahara/riwayat_transaksi.dart';
 import 'package:emosque_mobile/views/bendahara/tambah_pengeluaran.dart';
 import 'package:emosque_mobile/views/bendahara/ubah_pengeluaran.dart';
-import 'package:emosque_mobile/views/jamaah/dashboardjamaah.dart';
 import 'package:emosque_mobile/views/jamaah/kalenderjamaah.dart';
+import 'package:emosque_mobile/views/jamaah/navbarjamaah.dart';
 import 'package:emosque_mobile/views/jamaah/profile.dart';
 import 'package:emosque_mobile/views/jamaah/qurbanjamaah.dart';
 import 'package:emosque_mobile/views/sekertaris/bottom_bar_Seker.dart';
 import 'package:emosque_mobile/views/sekertaris/calender_seker.dart';
 import 'package:emosque_mobile/views/sekertaris/edit_perizinan.dart';
-import 'package:emosque_mobile/views/sekertaris/homepage_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/list_perizinan.dart';
-import 'package:emosque_mobile/views/sekertaris/read_qurban.dart';
 import 'package:emosque_mobile/views/sekertaris/read_sapi.dart';
 import 'package:emosque_mobile/views/sekertaris/read_yayasan.dart';
 import 'package:emosque_mobile/views/sekertaris/tambah_qurban.dart';
@@ -71,7 +69,7 @@ class MyApp extends StatelessWidget {
               const CreatePersetujuanSaldoKas(),
           '/deletePersetujuanSaldoKasBendahara': (context) =>
               const DeletePersetujuanSaldoKas(),
-          '/homepageBendahara': (context) => const HomePageBendahara(),
+          '/homepageBendahara': (context) => const BottomNavigasiBendahara(),
           '/pemasukanBendahara': (context) => const PemasukanBendaharaPage(),
           '/pengeluaranBendahara': (cotext) => const PengeluaranBendaharaPage(),
           '/persetujuanSaldoKasApproveBendahara': (context) => ApprovePage(),
@@ -84,7 +82,7 @@ class MyApp extends StatelessWidget {
           '/riwayatTransaksiBendahara': (context) => const riwayat_transaksi(),
           '/tambahPengeluaranBendahara': (context) => const Pengeluaran(),
           '/ubahPengeluaranBendahara': (context) => const UbahPengeluaran(),
-          '/dashboardJamaah': (context) => const DashboardJamaah(),
+          '/homepageJamaah': (context) => const BottomNavigasiJamaah(),
           '/kalenderJamaah': (context) => const KalenderJamaah(),
           '/profileJamah': (context) => const ProfileJamaah(),
           '/qurbanJamaah': (context) => const QurbanJamaah(),
@@ -92,9 +90,8 @@ class MyApp extends StatelessWidget {
           'laporanPageTakmir': (context) => LaporanPage(),
           '/calenderSekertaris': (context) => const MyCalenderSeker(),
           '/editPerizinanSekertaris': (context) => const MyEditPerizinan(),
-          '/homepageSekertaris': (context) => const MyHomepageSekertaris(),
+          '/homepageSekertaris': (context) => const MyBottomBarSeker(),
           '/listPerizinanSekertaris': (context) => const MyListPerizinan(),
-          '/readQurbanSekertaris': (context) => readQurban(),
           '/readSapiSekertaris': (context) => readSapi(),
           '/readYayasanSekertaris': (context) => readYayasan(),
           '/tambahQurbanSekertaris': (context) => tambahQurban(),
@@ -104,8 +101,9 @@ class MyApp extends StatelessWidget {
           '/updateZakatSekertaris': (context) => updateZakat(),
           '/yayasanSekertaris': (context) => Yayasan(),
           '/zakatFitrahSekertaris': (context) => ZakatFitrah(),
+        
         },
-        home: const MyBottomBarSeker(),
+        home: const LoginPage(),
       ),
     );
   }

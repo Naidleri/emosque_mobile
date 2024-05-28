@@ -12,14 +12,6 @@ class _YayasanState extends State<Yayasan> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          padding: EdgeInsets.only(left: 20),
-          onPressed: () {},
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: 25,
-          ),
-        ),
         title: Text(
           "Yayasan",
           style: GoogleFonts.poppins(
