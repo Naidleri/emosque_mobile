@@ -98,7 +98,7 @@ class MyApp extends StatelessWidget {
         '/yayasanSekertaris': (context) => Yayasan(),
         '/zakatFitrahSekertaris': (context) => zakatFitrah(),
       },
-      home: HomePageBendahara(),
+      home: LoginPage(),
     );
   }
 }

@@ -1,15 +1,15 @@
 part of 'providers.dart';
 
 class UserProvider extends ChangeNotifier {
-  List<User> _users = [];
-  List<User> get users => _users;
+  
 
   final UserService _userService = UserService();
   final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
 
   String? _token;
   String? get token => _token;
-
+List<User> _users = [];
+  List<User> get users => _users;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
