@@ -60,7 +60,9 @@ class ProfileBendahara extends StatelessWidget {
             text('Email', 'firdhaac02@gmail.com', context),
             text('Role pengurus', 'Ketua Takmir', context),
             SizedBox(height: 20,),
-            fillButton(text: 'Log out', onPressed: (){}),
+            fillButton(text: 'Log out', onPressed: (){
+              Navigator.pushReplacementNamed(context, '/login');
+            }),
           ],
         ),
       ),

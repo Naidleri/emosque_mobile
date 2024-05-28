@@ -21,7 +21,7 @@ class UserService {
       final response = await http.post(
         url,
         headers: ApiHelper.getHeaders(''),
-        body: jsonEncode(user),
+        body: jsonEncode(user.toJson()),
       );
       return ApiHelper.handleResponse(response);
     } catch (e) {

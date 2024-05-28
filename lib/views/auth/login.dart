@@ -1,13 +1,17 @@
+import 'package:emosque_mobile/models/models.dart';
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/views/auth/register.dart';
-import 'package:emosque_mobile/views/homepage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController _nameController = TextEditingController();
+    final TextEditingController _passController = TextEditingController();
     return Scaffold(
       body: Column(
         children: [
@@ -21,36 +25,39 @@ class LoginPage extends StatelessWidget {
                 fontWeight: FontWeight.w700,
                 color: Color.fromARGB(255, 6, 215, 115)),
           ),
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 20.0),
-                child: Text("Email"),
+                child: Text("Name"), // Ganti dari "Email" ke "Name"
               ),
               Padding(
-                padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                 child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Masukkan email',
-                    hintText: 'Masukkan email',
+                  controller: _nameController, // Tambahkan controller
+                  decoration: const InputDecoration(
+                    labelText: 'Masukkan nama',
+                    hintText: 'Masukkan nama',
                     border: OutlineInputBorder(),
                   ),
                 ),
               ),
             ],
           ),
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 20.0),
                 child: Text("Password"),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                 child: TextField(
-                  decoration: InputDecoration(
+                  controller: _passController, // Tambahkan controller
+                  obscureText: true,
+                  decoration: const InputDecoration(
                     labelText: 'Masukkan password',
                     hintText: 'Masukkan password',
                     border: OutlineInputBorder(),
@@ -67,31 +74,51 @@ class LoginPage extends StatelessWidget {
               children: [
                 const TextSpan(text: "Belum memiliki akun ? "),
                 TextSpan(
-                    text: "Masuk",
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 6, 215, 115),
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RegisterPage()),
-                        );
-                      })
+                  text: "Daftar", // Ganti dari "Masuk" ke "Daftar"
+                  style: const TextStyle(
+                    color: Color.fromARGB(255, 6, 215, 115),
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => RegisterPage()),
+                      );
+                    },
+                )
               ],
             ),
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Homepage(),
-                  ));
+              if (_nameController.text.isEmpty || _passController.text.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Name dan Password tidak boleh kosong'),
+                  ),
+                );
+                return;
+              }
+
+              final loggedInUser = LoginUser(
+                name: _nameController.text,
+                password: _passController.text,
+              );
+              final _userProvider =
+                  Provider.of<UserProvider>(context, listen: false);
+              _userProvider.loginUser(loggedInUser).then((_) {
+                Navigator.pushReplacementNamed(context, '/homepageBendahara');
+              }).catchError((error) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Login gagal'),
+                  ),
+                );
+              });
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 6, 215, 115),
+              backgroundColor: const Color.fromARGB(255, 6, 215, 115),
             ),
             child: const Text(
               'Masuk',

@@ -34,7 +34,7 @@ List<User> _users = [];
       final responseData = await _userService.loginUser(user);
       _users.clear();
       _users.add(User.fromJson(responseData['data']));
-      _token = responseData['token'];
+      _token = responseData['acces_token'];
       await _secureStorage.write(key: 'token', value: _token!);
     } catch (e) {
       print('Error logging in: $e');
