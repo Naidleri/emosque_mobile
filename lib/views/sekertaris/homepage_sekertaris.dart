@@ -74,8 +74,11 @@ class _MyHomepageSekertarisState extends State<MyHomepageSekertaris> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      TextButton(
-                        onPressed: () {},
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, '/createPerizinanSekertaris');
+                        },
                         child: Column(
                           children: [
                             Container(
@@ -97,8 +100,11 @@ class _MyHomepageSekertarisState extends State<MyHomepageSekertaris> {
                           ],
                         ),
                       ),
-                      TextButton(
-                        onPressed: () {},
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, '/addPenerimaZakatSekertaris');
+                        },
                         child: Column(
                           children: [
                             Container(
