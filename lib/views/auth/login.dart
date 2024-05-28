@@ -30,7 +30,7 @@ class LoginPage extends StatelessWidget {
             children: [
               const Padding(
                 padding: EdgeInsets.only(left: 20.0),
-                child: Text("Name"), // Ganti dari "Email" ke "Name"
+                child: Text("USername"), // Ganti dari "Email" ke "Name"
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 20.0, right: 20.0),
@@ -82,8 +82,7 @@ class LoginPage extends StatelessWidget {
                     ..onTap = () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => RegisterPage()),
+                        MaterialPageRoute(builder: (context) => RegisterPage()),
                       );
                     },
                 )
@@ -92,7 +91,8 @@ class LoginPage extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              if (_nameController.text.isEmpty || _passController.text.isEmpty) {
+              if (_nameController.text.isEmpty ||
+                  _passController.text.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('Name dan Password tidak boleh kosong'),
@@ -101,14 +101,33 @@ class LoginPage extends StatelessWidget {
                 return;
               }
 
-              final loggedInUser = LoginUser(
+              final logUser = LoginUser(
                 name: _nameController.text,
                 password: _passController.text,
               );
               final _userProvider =
                   Provider.of<UserProvider>(context, listen: false);
-              _userProvider.loginUser(loggedInUser).then((_) {
-                Navigator.pushReplacementNamed(context, '/homepageBendahara');
+              _userProvider.loginUser(logUser).then((_) {
+                final List<User> users = _userProvider.users;
+                final User loggedInUser = users.first;
+                switch (loggedInUser.roleId) {
+                  case 2:
+                    Navigator.pushReplacementNamed(
+                        context, '/homepageBendahara');
+                    break;
+                  case 3:
+                    Navigator.pushReplacementNamed(
+                        context, '/homepa');
+                    break;
+                  case 4:
+                    Navigator.pushReplacementNamed(
+                        context, '/homepa');
+                    break;
+                  default:
+                    Navigator.pushReplacementNamed(
+                        context, '/homepa');
+                    break;
+                }
               }).catchError((error) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
