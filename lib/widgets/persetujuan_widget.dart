@@ -68,39 +68,33 @@ class _PersetujuanSaldoKasState extends State<PersetujuanSaldoKas> {
           cardHistoryPengeluaran("Santunan anak yatim", "1 April 2024", "Rp 1.850.000"),
         ],
       ),
-      bottomSheet: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 90,
-        color: Colors.white,
-        child: ElevatedButton(
-          onPressed: () {
-            // Implementasi ketika tombol "Tambahkan Pengeluaran" diklik
-          },
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.green),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            ),
-          ),
-          child: const Text(
-            "Tambahkan Pengeluaran",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
+      // bottomSheet: Container(
+      //   width: MediaQuery.of(context).size.width,
+      //   height: 50,
+      //   color: Colors.white,
+      //   child: ElevatedButton(
+      //     onPressed: () {
+      //       // Implementasi ketika tombol "Tambahkan Pengeluaran" diklik
+      //     },
+      //     style: ButtonStyle(
+      //       backgroundColor: WidgetStateProperty.all(Colors.green),
+      //       shape: WidgetStateProperty.all(
+      //         RoundedRectangleBorder(
+      //           borderRadius: BorderRadius.circular(10.0),
+      //         ),
+      //       ),
+      //     ),
+      //     child: const Text(
+      //       "Tambahkan Pengeluaran",
+      //       style: TextStyle(
+      //         fontSize: 16,
+      //         fontWeight: FontWeight.w700,
+      //         color: Colors.white,
               
-            ),
-          ),
-        ),
-      ),
+      //       ),
+      //     ),
+      //   ),
+      // ),
     );
   }
-}
-
-void main() {
-  runApp(const MaterialApp(
-    home: PersetujuanSaldoKas(),
-  ));
 }

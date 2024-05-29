@@ -4,25 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class zakatFitrah extends StatefulWidget{
+class ZakatFitrah extends StatefulWidget{
   @override
-  State<zakatFitrah> createState() => _zakatFitrahState();
+  State<ZakatFitrah> createState() => _ZakatFitrahState();
 }
 
-class _zakatFitrahState extends State<zakatFitrah> {
+class _ZakatFitrahState extends State<ZakatFitrah> {
   @override
 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          padding: EdgeInsets.only(left: 20),
-          onPressed: (){},
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: 25,
-            ),
-          ),
           title: Text(
             "Zakat Fitrah",
             style: 

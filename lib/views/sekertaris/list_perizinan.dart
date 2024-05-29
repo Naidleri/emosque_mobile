@@ -14,12 +14,8 @@ class _MyListPerizinanState extends State<MyListPerizinan> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
-          leading:
-              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
-          centerTitle: true,
           title: Text(
             'Perizinan',
             style: TextStyle(
@@ -163,7 +159,6 @@ class _MyListPerizinanState extends State<MyListPerizinan> {
             )
           ],
         ),
-      ),
     );
   }
 }

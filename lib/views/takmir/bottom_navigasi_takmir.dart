@@ -1,28 +1,31 @@
-import 'package:emosque_mobile/views/jamaah/dashboardjamaah.dart';
-import 'package:emosque_mobile/views/jamaah/kalenderjamaah.dart';
-import 'package:emosque_mobile/views/jamaah/profile.dart';
+import 'package:emosque_mobile/views/bendahara/persetujuan_saldo_kas.dart';
+import 'package:emosque_mobile/views/bendahara/profile_bendahara.dart';
+import 'package:emosque_mobile/views/takmir/laporan_page.dart';
 import 'package:flutter/material.dart';
 
-class BottomNavigasiJamaah extends StatefulWidget {
-  const BottomNavigasiJamaah({super.key});
+class BottomNavigasiTakmir extends StatefulWidget {
+  const BottomNavigasiTakmir({super.key});
 
   @override
-  State<BottomNavigasiJamaah> createState() =>
-      _BottomNavigasiJamaahState();
+  State<BottomNavigasiTakmir> createState() =>
+      _BottomNavigasiTakmirState();
 }
 
-class _BottomNavigasiJamaahState extends State<BottomNavigasiJamaah> {
+class _BottomNavigasiTakmirState extends State<BottomNavigasiTakmir> {
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
-    DashboardJamaah(),
-    KalenderJamaah(),
-    ProfileJamaah()
+
+  static final List<Widget> _widgetOptions = <Widget>[
+    const LaporanPage(),
+    ApprovePage(),
+    const ProfileBendahara()
   ];
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +36,7 @@ class _BottomNavigasiJamaahState extends State<BottomNavigasiJamaah> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home_outlined,
+              Icons.home,
               color: Color.fromARGB(255, 6, 215, 115),
               size: 28,
             ),
@@ -41,11 +44,11 @@ class _BottomNavigasiJamaahState extends State<BottomNavigasiJamaah> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.calendar_month,
+              Icons.insert_chart,
               color: Color.fromARGB(255, 6, 215, 115),
               size: 28,
             ),
-            label: 'Home',
+            label: 'Profile',
           ),
           BottomNavigationBarItem(
             icon: Icon(

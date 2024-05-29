@@ -1,10 +1,11 @@
 import 'package:emosque_mobile/widgets/fillButton.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:badges/badges.dart' as badges;
 
-class ProfileJamaah extends StatelessWidget {
-  const ProfileJamaah({super.key});
+class ProfileSekertaris extends StatelessWidget {
+  const ProfileSekertaris({super.key});
   Widget text(String judul,String text, BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(5),
@@ -57,8 +58,8 @@ class ProfileJamaah extends StatelessWidget {
             text('Nama', 'Ace Anugrah', context),
             text('Username', 'firdhaa.c', context),
             text('Email', 'firdhaac02@gmail.com', context),
-            text('Role pengurus', 'Jamaah', context),
-            const SizedBox(height: 20,),
+            text('Role pengurus', 'Ketua Takmir', context),
+            SizedBox(height: 20,),
             fillButton(text: 'Log out', onPressed: (){}),
           ],
         ),

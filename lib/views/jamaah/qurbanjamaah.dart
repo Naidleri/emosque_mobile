@@ -1,4 +1,3 @@
-// ignore_for_file: camel_case_types, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,73 +7,71 @@ class QurbanJamaah extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            leading: const Icon(Icons.arrow_back_ios_new),
-            title: Text(
-              "Qurban",
-              style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.greenAccent[700]),
-            ),
-          ),
-          body: ListView(
-            children: [
-              Center(
-                child: Container(
-                  padding: EdgeInsets.all(16.0),
-                  margin: EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.green),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(bottom: 8.0),
-                        child: Text("Nama orang qurban",
-                            style: GoogleFonts.poppins(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.greenAccent[700])),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 8.0),
-                        child: Text("tgl orang qurban",
-                            style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.greenAccent[700])),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 8.0),
-                        child: Text("deskripsi",
-                            style: GoogleFonts.poppins(
-                                fontSize: 20,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.greenAccent[700])),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 8.0),
-                        child: Image.network("https://picsum.photos/293/158"),
-                      ),
-                      Container(
-                          child: Text("Jenis Qurban",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.greenAccent[700])))
-                    ],
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          "Qurban",
+          style: GoogleFonts.poppins(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.green),
+        ),
+      ),
+      body: ListView(
+        children: [
+          Center(
+            child: Container(
+              padding: const EdgeInsets.all(16.0),
+              margin: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                  border: Border.all(width: 1, color: Colors.green),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.86,
+                    margin: const EdgeInsets.only(bottom: 8.0),
+                    child: Text("Nama: Ace",
+                        style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black)),
                   ),
-                ),
-              )
-            ],
-          ),
-        ));
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 8.0),
+                    child: Text("12 Desember 2024",
+                        style: GoogleFonts.poppins(
+                            fontSize: 15,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black)),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 8.0),
+                    child: Text("Saya ingin berqurban",
+                        style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black)),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.86,
+                    margin: const EdgeInsets.only(bottom: 8.0),
+                    child: Image.network("https://picsum.photos/293/158",),
+                  ),
+                  Text("Jenis Qurban",
+                      style: GoogleFonts.poppins(
+                          fontSize: 15,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black))
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
 

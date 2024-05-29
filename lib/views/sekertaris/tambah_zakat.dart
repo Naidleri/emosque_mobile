@@ -70,7 +70,7 @@ class _tambahZakatState extends State<tambahZakat> {
           ),
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(
-              builder: (context) => zakatFitrah(),
+              builder: (context) => ZakatFitrah(),
               ));
           },
           child: const Center(

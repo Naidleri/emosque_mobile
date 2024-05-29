@@ -16,7 +16,7 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       idUser: json['id_user'] as int,
-      name: json['username'] as String,
+      name: json['name'] as String,
       email: json['email'] as String,
       roleId: json['role_id'] as int,
     );
@@ -54,5 +54,11 @@ class LoginUser {
     required this.name,
     required this.password,
   });
-}
 
+  Map<String, dynamic> toJson(){
+    return{
+      'name': name,
+      'password': password
+    };
+  }
+}

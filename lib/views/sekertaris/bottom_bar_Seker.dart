@@ -1,4 +1,5 @@
 import 'package:emosque_mobile/views/sekertaris/homepage_sekertaris.dart';
+import 'package:emosque_mobile/views/sekertaris/profile_sekertaris.dart';
 import 'package:flutter/material.dart';
 
 class MyBottomBarSeker extends StatefulWidget {
@@ -10,8 +11,9 @@ class MyBottomBarSeker extends StatefulWidget {
 
 class _MyBottomBarSekerState extends State<MyBottomBarSeker> {
   int _selectedIndex = 0;
-  final List<Widget> _pages = [
+  static const List<Widget> _widgetOptions = <Widget>[
     MyHomepageSekertaris(),
+    ProfileSekertaris()
   ];
 
   void _onItemTapped(int index) {
@@ -24,10 +26,9 @@ class _MyBottomBarSekerState extends State<MyBottomBarSeker> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: _pages[
-            _selectedIndex], // Menampilkan halaman sesuai dengan _selectedIndex
+        body: _widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20.0),
               topRight: Radius.circular(20.0),
@@ -39,9 +40,9 @@ class _MyBottomBarSekerState extends State<MyBottomBarSeker> {
             backgroundColor: Colors.transparent,
             unselectedItemColor: Colors.white.withOpacity(0.5),
             selectedItemColor: Colors.white,
-            selectedLabelStyle: TextStyle(fontSize: 18),
-            unselectedLabelStyle: TextStyle(fontSize: 18),
-            items: [
+            selectedLabelStyle: const TextStyle(fontSize: 18),
+            unselectedLabelStyle: const TextStyle(fontSize: 18),
+            items: const [
               BottomNavigationBarItem(
                 icon: Icon(
                   Icons.home_outlined,

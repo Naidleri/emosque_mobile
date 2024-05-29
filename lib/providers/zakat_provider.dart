@@ -18,8 +18,8 @@ class ZakatProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
     try{
-      final storedToken = _secureStorage.read(key: 'token');
-      final data = await _zakatService.createZakat(newZakat, storedToken);
+      final storedToken = await _secureStorage.read(key: 'token');
+      final data = await _zakatService.createZakat(newZakat, storedToken!);
     }catch(e){
         print('Error create zakat fitrah: $e');
       throw Exception('Failed to create zakat fitrah $e');
@@ -33,8 +33,8 @@ class ZakatProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
     try{
-      final storedToken = _secureStorage.read(key: 'token');
-      final data = await _zakatService.getAllZakat(storedToken);
+      final storedToken = await _secureStorage.read(key: 'token');
+      final data = await _zakatService.getAllZakat(storedToken!);
       _zakatFitrah.add(data);
     }catch(e){
         print('Error get all zakat fitrah: $e');
@@ -48,8 +48,8 @@ class ZakatProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
     try{
-      final storedToken = _secureStorage.read(key: 'token');
-      final data = await _zakatService.getZakatById(idZakat, storedToken);
+      final storedToken = await _secureStorage.read(key: 'token');
+      final data = await _zakatService.getZakatById(idZakat, storedToken!);
       _zakatFitrah.add(data);
     }catch(e){
         print('Error get zakat fitrah: $e');
@@ -65,13 +65,13 @@ class ZakatProvider extends ChangeNotifier {
 
     try{
       final storedToken = await _secureStorage.read(key: 'token');
-      final data = await _zakatService.updateZakat(idZakat, updatedZakat, storedToken);
+      final data = await _zakatService.updateZakat(idZakat, updatedZakat, storedToken!);
     }catch(e){
       print('Error update zakat fitrah: $e');
       throw Exception('Failed to update zakat fitrah $e');
     }
     _isLoading = false;
-    notifyListners();
+    notifyListeners();
   }
 
   Future<void> deleteZakat (int idZakat) async {
@@ -80,12 +80,12 @@ class ZakatProvider extends ChangeNotifier {
 
     try{
       final storedToken = await _secureStorage.read(key: 'token');
-      final data = await _zakatService.deleteZakat(idZakat, storedToken);
+      final data = await _zakatService.deleteZakat(idZakat, storedToken!);
     }catch(e){
       print('Error delete zakat fitrah: $e');
       throw Exception('Failed to delete zakat fitrah $e');
     }
     _isLoading = false;
-    notifyListners();
+    notifyListeners();
   }
 }

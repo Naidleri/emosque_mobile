@@ -3,6 +3,8 @@ import '../../widgets/laporan_card.dart';
 import '../../widgets/laporan_detail.dart';
 
 class LaporanPage extends StatelessWidget {
+  const LaporanPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,15 +85,14 @@ class LaporanPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20.0),
-
+              const SizedBox(height: 20.0),
               // Laporan perminggu Section
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'Laporan perminggu',
                       style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                     ),
@@ -99,8 +100,8 @@ class LaporanPage extends StatelessWidget {
                       onPressed: () {
                         
                       },
-                      child: Text(
-                        'Lihat Semua Laporan',
+                      child: const Text(
+                        'Lihat Semua',
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
@@ -111,7 +112,7 @@ class LaporanPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               ListView.builder(
               shrinkWrap: true,
               itemCount: 3,
@@ -125,7 +126,7 @@ class LaporanPage extends StatelessWidget {
                           title: 'Kas Masjid Minggu ${index + 1}',
                           amount: 'Rp 500,000.00',
                           date: '20 Des 2023',
-                          rincian: {
+                          rincian: const {
                             'Amal Jumat': 'Rp 470.000',
                             'Amal Harian': 'Rp 30.000',
                           },
@@ -141,7 +142,7 @@ class LaporanPage extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ],
           ),
         ),

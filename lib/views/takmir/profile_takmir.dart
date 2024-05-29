@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:badges/badges.dart' as badges;
 
-class ProfileJamaah extends StatelessWidget {
-  const ProfileJamaah({super.key});
+class ProfileTakmir extends StatelessWidget {
+  const ProfileTakmir({super.key});
   Widget text(String judul,String text, BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(5),
