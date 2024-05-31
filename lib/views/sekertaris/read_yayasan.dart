@@ -1,3 +1,5 @@
+import 'package:emosque_mobile/views/sekertaris/tambah_penerima_zakat.dart';
+import 'package:emosque_mobile/views/sekertaris/update_penerima_zakat.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -85,9 +87,11 @@ class _readYayasanState extends State<readYayasan> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5))),
                       onPressed: () {
-                        // Navigator.push(context, MaterialPageRoute(
-                        // builder: (context) => updateZakat(),
-                        // ));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => updatePenerimaZakat(),
+                            ));
                       },
                       child: Row(
                         children: [
@@ -120,9 +124,11 @@ class _readYayasanState extends State<readYayasan> {
             backgroundColor: Color.fromRGBO(6, 215, 115, 1),
           ),
           onPressed: () {
-            // Navigator.push(context, MaterialPageRoute(
-            //   builder: (context) => tambahZakat(),
-            //   ));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddPenerimaZakat(),
+                ));
           },
           child: const Center(
             child: Text(
