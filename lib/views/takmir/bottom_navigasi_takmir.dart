@@ -7,8 +7,7 @@ class BottomNavigasiTakmir extends StatefulWidget {
   const BottomNavigasiTakmir({super.key});
 
   @override
-  State<BottomNavigasiTakmir> createState() =>
-      _BottomNavigasiTakmirState();
+  State<BottomNavigasiTakmir> createState() => _BottomNavigasiTakmirState();
 }
 
 class _BottomNavigasiTakmirState extends State<BottomNavigasiTakmir> {
@@ -37,7 +36,6 @@ class _BottomNavigasiTakmirState extends State<BottomNavigasiTakmir> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              color: Color.fromARGB(255, 6, 215, 115),
               size: 28,
             ),
             label: 'Home',
@@ -45,7 +43,6 @@ class _BottomNavigasiTakmirState extends State<BottomNavigasiTakmir> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.insert_chart,
-              color: Color.fromARGB(255, 6, 215, 115),
               size: 28,
             ),
             label: 'Profile',
@@ -53,13 +50,13 @@ class _BottomNavigasiTakmirState extends State<BottomNavigasiTakmir> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              color: Color.fromARGB(255, 6, 215, 115),
               size: 28,
             ),
             label: 'Profile',
           ),
         ],
-        showSelectedLabels: false,
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.grey,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
       ),
