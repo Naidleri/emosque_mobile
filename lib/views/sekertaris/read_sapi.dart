@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class readSapi extends StatefulWidget {
+class ReadSapi extends StatefulWidget {
   @override
-  State<readSapi> createState() => _readSapiState();
+  State<ReadSapi> createState() => _ReadSapiState();
 }
 
-class _readSapiState extends State<readSapi> {
+class _ReadSapiState extends State<ReadSapi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

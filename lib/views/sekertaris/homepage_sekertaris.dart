@@ -1,50 +1,42 @@
-import 'package:emosque_mobile/views/sekertaris/calender_seker.dart';
-import 'package:emosque_mobile/views/sekertaris/list_perizinan.dart';
-import 'package:emosque_mobile/views/sekertaris/read_qurban.dart';
-import 'package:emosque_mobile/views/sekertaris/read_yayasan.dart';
-import 'package:emosque_mobile/views/sekertaris/yayasan.dart';
-import 'package:emosque_mobile/views/sekertaris/zakat_fitrah.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MyHomepageSekertaris extends StatefulWidget {
-  const MyHomepageSekertaris({super.key});
+class HomepageSekertaris extends StatefulWidget {
+  const HomepageSekertaris({super.key});
 
   @override
-  State<MyHomepageSekertaris> createState() => _MyHomepageSekertarisState();
+  State<HomepageSekertaris> createState() => _HomepageSekertarisState();
 }
 
-class _MyHomepageSekertarisState extends State<MyHomepageSekertaris> {
-  Widget cardMenu(String gambar, String text, VoidCallback onTap,
-      {Widget? icon, Color? color}) {
+class _HomepageSekertarisState extends State<HomepageSekertaris> {
+  Widget cardMenu(
+    String gambar,
+    String text,
+    VoidCallback onTap
+  ) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.only(top: 12),
-        width: 90,
-        height: 110,
-        child: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all()),
-              child: Image.asset(gambar),
+      child: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(bottom: 10),
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all()),
+            child: Image.asset(gambar),
+          ),
+          Text(
+            text,
+            style: GoogleFonts.poppins(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: Colors.blueGrey[800],
             ),
-            Text(
-              text,
-              style: GoogleFonts.poppins(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                color: Colors.blueGrey[800],
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }
@@ -68,15 +60,15 @@ class _MyHomepageSekertarisState extends State<MyHomepageSekertaris> {
           Column(
             children: [
               Container(
-                margin: const EdgeInsets.only(top: 27.5),
+                padding: const EdgeInsets.only(left: 20),
                 height: size.height * 0.2,
                 width: size.width * 0.9,
-                padding: const EdgeInsets.only(left: 20, top: 30),
                 decoration: BoxDecoration(
                     color: const Color(0xff06d773),
                     borderRadius: BorderRadius.circular(10)),
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       '20 hari lagi',
@@ -117,23 +109,17 @@ class _MyHomepageSekertarisState extends State<MyHomepageSekertaris> {
                   cardMenu(
                       'assets/images/icon-beranda-sekre-1.png', 'Perizinan',
                       () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MyListPerizinan()));
+                    Navigator.of(context).pushNamed('/readPerizinanSekertaris');
                   }),
                   cardMenu('assets/images/icon-beranda-sekre-2.png', 'Zakat',
                       () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ZakatFitrah()));
+                    Navigator.of(context).pushNamed('/readZakatFitrahSekertaris');
                   }),
                   cardMenu('assets/images/qurban.png', 'Qurban', () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ReadQurban()));
+                    Navigator.of(context).pushNamed('/readQurbanSekertaris');
                   }),
                   cardMenu('assets/images/yayasan.png', 'Yayasan', () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => readYayasan()));
+                    Navigator.of(context).pushNamed('/readYayasanSekertaris');
                   }),
                 ],
               )

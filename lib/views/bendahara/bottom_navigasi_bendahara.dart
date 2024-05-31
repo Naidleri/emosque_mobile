@@ -34,7 +34,7 @@ class _BottomNavigasiBendaharaState extends State<BottomNavigasiBendahara> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home_outlined,
+              Icons.home,
               size: 28,
             ),
             label: 'Home',

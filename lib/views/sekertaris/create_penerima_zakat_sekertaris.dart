@@ -4,12 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'input_form.dart';
 
-class AddPenerimaZakat extends StatefulWidget{
+class CreatePenerimaZakatSekertaris extends StatefulWidget{
   @override
-  State<AddPenerimaZakat> createState() => _AddPenerimaZakatState();
+  State<CreatePenerimaZakatSekertaris> createState() => _CreatePenerimaZakatSekertarisState();
 }
 
-class _AddPenerimaZakatState extends State<AddPenerimaZakat> {
+class _CreatePenerimaZakatSekertarisState extends State<CreatePenerimaZakatSekertaris> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,10 +28,10 @@ class _AddPenerimaZakatState extends State<AddPenerimaZakat> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            inputForm(judul: "Nama Yayasan", hint: "Masukkan Nama Yayasan"),
-            inputForm(judul: "Rekapan Total Beras", hint: "Masukkan Rekapan Total Beras"),
+            const InputForm(judul: "Nama Yayasan", hint: "Masukkan Nama Yayasan"),
+            const InputForm(judul: "Rekapan Total Beras", hint: "Masukkan Rekapan Total Beras"),
             Container(
-              margin: EdgeInsets.only(top: 16, left: 20, right: 20),
+              margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -43,7 +43,7 @@ class _AddPenerimaZakatState extends State<AddPenerimaZakat> {
                         ),
                       ),
                   Container(
-                    margin: EdgeInsets.only(top: 16),
+                    margin: const EdgeInsets.only(top: 16),
                     child: Row(
                       children: [
                         Container(
@@ -51,10 +51,10 @@ class _AddPenerimaZakatState extends State<AddPenerimaZakat> {
                           width: 52,
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: Color.fromRGBO(172, 172, 172, 1),
+                              color: const Color.fromRGBO(172, 172, 172, 1),
                               width: 0.7
                             ),
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(8),
                               bottomLeft: Radius.circular(8),
                               topRight: Radius.circular(0), // Tidak ada radius di sudut kanan atas
@@ -66,7 +66,7 @@ class _AddPenerimaZakatState extends State<AddPenerimaZakat> {
                               "Rp",
                               textAlign: TextAlign.center, // Mengatur penempatan horizontal
                               style: GoogleFonts.poppins(
-                                color: Color.fromRGBO(136, 136, 136, 1),
+                                color: const Color.fromRGBO(136, 136, 136, 1),
                                 fontSize: 16.5,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -79,8 +79,8 @@ class _AddPenerimaZakatState extends State<AddPenerimaZakat> {
                             height: 52,
                             // Mengatur lebar Container kedua menjadi maksimal
                             width: double.infinity,
-                            padding: EdgeInsets.only(left: 12),
-                            decoration: BoxDecoration(
+                            padding: const EdgeInsets.only(left: 12),
+                            decoration: const BoxDecoration(
                               border: Border(
                                   right: BorderSide(
                                   color: Color.fromRGBO(172, 172, 172, 1),
@@ -105,13 +105,13 @@ class _AddPenerimaZakatState extends State<AddPenerimaZakat> {
                             ),
                             child: TextFormField(
                               autofocus: false,
-                              cursorColor: Color.fromRGBO(172, 172, 172, 1),
+                              cursorColor: const Color.fromRGBO(172, 172, 172, 1),
                               style: GoogleFonts.poppins(
-                                color: Color.fromRGBO(136, 136, 136, 1),
+                                color: const Color.fromRGBO(136, 136, 136, 1),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500
                               ),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 hintText: "500.000",
                                 hintStyle: TextStyle(
                                   color: Color.fromRGBO(136, 136, 136, 1),
@@ -137,7 +137,7 @@ class _AddPenerimaZakatState extends State<AddPenerimaZakat> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 16, left: 20, right: 20),
+              margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -166,9 +166,9 @@ class _AddPenerimaZakatState extends State<AddPenerimaZakat> {
                     ],
                   ),
               ),
-            calender(),
+            const calender(),
             Container(
-              margin: EdgeInsets.only(top: 16, left: 20, right: 20),
+              margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -180,14 +180,14 @@ class _AddPenerimaZakatState extends State<AddPenerimaZakat> {
                         ),
                        ),
                       Container(
-                        margin: EdgeInsets.only(top: 16),
+                        margin: const EdgeInsets.only(top: 16),
                         height: 52,
                                   // Mengatur lebar Container kedua menjadi maksimal
                         width: double.infinity,
-                        padding: EdgeInsets.only(left: 12),
+                        padding: const EdgeInsets.only(left: 12),
                         decoration: BoxDecoration(
                         border: Border.all(
-                        color: Color.fromRGBO(172, 172, 172, 1),
+                        color: const Color.fromRGBO(172, 172, 172, 1),
                         width: 0.7
                               ),
                           borderRadius: BorderRadius.circular(8)
@@ -200,7 +200,7 @@ class _AddPenerimaZakatState extends State<AddPenerimaZakat> {
                                 "Rp 50.000, Beras 10 Kilogram",
                                 
                                 style: GoogleFonts.poppins(
-                                  color: Color.fromRGBO(172, 172, 172, 1),
+                                  color: const Color.fromRGBO(172, 172, 172, 1),
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400
                                 )),
@@ -212,7 +212,7 @@ class _AddPenerimaZakatState extends State<AddPenerimaZakat> {
                   ),
                 ),
               Container(
-              margin: EdgeInsets.only(top: 16, left: 20, right: 20),
+              margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -224,13 +224,13 @@ class _AddPenerimaZakatState extends State<AddPenerimaZakat> {
                         ),
                        ),
                       Container(
-                        margin: EdgeInsets.only(top: 16),
+                        margin: const EdgeInsets.only(top: 16),
                         height: 86,
                         width: double.infinity,
-                        padding: EdgeInsets.only(left: 12),
+                        padding: const EdgeInsets.only(left: 12),
                         decoration: BoxDecoration(
                         border: Border.all(
-                        color: Color.fromRGBO(172, 172, 172, 1),
+                        color: const Color.fromRGBO(172, 172, 172, 1),
                         width: 0.7
                               ),
                           borderRadius: BorderRadius.circular(8)
@@ -240,7 +240,7 @@ class _AddPenerimaZakatState extends State<AddPenerimaZakat> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             
-                            Icon(
+                            const Icon(
                               Icons.file_upload_outlined,
                               size: 30,
                               color: Color.fromRGBO(172, 172, 172, 1),
@@ -272,7 +272,7 @@ class _AddPenerimaZakatState extends State<AddPenerimaZakat> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5)
             ),
-            backgroundColor: Color.fromRGBO(6, 215, 115, 1),
+            backgroundColor: const Color.fromRGBO(6, 215, 115, 1),
           ),
           onPressed: () {
             // Navigator.push(context, MaterialPageRoute(

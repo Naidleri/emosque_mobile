@@ -10,19 +10,43 @@ class KalenderJamaah extends StatefulWidget {
 }
 
 class _MyKalenderJamaahState extends State<KalenderJamaah> {
+  Widget event(String tanggal, String nama) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(right: 8),
+          child: Text(
+            tanggal,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          ),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.80,
+          child: Container(
+            padding: const EdgeInsets.only(top: 7, bottom: 8, left: 30),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: const Color.fromARGB(255, 55, 163, 165)),
+            child: Text(
+              nama,
+              style: GoogleFonts.poppins(fontSize: 14, color: Colors.white),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           centerTitle: true,
           title: const Text(
             'Kalender',
             style: TextStyle(
-                color: Color(0xff06d773),
-                fontSize: 25,
-                fontWeight: FontWeight.bold),
+                color: Colors.green, fontSize: 25, fontWeight: FontWeight.bold),
           ),
         ),
         body: ListView(
@@ -54,11 +78,11 @@ class _MyKalenderJamaahState extends State<KalenderJamaah> {
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
-                      leftChevronIcon: Icon(
+                      leftChevronIcon: const Icon(
                         Icons.chevron_left,
                         color: Colors.black,
                       ),
-                      rightChevronIcon: Icon(
+                      rightChevronIcon: const Icon(
                         Icons.chevron_right,
                         color: Colors.black,
                       ),
@@ -90,38 +114,10 @@ class _MyKalenderJamaahState extends State<KalenderJamaah> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 15),
+                  margin: const EdgeInsets.only(top: 15),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(right: 8),
-                            child: const Text(
-                              "2",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.80,
-                            child: Container(
-                              padding: EdgeInsets.only(
-                                  top: 7, bottom: 8, left: 30),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: const Color.fromARGB(
-                                      255, 55, 163, 165)),
-                              child: Text(
-                                "Hari Qurban",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 14, color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
+                      event('20', "Hari Raya Idul Adha")
                     ],
                   ),
                 ),
@@ -129,11 +125,6 @@ class _MyKalenderJamaahState extends State<KalenderJamaah> {
             )
           ],
         ),
-      ),
     );
   }
-}
-
-void main() {
-  runApp(const KalenderJamaah());
 }

@@ -1,6 +1,6 @@
-import 'package:emosque_mobile/views/jamaah/dashboardjamaah.dart';
-import 'package:emosque_mobile/views/jamaah/kalenderjamaah.dart';
-import 'package:emosque_mobile/views/jamaah/profile.dart';
+import 'package:emosque_mobile/views/jamaah/homepage_jamaah.dart';
+import 'package:emosque_mobile/views/jamaah/kalender_jamaah.dart';
+import 'package:emosque_mobile/views/jamaah/profile_jamaah.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigasiJamaah extends StatefulWidget {
@@ -14,7 +14,7 @@ class BottomNavigasiJamaah extends StatefulWidget {
 class _BottomNavigasiJamaahState extends State<BottomNavigasiJamaah> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-    DashboardJamaah(),
+    HomepageJamaah(),
     KalenderJamaah(),
     ProfileJamaah()
   ];
@@ -43,7 +43,7 @@ class _BottomNavigasiJamaahState extends State<BottomNavigasiJamaah> {
               Icons.calendar_month,
               size: 28,
             ),
-            label: '',
+            label: 'Kalender',
           ),
           BottomNavigationBarItem(
             icon: Icon(

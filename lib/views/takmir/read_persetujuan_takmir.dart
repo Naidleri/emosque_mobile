@@ -7,14 +7,14 @@ import 'package:emosque_mobile/widgets/dialog_setuju.dart';
 import 'package:flutter/material.dart';
 
 
-class ApprovePage extends StatefulWidget {
-  const ApprovePage({super.key});
+class ReadPersetujuanTakmir extends StatefulWidget {
+  const ReadPersetujuanTakmir({super.key});
 
   @override
-  _ApprovePageState createState() => _ApprovePageState();
+  _ReadPersetujuanTakmirState createState() => _ReadPersetujuanTakmirState();
 }
 
-class _ApprovePageState extends State<ApprovePage> with SingleTickerProviderStateMixin {
+class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override

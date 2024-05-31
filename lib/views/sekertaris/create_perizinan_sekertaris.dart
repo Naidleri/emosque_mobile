@@ -3,14 +3,14 @@ import 'package:emosque_mobile/widgets/form.dart';
 import 'package:emosque_mobile/widgets/textfieldDeskripsi.dart';
 import 'package:flutter/material.dart';
 
-class MyCreatePerizinan extends StatefulWidget {
-  const MyCreatePerizinan({super.key});
+class CreatePerizinanSekertaris extends StatefulWidget {
+  const CreatePerizinanSekertaris({super.key});
 
   @override
-  State<MyCreatePerizinan> createState() => _MyCreatePerizinanState();
+  State<CreatePerizinanSekertaris> createState() => _CreatePerizinanSekertarisState();
 }
 
-class _MyCreatePerizinanState extends State<MyCreatePerizinan> {
+class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
