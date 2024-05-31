@@ -1,3 +1,7 @@
+import 'package:emosque_mobile/views/sekertaris/tambah_qurban.dart';
+import 'package:emosque_mobile/views/sekertaris/tambah_zakat.dart';
+import 'package:emosque_mobile/views/sekertaris/update_qurban.dart';
+import 'package:emosque_mobile/views/sekertaris/update_zakat.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:emosque_mobile/views/sekertaris/read_sapi.dart';
@@ -95,9 +99,11 @@ class _ReadQurbanState extends State<ReadQurban> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5))),
                       onPressed: () {
-                        // Navigator.push(context, MaterialPageRoute(
-                        // builder: (context) => updateZakat(),
-                        // ));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => updateQurban(),
+                            ));
                       },
                       child: Row(
                         children: [
@@ -130,9 +136,11 @@ class _ReadQurbanState extends State<ReadQurban> {
             backgroundColor: Color.fromRGBO(6, 215, 115, 1),
           ),
           onPressed: () {
-            // Navigator.push(context, MaterialPageRoute(
-            //   builder: (context) => tambahZakat(),
-            //   ));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => tambahQurban(),
+                ));
           },
           child: const Center(
             child: Text(
