@@ -1,164 +1,153 @@
+import 'package:emosque_mobile/views/sekertaris/create_perizinan.dart';
+import 'package:emosque_mobile/views/sekertaris/edit_perizinan.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyListPerizinan extends StatefulWidget {
-  const MyListPerizinan({super.key});
-
   @override
   State<MyListPerizinan> createState() => _MyListPerizinanState();
 }
 
 class _MyListPerizinanState extends State<MyListPerizinan> {
-  String a = 'pernikahan agus dengan dea adalah hal yang membahagiakan';
-  String b =
-      'bang agus menikah dengan dea adalah hal yang membahagiakan serta menarik untuk di datangi';
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Perizinan',
-            style: TextStyle(
-                color: Color(0xff06d773),
-                fontSize: 25,
-                fontWeight: FontWeight.bold),
+      appBar: AppBar(
+        leading: IconButton(
+          padding: EdgeInsets.only(left: 20),
+          onPressed: () {},
+          icon: Icon(
+            Icons.arrow_back_ios,
+            size: 25,
           ),
         ),
-        body: ListView(
+        title: Text(
+          "Perizinan",
+          style: GoogleFonts.poppins(
+              color: Color.fromRGBO(6, 215, 115, 1),
+              fontSize: 25,
+              fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        child: Column(
           children: [
-            Column(
+            Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                      color: Color.fromRGBO(172, 172, 172, 1), width: 0.7),
+                ),
+              ),
+              child: ListTile(
+                contentPadding: EdgeInsets.only(left: 25, right: 25),
+                title: Text(
+                  "Agus Subandoko",
+                  style: GoogleFonts.poppins(
+                      fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+                subtitle: Text(
+                  "Uang Tunai",
+                  style: GoogleFonts.poppins(
+                      fontSize: 12, fontWeight: FontWeight.w400),
+                ),
+                trailing: Text(
+                  "Pernikahan",
+                  style: GoogleFonts.poppins(
+                      fontSize: 16, fontWeight: FontWeight.w400),
+                ),
+              ),
+            ),
+            SizedBox(height: 5),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                //looping di sini
-                Container(
-                    height: 115,
-                    width: size.width * 1,
-                    child: Column(
-                      children: [
-                        Divider(
-                          color: Color(0xffD6D6D6),
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(left: 30),
-                              width: 200,
-                              height: 90,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    a.length > 15
-                                        ? a.substring(0, 15) + '...'
-                                        : a,
-                                    style: TextStyle(fontSize: 17),
-                                  ),
-                                  Text(
-                                    b.length > 17
-                                        ? b.substring(0, 20) + '...'
-                                        : b,
-                                    style: TextStyle(fontSize: 13),
-                                  ),
-                                  Text(
-                                    '22 january 2024',
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        color:
-                                            Color(0xff225779).withOpacity(0.6)),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                    width: 150,
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          'Pernikahan',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
-                                    )),
-                                SizedBox(
-                                  height: 30,
-                                ),
-                                Container(
-                                  width: 150,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      TextButton(
-                                        onPressed: () {},
-                                        child: Container(
-                                          width: 50,
-                                          height: 15,
-                                          decoration: BoxDecoration(
-                                              color: Color(0xffD70606),
-                                              borderRadius:
-                                                  BorderRadius.circular(3)),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Icon(
-                                                Icons.delete_outline,
-                                                size: 9,
-                                                color: Colors.white,
-                                              ),
-                                              Text(
-                                                'Delete',
-                                                style: TextStyle(
-                                                    fontSize: 9,
-                                                    color: Colors.white),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {},
-                                        child: Container(
-                                          width: 50,
-                                          height: 15,
-                                          decoration: BoxDecoration(
-                                              color: Color(0xff37A3A5),
-                                              borderRadius:
-                                                  BorderRadius.circular(3)),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Icon(
-                                                Icons.update,
-                                                size: 9,
-                                                color: Colors.white,
-                                              ),
-                                              Text(
-                                                'Update',
-                                                style: TextStyle(
-                                                    fontSize: 9,
-                                                    color: Colors.white),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      ],
-                    )),
+                Padding(padding: EdgeInsets.symmetric(horizontal: 65)),
+                SizedBox(
+                  width: 105,
+                  height: 30,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5))),
+                      onPressed: () {},
+                      child: Row(
+                        children: [
+                          Icon(Icons.delete, color: Colors.white, size: 15),
+                          SizedBox(width: 10),
+                          Text(
+                            "Delete",
+                            style: GoogleFonts.poppins(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white),
+                          )
+                        ],
+                      )),
+                ),
+                SizedBox(width: 5),
+                SizedBox(
+                  width: 110,
+                  height: 30,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(55, 163, 165, 1),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5))),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MyEditPerizinan()));
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.update,
+                            color: Colors.white,
+                            size: 15,
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            "Update",
+                            style: GoogleFonts.poppins(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white),
+                          )
+                        ],
+                      )),
+                ),
               ],
-            )
+            ),
           ],
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Container(
+        height: 50,
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            backgroundColor: Color.fromRGBO(6, 215, 115, 1),
+          ),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => MyCreatePerizinan()));
+          },
+          child: const Center(
+            child: Text(
+              'Tambah Perizinan',
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
