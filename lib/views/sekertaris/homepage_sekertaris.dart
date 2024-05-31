@@ -1,6 +1,7 @@
 import 'package:emosque_mobile/views/sekertaris/calender_seker.dart';
 import 'package:emosque_mobile/views/sekertaris/list_perizinan.dart';
 import 'package:emosque_mobile/views/sekertaris/read_qurban.dart';
+import 'package:emosque_mobile/views/sekertaris/read_yayasan.dart';
 import 'package:emosque_mobile/views/sekertaris/yayasan.dart';
 import 'package:emosque_mobile/views/sekertaris/zakat_fitrah.dart';
 import 'package:flutter/material.dart';
@@ -132,7 +133,7 @@ class _MyHomepageSekertarisState extends State<MyHomepageSekertaris> {
                   }),
                   cardMenu('assets/images/yayasan.png', 'Yayasan', () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Yayasan()));
+                        MaterialPageRoute(builder: (context) => readYayasan()));
                   }),
                 ],
               )
