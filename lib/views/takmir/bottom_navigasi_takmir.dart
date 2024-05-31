@@ -1,5 +1,5 @@
-import 'package:emosque_mobile/views/bendahara/persetujuan_saldo_kas.dart';
 import 'package:emosque_mobile/views/bendahara/profile_bendahara.dart';
+import 'package:emosque_mobile/views/takmir/approve_kas.dart';
 import 'package:emosque_mobile/views/takmir/laporan_page.dart';
 import 'package:flutter/material.dart';
 
@@ -45,7 +45,7 @@ class _BottomNavigasiTakmirState extends State<BottomNavigasiTakmir> {
               Icons.insert_chart,
               size: 28,
             ),
-            label: 'Profile',
+            label: 'Persetujuan',
           ),
           BottomNavigationBarItem(
             icon: Icon(

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:emosque_mobile/utils/const.dart';
-class PersetujuanSaldoKas extends StatefulWidget {
-  const PersetujuanSaldoKas({super.key});
 
+class PersetujuanSaldoKas extends StatefulWidget {
+  const PersetujuanSaldoKas({super.key, required onTap, required this.onPressed});
+  final VoidCallback onPressed;
   @override
   State<PersetujuanSaldoKas> createState() => _PersetujuanSaldoKasState();
 }
 
 class _PersetujuanSaldoKasState extends State<PersetujuanSaldoKas> {
-  Widget cardHistoryPengeluaran(String judul, String tanggal, String uang) {
+  Widget cardHistoryPengeluaran(
+      String judul, String tanggal, String uang, VoidCallback onTap) {
     return InkWell(
-      onTap: () {
-        // Implementasi ketika card diklik
-      },
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: const BoxDecoration(
@@ -29,7 +29,7 @@ class _PersetujuanSaldoKasState extends State<PersetujuanSaldoKas> {
               children: [
                 Text(
                   judul,
-                  style: blackTextStyle.copyWith (
+                  style: blackTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                   ),
@@ -59,13 +59,17 @@ class _PersetujuanSaldoKasState extends State<PersetujuanSaldoKas> {
     return Scaffold(
       body: ListView(
         children: [
-          cardHistoryPengeluaran("Pembangunan", "19 April 2024", "Rp 850.000"),
-          cardHistoryPengeluaran("Santunan anak yatim", "15 April 2024", "Rp 550.000"),
-          cardHistoryPengeluaran("Konsumsi Rapat", "12 April 2024", "Rp 450.000"),
-          cardHistoryPengeluaran("Air", "10 April 2024", "Rp 600.000"),
-          cardHistoryPengeluaran("Alat Kebersihan", "8 April 2024", "Rp 312.000"),
-          cardHistoryPengeluaran("Listrik", "8 April 2024", "Rp 800.000"),
-          cardHistoryPengeluaran("Santunan anak yatim", "1 April 2024", "Rp 1.850.000"),
+          cardHistoryPengeluaran("Pembangunan", "19 April 2024", "Rp 850.000", widget.onPressed),
+          cardHistoryPengeluaran(
+              "Santunan anak yatim", "15 April 2024", "Rp 550.000", widget.onPressed),
+          cardHistoryPengeluaran(
+              "Konsumsi Rapat", "12 April 2024", "Rp 450.000", widget.onPressed),
+          cardHistoryPengeluaran("Air", "10 April 2024", "Rp 600.000", widget.onPressed),
+          cardHistoryPengeluaran(
+              "Alat Kebersihan", "8 April 2024", "Rp 312.000", widget.onPressed),
+          cardHistoryPengeluaran("Listrik", "8 April 2024", "Rp 800.000", widget.onPressed),
+          cardHistoryPengeluaran(
+              "Santunan anak yatim", "1 April 2024", "Rp 1.850.000", widget.onPressed),
         ],
       ),
       // bottomSheet: Container(
@@ -90,7 +94,6 @@ class _PersetujuanSaldoKasState extends State<PersetujuanSaldoKas> {
       //         fontSize: 16,
       //         fontWeight: FontWeight.w700,
       //         color: Colors.white,
-              
       //       ),
       //     ),
       //   ),

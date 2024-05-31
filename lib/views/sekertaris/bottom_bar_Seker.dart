@@ -45,7 +45,7 @@ class _MyBottomBarSekerState extends State<MyBottomBarSeker> {
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.home_outlined,
+                  Icons.home,
                   size: 40,
                 ),
                 label: 'Beranda',

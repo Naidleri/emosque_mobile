@@ -2,8 +2,8 @@ import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CreatePemasukanBendaharaPage extends StatelessWidget {
-  CreatePemasukanBendaharaPage({super.key});
+class CreatePengeluaranBendaharaPage extends StatelessWidget {
+  CreatePengeluaranBendaharaPage({super.key});
   final judul = TextEditingController();
   final nominal = TextEditingController();
   final deskripsi = TextEditingController();
@@ -44,7 +44,7 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
-          "Pemasukan",
+          "Pengeluaran",
           style: GoogleFonts.poppins(
               fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green),
         ),
@@ -55,7 +55,7 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
           child: Column(
             children: [
               textField(
-                  "Judul Pemasukan", "Masukan Judul Pemasukan", judul, context),
+                  "Judul Pengeluaran", "Masukan Judul Pengeluaran", judul, context),
               textField("Nominal", "Masukan Nominal", nominal, context),
               textField("Deskripsi", "Masukan Deskripsi", deskripsi, context),
               const calender(),
@@ -93,7 +93,7 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  "Tambahkan Pemasukan",
+                  "Tambahkan Pengeluaran",
                   style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,

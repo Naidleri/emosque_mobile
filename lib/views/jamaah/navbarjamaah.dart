@@ -33,8 +33,7 @@ class _BottomNavigasiJamaahState extends State<BottomNavigasiJamaah> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home_outlined,
-              color: Color.fromARGB(255, 6, 215, 115),
+              Icons.home,
               size: 28,
             ),
             label: 'Home',
@@ -42,15 +41,13 @@ class _BottomNavigasiJamaahState extends State<BottomNavigasiJamaah> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.calendar_month,
-              color: Color.fromARGB(255, 6, 215, 115),
               size: 28,
             ),
-            label: 'Home',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              color: Color.fromARGB(255, 6, 215, 115),
               size: 28,
             ),
             label: 'Profile',

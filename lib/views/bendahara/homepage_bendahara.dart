@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:google_fonts/google_fonts.dart';
-
+// Halaman pertama 
 class HomePageBendahara extends StatelessWidget {
   const HomePageBendahara({super.key});
   Widget mainCard(BuildContext context) {
@@ -218,8 +218,9 @@ class HomePageBendahara extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // masuk ke file pemasukan_bendahara
                 cardMenu("assets/images/dompet.png", "Pemasukan", () {
-                  Navigator.pushNamed(context, "/pemasukanBendahara");
+                  Navigator.pushNamed(context, "/readpemasukanbendahara");
                 },
                     icon: const Icon(
                       Icons.arrow_back,
@@ -227,8 +228,9 @@ class HomePageBendahara extends StatelessWidget {
                       size: 18,
                     ),
                     color: Colors.green),
+                // masuk ke file pengeluaran_bendahara
                 cardMenu("assets/images/dompet.png", "Pengeluaran", () {
-                  Navigator.pushNamed(context, "/pengeluaranBendahara");
+                  Navigator.pushNamed(context, "/readpengeluaranbendahara");
                 },
                     icon: const Icon(
                       Icons.arrow_forward,
@@ -241,7 +243,7 @@ class HomePageBendahara extends StatelessWidget {
                   "Persetujuan\nSaldo Kas",
                   () {
                     Navigator.pushNamed(
-                        context, "/readPersetujuanSaldoKasBendahara");
+                        context, "/readpersetujuanbendahara");
                   },
                 ),
               ],
