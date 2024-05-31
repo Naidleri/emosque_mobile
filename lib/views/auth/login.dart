@@ -120,7 +120,7 @@ class LoginPage extends StatelessWidget {
                       Navigator.pushReplacementNamed(context, '/homepa');
                       break;
                     default:
-                      Navigator.pushReplacementNamed(context, '/homepa');
+                      Navigator.pushReplacementNamed(context, '/homepageJamaah');
                       break;
                   }
                 }).catchError((error) {

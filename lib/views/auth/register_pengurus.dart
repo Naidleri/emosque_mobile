@@ -149,7 +149,7 @@ class RegisterPengurusPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Text.rich(
               TextSpan(
                 children: [
