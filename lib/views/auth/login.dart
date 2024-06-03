@@ -29,8 +29,8 @@ class LoginPage extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0),
+              const Padding(
+                padding: EdgeInsets.only(left: 20.0),
                 child: Text(
                   "Alamat email",
                   style: TextStyle(
@@ -96,7 +96,7 @@ class LoginPage extends StatelessWidget {
                     ..onTap = () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => RegisterPage()),
+                        MaterialPageRoute(builder: (context) => const PemilihanRole()),
                       );
                     },
                 )

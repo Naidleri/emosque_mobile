@@ -4,7 +4,7 @@ import '../models/models.dart';
 import 'package:flutter/material.dart';
 
 import '../services/services.dart';
-import '../views/sekertaris/zakat_fitrah.dart';
+import '../views/sekertaris/read_zakat_sekertaris.dart';
 
 part 'user_provider.dart';
 part 'kas_provider.dart';

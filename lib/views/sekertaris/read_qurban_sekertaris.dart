@@ -3,103 +3,107 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ReadQurbanSekertaris extends StatelessWidget {
   const ReadQurbanSekertaris({super.key});
-  Widget cardQurban(
-      String nama, String waktu, String jenis, BuildContext context) {
-    return Container(
-      height: 150,
-      decoration: const BoxDecoration(
-        border: Border(
-          top: BorderSide(color: Color.fromRGBO(172, 172, 172, 1), width: 0.7),
-          bottom:
-              BorderSide(color: Color.fromRGBO(172, 172, 172, 1), width: 0.7),
+  Widget cardQurban(VoidCallback onTap, String nama, String waktu, String jenis,
+      BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 150,
+        decoration: const BoxDecoration(
+          border: Border(
+            top:
+                BorderSide(color: Color.fromRGBO(172, 172, 172, 1), width: 0.7),
+            bottom:
+                BorderSide(color: Color.fromRGBO(172, 172, 172, 1), width: 0.7),
+          ),
         ),
-      ),
-      child: Column(
-        children: [
-          ListTile(
-            contentPadding: const EdgeInsets.only(left: 25, right: 25),
-            title: Text(
-              nama,
-              style: GoogleFonts.poppins(
-                  fontSize: 16, fontWeight: FontWeight.w500),
+        child: Column(
+          children: [
+            ListTile(
+              contentPadding: const EdgeInsets.only(left: 25, right: 25),
+              title: Text(
+                nama,
+                style: GoogleFonts.poppins(
+                    fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+              subtitle: Text(
+                waktu,
+                style: GoogleFonts.poppins(
+                    fontSize: 12, fontWeight: FontWeight.w400),
+              ),
+              trailing: Text(
+                jenis,
+                style: GoogleFonts.poppins(
+                    fontSize: 16, fontWeight: FontWeight.w400),
+              ),
             ),
-            subtitle: Text(
-              waktu,
-              style: GoogleFonts.poppins(
-                  fontSize: 12, fontWeight: FontWeight.w400),
-            ),
-            trailing: Text(
-              jenis,
-              style: GoogleFonts.poppins(
-                  fontSize: 16, fontWeight: FontWeight.w400),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                margin: const EdgeInsets.all(10),
-                height: 40,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(10),
+                  height: 40,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.delete, color: Colors.white, size: 15),
+                        const SizedBox(width: 5),
+                        Text(
+                          "Delete",
+                          style: GoogleFonts.poppins(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.delete, color: Colors.white, size: 15),
-                      const SizedBox(width: 5),
-                      Text(
-                        "Delete",
-                        style: GoogleFonts.poppins(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white),
-                      ),
-                    ],
-                  ),
                 ),
-              ),
-              Container(
-                margin: const EdgeInsets.all(10),
-                height: 40,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromRGBO(55, 163, 165, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+                Container(
+                  margin: const EdgeInsets.all(10),
+                  height: 40,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(55, 163, 165, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/updateQurbanSekertaris');
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.update,
+                          color: Colors.white,
+                          size: 15,
+                        ),
+                        const SizedBox(width: 5),
+                        Text(
+                          "Update",
+                          style: GoogleFonts.poppins(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/updateQurbanSekertaris');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.update,
-                        color: Colors.white,
-                        size: 15,
-                      ),
-                      const SizedBox(width: 5),
-                      Text(
-                        "Update",
-                        style: GoogleFonts.poppins(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white),
-                      ),
-                    ],
-                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -118,8 +122,8 @@ class ReadQurbanSekertaris extends StatelessWidget {
       ),
       body: Column(
         children: [
-          cardQurban('Agus', '10 Des 2020', 'Qurban', context),
-          cardQurban('Agus', '10 Des 2020', 'Qurban', context),
+          cardQurban((){},'Agus', '10 Des 2020', 'Qurban', context),
+          cardQurban((){},'Agus', '10 Des 2020', 'Qurban', context),
         ],
       ),
       bottomSheet: Container(

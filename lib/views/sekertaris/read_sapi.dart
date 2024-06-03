@@ -12,9 +12,9 @@ class _ReadSapiState extends State<ReadSapi> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          padding: EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 20),
           onPressed: () {},
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             size: 25,
           ),
@@ -22,20 +22,20 @@ class _ReadSapiState extends State<ReadSapi> {
         title: Text(
           "Qurban",
           style: GoogleFonts.poppins(
-              color: Color.fromRGBO(6, 215, 115, 1),
+              color: const Color.fromRGBO(6, 215, 115, 1),
               fontSize: 25,
               fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: Column(
           children: [
             Container(
-              decoration: BoxDecoration(border: Border(top: BorderSide())),
+              decoration: const BoxDecoration(border: Border(top: BorderSide())),
               child: ListTile(
-                contentPadding: EdgeInsets.only(top: 12, left: 25, right: 25),
+                contentPadding: const EdgeInsets.only(top: 12, left: 25, right: 25),
                 title: Text(
                   "Agus Subagio",
                   style: GoogleFonts.poppins(
@@ -48,13 +48,13 @@ class _ReadSapiState extends State<ReadSapi> {
                 ),
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Column(
               children: [
                 Container(
                   child: ListTile(
                     contentPadding:
-                        EdgeInsets.only(top: 12, left: 25, right: 25),
+                        const EdgeInsets.only(top: 12, left: 25, right: 25),
                     title: Text(
                       "Sapi",
                       style: GoogleFonts.poppins(
@@ -71,11 +71,11 @@ class _ReadSapiState extends State<ReadSapi> {
                 ),
               ],
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(padding: EdgeInsets.symmetric(horizontal: 50)),
+                const Padding(padding: EdgeInsets.symmetric(horizontal: 50)),
                 SizedBox(
                   width: 120,
                   height: 30,
@@ -85,7 +85,7 @@ class _ReadSapiState extends State<ReadSapi> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5))),
                       onPressed: () {},
-                      child: Row(
+                      child: const Row(
                         children: [
                           Icon(Icons.delete, color: Colors.white, size: 17),
                           SizedBox(width: 10),
@@ -96,13 +96,13 @@ class _ReadSapiState extends State<ReadSapi> {
                         ],
                       )),
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 SizedBox(
                   width: 120,
                   height: 30,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromRGBO(55, 163, 165, 1),
+                          backgroundColor: const Color.fromRGBO(55, 163, 165, 1),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5))),
                       onPressed: () {
@@ -110,7 +110,7 @@ class _ReadSapiState extends State<ReadSapi> {
                         // builder: (context) => updateZakat(),
                         // ));
                       },
-                      child: Row(
+                      child: const Row(
                         children: [
                           Icon(
                             Icons.update,
