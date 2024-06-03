@@ -1,6 +1,7 @@
 import 'package:emosque_mobile/models/models.dart';
 import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/views/auth/pemilihan_role.dart';
+import 'package:emosque_mobile/views/auth/register_jamaah.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -96,7 +97,7 @@ class LoginPage extends StatelessWidget {
                     ..onTap = () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => RegisterPage()),
+                        MaterialPageRoute(builder: (context) => RegisterJamaahPage()),
                       );
                     },
                 )
@@ -114,7 +115,6 @@ class LoginPage extends StatelessWidget {
                 );
                 return;
               }
-
               final logUser = LoginUser(
                 name: _nameController.text,
                 password: _passController.text,
