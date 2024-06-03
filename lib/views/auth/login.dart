@@ -114,7 +114,6 @@ class LoginPage extends StatelessWidget {
                 );
                 return;
               }
-
               final logUser = LoginUser(
                 name: _nameController.text,
                 password: _passController.text,
