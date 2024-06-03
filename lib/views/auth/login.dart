@@ -44,7 +44,7 @@ class LoginPage extends StatelessWidget {
                 child: TextField(
                   controller: _nameController, // Tambahkan controller
                   decoration: const InputDecoration(
-                    hintText: 'Masukkan email',
+                    hintText: 'Masukkan username',
                     border: OutlineInputBorder(),
                   ),
                 ),
