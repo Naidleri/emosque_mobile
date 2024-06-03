@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 class DeletePersetujuanSaldoKas extends StatelessWidget {
   const DeletePersetujuanSaldoKas({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,7 +43,6 @@ class DeletePersetujuanSaldoKas extends StatelessWidget {
                   title: "Keterangan",
                   hint: "Tidak Disetujui Nominal Tidak Sesuai",
                 ),
-                
                 SizedBox(
                   height: 201,
                 ),

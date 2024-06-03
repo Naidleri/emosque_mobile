@@ -2,12 +2,12 @@ import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class UpdatePemasukanBendahara extends StatefulWidget {
+class UpdatePengeluaranBendahara extends StatefulWidget {
   final String judul;
   final int nominal;
   final String deskripsi;
 
-  const UpdatePemasukanBendahara({
+  const UpdatePengeluaranBendahara({
     super.key,
     required this.judul,
     required this.nominal,
@@ -15,11 +15,11 @@ class UpdatePemasukanBendahara extends StatefulWidget {
   });
 
   @override
-  State<UpdatePemasukanBendahara> createState() =>
-      _UpdatePemasukanBendaharaState();
+  State<UpdatePengeluaranBendahara> createState() =>
+      _UpdatePengeluaranBendaharaState();
 }
 
-class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
+class _UpdatePengeluaranBendaharaState extends State<UpdatePengeluaranBendahara> {
   late TextEditingController judulController;
   late TextEditingController nominalController;
   late TextEditingController deskripsiController;
@@ -38,7 +38,7 @@ class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
-          "Pemasukan",
+          "Pengeluaran",
           style: GoogleFonts.poppins(
             fontSize: 24,
             fontWeight: FontWeight.w700,
@@ -52,8 +52,8 @@ class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
           child: Column(
             children: [
               textField(
-                "Judul Pemasukan",
-                "Masukan Judul Pemasukan",
+                "Judul Pengeluaran",
+                "Masukan Judul Pengeluaran",
                 judulController,
                 context,
               ),
@@ -142,7 +142,7 @@ class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
                   ),
                 ),
                 child: Text(
-                  "Hapus Pemasukan",
+                  "Hapus Pengeluaran",
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,

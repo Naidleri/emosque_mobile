@@ -4,14 +4,12 @@ import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:emosque_mobile/views/sekertaris/dropdown_qurban.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class UpdateQurbanSekertaris extends StatefulWidget {
-  const UpdateQurbanSekertaris({super.key});
-
+class CreateQurbanSekertaris extends StatefulWidget {
   @override
-  State<UpdateQurbanSekertaris> createState() => _UpdateQurbanSekertarisState();
+  State<CreateQurbanSekertaris> createState() => _CreateQurbanSekertarisState();
 }
 
-class _UpdateQurbanSekertarisState extends State<UpdateQurbanSekertaris> {
+class _CreateQurbanSekertarisState extends State<CreateQurbanSekertaris> {
   String? jenis;
 
   @override
@@ -30,10 +28,8 @@ class _UpdateQurbanSekertarisState extends State<UpdateQurbanSekertaris> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const InputForm(
-                judul: "Nama Orang Berqurban", hint: "Masukkan Nama"),
-            const InputForm(
-                judul: "Deskripsi", hint: "Sapi ini dipilih dengan hati-hati"),
+            const InputForm(judul: "Nama Orang Berqurban", hint: "Masukkan Nama"),
+            const InputForm(judul: "Deskripsi", hint: "Masukkan Deskripsi Qurban"),
             DropdownQurban(
               initialValue: jenis,
               onChanged: (newValue) {
@@ -50,7 +46,8 @@ class _UpdateQurbanSekertarisState extends State<UpdateQurbanSekertaris> {
                 children: [
                   const Text(
                     "Dokumentasi Qurban",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 16),
@@ -71,7 +68,7 @@ class _UpdateQurbanSekertarisState extends State<UpdateQurbanSekertaris> {
                           size: 30,
                           color: Color.fromRGBO(172, 172, 172, 1),
                         ),
-                        Text("Sapi.jpg",
+                        Text("Upload Gambar",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 15,
@@ -88,30 +85,32 @@ class _UpdateQurbanSekertarisState extends State<UpdateQurbanSekertaris> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: Container(
         height: 40,
-        width: 125,
+        width: 110,
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            backgroundColor: const Color.fromRGBO(55, 163, 165, 1),
+            backgroundColor: const Color.fromRGBO(6, 215, 115, 1),
           ),
           onPressed: () {
-            // Navigator.push(context, MaterialPageRoute(
-            //   builder: (context) => zakatFitrah(),
-            //   ));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => zakatFitrah(),
+            //     ));
           },
           child: const Center(
             child: Row(
               children: [
                 Icon(
-                  Icons.update,
+                  Icons.add_circle_outline,
                   color: Colors.white,
                   size: 17,
                 ),
                 SizedBox(width: 10),
                 Text(
-                  'Update',
+                  'Save',
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ],

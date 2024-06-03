@@ -1,33 +1,36 @@
 import 'package:emosque_mobile/views/auth/login.dart';
-import 'package:emosque_mobile/views/homepage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
+class RegisterPengurusPage extends StatelessWidget {
+  const RegisterPengurusPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 90,
-            ),
             const Text(
-              "Daftar",
+              "Daftar untuk Pengurus",
               style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w700,
                   color: Color.fromARGB(255, 6, 215, 115)),
             ),
+            const SizedBox(
+            height: 40,
+          ),
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 20.0),
-                  child: Text("Nama"),
+                  child: Text("Nama", style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
@@ -41,12 +44,18 @@ class RegisterPage extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(
+              height: 20,
+            ),
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 20.0),
-                  child: Text("Username"),
+                  child: Text("Username", style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
@@ -60,12 +69,18 @@ class RegisterPage extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(
+              height: 20,
+            ),
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 20.0),
-                  child: Text("Email"),
+                  child: Text("Email", style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
@@ -79,12 +94,18 @@ class RegisterPage extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(
+              height: 20,
+            ),
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 20.0),
-                  child: Text("Kunci pengurus"),
+                  child: Text("Kunci pengurus", style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
@@ -101,13 +122,41 @@ class RegisterPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.9,
+            height: 50,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ));
+                },
+                style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(Colors.green),
+                shape: WidgetStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(10.0), // Set corner radius
+                  ),
+                ),
+              ),
+                child: const Text(
+                  'Daftar',
+                  style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10,),
             Text.rich(
               TextSpan(
                 children: [
-                  TextSpan(text: "Sudah memiliki akun ? "),
+                  const TextSpan(text: "Sudah memiliki akun ? "),
                   TextSpan(
-                      text: "Register",
-                      style: TextStyle(
+                      text: "Login",
+                      style: const TextStyle(
                         color: Color.fromARGB(255, 6, 215, 115),
                       ),
                       recognizer: TapGestureRecognizer()
@@ -115,26 +164,10 @@ class RegisterPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LoginPage()),
+                                builder: (context) => const LoginPage()),
                           );
                         })
                 ],
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LoginPage(),
-                    ));
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 6, 215, 115),
-              ),
-              child: const Text(
-                'Daftar akun',
-                style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
               ),
             ),
           ],

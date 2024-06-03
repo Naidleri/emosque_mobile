@@ -13,11 +13,9 @@ class UpdatePersetujuanSaldoKas extends StatefulWidget {
     required this.nominal,
     required this.deskripsi,
   });
-
   @override
   State<UpdatePersetujuanSaldoKas> createState() => _UpdatePersetujuanSaldoKasState();
 }
-  
 class _UpdatePersetujuanSaldoKasState extends State<UpdatePersetujuanSaldoKas> {
   late TextEditingController judulController;
   late TextEditingController nominalController;
@@ -152,7 +150,6 @@ class _UpdatePersetujuanSaldoKasState extends State<UpdatePersetujuanSaldoKas> {
       ),
     );
   }
-
   Widget textField(
     String text,
     String hint,

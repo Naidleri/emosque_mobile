@@ -1,21 +1,21 @@
-import 'package:emosque_mobile/views/bendahara/homepage_bendahara.dart';
-import 'package:emosque_mobile/views/bendahara/profile_bendahara.dart';
+import 'package:emosque_mobile/views/sekertaris/homepage_sekertaris.dart';
+import 'package:emosque_mobile/views/sekertaris/profile_sekertaris.dart';
 import 'package:flutter/material.dart';
 
-class BottomNavigasiBendahara extends StatefulWidget {
-  const BottomNavigasiBendahara({super.key});
+class BottomNavigasiSekertaris extends StatefulWidget {
+  const BottomNavigasiSekertaris({super.key});
 
   @override
-  State<BottomNavigasiBendahara> createState() =>
-      _BottomNavigasiBendaharaState();
+  State<BottomNavigasiSekertaris> createState() =>
+      _BottomNavigasiSekertarisState();
 }
 
-class _BottomNavigasiBendaharaState extends State<BottomNavigasiBendahara> {
+class _BottomNavigasiSekertarisState extends State<BottomNavigasiSekertaris> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
-    HomePageBendahara(),
-    ProfileBendahara()
+    HomepageSekertaris(),
+    ProfileSekertaris()
   ];
 
   void _onItemTapped(int index) {

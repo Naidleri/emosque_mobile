@@ -3,14 +3,14 @@ import 'package:emosque_mobile/widgets/picker_date.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PemasukanBendaharaPage extends StatefulWidget {
-  const PemasukanBendaharaPage({super.key});
+class ReadPemasukanBendaharaPage extends StatefulWidget {
+  const ReadPemasukanBendaharaPage({super.key});
 
   @override
-  State<PemasukanBendaharaPage> createState() => _PemasukanBendaharaPageState();
+  State<ReadPemasukanBendaharaPage> createState() => _ReadPemasukanBendaharaPageState();
 }
 
-class _PemasukanBendaharaPageState extends State<PemasukanBendaharaPage> {
+class _ReadPemasukanBendaharaPageState extends State<ReadPemasukanBendaharaPage> {
   String judul = "Santunan anak yatim";
   String date = "15 April 2024";
   int nominal = 550000;
@@ -92,6 +92,7 @@ class _PemasukanBendaharaPageState extends State<PemasukanBendaharaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           "Pemasukan",
@@ -113,6 +114,7 @@ class _PemasukanBendaharaPageState extends State<PemasukanBendaharaPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
+                  // masuk ke file update_pemasukan
                   builder: (context) => UpdatePemasukanBendahara(
                       judul: judul, nominal: nominal, deskripsi: deskripsi),
                 ),
@@ -194,8 +196,8 @@ class _PemasukanBendaharaPageState extends State<PemasukanBendaharaPage> {
                   Navigator.pushNamed(context, '/createPemasukanBendahara');
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.green),
-                  shape: MaterialStateProperty.all(
+                  backgroundColor: WidgetStateProperty.all(Colors.green),
+                  shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius:
                           BorderRadius.circular(10.0), // Set corner radius

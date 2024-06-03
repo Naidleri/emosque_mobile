@@ -2,18 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DashboardJamaah extends StatelessWidget {
-  const DashboardJamaah({super.key});
+class HomepageJamaah extends StatelessWidget {
+  const HomepageJamaah({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Dashboard',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text(
             "E-Mosque",
@@ -32,26 +26,13 @@ class DashboardJamaah extends StatelessWidget {
               children: [
                 mainCard(context),
                 const SizedBox(height: 20),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    cardMenu(
-                        'Zakat Fitrah',
-                        const Color.fromARGB(255, 88, 205, 152),
-                        () {},
-                        context),
-                    const SizedBox(height: 20),
-                    cardMenu('Qurban', const Color.fromARGB(255, 61, 169, 171),
-                        () {
-                      Navigator.pushNamed(context, '/qurbanJamaah');
-                    }, context)
-                  ],
-                )
+                cardMenu('Qurban', const Color.fromARGB(255, 61, 169, 171), () {
+                  Navigator.pushNamed(context, '/qurbanJamaah');
+                }, context)
               ],
             ),
           ],
         ),
-      ),
     );
   }
 

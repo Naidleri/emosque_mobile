@@ -1,6 +1,6 @@
-import 'package:emosque_mobile/views/jamaah/dashboardjamaah.dart';
-import 'package:emosque_mobile/views/jamaah/kalenderjamaah.dart';
-import 'package:emosque_mobile/views/jamaah/profile.dart';
+import 'package:emosque_mobile/views/jamaah/homepage_jamaah.dart';
+import 'package:emosque_mobile/views/jamaah/kalender_jamaah.dart';
+import 'package:emosque_mobile/views/jamaah/profile_jamaah.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigasiJamaah extends StatefulWidget {
@@ -14,7 +14,7 @@ class BottomNavigasiJamaah extends StatefulWidget {
 class _BottomNavigasiJamaahState extends State<BottomNavigasiJamaah> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-    DashboardJamaah(),
+    HomepageJamaah(),
     KalenderJamaah(),
     ProfileJamaah()
   ];
@@ -33,8 +33,7 @@ class _BottomNavigasiJamaahState extends State<BottomNavigasiJamaah> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home_outlined,
-              color: Color.fromARGB(255, 6, 215, 115),
+              Icons.home,
               size: 28,
             ),
             label: 'Home',
@@ -42,21 +41,20 @@ class _BottomNavigasiJamaahState extends State<BottomNavigasiJamaah> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.calendar_month,
-              color: Color.fromARGB(255, 6, 215, 115),
               size: 28,
             ),
-            label: 'Home',
+            label: 'Kalender',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              color: Color.fromARGB(255, 6, 215, 115),
               size: 28,
             ),
             label: 'Profile',
           ),
         ],
-        showSelectedLabels: false,
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.grey,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
       ),

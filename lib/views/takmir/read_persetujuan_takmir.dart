@@ -1,17 +1,20 @@
+import 'package:emosque_mobile/widgets/approve_batal.dart';
+import 'package:emosque_mobile/widgets/approve_belum.dart';
+import 'package:emosque_mobile/widgets/approve_setuju.dart';
+import 'package:emosque_mobile/widgets/dialog_batal.dart';
+import 'package:emosque_mobile/widgets/dialog_belum.dart';
+import 'package:emosque_mobile/widgets/dialog_setuju.dart';
 import 'package:flutter/material.dart';
-import '../../widgets/approve_setuju.dart';
-import '../../widgets/approve_batal.dart';
-import '../../widgets/dialog_batal.dart';
-import '../../widgets/dialog_setuju.dart';
-import '../../widgets/approve_belum.dart';
-import '../../widgets/dialog_belum.dart';
 
-class ApprovePage extends StatefulWidget {
+
+class ReadPersetujuanTakmir extends StatefulWidget {
+  const ReadPersetujuanTakmir({super.key});
+
   @override
-  _ApprovePageState createState() => _ApprovePageState();
+  _ReadPersetujuanTakmirState createState() => _ReadPersetujuanTakmirState();
 }
 
-class _ApprovePageState extends State<ApprovePage> with SingleTickerProviderStateMixin {
+class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -24,7 +27,7 @@ class _ApprovePageState extends State<ApprovePage> with SingleTickerProviderStat
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Persetujuan Kas Masjid',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -35,9 +38,9 @@ class _ApprovePageState extends State<ApprovePage> with SingleTickerProviderStat
         centerTitle: true,
         bottom: TabBar(
           controller: _tabController,
-          labelColor: Color(0xff06D773),
-          indicatorColor: Color(0xff06D773),
-          tabs: [
+          labelColor: const Color(0xff06D773),
+          indicatorColor: const Color(0xff06D773),
+          tabs: const [
             Tab(text: 'Belum Disetujui'),
             Tab(text: 'Disetujui'),
             Tab(text: 'Dibatalkan'),
@@ -59,7 +62,7 @@ class _ApprovePageState extends State<ApprovePage> with SingleTickerProviderStat
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return DialogBelum(
+                        return const DialogBelum(
                           title: 'Kas Masjid',
                           catatan: '',
                         );
@@ -87,7 +90,7 @@ class _ApprovePageState extends State<ApprovePage> with SingleTickerProviderStat
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return DialogSetuju(
+                        return const DialogSetuju(
                           title: 'Kas Masjid',
                           totalSaldo: 'Rp 50.000,00',
                           tanggal: '20 Des 2023',
@@ -106,7 +109,7 @@ class _ApprovePageState extends State<ApprovePage> with SingleTickerProviderStat
           ),
           // Content untuk tab "Dibatalkan"
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(10.0),
             child: ListView.builder(
               shrinkWrap: true,
               itemCount: 1,
@@ -116,7 +119,7 @@ class _ApprovePageState extends State<ApprovePage> with SingleTickerProviderStat
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return DialogBatal(
+                        return const DialogBatal(
                           title: 'Kas Masjid',
                           totalSaldo: 'Rp 50.000,00',
                           tanggal: '20 Des 2023',
