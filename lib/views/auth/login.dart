@@ -117,15 +117,15 @@ class LoginPage extends StatelessWidget {
                     break;
                   case 3:
                     Navigator.pushReplacementNamed(
-                        context, '/homepa');
+                        context, '/homepageSekertaris');
                     break;
                   case 4:
                     Navigator.pushReplacementNamed(
-                        context, '/homepa');
+                        context, '/homepageTakmir');
                     break;
                   default:
                     Navigator.pushReplacementNamed(
-                        context, '/homepa');
+                        context, '/homepageJamaah');
                     break;
                 }
               }).catchError((error) {
