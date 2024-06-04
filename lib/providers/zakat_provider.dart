@@ -11,7 +11,7 @@ class ZakatProvider extends ChangeNotifier {
   String? get token => _token;
 
   bool _isLoading = false;
-  bool get isLoading => isLoading;
+  bool get isLoading => _isLoading;
 
   Future<void> createZakat(Zakat newZakat) async {
     _isLoading = true;
