@@ -101,7 +101,7 @@ class _ReadPemasukanBendaharaPageState extends State<ReadPemasukanBendaharaPage>
         title: Text(
           "Pemasukan",
           style: GoogleFonts.poppins(
-              fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green),
+              fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green[700]),
         ),
         centerTitle: true,
       ),
@@ -164,7 +164,7 @@ class _ReadPemasukanBendaharaPageState extends State<ReadPemasukanBendaharaPage>
                 Navigator.pushNamed(context, '/createPemasukanBendahara');
               },
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.green),
+                backgroundColor: MaterialStateProperty.all(Colors.green[700]),
                 shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),

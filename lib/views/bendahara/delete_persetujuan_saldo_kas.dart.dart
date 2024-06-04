@@ -20,7 +20,7 @@ class DeletePersetujuanSaldoKas extends StatelessWidget {
             style: GoogleFonts.poppins(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.greenAccent[700]),
+                color: Colors.green[700]),
           ),
         ),
         body: ListView(

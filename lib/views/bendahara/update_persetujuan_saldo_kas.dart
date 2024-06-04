@@ -36,7 +36,7 @@ class _UpdatePersetujuanSaldoKasState extends State<UpdatePersetujuanSaldoKas> {
           style: GoogleFonts.poppins(
             fontSize: 24,
             fontWeight: FontWeight.w700,
-            color: Colors.green,
+            color: Colors.green[700],
           ),
         ),
         centerTitle: true,
@@ -90,8 +90,8 @@ class _UpdatePersetujuanSaldoKasState extends State<UpdatePersetujuanSaldoKas> {
                   Navigator.pop(context);
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.green),
-                  shape: MaterialStateProperty.all(
+                  backgroundColor: WidgetStateProperty.all(Colors.green),
+                  shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
@@ -126,7 +126,7 @@ class _UpdatePersetujuanSaldoKasState extends State<UpdatePersetujuanSaldoKas> {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  side: MaterialStateProperty.all(
+                  side: WidgetStateProperty.all(
                     const BorderSide(
                       color: Colors.green, // Warna stroke
                       width: 1.0, // Ketebalan stroke
@@ -140,7 +140,7 @@ class _UpdatePersetujuanSaldoKasState extends State<UpdatePersetujuanSaldoKas> {
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    color: Colors.green,
+                    color: Colors.green[700],
                   ),
                 ),
               ),
@@ -179,7 +179,7 @@ class _UpdatePersetujuanSaldoKasState extends State<UpdatePersetujuanSaldoKas> {
                 hintText: hint,
                 border: const OutlineInputBorder(),
                 focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.greenAccent),
+                  borderSide: BorderSide(color: Colors.green),
                 ),
               ),
             ),

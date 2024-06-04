@@ -27,19 +27,19 @@ class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir> with Sing
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Persetujuan Kas Masjid',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 24.0,
-            color: Color(0xff06D773),
+            color: Colors.green[700],
           ),
         ),
         centerTitle: true,
         bottom: TabBar(
           controller: _tabController,
-          labelColor: const Color(0xff06D773),
-          indicatorColor: const Color(0xff06D773),
+          labelColor: Colors.green[700],
+          indicatorColor: Colors.green[700],
           tabs: const [
             Tab(text: 'Belum Disetujui'),
             Tab(text: 'Disetujui'),

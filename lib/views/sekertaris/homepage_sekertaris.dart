@@ -46,10 +46,10 @@ class _HomepageSekertarisState extends State<HomepageSekertaris> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'E-Mosque',
           style: TextStyle(
-              color: Color(0xff06d773),
+              color: Colors.green[700],
               fontSize: 25,
               fontWeight: FontWeight.bold),
         ),
@@ -64,7 +64,7 @@ class _HomepageSekertarisState extends State<HomepageSekertaris> {
                 height: size.height * 0.2,
                 width: size.width * 0.9,
                 decoration: BoxDecoration(
-                    color: const Color(0xff06d773),
+                    color: Colors.green[700],
                     borderRadius: BorderRadius.circular(10)),
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

@@ -43,10 +43,10 @@ class _MyKalenderJamaahState extends State<KalenderJamaah> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text(
+          title: Text(
             'Kalender',
             style: TextStyle(
-                color: Colors.green, fontSize: 25, fontWeight: FontWeight.bold),
+                color: Colors.green[700], fontSize: 25, fontWeight: FontWeight.bold),
           ),
         ),
         body: ListView(

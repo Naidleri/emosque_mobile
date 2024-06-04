@@ -10,24 +10,23 @@ class RegisterPengurusPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     TextEditingController _nameController = TextEditingController();
     TextEditingController _passController = TextEditingController();
     TextEditingController _emailController = TextEditingController();
     TextEditingController _keyController = TextEditingController();
-    
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 "Daftar untuk Pengurus",
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.w700,
-                    color: Color.fromARGB(255, 6, 215, 115)),
+                    color: Colors.green[700]),
               ),
               const SizedBox(
                 height: 40,
@@ -201,8 +200,8 @@ class RegisterPengurusPage extends StatelessWidget {
                     });
                   },
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.green),
-                    shape: MaterialStateProperty.all(
+                    backgroundColor: WidgetStateProperty.all(Colors.green[700]),
+                    shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0), // Set corner radius
                       ),
@@ -218,11 +217,12 @@ class RegisterPengurusPage extends StatelessWidget {
               Text.rich(
                 TextSpan(
                   children: [
-                    const TextSpan(text: "Sudah memiliki akun ? "),
+                    const TextSpan(text: "Sudah memiliki akun ? ", style: TextStyle(fontSize: 16)),
                     TextSpan(
                       text: "Login",
-                      style: const TextStyle(
-                        color: Color.fromARGB(255, 6, 215, 115),
+                      style: TextStyle(
+                        color: Colors.green[700],
+                        fontSize: 16
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {

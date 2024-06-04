@@ -105,7 +105,7 @@ class _PengeluaranBendaharaPageState extends State<RiwayatTransaksi> {
         title: Text(
           "Riwayat Transaksi",
           style: GoogleFonts.poppins(
-              fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green),
+              fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green[700]),
         ),
         centerTitle: true,
       ),

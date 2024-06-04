@@ -47,7 +47,7 @@ class _BottomNavigasiSekertarisState extends State<BottomNavigasiSekertaris> {
             label: 'Profile',
           ),
         ],
-        selectedItemColor: Colors.green,
+        selectedItemColor: Colors.green[700],
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,

@@ -13,15 +13,16 @@ class LoginPage extends StatelessWidget {
     final TextEditingController _nameController = TextEditingController();
     final TextEditingController _passController = TextEditingController();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             "Masuk",
             style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w700,
-                color: Color.fromARGB(255, 6, 215, 115)),
+                color: Colors.green[700]),
           ),
           const SizedBox(
             height: 40,
@@ -89,14 +90,15 @@ class LoginPage extends StatelessWidget {
                 const TextSpan(text: "Belum memiliki akun ? "),
                 TextSpan(
                   text: "Daftar", // Ganti dari "Masuk" ke "Daftar"
-                  style: const TextStyle(
-                    color: Color.fromARGB(255, 6, 215, 115),
+                  style: TextStyle(
+                    color: Colors.green[700],
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const PemilihanRole()),
+                        MaterialPageRoute(
+                            builder: (context) => const PemilihanRole()),
                       );
                     },
                 )
@@ -106,58 +108,69 @@ class LoginPage extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          ElevatedButton(
-            onPressed: () {
-              if (_nameController.text.isEmpty ||
-                  _passController.text.isEmpty) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Name dan Password tidak boleh kosong'),
-                  ),
-                );
-                return;
-              }
-              final logUser = LoginUser(
-                name: _nameController.text,
-                password: _passController.text,
-              );
-              final _userProvider =
-                  Provider.of<UserProvider>(context, listen: false);
-              _userProvider.loginUser(logUser).then((_) {
-                final List<User> users = _userProvider.users;
-                final User loggedInUser = users.first;
-                switch (loggedInUser.roleId) {
-                  case 2:
-                    Navigator.pushReplacementNamed(
-                        context, '/homepageBendahara');
-                    break;
-                  case 3:
-                    Navigator.pushReplacementNamed(
-                        context, '/homepageSekertaris');
-                    break;
-                  case 4:
-                    Navigator.pushReplacementNamed(
-                        context, '/homepageTakmir');
-                    break;
-                  default:
-                    Navigator.pushReplacementNamed(
-                        context, '/homepageJamaah');
-                    break;
+          Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: 50,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+            child: ElevatedButton(
+              onPressed: () {
+                if (_nameController.text.isEmpty ||
+                    _passController.text.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Name dan Password tidak boleh kosong'),
+                    ),
+                  );
+                  return;
                 }
-              }).catchError((error) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Login gagal'),
-                  ),
+                final logUser = LoginUser(
+                  name: _nameController.text,
+                  password: _passController.text,
                 );
-              });
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 6, 215, 115),
-            ),
-            child: const Text(
-              'Masuk',
-              style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                final _userProvider =
+                    Provider.of<UserProvider>(context, listen: false);
+                _userProvider.loginUser(logUser).then((_) {
+                  final List<User> users = _userProvider.users;
+                  final User loggedInUser = users.first;
+                  switch (loggedInUser.roleId) {
+                    case 2:
+                      Navigator.pushReplacementNamed(
+                          context, '/homepageBendahara');
+                      break;
+                    case 3:
+                      Navigator.pushReplacementNamed(
+                          context, '/homepageSekertaris');
+                      break;
+                    case 4:
+                      Navigator.pushReplacementNamed(
+                          context, '/homepageTakmir');
+                      break;
+                    default:
+                      Navigator.pushReplacementNamed(
+                          context, '/homepageJamaah');
+                      break;
+                  }
+                }).catchError((error) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Login gagal'),
+                    ),
+                  );
+                });
+              },
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(Colors.green[700]),
+                shape: WidgetStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(10.0), // Set corner radius
+                  ),
+                ),
+              ),
+              child: const Text(
+                'Masuk',
+                style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+              ),
             ),
           ),
         ],

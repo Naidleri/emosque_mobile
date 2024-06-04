@@ -23,7 +23,7 @@ class _MyWidgetState extends State<ReadPersetujuanSaldoKas> {
           style: GoogleFonts.poppins(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: Colors.greenAccent[700]),
+              color: Colors.green[700]),
         ),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(50),
