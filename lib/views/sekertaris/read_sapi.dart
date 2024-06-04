@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:emosque_mobile/providers/providers.dart'; 
 
 class ReadSapi extends StatefulWidget {
+  final int qurbanId;
+
+  const ReadSapi({required this.qurbanId, Key? key}) : super(key: key);
   @override
   State<ReadSapi> createState() => _ReadSapiState();
 }
 
 class _ReadSapiState extends State<ReadSapi> {
   @override
+  void initState(){
+    super.initState();
+    Provider.of<QurbanProvider>(context, listen: false).getQurbanById(widget.qurbanId);
+  }
   Widget build(BuildContext context) {
+    final _qurbanProvider =  Provider.of<QurbanProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -37,12 +47,12 @@ class _ReadSapiState extends State<ReadSapi> {
               child: ListTile(
                 contentPadding: const EdgeInsets.only(top: 12, left: 25, right: 25),
                 title: Text(
-                  "Agus Subagio",
+                  _qurbanProvider.qurban[0].nama,
                   style: GoogleFonts.poppins(
                       fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 subtitle: Text(
-                  "Sapi ini memiliki daging yang empuk dan lembut tidak ada yang bisa menandinginya",
+                  _qurbanProvider.qurban[0].deskripsi,
                   style: GoogleFonts.poppins(
                       fontSize: 17, fontWeight: FontWeight.w400),
                 ),
@@ -63,7 +73,7 @@ class _ReadSapiState extends State<ReadSapi> {
                   ),
                 ),
                 Image.asset(
-                  'images/sapi.webp',
+                  'images/${_qurbanProvider.qurban[0].dokumentasi}',
                   width: 150,
                   height: 100,
                   fit: BoxFit.cover,

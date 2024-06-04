@@ -32,7 +32,7 @@ class LoginPage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(left: 20.0),
                 child: Text(
-                  "Alamat email",
+                  "Username",
                   style: TextStyle(
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.bold,

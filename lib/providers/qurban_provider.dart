@@ -47,6 +47,7 @@ class QurbanProvider extends ChangeNotifier {
     try{
       final storedToken = await _secureStorage.read(key: 'token');
       final data = await _qurbanService.getQurbanById(idQurban, storedToken!);
+      _qurban.clear();
       _qurban.add(data);
     }catch(e){
         print('Error get qurban: $e');

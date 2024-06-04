@@ -102,11 +102,11 @@ class MyApp extends StatelessWidget {
           '/updatePenerimaZakatSekertaris': (context) => const UpdatePenerimaZakatSekertaris(),
           '/updateQurbanSekertaris': (context) => const UpdateQurbanSekertaris(),
           '/updateZakatSekertaris': (context) => UpdateZakatSekertaris(),
-          '/readSapiSekertaris': (context) => ReadSapi(),
+          // '/readSapiSekertaris': (context) => ReadSapi(qurbanId: ,),
           '/yayasanSekertaris': (context) => Yayasan(),
           '/calenderSekertaris': (context) => const MyCalenderSeker(),
           // Takmir
-          '/HomepageTakmir': (context) => const HomepageTakmir(),
+          '/homepageTakmir': (context) => const HomepageTakmir(),
         },
         home: const BottomNavigasiSekertaris(),
       ),

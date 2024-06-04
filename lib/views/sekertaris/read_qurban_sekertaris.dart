@@ -1,3 +1,4 @@
+import 'package:emosque_mobile/views/sekertaris/read_sapi.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -17,9 +18,16 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
     Future.microtask(() => Provider.of<QurbanProvider>(context, listen: false).getAllQurban());
   }
 
-  Widget cardQurban(VoidCallback onTap, String nama, String waktu, String jenis, BuildContext context) {
+  Widget cardQurban( int id, String nama, String waktu, String jenis, BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ReadSapi(qurbanId: id),
+          ),
+        );
+      },
       child: Container(
         height: 150,
         decoration: const BoxDecoration(
@@ -136,7 +144,7 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
             itemBuilder: (context, index) {
               final qurban = qurbanProvider.qurban[index];
               return cardQurban(
-                () {},
+                qurban.idQurban,
                 qurban.nama,
                 qurban.tanggal,
                 qurban.namaJenis,
