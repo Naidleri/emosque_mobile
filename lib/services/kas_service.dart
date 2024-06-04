@@ -26,7 +26,8 @@ class KasService {
         headers: ApiHelper.getHeaders(''),
       );
       final responseData = ApiHelper.handleResponse(response);
-      final List<SaldoKas> allKas = (responseData as List).map((json) => SaldoKas.fromJson(json)).toList();
+      final List<SaldoKas> allKas = (responseData['data'] as List).map((json) => SaldoKas.fromJson(json)).toList();
+      print(responseData);
       return allKas;
     }catch(e){
       return ApiHelper.handleError(e);

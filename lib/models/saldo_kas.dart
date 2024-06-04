@@ -19,18 +19,18 @@ class SaldoKas {
 
   factory SaldoKas.fromJson(Map<String, dynamic> json) {
     return SaldoKas(
-      json['id_saldo_kas'] as int,
+      json['id_transaksi'] as int,
       json['judul'] as String,
       json['jenis'] as String,
       json['tanggal'] as String,
-      json['nominal'] as int,
+      json['nominal'] as int ,
       json['deskripsi'] as String,
     );
   }
 
   Map<String, dynamic> toJson(){
     return{
-      'id_saldo_kas': idSaldoKas,
+      'id_transaksi': idSaldoKas,
       'judul': judul,
       'jenis': jenis,
       'tanggal': tanggal,
