@@ -17,15 +17,16 @@ class QurbanService {
     }
   }
 
-  Future<Qurban> getAllQurban (String token) async {
+  Future<List<Qurban>> getAllQurban () async {
     final url = Uri.parse('${ApiHelper.baseUrl}/qurban');
     try{
       final response = await http.get(
         url,
-        headers: ApiHelper.getHeaders(token),
+        headers: ApiHelper.getHeaders(''),
       );
       final responseData = ApiHelper.handleResponse(response);
-      final allQurbanData = Qurban.fromJson(responseData['data']);
+      final List<Qurban> allQurbanData = (responseData['data'] as List).map((json) => Qurban.fromJson(json)).toList();
+      print(responseData['data']);
       return allQurbanData;
     }catch(e){
       return ApiHelper.handleError(e);

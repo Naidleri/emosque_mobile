@@ -16,10 +16,10 @@ class Qurban {
     this.dokumentasi,
     this.deskripsi,
     this.namaJenis,
-    this.jenisQurbanId
+    this.jenisQurbanId,
   );
 
-  factory Qurban.fromJson(Map<String, dynamic> json){
+  factory Qurban.fromJson(Map<String, dynamic> json) {
     return Qurban(
       json['id_qurban'] as int,
       json['nama_orang_berqurban'] as String,
@@ -31,15 +31,15 @@ class Qurban {
     );
   }
 
-  Map<String, dynamic> toJson(){
-    return{
+  Map<String, dynamic> toJson() {
+    return {
       'id_qurban': idQurban,
       'nama_orang_berqurban': nama,
       'tanggal': tanggal,
       'dokumentasi': dokumentasi,
       'deskripsi': deskripsi,
       'nama_jenis': namaJenis,
-      'qurban_jenis_id': jenisQurbanId
+      'qurban_jenis_id': jenisQurbanId,
     };
   }
 }
