@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:emosque_mobile/views/sekertaris/read_yayasan.dart';
+import 'package:emosque_mobile/views/sekertaris/read_yayasan_sekertaris.dart';
 
 class Yayasan extends StatefulWidget {
   @override
@@ -12,14 +12,6 @@ class _YayasanState extends State<Yayasan> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          padding: EdgeInsets.only(left: 20),
-          onPressed: () {},
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: 25,
-          ),
-        ),
         title: Text(
           "Yayasan",
           style: GoogleFonts.poppins(
@@ -43,7 +35,7 @@ class _YayasanState extends State<Yayasan> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => readYayasan()),
+                        MaterialPageRoute(builder: (context) => ReadYayasanSekertaris()),
                       );
                     },
                     child: ListTile(

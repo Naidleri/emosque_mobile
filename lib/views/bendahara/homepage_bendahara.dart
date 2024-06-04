@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:google_fonts/google_fonts.dart';
-
+// Halaman pertama 
 class HomePageBendahara extends StatelessWidget {
   const HomePageBendahara({super.key});
   Widget mainCard(BuildContext context) {
@@ -218,8 +218,9 @@ class HomePageBendahara extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // masuk ke file pemasukan_bendahara
                 cardMenu("assets/images/dompet.png", "Pemasukan", () {
-                  Navigator.pushNamed(context, "/pemasukan");
+                  Navigator.pushNamed(context, "/readpemasukanbendahara");
                 },
                     icon: const Icon(
                       Icons.arrow_back,
@@ -227,8 +228,9 @@ class HomePageBendahara extends StatelessWidget {
                       size: 18,
                     ),
                     color: Colors.green),
+                // masuk ke file pengeluaran_bendahara
                 cardMenu("assets/images/dompet.png", "Pengeluaran", () {
-                  Navigator.pushNamed(context, "/pengeluaran");
+                  Navigator.pushNamed(context, "/readpengeluaranbendahara");
                 },
                     icon: const Icon(
                       Icons.arrow_forward,
@@ -240,7 +242,8 @@ class HomePageBendahara extends StatelessWidget {
                   "assets/images/persetujuan.png",
                   "Persetujuan\nSaldo Kas",
                   () {
-                    Navigator.pushNamed(context, "/persetujuan");
+                    Navigator.pushNamed(
+                        context, "/readpersetujuanbendahara");
                   },
                 ),
               ],
@@ -261,33 +264,13 @@ class HomePageBendahara extends StatelessWidget {
                   child: const Text(
                     "Lihat semua",
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, "/riwayatTransaksiBendahara");
+                  },
                 )
               ],
             ),
           ),
-          cardDropDown(
-              const Icon(
-                Icons.arrow_forward,
-                size: 16,
-                color: Colors.white,
-              ),
-              "Pembangunan",
-              "09 April 2024",
-              "Rp 800.000",
-              () {},
-              lebar),
-          cardDropDown(
-              const Icon(
-                Icons.arrow_forward,
-                size: 16,
-                color: Colors.white,
-              ),
-              "Pembangunan",
-              "09 April 2024",
-              "Rp 800.000",
-              () {},
-              lebar),
           cardDropDown(
               const Icon(
                 Icons.arrow_forward,

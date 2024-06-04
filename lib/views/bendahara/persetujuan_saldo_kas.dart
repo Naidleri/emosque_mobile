@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:emosque_mobile/utils/const.dart';
-import 'package:emosque_mobile/widgets/persetujuan_widget.dart';
-import '../../widgets/persetujuan_widget.dart'; 
 
-class ApprovePage extends StatefulWidget {
+class PersetujuanSaldoKas extends StatefulWidget {
+  const PersetujuanSaldoKas({super.key});
+
   @override
-  _ApprovePageState createState() => _ApprovePageState();
+  _PersetujuanSaldoKasState createState() => _PersetujuanSaldoKasState();
 }
 
-class _ApprovePageState extends State<ApprovePage> with SingleTickerProviderStateMixin {
+class _PersetujuanSaldoKasState extends State<PersetujuanSaldoKas> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override

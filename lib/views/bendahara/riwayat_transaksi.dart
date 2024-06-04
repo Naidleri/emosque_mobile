@@ -1,20 +1,16 @@
-import 'package:flutter/widgets.dart';
-import 'package:emosque_mobile/views/bendahara/tambah_pengeluaran.dart';
-import 'package:emosque_mobile/views/bendahara/ubah_pengeluaran.dart';
-
 import '../../widgets/picker_date.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class riwayat_transaksi extends StatefulWidget {
-  const riwayat_transaksi({super.key});
+class RiwayatTransaksi extends StatefulWidget {
+  const RiwayatTransaksi({super.key});
 
   @override
-  State<riwayat_transaksi> createState() =>
+  State<RiwayatTransaksi> createState() =>
       _PengeluaranBendaharaPageState();
 }
 
-class _PengeluaranBendaharaPageState extends State<riwayat_transaksi> {
+class _PengeluaranBendaharaPageState extends State<RiwayatTransaksi> {
   Widget search() {
     return Container(
       height: 60,
@@ -58,13 +54,11 @@ class _PengeluaranBendaharaPageState extends State<riwayat_transaksi> {
             Row(
               children: [
                 Container(
-                  margin: const EdgeInsets.only(right: 20),
+                  margin: const EdgeInsets.only(right: 10),
                   decoration: BoxDecoration(
-                      color: Colors.green,    
-                      borderRadius: BorderRadius.circular(99),
-                    ),
-
-                  padding: const EdgeInsets.all(8),
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(99)),
+                  padding: const EdgeInsets.all(8.0),
                   child: icon,
                 ),
                 Padding(
@@ -106,6 +100,7 @@ class _PengeluaranBendaharaPageState extends State<riwayat_transaksi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           "Riwayat Transaksi",
@@ -114,74 +109,74 @@ class _PengeluaranBendaharaPageState extends State<riwayat_transaksi> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const PickerDate(),
-          search(),
-          cardRiwayat(
-          const Icon(Icons.arrow_back, size: 12, color: Colors.white),
-          "Sumbangan",
-          "26 April 2024",
-          "Rp 850.000",
-          () {}, 
-          350.0, 
-          ),
-
-          cardRiwayat(
-          const Icon(Icons.arrow_back, size: 12, color: Colors.white),
-          "Hasil Wakaf",
-          "19 April 2024",
-          "Rp 800.000",
-          () {}, 
-          350.0, 
-          ),
-
-          cardRiwayat(
-          const Icon(Icons.arrow_forward, size: 12, color: Colors.white),
-          "Pembangunan",
-          "19 April 2024",
-          "Rp 850.000",
-          () {}, 
-          350.0, 
-          ),
-
-          cardRiwayat(
-          const Icon(Icons.arrow_back, size: 12, color: Colors.white),
-          "Kotak Amal",
-          "19 April 2024",
-          "Rp 200.000",
-          () {}, 
-          350.0, 
-          ),
-
-          cardRiwayat(
-          const Icon(Icons.arrow_forward, size: 12, color: Colors.white,),
-          "Santunan Anak Yatim",
-          "15 April 2024",
-          "Rp 850.000",
-          () {}, 
-          350.0, 
-          ),
-
-          cardRiwayat(
-          const Icon(Icons.arrow_forward, size: 12, color: Colors.white,),
-          "Konsumsi Rapat",
-          "12 April 2024",
-          "Rp 450.000",
-          () {}, 
-          350.0, 
-          ),
-
-          cardRiwayat(
-          const Icon(Icons.arrow_back, size: 12, color: Colors.white,),
-          "Kotak Amal",
-          "8 April 2024",
-          "Rp 150.000",
-          () {}, 
-          350.0, 
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const PickerDate(),
+            search(),
+            cardRiwayat(
+            const Icon(Icons.arrow_back, size: 12, color: Colors.white),
+            "Sumbangan",
+            "26 April 2024",
+            "Rp 850.000",
+            () {}, 
+            350.0, 
+            ),
+            cardRiwayat(
+            const Icon(Icons.arrow_back, size: 12, color: Colors.white),
+            "Hasil Wakaf",
+            "19 April 2024",
+            "Rp 800.000",
+            () {}, 
+            350.0, 
+            ),
+            cardRiwayat(
+            const Icon(Icons.arrow_forward, size: 12, color: Colors.white),
+            "Pembangunan",
+            "19 April 2024",
+            "Rp 850.000",
+            () {}, 
+            350.0, 
+            ),
+        
+            cardRiwayat(
+            const Icon(Icons.arrow_back, size: 12, color: Colors.white),
+            "Kotak Amal",
+            "19 April 2024",
+            "Rp 200.000",
+            () {}, 
+            350.0, 
+            ),
+        
+            cardRiwayat(
+            const Icon(Icons.arrow_forward, size: 12, color: Colors.white,),
+            "Santunan Anak Yatim",
+            "15 April 2024",
+            "Rp 850.000",
+            () {}, 
+            350.0, 
+            ),
+        
+            cardRiwayat(
+            const Icon(Icons.arrow_forward, size: 12, color: Colors.white,),
+            "Konsumsi Rapat",
+            "12 April 2024",
+            "Rp 450.000",
+            () {}, 
+            350.0, 
+            ),
+        
+            cardRiwayat(
+            const Icon(Icons.arrow_back, size: 12, color: Colors.white,),
+            "Kotak Amal",
+            "8 April 2024",
+            "Rp 150.000",
+            () {}, 
+            350.0, 
+            ),
+          ],
+        ),
       ),
     );
   }

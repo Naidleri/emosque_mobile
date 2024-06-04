@@ -41,6 +41,7 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           "Pemasukan",
@@ -57,11 +58,11 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
                   "Judul Pemasukan", "Masukan Judul Pemasukan", judul, context),
               textField("Nominal", "Masukan Nominal", nominal, context),
               textField("Deskripsi", "Masukan Deskripsi", deskripsi, context),
-              calender(),
-              SizedBox(
+              const calender(),
+              const SizedBox(
                 height: 80,
               ),
-              Text(".")
+              const Text(".")
             ],
           ),
         ),
@@ -83,8 +84,8 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.green),
-                  shape: MaterialStateProperty.all(
+                  backgroundColor: WidgetStateProperty.all(Colors.green),
+                  shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius:
                           BorderRadius.circular(10.0), // Set corner radius

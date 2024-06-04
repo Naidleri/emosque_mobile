@@ -7,32 +7,34 @@ class DetailLaporanPage extends StatelessWidget {
   final Map<String, String> rincian;
 
   const DetailLaporanPage({
-    Key? key,
+    super.key,
     required this.title,
     required this.amount,
     required this.date,
     required this.rincian,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Laporan Mingguan', style: TextStyle(color: Colors.white,)),
+        title: const Text('Laporan Mingguan', style: TextStyle(color: Colors.white,)),
         backgroundColor: Color(0xff06D773),
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.white,
         ),
       ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(40.0),
-          child: IntrinsicHeight(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.86,
+            height: MediaQuery.of(context).size.height * 0.5,
             child: Card(
               color: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
-                side: BorderSide(
+                side: const BorderSide(
                   color: Color(0xFF225779),
                   width: 1.0,
                 ),
@@ -45,50 +47,49 @@ class DetailLaporanPage extends StatelessWidget {
                     Center(
                       child: Text(
                         title,
-                        style: TextStyle(color: Color(0xff06D773), fontSize: 18.0, fontWeight: FontWeight.bold),
+                        style: const TextStyle(color: Color(0xFF225779), fontSize: 18.0, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    SizedBox(height: 2.0),
-                    Text(
+                    const SizedBox(height: 2.0),
+                    const Text(
                       'Rincian',
                       style: TextStyle(
                           fontSize: 18.0, fontWeight: FontWeight.bold, color: Color(0xFF225779)),
                     ),
-                    SizedBox(height: 20.0),
+                    const SizedBox(height: 20.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: rincian.entries
                           .map((entry) => ListTile(
-                                leading: Text('\u2022'),
                                 title: Text(
                                   entry.key,
-                                  style: TextStyle(fontSize: 16.0, color: Color(0xFF225779)),
+                                  style: const TextStyle(fontSize: 16.0, color: Color(0xFF225779)),
                                 ),
                                 trailing: Text(
                                   entry.value,
-                                  style: TextStyle(fontSize: 16.0, color: Color(0xFF225779)),
+                                  style: const TextStyle(fontSize: 16.0, color: Color(0xFF225779)),
                                 ),
                               ))
                           .toList(),
                     ),
-                    SizedBox(height: 20.0),
+                    const SizedBox(height: 20.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Total',
-                          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Color(0xFF225779)),
+                          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Color(0xFF225779)),
                         ),
                         Text(
                           amount,
-                          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Color(0xFF225779)),
+                          style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Color(0xFF225779)),
                         ),
                       ],
                     ),
-                    SizedBox(height: 20.0,),
+                    const SizedBox(height: 40.0,),
                     Column(
                       children: [
-                        Center(
+                        const Center(
                           child: Text(
                             'Tanggal',
                             style: TextStyle(fontSize: 16.0, color: Color(0xFF225779)),
@@ -97,7 +98,7 @@ class DetailLaporanPage extends StatelessWidget {
                         Center(
                           child: Text(
                             date,
-                            style: TextStyle(fontSize: 16.0, color: Color(0xFF225779)),
+                            style: const TextStyle(fontSize: 16.0, color: Color(0xFF225779)),
                           ),
                         )
                       ],

@@ -35,6 +35,7 @@ class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           "Pemasukan",
@@ -68,7 +69,7 @@ class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
                 deskripsiController,
                 context,
               ),
-              calender(),
+              const calender(),
               const SizedBox(
                 height: 80,
               ),
@@ -95,8 +96,8 @@ class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
                   Navigator.pop(context);
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.green),
-                  shape: MaterialStateProperty.all(
+                  backgroundColor: WidgetStateProperty.all(Colors.green),
+                  shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
@@ -124,14 +125,14 @@ class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
                   Navigator.pop(context);
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
+                  backgroundColor: WidgetStateProperty.all(
                       const Color.fromARGB(255, 255, 255, 255)),
-                  shape: MaterialStateProperty.all(
+                  shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  side: MaterialStateProperty.all(
+                  side: WidgetStateProperty.all(
                     const BorderSide(
                       color: Colors.green, // Warna stroke
                       width: 1.0, // Ketebalan stroke

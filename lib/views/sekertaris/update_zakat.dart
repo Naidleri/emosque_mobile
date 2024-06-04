@@ -1,92 +1,79 @@
 import 'package:emosque_mobile/views/sekertaris/dropdown_zakat.dart';
 import 'package:emosque_mobile/views/sekertaris/input_form.dart';
-import 'package:emosque_mobile/views/sekertaris/zakat_fitrah.dart';
+import 'package:emosque_mobile/views/sekertaris/read_zakat_sekertaris.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class updateZakat extends StatefulWidget{
+class UpdateZakatSekertaris extends StatefulWidget {
   @override
-  State<updateZakat> createState() => _tambahZakatState();
+  State<UpdateZakatSekertaris> createState() => _UpdateZakatSekertarisState();
 }
 
-class _tambahZakatState extends State<updateZakat> {
-
+class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
   String? jenis;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          padding: EdgeInsets.only(left: 20),
-          onPressed: (){},
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: 25,
-            ),
-          ),
-          title: Text(
-            "Zakat Fitrah",
-            style: 
-            GoogleFonts.poppins(
-              color: Color.fromRGBO(6, 215, 115, 1),
+        title: Text(
+          "Zakat Fitrah",
+          style: GoogleFonts.poppins(
+              color: const Color.fromRGBO(6, 215, 115, 1),
               fontSize: 25,
-              fontWeight: FontWeight.bold
-            ),),
-          centerTitle: true,
+              fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
       ),
-
-      body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              inputForm(judul: "Nama Pezakat", hint: "Masukkan Nama Pezakat"),
-              inputForm(judul: "Jumlah Zakat", hint: "Masukkan Jumlah Zakat"),
-              DropdownZakat(
-                initialValue: jenis,
-                onChanged: (newValue) {
-                  setState(() {
-                    jenis = newValue;
-                  });
-                },
-              ),
-              
-            ],
-          ),
-        ), 
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const InputForm(
+                judul: "Nama Pezakat", hint: "Masukkan Nama Pezakat"),
+            const InputForm(
+                judul: "Jumlah Zakat", hint: "Masukkan Jumlah Zakat"),
+            DropdownZakat(
+              initialValue: jenis,
+              onChanged: (newValue) {
+                setState(() {
+                  jenis = newValue;
+                });
+              },
+            ),
+          ],
+        ),
       ),
-      floatingActionButtonLocation:
-        FloatingActionButtonLocation.endFloat,
-        floatingActionButton: Container(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: Container(
         height: 40,
         width: 125,
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5)
-            ),
-            backgroundColor: Color.fromRGBO(55, 163, 165, 1),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            backgroundColor: const Color.fromRGBO(55, 163, 165, 1),
           ),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(
-              builder: (context) => zakatFitrah(),
-              ));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ReadZakatSekertaris(),
+                ));
           },
           child: const Center(
             child: Row(
               children: [
                 Icon(
-                            Icons.update,
-                            color: Colors.white,
-                            size: 17,),
-                            SizedBox(width: 10),
+                  Icons.update,
+                  color: Colors.white,
+                  size: 17,
+                ),
+                SizedBox(width: 10),
                 Text(
                   'Update',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16
-                  ),),
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
               ],
             ),
           ),

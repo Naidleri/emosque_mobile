@@ -1,7 +1,7 @@
 part of 'services.dart';
 
 class ApiHelper {
-  static const String baseUrl = 'https://localhost:8080/api';
+  static const String baseUrl = 'https://pbm2024.site/public/api';
 
   static Map<String, String> getHeaders(String token) {
     return {
@@ -12,6 +12,7 @@ class ApiHelper {
 
   static dynamic handleResponse(http.Response response) {
     if (response.statusCode == 200 || response.statusCode == 201) {
+      print(response.statusCode);
       return json.decode(response.body);
     } else {
       throw Exception('Failed: ${response.statusCode}');

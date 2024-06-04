@@ -2,22 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class fillButton extends StatelessWidget {
-  final text;
-  const fillButton({
-    super.key,required this.text
-  });
+  final String text;
+  final VoidCallback onPressed;
+  const fillButton({super.key, required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 309,
+      width: MediaQuery.of(context).size.width * 0.85,
       height: 46,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.greenAccent[700],
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(7))),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(7))),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
