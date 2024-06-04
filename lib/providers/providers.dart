@@ -9,4 +9,5 @@ import '../views/sekertaris/read_zakat_sekertaris.dart';
 part 'user_provider.dart';
 part 'kas_provider.dart';
 part 'zakat_provider.dart';
+part 'perizinan_provider.dart';
 part 'qurban_provider.dart';

@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-class ReadPerizinanSekertaris extends StatelessWidget {
+class ReadPerizinanSekertaris extends StatefulWidget {
   const ReadPerizinanSekertaris({super.key});
+
+  @override
+  State<ReadPerizinanSekertaris> createState() => _ReadPerizinanSekertarisState();
+}
+
+class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
+  @override
+  void initState(){
+    super.initState();
+    Future.microtask(()=> Provider.of<>)
+  }
+
   Widget cardPerizinan(String nama, String keterangan, String waktu,
       String jenis, BuildContext context) {
     return Container(
