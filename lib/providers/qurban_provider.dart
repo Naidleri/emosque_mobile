@@ -32,7 +32,7 @@ class QurbanProvider extends ChangeNotifier {
     notifyListeners();
     try{
       final data = await _qurbanService.getAllQurban();
-       _qurban = data;
+      _qurban = data;
     }catch(e){
         print('Error get allqurban: $e');
       throw Exception('Failed to get all qurban $e');

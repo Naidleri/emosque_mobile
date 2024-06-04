@@ -1,10 +1,25 @@
+import 'package:emosque_mobile/models/models.dart';
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-class ReadZakatSekertaris extends StatelessWidget {
+class ReadZakatSekertaris extends StatefulWidget {
   const ReadZakatSekertaris({super.key});
-  Widget cardZakat(
-      String nama, String waktu, String jenis, BuildContext context) {
+
+  @override
+  State<ReadZakatSekertaris> createState() => _ReadZakatSekertarisState();
+}
+
+class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+        () => Provider.of<ZakatProvider>(context, listen: false).getAllZakat());
+  }
+
+  Widget cardZakat(Zakat zakat, BuildContext context) {
     return Container(
       height: 150,
       decoration: const BoxDecoration(
@@ -19,17 +34,17 @@ class ReadZakatSekertaris extends StatelessWidget {
           ListTile(
             contentPadding: const EdgeInsets.only(left: 25, right: 25),
             title: Text(
-              nama,
+              zakat.namaPezakat,
               style: GoogleFonts.poppins(
                   fontSize: 16, fontWeight: FontWeight.w500),
             ),
             subtitle: Text(
-              waktu,
+              zakat.namaJenisZakat,
               style: GoogleFonts.poppins(
                   fontSize: 12, fontWeight: FontWeight.w400),
             ),
             trailing: Text(
-              jenis,
+              '${zakat.jumlahZakat}',
               style: GoogleFonts.poppins(
                   fontSize: 16, fontWeight: FontWeight.w400),
             ),
@@ -104,44 +119,55 @@ class ReadZakatSekertaris extends StatelessWidget {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: Text(
-          "Zakat",
-          style: GoogleFonts.poppins(
-              color: Colors.green, fontSize: 25, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    resizeToAvoidBottomInset: false,
+    appBar: AppBar(
+      title: Text(
+        "Zakat",
+        style: GoogleFonts.poppins(
+            color: Colors.green, fontSize: 25, fontWeight: FontWeight.bold),
       ),
-      body: Column(
-        children: [
-          cardZakat('Agus', '10 Des 2020', 'Zakat', context),
-          cardZakat('Agus', '10 Des 2020', 'Zakat', context),
-        ],
-      ),
-      bottomSheet: Container(
-        height: 50,
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            backgroundColor: const Color.fromRGBO(6, 215, 115, 1),
-          ),
-          onPressed: () {
-            Navigator.pushNamed(context, '/createZakatSekertaris');
+      centerTitle: true,
+    ),
+    body: Consumer<ZakatProvider>(
+      builder: (context, zakatProvider, child) {
+        if (zakatProvider.isLoading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (zakatProvider.zakatFitrah.isEmpty) {
+          return const Center(child: Text('No data available.'));
+        }
+        return ListView.builder(
+          itemCount: zakatProvider.zakatFitrah.length,
+          itemBuilder: (context, index) {
+            final zakat = zakatProvider.zakatFitrah[index];
+            return cardZakat(zakat, context);
           },
-          child: const Center(
-            child: Text(
-              'Tambah Catatan',
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
+        );
+      },
+    ),
+    bottomSheet: Container(
+      height: 50,
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5)),
+          backgroundColor: const Color.fromRGBO(6, 215, 115, 1),
+        ),
+        onPressed: () {
+          Navigator.pushNamed(context, '/createZakatSekertaris');
+        },
+        child: const Center(
+          child: Text(
+            'Tambah Catatan',
+            style: TextStyle(color: Colors.white, fontSize: 20),
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 }

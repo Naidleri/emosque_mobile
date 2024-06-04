@@ -133,11 +133,11 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
       body: Consumer<QurbanProvider>(
         builder: (context, qurbanProvider, child) {
           if (qurbanProvider.isLoading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (qurbanProvider.qurban.isEmpty) {
-            return Center(child: Text('No data available.'));
+            return const Center(child: Text('No data available.'));
           }
 
           return ListView.builder(
