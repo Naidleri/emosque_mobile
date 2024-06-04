@@ -64,8 +64,8 @@ class ReadSapi extends StatelessWidget {
                     ),
                   ),
                 ),
-                Image.asset(
-                  'images/${qurban.dokumentasi}',
+                Image.network(
+                  'https://pbm2024.site/public/${qurban.dokumentasi}',
                   width: 150,
                   height: 100,
                   fit: BoxFit.cover,

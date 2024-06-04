@@ -1,8 +1,10 @@
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/views/bendahara/update_pengeluaran_bendahara.dart';
 import 'package:emosque_mobile/views/bendahara/update_persetujuan_saldo_kas.dart';
 import 'package:emosque_mobile/widgets/picker_date.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ReadPengeluaranBendahara extends StatefulWidget {
   const ReadPengeluaranBendahara({super.key});
@@ -13,10 +15,12 @@ class ReadPengeluaranBendahara extends StatefulWidget {
 }
 
 class _ReadPengeluaranBendaharaState extends State<ReadPengeluaranBendahara> {
-  String judul = "Santunan anak yatim";
-  String date = "15 April 2024";
-  int nominal = 550000;
-  String deskripsi = "Untuk Bulan April";
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() => Provider.of<KasProvider>(context, listen: false).getAllKas());
+  }
+
   Widget search() {
     return Container(
       height: 60,
@@ -47,7 +51,7 @@ class _ReadPengeluaranBendaharaState extends State<ReadPengeluaranBendahara> {
   }
 
   Widget cardHistoryPengeluaran(
-      String judul, String tanggal, String uang, VoidCallback onTap) {
+      String judul, String tanggal, int nominal, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,
       child: Container(
@@ -82,7 +86,7 @@ class _ReadPengeluaranBendaharaState extends State<ReadPengeluaranBendahara> {
               ],
             ),
             Text(
-              uang,
+              'Rp $nominal',
               style: GoogleFonts.poppins(fontWeight: FontWeight.w700),
             ),
           ],
@@ -103,91 +107,47 @@ class _ReadPengeluaranBendaharaState extends State<ReadPengeluaranBendahara> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const PickerDate(),
-          search(),
-          cardHistoryPengeluaran(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000", () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => UpdatePengeluaranBendahara(
-                          judul: judul,
-                          nominal: nominal,
-                          deskripsi: deskripsi,
-                        )));
-          }),
-          cardHistoryPengeluaran(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000", () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => UpdatePengeluaranBendahara(
-                          judul: judul,
-                          nominal: nominal,
-                          deskripsi: deskripsi,
-                        )));
-          }),
-          cardHistoryPengeluaran(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000", () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => UpdatePengeluaranBendahara(
-                          judul: judul,
-                          nominal: nominal,
-                          deskripsi: deskripsi,
-                        )));
-          }),
-          cardHistoryPengeluaran(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000", () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => UpdatePersetujuanSaldoKas(
-                          judul: judul,
-                          nominal: nominal,
-                          deskripsi: deskripsi,
-                        )));
-          }),
-          cardHistoryPengeluaran(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000", () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => UpdatePersetujuanSaldoKas(
-                          judul: judul,
-                          nominal: nominal,
-                          deskripsi: deskripsi,
-                        )));
-          }),
-          cardHistoryPengeluaran(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000", () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => UpdatePengeluaranBendahara(
-                  judul: judul,
-                  nominal: nominal,
-                  deskripsi: deskripsi,
+      body: Consumer<KasProvider>(
+        builder: (context, kasProvider, child) {
+          if (kasProvider.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          final pemasukanList = kasProvider.saldoKas.where((kas) => kas.jenis == 'pengeluaran').toList();
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const PickerDate(),
+              search(),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: pemasukanList.length,
+                  itemBuilder: (context, index) {
+                    final kas = pemasukanList[index];
+                    return cardHistoryPengeluaran(
+                      kas.judul,
+                      kas.tanggal,
+                      kas.nominal,
+                      () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => UpdatePengeluaranBendahara(
+                              judul: kas.judul,
+                              nominal: kas.nominal,
+                              deskripsi: kas.deskripsi,
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
               ),
-            );
-          }),
-          cardHistoryPengeluaran(
-              "Santunan anak yatim", "15 April 2024", "Rp 550.000", () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => UpdatePengeluaranBendahara(
-                          judul: judul,
-                          nominal: nominal,
-                          deskripsi: deskripsi,
-                        )));
-          })
-        ],
+            ],
+          );
+        },
       ),
       bottomSheet: Stack(
         children: [
@@ -197,30 +157,31 @@ class _ReadPengeluaranBendaharaState extends State<ReadPengeluaranBendahara> {
             color: Colors.white,
           ),
           Positioned(
-              top: 10,
-              right: 20,
-              left: 20,
-              bottom: 25,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "/createPengeluaranBendahara");
-                },
-                style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Colors.green),
-                  shape: WidgetStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
+            top: 10,
+            right: 20,
+            left: 20,
+            bottom: 25,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/createPengeluaranBendahara');
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.green),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
-                child: Text(
-                  "Tambahkan Pengeluaran",
-                  style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white),
-                ),
-              ))
+              ),
+              child: Text(
+                "Tambahkan Pengeluaran",
+                style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white),
+              ),
+            ),
+          ),
         ],
       ),
     );
