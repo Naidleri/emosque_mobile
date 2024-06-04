@@ -56,7 +56,7 @@ class PemilihanRole extends StatelessWidget {
             ),
             button(() {
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const RegisterJamaahPage()));
+                  MaterialPageRoute(builder: (context) => RegisterJamaahPage()));
             }, 'Jamaah', Colors.white, Colors.green, context)
       ],),),
     );

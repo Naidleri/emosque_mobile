@@ -3,24 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:emosque_mobile/widgets/calender_picker_date.dart';
 import 'package:emosque_mobile/widgets/form.dart';
 
-class MyEditPerizinan extends StatefulWidget {
-  const MyEditPerizinan({super.key});
+class UpdatePerizinanSekertaris extends StatefulWidget {
+  const UpdatePerizinanSekertaris({super.key});
 
   @override
-  State<MyEditPerizinan> createState() => _MyEditPerizinanState();
+  State<UpdatePerizinanSekertaris> createState() => _UpdatePerizinanSekertarisState();
 }
 
-class _MyEditPerizinanState extends State<MyEditPerizinan> {
+class _UpdatePerizinanSekertarisState extends State<UpdatePerizinanSekertaris> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
-          leading:
-              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+          
           centerTitle: true,
-          title: Text(
+          title: const Text(
             'Perizinan',
             style: TextStyle(
                 color: Color(0xff06d773),
@@ -32,13 +30,13 @@ class _MyEditPerizinanState extends State<MyEditPerizinan> {
           children: [
             Column(
               children: [
-                form(title: 'Nama Kegiatan', hint: 'Masukkan Nama Kegiatan'),
-                form(title: 'Nama Perizinan', hint: 'Masukkan Nama Perizinan'),
-                TextfieldDeskripsi(
+                const form(title: 'Nama Kegiatan', hint: 'Masukkan Nama Kegiatan'),
+                const form(title: 'Nama Perizinan', hint: 'Masukkan Nama Perizinan'),
+                const TextfieldDeskripsi(
                     title: 'deskripsi', hint: 'Masukkan Deskripsi'),
-                CalenderPicker(),
-                form(title: 'Nama Pengaju', hint: 'Masukkan Nama Pengaju'),
-                form(
+                const CalenderPicker(),
+                const form(title: 'Nama Pengaju', hint: 'Masukkan Nama Pengaju'),
+                const form(
                     title: 'Nama Penanggung Jawab',
                     hint: 'Masukkan Nama Penanggung Jawab'),
                 Row(
@@ -52,9 +50,9 @@ class _MyEditPerizinanState extends State<MyEditPerizinan> {
                         width: 80,
                         height: 30,
                         decoration: BoxDecoration(
-                            color: Color(0xff37A3A5),
+                            color: const Color(0xff37A3A5),
                             borderRadius: BorderRadius.circular(7)),
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
@@ -75,14 +73,13 @@ class _MyEditPerizinanState extends State<MyEditPerizinan> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 )
               ],
             )
           ],
         ),
-      ),
     );
   }
 }

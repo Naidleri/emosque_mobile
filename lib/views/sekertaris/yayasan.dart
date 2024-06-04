@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:emosque_mobile/views/sekertaris/read_yayasan.dart';
+import 'package:emosque_mobile/views/sekertaris/read_yayasan_sekertaris.dart';
 
 class Yayasan extends StatefulWidget {
   @override
@@ -35,7 +35,7 @@ class _YayasanState extends State<Yayasan> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => readYayasan()),
+                        MaterialPageRoute(builder: (context) => ReadYayasanSekertaris()),
                       );
                     },
                     child: ListTile(

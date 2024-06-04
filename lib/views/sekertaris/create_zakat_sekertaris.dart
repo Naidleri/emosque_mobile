@@ -4,12 +4,12 @@ import 'package:emosque_mobile/views/sekertaris/read_zakat_sekertaris.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class UpdateZakatSekertaris extends StatefulWidget {
+class CreateZakatSekertaris extends StatefulWidget {
   @override
-  State<UpdateZakatSekertaris> createState() => _UpdateZakatSekertarisState();
+  State<CreateZakatSekertaris> createState() => _CreateZakatSekertarisState();
 }
 
-class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
+class _CreateZakatSekertarisState extends State<CreateZakatSekertaris> {
   String? jenis;
 
   @override
@@ -46,13 +46,13 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: Container(
         height: 40,
-        width: 125,
+        width: 110,
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            backgroundColor: const Color.fromRGBO(55, 163, 165, 1),
+            backgroundColor: const Color.fromRGBO(6, 215, 115, 1),
           ),
           onPressed: () {
             Navigator.push(
@@ -65,13 +65,13 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
             child: Row(
               children: [
                 Icon(
-                  Icons.update,
+                  Icons.add_circle_outline,
                   color: Colors.white,
                   size: 17,
                 ),
                 SizedBox(width: 10),
                 Text(
-                  'Update',
+                  'Save',
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ],

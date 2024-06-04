@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class inputForm extends StatelessWidget {
+class InputForm extends StatelessWidget {
   final String judul;
   final String hint;
   final TextEditingController? controller;
   final Widget? widget;
 
-  const inputForm({Key? key,
+  const InputForm({Key? key,
     required this.judul,
     required this.hint,
     this.controller,

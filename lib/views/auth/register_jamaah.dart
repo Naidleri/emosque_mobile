@@ -1,10 +1,15 @@
+import 'package:emosque_mobile/models/models.dart';
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/views/auth/login.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegisterJamaahPage extends StatelessWidget {
-  const RegisterJamaahPage({super.key});
-
+  RegisterJamaahPage({super.key});
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,22 +25,26 @@ class RegisterJamaahPage extends StatelessWidget {
                   color: Color.fromARGB(255, 6, 215, 115)),
             ),
             const SizedBox(
-            height: 40,
-          ),
-            const Column(
+              height: 40,
+            ),
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 20.0),
-                  child: Text("Nama", style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),),
+                  child: Text(
+                    "Nama",
+                    style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16),
+                  ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                   child: TextField(
-                    decoration: InputDecoration(
+                    controller: _nameController,
+                    decoration: const InputDecoration(
                       labelText: 'Masukkan nama',
                       hintText: 'Masukkan nama',
                       border: OutlineInputBorder(),
@@ -47,45 +56,24 @@ class RegisterJamaahPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 20.0),
-                  child: Text("Username", style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Masukkan username',
-                      hintText: 'Masukkan username',
-                      border: OutlineInputBorder(),
-                    ),
+                  child: Text(
+                    "Email",
+                    style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16),
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 20.0),
-                  child: Text("Email", style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                   child: TextField(
-                    decoration: InputDecoration(
+                    controller: _emailController,
+                    decoration: const InputDecoration(
                       labelText: 'Masukkan email',
                       hintText: 'Masukkan email',
                       border: OutlineInputBorder(),
@@ -97,34 +85,87 @@ class RegisterJamaahPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.9,
-            height: 50,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginPage(),
-                      ));
-                },
-                style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(Colors.green),
-                shape: WidgetStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(10.0), // Set corner radius
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 20.0),
+                  child: Text(
+                    "Password",
+                    style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16),
                   ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                  child: TextField(
+                    controller: _passController,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      labelText: 'Masukkan password',
+                      hintText: 'Masukkan password',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.9,
+              height: 50,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
+              child: ElevatedButton(
+                onPressed: () {
+                  if (_emailController.text.isEmpty ||
+                      _nameController.text.isEmpty ||
+                      _passController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('Data tidak boleh ada yang kosong!')));
+                    return;
+                  }
+                  final regisJamaah = RegisterUser(
+                      name: _nameController.text,
+                      email: _emailController.text,
+                      password: _passController.text,
+                      roleId: 1);
+                  final _userProvider =
+                      Provider.of<UserProvider>(context, listen: false);
+                  _userProvider
+                      .registerUser(regisJamaah)
+                      .then((_) =>
+                          Navigator.pushReplacementNamed(context, '/login'))
+                      .catchError((error) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Register gagal'),
+                      ),
+                    );
+                  });
+                },
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all(Colors.green),
+                  shape: WidgetStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(10.0), // Set corner radius
+                    ),
+                  ),
+                ),
                 child: const Text(
                   'Daftar',
                   style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                 ),
               ),
             ),
-            SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             Text.rich(
               TextSpan(
                 children: [

@@ -1,9 +1,9 @@
+import 'package:emosque_mobile/widgets/laporan_detail.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/laporan_card.dart';
-import '../../widgets/laporan_detail.dart';
 
-class LaporanPage extends StatelessWidget {
-  const LaporanPage({super.key});
+class HomepageTakmir extends StatelessWidget {
+  const HomepageTakmir({super.key});
 
   @override
   Widget build(BuildContext context) {

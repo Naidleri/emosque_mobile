@@ -1,7 +1,7 @@
 part of 'services.dart';
 
 class ApiHelper {
-  static const String baseUrl = 'https://www.pbm2024.site/public/api';
+  static const String baseUrl = 'https://pbm2024.site/public/api';
 
   static Map<String, String> getHeaders(String token) {
     return {

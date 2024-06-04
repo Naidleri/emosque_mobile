@@ -6,10 +6,11 @@ class UserProvider extends ChangeNotifier {
   final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
   String? _token;
   String? get token => _token;
-List<User> _users = [];
+  List<User> _users = [];
   List<User> get users => _users;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
+
   Future<void> registerUser(RegisterUser newUser) async {
     _isLoading = true;
     notifyListeners();
@@ -30,7 +31,7 @@ List<User> _users = [];
       final responseData = await _userService.loginUser(user);
       _users.clear();
       _users.add(User.fromJson(responseData['data']));
-      _token = responseData['acces_token'];
+      _token = responseData['access_token'];
       await _secureStorage.write(key: 'token', value: _token!);
     } catch (e) {
       print('Error logging in: $e');

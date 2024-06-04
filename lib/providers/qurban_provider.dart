@@ -11,7 +11,7 @@ class QurbanProvider extends ChangeNotifier {
   String? get token => _token;
 
   bool _isLoading = false;
-  bool get isLoading => isLoading;
+  bool get isLoading => _isLoading;
 
   Future<void> createQurban (Qurban newQurban) async {
     _isLoading = true;
@@ -31,14 +31,13 @@ class QurbanProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
     try{
-      final storedToken = await _secureStorage.read(key: 'token');
-      final data = await _qurbanService.getAllQurban(storedToken!);
-      _qurban.add(data);
+      final data = await _qurbanService.getAllQurban();
+       _qurban = data;
     }catch(e){
         print('Error get allqurban: $e');
       throw Exception('Failed to get all qurban $e');
     }
-     _isLoading = true;
+     _isLoading = false;
     notifyListeners();
   }
 
@@ -48,12 +47,13 @@ class QurbanProvider extends ChangeNotifier {
     try{
       final storedToken = await _secureStorage.read(key: 'token');
       final data = await _qurbanService.getQurbanById(idQurban, storedToken!);
+      _qurban.clear();
       _qurban.add(data);
     }catch(e){
         print('Error get qurban: $e');
       throw Exception('Failed to get qurban $e');
     }
-     _isLoading = true;
+     _isLoading = false;
     notifyListeners();
   }
 

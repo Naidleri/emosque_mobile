@@ -23,7 +23,7 @@ class _MyCalenderSekerState extends State<MyCalenderSeker> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             'Kalender',
             style: TextStyle(
                 color: Color(0xff06d773),
@@ -32,7 +32,7 @@ class _MyCalenderSekerState extends State<MyCalenderSeker> {
           ),
         ),
         body: ListView(
-          children: [calender()],
+          children: [const calender()],
         ),
       ),
     );

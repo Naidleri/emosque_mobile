@@ -34,8 +34,7 @@ class _BottomNavigasiBendaharaState extends State<BottomNavigasiBendahara> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home_outlined,
-              color: Color.fromARGB(255, 6, 215, 115),
+              Icons.home,
               size: 28,
             ),
             label: 'Home',
@@ -43,13 +42,13 @@ class _BottomNavigasiBendaharaState extends State<BottomNavigasiBendahara> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              color: Color.fromARGB(255, 6, 215, 115),
               size: 28,
             ),
             label: 'Profile',
           ),
         ],
-        showSelectedLabels: false,
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.grey,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
       ),

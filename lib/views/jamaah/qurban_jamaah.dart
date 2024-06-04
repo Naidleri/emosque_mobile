@@ -49,7 +49,7 @@ class QurbanJamaah extends StatelessWidget {
                   ),
                   Container(
                     margin: const EdgeInsets.only(bottom: 8.0),
-                    child: Text("Saya ingin berqurban",
+                    child: Text("Saya berqurban sapi",
                         style: GoogleFonts.poppins(
                             fontSize: 18,
                             fontWeight: FontWeight.normal,
@@ -60,7 +60,7 @@ class QurbanJamaah extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 8.0),
                     child: Image.network("https://picsum.photos/293/158",),
                   ),
-                  Text("Jenis Qurban",
+                  Text("Jenis Sapi",
                       style: GoogleFonts.poppins(
                           fontSize: 15,
                           fontWeight: FontWeight.normal,

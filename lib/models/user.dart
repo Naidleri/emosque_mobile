@@ -44,6 +44,15 @@ class RegisterUser {
     required this.password,
     required this.roleId,
   });
+
+  Map<String, dynamic> toJson(){
+    return{
+      'name': name,
+      'email': email,
+      'password': password,
+      'role_id': roleId
+    };
+  }
 }
 
 class LoginUser {
