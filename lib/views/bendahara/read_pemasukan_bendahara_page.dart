@@ -1,16 +1,24 @@
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/views/bendahara/update_pemasukan_bendahara.dart';
 import 'package:emosque_mobile/widgets/picker_date.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ReadPemasukanBendaharaPage extends StatefulWidget {
   const ReadPemasukanBendaharaPage({super.key});
 
-  @override
+  
   State<ReadPemasukanBendaharaPage> createState() => _ReadPemasukanBendaharaPageState();
 }
 
 class _ReadPemasukanBendaharaPageState extends State<ReadPemasukanBendaharaPage> {
+  @override
+  void initstate(){
+    super.initState();
+    Future.microtask(() => Provider.of<KasProvider>(context, listen: false).getAllKas());
+  }
+
   String judul = "Santunan anak yatim";
   String date = "15 April 2024";
   int nominal = 550000;
@@ -106,63 +114,6 @@ class _ReadPemasukanBendaharaPageState extends State<ReadPemasukanBendaharaPage>
         children: [
           const PickerDate(),
           search(),
-          cardHistoryPemasukan(
-            judul,
-            date,
-            nominal,
-            () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  // masuk ke file update_pemasukan
-                  builder: (context) => UpdatePemasukanBendahara(
-                      judul: judul, nominal: nominal, deskripsi: deskripsi),
-                ),
-              );
-            },
-          ),
-          cardHistoryPemasukan(
-            judul,
-            date,
-            nominal,
-            () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => UpdatePemasukanBendahara(
-                      judul: judul, nominal: nominal, deskripsi: deskripsi),
-                ),
-              );
-            },
-          ),
-          cardHistoryPemasukan(
-            judul,
-            date,
-            nominal,
-            () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => UpdatePemasukanBendahara(
-                      judul: judul, nominal: nominal, deskripsi: deskripsi),
-                ),
-              );
-            },
-          ),
-          cardHistoryPemasukan(
-            judul,
-            date,
-            nominal,
-            () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => UpdatePemasukanBendahara(
-                      judul: judul, nominal: nominal, deskripsi: deskripsi),
-                ),
-              );
-            },
-          ),
           cardHistoryPemasukan(
             judul,
             date,

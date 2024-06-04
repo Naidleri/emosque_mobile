@@ -33,7 +33,7 @@ class KasProvider extends ChangeNotifier{
 
     try{
       final data = await _kasService.getAllKas();
-      _saldoKas.add(data);
+      _saldoKas = data;
     }catch(e){
       print('Error get all saldo kas: $e');
       throw Exception('Failed to get all saldo kas $e');

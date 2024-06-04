@@ -18,7 +18,7 @@ class KasService {
     }
   }
 
-  Future<SaldoKas> getAllKas () async {
+  Future<List<SaldoKas>> getAllKas () async {
     final url = Uri.parse('${ApiHelper.baseUrl}/saldo-kas');
     try{
       final response = await http.get(
@@ -26,7 +26,7 @@ class KasService {
         headers: ApiHelper.getHeaders(''),
       );
       final responseData = ApiHelper.handleResponse(response);
-      final allKas = SaldoKas.fromJson(responseData['data']);
+      final List<SaldoKas> allKas = (responseData as List).map((json) => SaldoKas.fromJson(json)).toList();
       return allKas;
     }catch(e){
       return ApiHelper.handleError(e);
