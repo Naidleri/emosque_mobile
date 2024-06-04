@@ -75,7 +75,9 @@ class _ProfileJamaahState extends State<ProfileJamaah> {
             text('Role pengurus', 'Jamaah', context),
             const SizedBox(height: 20,),
             fillButton(text: 'Log out', onPressed: (){
-              Navigator.pushReplacementNamed(context, '/login');
+              _userProvider.logoutUser(context).then((_){
+                Navigator.pushReplacementNamed(context, '/login');
+              });
             }),
           ],
         ),

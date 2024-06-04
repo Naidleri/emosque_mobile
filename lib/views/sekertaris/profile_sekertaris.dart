@@ -55,7 +55,7 @@ class _ProfileSekertarisState extends State<ProfileSekertaris> {
 
   @override
   Widget build(BuildContext context) {
-     final _userProvider = Provider.of<UserProvider>(context, listen: false);
+    final _userProvider = Provider.of<UserProvider>(context, listen: false);
     final _userData = _userProvider.users.first;
     return Scaffold(
       appBar: AppBar(
@@ -98,7 +98,9 @@ class _ProfileSekertarisState extends State<ProfileSekertaris> {
             fillButton(
                 text: 'Log out',
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/login');
+                  _userProvider.logoutUser(context).then((_) {
+                    Navigator.pushReplacementNamed(context, '/login');
+                  });
                 }),
           ],
         ),

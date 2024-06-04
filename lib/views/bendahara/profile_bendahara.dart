@@ -76,7 +76,9 @@ class _ProfileBendaharaState extends State<ProfileBendahara> {
             text('Role pengurus', 'Bendahara Takmir', context),
             const SizedBox(height: 20,),
             fillButton(text: 'Log out', onPressed: (){
-              Navigator.pushReplacementNamed(context, '/login');
+              _userProvider.logoutUser(context).then((_){
+                Navigator.pushReplacementNamed(context, '/login');
+              });
             }),
           ],
         ),
