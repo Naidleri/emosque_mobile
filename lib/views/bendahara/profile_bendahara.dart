@@ -1,10 +1,25 @@
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/widgets/fillButton.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:provider/provider.dart';
 
-class ProfileBendahara extends StatelessWidget {
+class ProfileBendahara extends StatefulWidget {
   const ProfileBendahara({super.key});
+
+  @override
+  State<ProfileBendahara> createState() => _ProfileBendaharaState();
+}
+
+class _ProfileBendaharaState extends State<ProfileBendahara> {
+
+  @override
+  void initState(){
+    super.initState();
+    Future.microtask(()=> Provider.of<UserProvider>(context, listen: false).getProfile());
+  }
+
   Widget text(String judul,String text, BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(5),
@@ -32,6 +47,8 @@ class ProfileBendahara extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _userProvider = Provider.of<UserProvider>(context, listen: false);
+    final _userData = _userProvider.users.first;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -54,10 +71,9 @@ class ProfileBendahara extends StatelessWidget {
               child: const CircleAvatar(radius: 60, 
                 backgroundImage: NetworkImage('https://example.com/your-image-url.jpg'),),
             ),
-            text('Nama', 'Ace Anugrah', context),
-            text('Username', 'firdhaa.c', context),
-            text('Email', 'firdhaac02@gmail.com', context),
-            text('Role pengurus', 'Ketua Takmir', context),
+            text('Username', _userData.name, context),
+            text('Email', _userData.email, context),
+            text('Role pengurus', 'Bendahara', context),
             const SizedBox(height: 20,),
             fillButton(text: 'Log out', onPressed: (){
               Navigator.pushReplacementNamed(context, '/login');

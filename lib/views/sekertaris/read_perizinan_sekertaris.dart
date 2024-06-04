@@ -20,7 +20,7 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
 
   Widget cardPerizinan(Perizinan perizinan, BuildContext context) {
     return Container(
-      height: 150,
+
       decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(color: Color.fromRGBO(172, 172, 172, 1), width: 0.7),

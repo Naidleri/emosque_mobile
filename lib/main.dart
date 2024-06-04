@@ -111,7 +111,7 @@ class MyApp extends StatelessWidget {
           // Takmir
           '/homepageTakmir': (context) => const HomepageTakmir(),
         },
-        home: const BottomNavigasiSekertaris(),
+        home: const LoginPage(),
       ),
     );
   }
