@@ -73,7 +73,7 @@ class _ProfileBendaharaState extends State<ProfileBendahara> {
             ),
             text('Username', _userData.name, context),
             text('Email', _userData.email, context),
-            text('Role pengurus', 'Bendahara', context),
+            text('Role pengurus', 'Bendahara Takmir', context),
             const SizedBox(height: 20,),
             fillButton(text: 'Log out', onPressed: (){
               Navigator.pushReplacementNamed(context, '/login');
