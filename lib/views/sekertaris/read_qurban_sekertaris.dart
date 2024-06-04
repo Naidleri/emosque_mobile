@@ -16,7 +16,8 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => Provider.of<QurbanProvider>(context, listen: false).getAllQurban());
+    Future.microtask(() =>
+        Provider.of<QurbanProvider>(context, listen: false).getAllQurban());
   }
 
   Widget cardQurban(Qurban qurban, BuildContext context) {
@@ -33,8 +34,10 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
         height: 150,
         decoration: const BoxDecoration(
           border: Border(
-            top: BorderSide(color: Color.fromRGBO(172, 172, 172, 1), width: 0.7),
-            bottom: BorderSide(color: Color.fromRGBO(172, 172, 172, 1), width: 0.7),
+            top:
+                BorderSide(color: Color.fromRGBO(172, 172, 172, 1), width: 0.7),
+            bottom:
+                BorderSide(color: Color.fromRGBO(172, 172, 172, 1), width: 0.7),
           ),
         ),
         child: Column(
@@ -43,15 +46,18 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
               contentPadding: const EdgeInsets.only(left: 25, right: 25),
               title: Text(
                 qurban.nama,
-                style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
+                style: GoogleFonts.poppins(
+                    fontSize: 16, fontWeight: FontWeight.w500),
               ),
               subtitle: Text(
                 qurban.tanggal,
-                style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(
+                    fontSize: 12, fontWeight: FontWeight.w400),
               ),
               trailing: Text(
                 qurban.namaJenis,
-                style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(
+                    fontSize: 16, fontWeight: FontWeight.w400),
               ),
             ),
             Row(
@@ -75,7 +81,10 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
                         const SizedBox(width: 5),
                         Text(
                           "Delete",
-                          style: GoogleFonts.poppins(fontSize: 10, fontWeight: FontWeight.w400, color: Colors.white),
+                          style: GoogleFonts.poppins(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
                         ),
                       ],
                     ),
@@ -105,7 +114,10 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
                         const SizedBox(width: 5),
                         Text(
                           "Update",
-                          style: GoogleFonts.poppins(fontSize: 10, fontWeight: FontWeight.w400, color: Colors.white),
+                          style: GoogleFonts.poppins(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
                         ),
                       ],
                     ),
@@ -126,7 +138,8 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
       appBar: AppBar(
         title: Text(
           "Qurban",
-          style: GoogleFonts.poppins(color: Colors.green, fontSize: 25, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+              color: Colors.green, fontSize: 25, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -148,6 +161,26 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
             },
           );
         },
+      ),
+      bottomSheet: Container(
+        height: 50,
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            backgroundColor: const Color.fromRGBO(6, 215, 115, 1),
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/createZakatSekertaris');
+          },
+          child: const Center(
+            child: Text(
+              'Tambah Catatan',
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          ),
+        ),
       ),
     );
   }
