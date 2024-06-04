@@ -1,29 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:emosque_mobile/providers/providers.dart'; 
+import 'package:emosque_mobile/models/models.dart';
 
-class ReadSapi extends StatefulWidget {
-  final int qurbanId;
+class ReadSapi extends StatelessWidget {
+  final Qurban qurban;
 
-  const ReadSapi({required this.qurbanId, Key? key}) : super(key: key);
+  const ReadSapi({required this.qurban, Key? key}) : super(key: key);
+
   @override
-  State<ReadSapi> createState() => _ReadSapiState();
-}
-
-class _ReadSapiState extends State<ReadSapi> {
-  @override
-  void initState(){
-    super.initState();
-    Provider.of<QurbanProvider>(context, listen: false).getQurbanById(widget.qurbanId);
-  }
   Widget build(BuildContext context) {
-    final _qurbanProvider =  Provider.of<QurbanProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           padding: const EdgeInsets.only(left: 20),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(
             Icons.arrow_back_ios,
             size: 25,
@@ -47,12 +39,12 @@ class _ReadSapiState extends State<ReadSapi> {
               child: ListTile(
                 contentPadding: const EdgeInsets.only(top: 12, left: 25, right: 25),
                 title: Text(
-                  _qurbanProvider.qurban[0].nama,
+                  qurban.nama,
                   style: GoogleFonts.poppins(
                       fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 subtitle: Text(
-                  _qurbanProvider.qurban[0].deskripsi,
+                  qurban.deskripsi,
                   style: GoogleFonts.poppins(
                       fontSize: 17, fontWeight: FontWeight.w400),
                 ),
@@ -73,7 +65,7 @@ class _ReadSapiState extends State<ReadSapi> {
                   ),
                 ),
                 Image.asset(
-                  'images/${_qurbanProvider.qurban[0].dokumentasi}',
+                  'images/${qurban.dokumentasi}',
                   width: 150,
                   height: 100,
                   fit: BoxFit.cover,

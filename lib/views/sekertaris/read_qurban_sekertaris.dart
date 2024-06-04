@@ -1,8 +1,9 @@
-import 'package:emosque_mobile/views/sekertaris/read_sapi.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:emosque_mobile/providers/providers.dart'; 
+import 'package:emosque_mobile/providers/providers.dart';
+import 'package:emosque_mobile/views/sekertaris/read_sapi.dart';
+import 'package:emosque_mobile/models/models.dart'; // Pastikan untuk mengimpor model Qurban
 
 class ReadQurbanSekertaris extends StatefulWidget {
   const ReadQurbanSekertaris({super.key});
@@ -18,13 +19,13 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
     Future.microtask(() => Provider.of<QurbanProvider>(context, listen: false).getAllQurban());
   }
 
-  Widget cardQurban( int id, String nama, String waktu, String jenis, BuildContext context) {
+  Widget cardQurban(Qurban qurban, BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ReadSapi(qurbanId: id),
+            builder: (context) => ReadSapi(qurban: qurban),
           ),
         );
       },
@@ -41,15 +42,15 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
             ListTile(
               contentPadding: const EdgeInsets.only(left: 25, right: 25),
               title: Text(
-                nama,
+                qurban.nama,
                 style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               subtitle: Text(
-                waktu,
+                qurban.tanggal,
                 style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w400),
               ),
               trailing: Text(
-                jenis,
+                qurban.namaJenis,
                 style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w400),
               ),
             ),
@@ -143,13 +144,7 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
             itemCount: qurbanProvider.qurban.length,
             itemBuilder: (context, index) {
               final qurban = qurbanProvider.qurban[index];
-              return cardQurban(
-                qurban.idQurban,
-                qurban.nama,
-                qurban.tanggal,
-                qurban.namaJenis,
-                context,
-              );
+              return cardQurban(qurban, context);
             },
           );
         },
