@@ -58,6 +58,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => QurbanProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => PerizinanProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -1,3 +1,5 @@
+import 'package:emosque_mobile/models/models.dart';
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -13,11 +15,10 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
   @override
   void initState(){
     super.initState();
-    Future.microtask(()=> Provider.of<>)
+    Future.microtask(()=> Provider.of<PerizinanProvider>(context, listen: false).getAllPerizinan());
   }
 
-  Widget cardPerizinan(String nama, String keterangan, String waktu,
-      String jenis, BuildContext context) {
+  Widget cardPerizinan(Perizinan perizinan, BuildContext context) {
     return Container(
       height: 150,
       decoration: const BoxDecoration(
@@ -32,17 +33,17 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
           ListTile(
             contentPadding: const EdgeInsets.only(left: 25, right: 25),
             title: Text(
-              nama,
+              perizinan.namaPengaju,
               style: GoogleFonts.poppins(
                   fontSize: 16, fontWeight: FontWeight.w500),
             ),
             subtitle: Text(
-              '$keterangan\n$waktu',
+              '${perizinan.deskripsi}\n${perizinan.tanggal}',
               style: GoogleFonts.poppins(
                   fontSize: 12, fontWeight: FontWeight.w400),
             ),
             trailing: Text(
-              jenis,
+              perizinan.namaPerizinan,
               style: GoogleFonts.poppins(
                   fontSize: 16, fontWeight: FontWeight.w400),
             ),
@@ -134,13 +135,24 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          cardPerizinan('Agus', 'Pernikahan agus dan siti', '10 Des 2020',
-              'Pernikahan', context),
-          cardPerizinan('Agus', 'Pernikahan agus dan siti', '10 Des 2020',
-              'Pernikahan', context),
-        ],
+      body: Consumer<PerizinanProvider>(
+        builder: (context, perizinanProvider, child) {
+          if (perizinanProvider.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (perizinanProvider.perizinan.isEmpty) {
+            return const Center(child: Text('No data available.'));
+          }
+
+          return ListView.builder(
+            itemCount: perizinanProvider.perizinan.length,
+            itemBuilder: (context, index) {
+              final perizinan = perizinanProvider.perizinan[index];
+              return cardPerizinan(perizinan, context);
+            },
+          );
+        },
       ),
       bottomSheet: Container(
         height: 50,
