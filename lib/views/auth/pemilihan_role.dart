@@ -33,7 +33,7 @@ class PemilihanRole extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.green[700],
       body: Center(child: Column(
         mainAxisAlignment: MainAxisAlignment.center, children: [
         const Text(

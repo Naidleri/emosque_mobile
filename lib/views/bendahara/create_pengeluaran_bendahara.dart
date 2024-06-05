@@ -29,7 +29,7 @@ class CreatePengeluaranBendaharaPage extends StatelessWidget {
                   hintText: hint,
                   border: const OutlineInputBorder(),
                   focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.greenAccent))),
+                      borderSide: BorderSide(color: Colors.green))),
             ),
           )
         ],
@@ -46,7 +46,7 @@ class CreatePengeluaranBendaharaPage extends StatelessWidget {
         title: Text(
           "Pengeluaran",
           style: GoogleFonts.poppins(
-              fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green),
+              fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green[700]),
         ),
         centerTitle: true,
       ),
@@ -84,7 +84,7 @@ class CreatePengeluaranBendaharaPage extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Colors.green),
+                  backgroundColor: WidgetStateProperty.all(Colors.green[700]),
                   shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius:

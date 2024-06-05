@@ -21,7 +21,7 @@ class _UpdatePerizinanSekertarisState extends State<UpdatePerizinanSekertaris> {
           title: const Text(
             'Perizinan',
             style: TextStyle(
-                color: Color(0xff06d773),
+                color: Colors.green,
                 fontSize: 25,
                 fontWeight: FontWeight.bold),
           ),

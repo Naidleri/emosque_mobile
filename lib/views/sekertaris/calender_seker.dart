@@ -26,13 +26,13 @@ class _MyCalenderSekerState extends State<MyCalenderSeker> {
           title: const Text(
             'Kalender',
             style: TextStyle(
-                color: Color(0xff06d773),
+                color: Colors.green,
                 fontSize: 25,
                 fontWeight: FontWeight.bold),
           ),
         ),
         body: ListView(
-          children: [const calender()],
+          children: const [calender()],
         ),
       ),
     );

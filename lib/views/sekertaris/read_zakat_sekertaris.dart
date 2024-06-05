@@ -62,29 +62,7 @@ class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
-                  onPressed: () {
-                    Provider.of<ZakatProvider>(context, listen: false)
-                        .deleteZakat(zakat.idZakat);
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Text('Berhasil dihapus'),
-                          content: Text('Data zakat berhasil dihapus'),
-                          actions: [
-                            ElevatedButton(
-                              child: Text('OK'),
-                              onPressed: () {
-                                Navigator.pop(context);
-                                Navigator.pop(
-                                    context); // kembali ke halaman ReadZakatSekertaris
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
+                  onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -149,7 +127,9 @@ class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
         title: Text(
           "Zakat",
           style: GoogleFonts.poppins(
-              color: Colors.green, fontSize: 25, fontWeight: FontWeight.bold),
+              color: Colors.green[700],
+              fontSize: 25,
+              fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -177,7 +157,7 @@ class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
           style: ElevatedButton.styleFrom(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            backgroundColor: const Color.fromRGBO(6, 215, 115, 1),
+            backgroundColor: Colors.green[700],
           ),
           onPressed: () {
             Navigator.pushNamed(context, '/createZakatSekertaris');

@@ -39,7 +39,7 @@ class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.green[700],
       bottomSheet: Container(
         height: 300,
         width: MediaQuery.of(context).size.width,
@@ -50,18 +50,18 @@ class FirstPage extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            const Text(
+            Text(
               'Selamat Datang',
               style: TextStyle(
-                  color: Colors.green,
+                  color: Colors.green[700],
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Poppins'),
             ),
-            const Text(
+             Text(
               'E-Mosque',
               style: TextStyle(
-                  color: Colors.green,
+                  color: Colors.green[700],
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Poppins'),

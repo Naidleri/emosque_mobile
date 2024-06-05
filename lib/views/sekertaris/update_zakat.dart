@@ -19,7 +19,7 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
         title: Text(
           "Zakat Fitrah",
           style: GoogleFonts.poppins(
-              color: const Color.fromRGBO(6, 215, 115, 1),
+              color: Colors.green[700],
               fontSize: 25,
               fontWeight: FontWeight.bold),
         ),

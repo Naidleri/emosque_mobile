@@ -43,7 +43,7 @@ class ProfileTakmir extends StatelessWidget {
           style: GoogleFonts.poppins(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: Colors.greenAccent[700]),
+              color: Colors.green[700]),
         ),
         centerTitle: true,
       ),
@@ -52,7 +52,7 @@ class ProfileTakmir extends StatelessWidget {
           children: [
             const SizedBox(height: 20,),
             badges.Badge(
-              badgeStyle: const badges.BadgeStyle(badgeColor: Colors.green),
+              badgeStyle:  const badges.BadgeStyle(badgeColor: Colors.green),
               position: badges.BadgePosition.bottomStart(),
               badgeContent: IconButton(onPressed: () {}, icon: const Icon(Icons.edit, color: Colors.white,)),
               child: const CircleAvatar(radius: 60, 

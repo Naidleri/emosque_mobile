@@ -35,7 +35,7 @@ class _DropdownZakatState extends State<DropdownZakat> {
           Text(
             "Jenis Zakat",
             style: GoogleFonts.poppins(
-              fontSize: 16,
+              fontSize: 12,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -44,7 +44,7 @@ class _DropdownZakatState extends State<DropdownZakat> {
             height: 50,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: Color.fromRGBO(6, 215, 115, 1),
+              color: Colors.green[700],
             ),
             child: SizedBox(
               width: double.infinity,
@@ -54,27 +54,30 @@ class _DropdownZakatState extends State<DropdownZakat> {
                     border: InputBorder.none,
                     hintText: 'Pilih Jenis Zakat',
                     hintStyle: GoogleFonts.poppins(
-                      color: Colors.black,
-                    )),
+                        color: Colors.black, fontSize: 14) // Set hint text here
+                    ),
                 icon: Icon(Icons.keyboard_arrow_down, color: Colors.black),
-                dropdownColor: Color.fromRGBO(6, 215, 115, 1),
+                dropdownColor: Colors.green[700],
                 value: jenis,
                 onChanged: (String? newValue) {
                   setState(() {
                     jenis = newValue;
                   });
+                  jenis = newValue;
                   widget.onChanged(newValue);
                 },
                 items: widget.options
                     .map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: Padding(
-                      padding: const EdgeInsets.all(0),
-                      child: Text(
-                        value,
-                        style: TextStyle(
-                          color: Colors.black,
+                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(
+                            0), // Add padding to the dropdown item
+                        child: Text(
+                          value,
+                          style: GoogleFonts.poppins(
+                              color: Colors.black, fontSize: 14),
                         ),
                       ),
                     ),

@@ -43,7 +43,7 @@ class _DropdownQurbanState extends State<DropdownQurban> {
             height: 50,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: Color.fromRGBO(6, 215, 115, 1),
+              color: Colors.green[700],
             ),
             child: SizedBox(
               width: double.infinity,
@@ -57,7 +57,7 @@ class _DropdownQurbanState extends State<DropdownQurban> {
                     ) // Set hint text here
                     ),
                 icon: Icon(Icons.keyboard_arrow_down, color: Colors.black),
-                dropdownColor: Color.fromRGBO(6, 215, 115, 1),
+                dropdownColor: Colors.green[700],
                 value: jenis,
                 onChanged: (String? newValue) {
                   setState(() {

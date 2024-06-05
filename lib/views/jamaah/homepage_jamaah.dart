@@ -14,12 +14,12 @@ class HomepageJamaah extends StatelessWidget {
             style: GoogleFonts.poppins(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.greenAccent[700]),
+                color: Colors.green[700]),
           ),
           centerTitle: true,
         ),
         body: ListView(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,11 +68,11 @@ class HomepageJamaah extends StatelessWidget {
         margin: const EdgeInsets.only(top: 30),
         width: lebar,
         height: 200,
-        decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(
               Radius.circular(10),
             ),
-            color: Colors.green),
+            color: Colors.green[700]),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -21,7 +21,7 @@ class _UpdateQurbanSekertarisState extends State<UpdateQurbanSekertaris> {
         title: Text(
           "Qurban",
           style: GoogleFonts.poppins(
-              color: const Color.fromRGBO(6, 215, 115, 1),
+              color: Colors.green[700],
               fontSize: 25,
               fontWeight: FontWeight.bold),
         ),

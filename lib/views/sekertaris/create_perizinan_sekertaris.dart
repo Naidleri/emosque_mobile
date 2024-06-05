@@ -20,7 +20,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
           title: const Text(
             'Perizinan',
             style: TextStyle(
-                color: Color(0xff06d773),
+                color: Colors.green,
                 fontSize: 25,
                 fontWeight: FontWeight.bold),
           ),
@@ -31,11 +31,11 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
               children: [
                 const form(title: 'Nama Kegiatan', hint: 'Masukkan Nama Kegiatan'),
                 const form(title: 'Nama Perizinan', hint: 'Masukkan Nama Perizinan'),
-                TextfieldDeskripsi(
+                const TextfieldDeskripsi(
                     title: 'deskripsi', hint: 'Masukkan Deskripsi'),
-                CalenderPicker(),
-                form(title: 'Nama Pengaju', hint: 'Masukkan Nama Pengaju'),
-                form(
+                const CalenderPicker(),
+                const form(title: 'Nama Pengaju', hint: 'Masukkan Nama Pengaju'),
+                const form(
                     title: 'Nama Penanggung Jawab',
                     hint: 'Masukkan Nama Penanggung Jawab'),
                 Row(
@@ -49,9 +49,9 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                         width: 80,
                         height: 30,
                         decoration: BoxDecoration(
-                            color: Color(0xff06d773),
+                            color: Colors.green[700],
                             borderRadius: BorderRadius.circular(7)),
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
@@ -72,7 +72,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 )
               ],
