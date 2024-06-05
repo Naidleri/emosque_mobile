@@ -62,7 +62,27 @@ class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Provider.of<ZakatProvider>(context, listen: false)
+                        .deleteZakat(zakat.idZakat);
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Berhasil dihapus'),
+                          content: Text('Data zakat berhasil dihapus'),
+                          actions: [
+                            ElevatedButton(
+                              child: Text('OK'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
