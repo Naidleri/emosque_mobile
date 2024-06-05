@@ -13,7 +13,7 @@ class ZakatProvider extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  Future<void> createZakat(Zakat newZakat) async {
+  Future<void> createZakat(CreateNewZakat newZakat) async {
     _isLoading = true;
     notifyListeners();
     try {
