@@ -39,6 +39,7 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
                   jenis = newValue;
                 });
               },
+              options: ['Beras', 'Uang'],
             ),
           ],
         ),

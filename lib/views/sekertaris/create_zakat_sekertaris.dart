@@ -1,8 +1,11 @@
+import 'package:emosque_mobile/models/models.dart';
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/views/sekertaris/dropdown_zakat.dart';
 import 'package:emosque_mobile/views/sekertaris/input_form.dart';
 import 'package:emosque_mobile/views/sekertaris/read_zakat_sekertaris.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class CreateZakatSekertaris extends StatefulWidget {
   @override
@@ -10,6 +13,8 @@ class CreateZakatSekertaris extends StatefulWidget {
 }
 
 class _CreateZakatSekertarisState extends State<CreateZakatSekertaris> {
+  final TextEditingController _namacontroller = TextEditingController();
+  final TextEditingController _jumlahcontroller = TextEditingController();
   String? jenis;
 
   @override
@@ -28,10 +33,16 @@ class _CreateZakatSekertarisState extends State<CreateZakatSekertaris> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const InputForm(
-                judul: "Nama Pezakat", hint: "Masukkan Nama Pezakat"),
-            const InputForm(
-                judul: "Jumlah Zakat", hint: "Masukkan Jumlah Zakat"),
+            InputForm(
+              controller: _namacontroller,
+              judul: "Nama Pezakat",
+              hint: "Masukkan Nama Pezakat",
+            ),
+            InputForm(
+              controller: _jumlahcontroller,
+              judul: "Jumlah Zakat",
+              hint: "Masukkan Jumlah Zakat",
+            ),
             DropdownZakat(
               initialValue: jenis,
               onChanged: (newValue) {
@@ -39,6 +50,7 @@ class _CreateZakatSekertarisState extends State<CreateZakatSekertaris> {
                   jenis = newValue;
                 });
               },
+              options: ['Beras', 'Uang'],
             ),
           ],
         ),
@@ -55,11 +67,43 @@ class _CreateZakatSekertarisState extends State<CreateZakatSekertaris> {
             backgroundColor: const Color.fromRGBO(6, 215, 115, 1),
           ),
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ReadZakatSekertaris(),
-                ));
+            if (_namacontroller.text.isEmpty ||
+                _jumlahcontroller.text.isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Data tidak boleh kosong"),
+                ),
+              );
+            }
+
+            int jenisToValue(String? jenis) {
+              switch (jenis) {
+                case 'Beras':
+                  return 1;
+                case 'Uang':
+                  return 2;
+                default:
+                  return 0;
+              }
+            }
+
+            final newZakat = CreateNewZakat(
+                nama: _namacontroller.text,
+                jumlah: int.parse(_jumlahcontroller.text),
+                jenis: jenisToValue(jenis));
+            final _zakatProvider =
+                Provider.of<ZakatProvider>(context, listen: false);
+            _zakatProvider
+                .createZakat(newZakat)
+                .then((_) => Navigator.pushReplacementNamed(
+                    context, '/readZakatFitrahSekertaris'))
+                .catchError((error) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Gagal menambahkan zakat'),
+                ),
+              );
+            });
           },
           child: const Center(
             child: Row(
