@@ -73,7 +73,7 @@ class _DropdownZakatState extends State<DropdownZakat> {
                     child: Container(
                       child: Padding(
                         padding: const EdgeInsets.all(
-                            0), // Add padding to the dropdown item
+                            0), 
                         child: Text(
                           value,
                           style: GoogleFonts.poppins(
