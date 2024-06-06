@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UpdateZakatSekertaris extends StatefulWidget {
+  const UpdateZakatSekertaris({super.key});
   @override
   State<UpdateZakatSekertaris> createState() => _UpdateZakatSekertarisState();
 }
@@ -19,6 +20,7 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
     super.initState();
     namaPezakat = '';
     jumlahZakat = 0;
+    jenis = 'Beras';
   }
 
   @override
@@ -30,6 +32,7 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
       setState(() {
         namaPezakat = args['namaPezakat'] ?? '';
         jumlahZakat = args['jumlahZakat'] ?? 0;
+        jenis = args['namaJenisZakat'] ?? 'Beras';
       });
     }
   }
@@ -96,7 +99,7 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
                   jenis = newValue ?? 'Beras';
                 });
               },
-              options: ['Beras', 'Uang'],
+              options: const ['Beras', 'Uang Tunai'],
             ),
           ],
         ),
