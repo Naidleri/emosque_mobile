@@ -110,9 +110,14 @@ class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/updateZakatSekertaris',
-                        arguments: zakat
-                            .namaPezakat); // Mengirim namaPezakat sebagai argumen
+                    Navigator.pushNamed(
+                      context,
+                      '/updateZakatSekertaris',
+                      arguments: {
+                        'namaPezakat': zakat.namaPezakat,
+                        'jumlahZakat': zakat.jumlahZakat
+                      },
+                    );
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

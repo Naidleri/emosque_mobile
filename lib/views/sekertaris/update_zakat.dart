@@ -12,18 +12,25 @@ class UpdateZakatSekertaris extends StatefulWidget {
 class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
   String jenis = 'Beras';
   late String namaPezakat;
+  late int jumlahZakat;
+
+  @override
+  void initState() {
+    super.initState();
+    namaPezakat = '';
+    jumlahZakat = 0;
+  }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final args = ModalRoute.of(context)?.settings.arguments;
-    if (args != null && args is String) {
+    final args =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    if (args != null) {
       setState(() {
-        namaPezakat = args;
+        namaPezakat = args['namaPezakat'] ?? '';
+        jumlahZakat = args['jumlahZakat'] ?? 0;
       });
-    } else {
-      namaPezakat =
-          ''; // Berikan nilai default jika argumen tidak ada atau tidak sesuai
     }
   }
 
@@ -34,9 +41,10 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
         title: Text(
           "Zakat Fitrah",
           style: GoogleFonts.poppins(
-              color: Colors.green[700],
-              fontSize: 25,
-              fontWeight: FontWeight.bold),
+            color: Colors.green[700],
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
       ),
@@ -49,7 +57,7 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Text('Nama pezakat'),
+                  const Text('Nama Pezakat'),
                   const SizedBox(height: 3),
                   TextFormField(
                     decoration: const InputDecoration(
@@ -59,9 +67,25 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
                       ),
                     ),
                     initialValue: namaPezakat,
+                    onChanged: (value) {
+                      namaPezakat = value;
+                    },
                   ),
-                  const InputForm(
-                      judul: "Jumlah Zakat", hint: "Masukkan Jumlah Zakat"),
+                  const Text('Jumlah Zakat'),
+                  const SizedBox(height: 3),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: 'Masukkan jumlah zakat',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                      ),
+                    ),
+                    initialValue: jumlahZakat.toString(),
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) {
+                      jumlahZakat = int.tryParse(value) ?? 0;
+                    },
+                  ),
                 ],
               ),
             ),
@@ -84,8 +108,9 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
             backgroundColor: const Color.fromRGBO(55, 163, 165, 1),
           ),
           onPressed: () {
