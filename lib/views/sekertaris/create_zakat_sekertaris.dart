@@ -15,7 +15,7 @@ class CreateZakatSekertaris extends StatefulWidget {
 class _CreateZakatSekertarisState extends State<CreateZakatSekertaris> {
   final TextEditingController _namacontroller = TextEditingController();
   final TextEditingController _jumlahcontroller = TextEditingController();
-  String jenis = 'Beras'; 
+  String jenis = 'Beras';
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +47,10 @@ class _CreateZakatSekertarisState extends State<CreateZakatSekertaris> {
               initialValue: jenis,
               onChanged: (newValue) {
                 setState(() {
-                  jenis = newValue ?? 'Beras'; 
+                  jenis = newValue ?? 'Beras';
                 });
               },
-              options: ['Beras', 'Uang'],
+              options: const ['Beras', 'Uang Tunai'],
             ),
           ],
         ),
