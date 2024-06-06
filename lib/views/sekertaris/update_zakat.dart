@@ -10,7 +10,22 @@ class UpdateZakatSekertaris extends StatefulWidget {
 }
 
 class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
-  String? jenis;
+  String jenis = 'Beras';
+  late String namaPezakat;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final args = ModalRoute.of(context)?.settings.arguments;
+    if (args != null && args is String) {
+      setState(() {
+        namaPezakat = args;
+      });
+    } else {
+      namaPezakat =
+          ''; // Berikan nilai default jika argumen tidak ada atau tidak sesuai
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +43,33 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const InputForm(
-                judul: "Nama Pezakat", hint: "Masukkan Nama Pezakat"),
-            const InputForm(
-                judul: "Jumlah Zakat", hint: "Masukkan Jumlah Zakat"),
+            Container(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const Text('Nama pezakat'),
+                  const SizedBox(height: 3),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: 'Masukkan nama pezakat',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                      ),
+                    ),
+                    initialValue: namaPezakat,
+                  ),
+                  const InputForm(
+                      judul: "Jumlah Zakat", hint: "Masukkan Jumlah Zakat"),
+                ],
+              ),
+            ),
             DropdownZakat(
               initialValue: jenis,
               onChanged: (newValue) {
                 setState(() {
-                  jenis = newValue;
+                  jenis = newValue ?? 'Beras';
                 });
               },
               options: ['Beras', 'Uang'],
@@ -56,11 +89,7 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
             backgroundColor: const Color.fromRGBO(55, 163, 165, 1),
           ),
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ReadZakatSekertaris(),
-                ));
+            Navigator.pushNamed(context, '/readZakatSekertaris');
           },
           child: const Center(
             child: Row(

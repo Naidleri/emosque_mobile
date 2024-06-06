@@ -69,11 +69,11 @@ class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text('Berhasil dihapus'),
-                          content: Text('Data zakat berhasil dihapus'),
+                          title: const Text('Berhasil dihapus'),
+                          content: const Text('Data zakat berhasil dihapus'),
                           actions: [
                             ElevatedButton(
-                              child: Text('OK'),
+                              child: const Text('OK'),
                               onPressed: () {
                                 Navigator.pop(context);
                               },
@@ -110,7 +110,9 @@ class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/updateZakatSekertaris');
+                    Navigator.pushNamed(context, '/updateZakatSekertaris',
+                        arguments: zakat
+                            .namaPezakat); // Mengirim namaPezakat sebagai argumen
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
