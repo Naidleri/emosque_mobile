@@ -15,7 +15,7 @@ class CreateZakatSekertaris extends StatefulWidget {
 class _CreateZakatSekertarisState extends State<CreateZakatSekertaris> {
   final TextEditingController _namacontroller = TextEditingController();
   final TextEditingController _jumlahcontroller = TextEditingController();
-  String? jenis;
+  String jenis = 'Beras'; 
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class _CreateZakatSekertarisState extends State<CreateZakatSekertaris> {
               initialValue: jenis,
               onChanged: (newValue) {
                 setState(() {
-                  jenis = newValue;
+                  jenis = newValue ?? 'Beras'; 
                 });
               },
               options: ['Beras', 'Uang'],
@@ -74,9 +74,10 @@ class _CreateZakatSekertarisState extends State<CreateZakatSekertaris> {
                   content: Text("Data tidak boleh kosong"),
                 ),
               );
+              return;
             }
 
-            int jenisToValue(String? jenis) {
+            int jenisToValue(String jenis) {
               switch (jenis) {
                 case 'Beras':
                   return 1;

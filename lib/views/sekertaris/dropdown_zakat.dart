@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DropdownZakat extends StatefulWidget {
-  final String? initialValue;
+  final String initialValue;
   final ValueChanged<String?> onChanged;
   final List<String> options;
 
@@ -17,7 +17,7 @@ class DropdownZakat extends StatefulWidget {
 }
 
 class _DropdownZakatState extends State<DropdownZakat> {
-  String? jenis;
+  late String jenis;
 
   @override
   void initState() {
@@ -54,16 +54,16 @@ class _DropdownZakatState extends State<DropdownZakat> {
                     border: InputBorder.none,
                     hintText: 'Pilih Jenis Zakat',
                     hintStyle: GoogleFonts.poppins(
-                        color: Colors.black, fontSize: 14) // Set hint text here
+                        color: Colors.black, fontSize: 14) 
                     ),
                 icon: Icon(Icons.keyboard_arrow_down, color: Colors.black),
                 dropdownColor: Colors.green[700],
                 value: jenis,
                 onChanged: (String? newValue) {
                   setState(() {
-                    jenis = newValue;
+                    jenis =
+                        newValue ?? widget.initialValue;
                   });
-                  jenis = newValue;
                   widget.onChanged(newValue);
                 },
                 items: widget.options
@@ -72,8 +72,7 @@ class _DropdownZakatState extends State<DropdownZakat> {
                     value: value,
                     child: Container(
                       child: Padding(
-                        padding: const EdgeInsets.all(
-                            0), 
+                        padding: const EdgeInsets.all(0),
                         child: Text(
                           value,
                           style: GoogleFonts.poppins(
