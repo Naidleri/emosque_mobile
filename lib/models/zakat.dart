@@ -35,12 +35,12 @@ class Zakat {
   }
 }
 
-class CreateNewZakat {
+class CreateZakat {
   final String nama;
   final int jumlah;
   final int jenis;
 
-  CreateNewZakat({
+  CreateZakat({
     required this.nama,
     required this.jumlah,
     required this.jenis,

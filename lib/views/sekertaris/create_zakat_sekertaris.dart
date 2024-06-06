@@ -88,7 +88,7 @@ class _CreateZakatSekertarisState extends State<CreateZakatSekertaris> {
               }
             }
 
-            final newZakat = CreateNewZakat(
+            final newZakat = CreateZakat(
                 nama: _namacontroller.text,
                 jumlah: int.parse(_jumlahcontroller.text),
                 jenis: jenisToValue(jenis));

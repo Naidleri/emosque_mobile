@@ -1,7 +1,7 @@
 part of 'services.dart';
 
 class ZakatService {
-  Future<Zakat> createZakat(CreateNewZakat newZakat, String token) async {
+  Future<Zakat> createZakat(CreateZakat newZakat, String token) async {
     final url = Uri.parse('${ApiHelper.baseUrl}/zakat-fitrah');
     try {
       final response = await http.post(url,
