@@ -1,7 +1,6 @@
 part of 'providers.dart';
 
 class UserProvider extends ChangeNotifier {
-  
   final UserService _userService = UserService();
   final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
   String? _token;
@@ -24,6 +23,12 @@ class UserProvider extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
   }
+
+  Future<String?> getTokenFromStorage() async {
+    final storedToken = await _secureStorage.read(key: 'token');
+    return storedToken;
+  }
+
   Future<void> loginUser(LoginUser user) async {
     _isLoading = true;
     notifyListeners();
@@ -40,11 +45,13 @@ class UserProvider extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
   }
+
   Future<void> logoutUser(BuildContext context) async {
     Navigator.pushNamed(context, '/login');
-    final storedToken = await _secureStorage.delete(key: 'token'); 
+    final storedToken = await _secureStorage.delete(key: 'token');
     _token = null;
   }
+
   Future<void> getProfile() async {
     _isLoading = true;
     notifyListeners();
@@ -52,7 +59,7 @@ class UserProvider extends ChangeNotifier {
       final storedToken = await _secureStorage.read(key: 'token');
       if (storedToken != null) {
         final responseData = await _userService.getProfile(storedToken);
-        _users.clear(); 
+        _users.clear();
         _users.add(User.fromJson(responseData['data']));
       }
     } catch (e) {
@@ -62,6 +69,7 @@ class UserProvider extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
   }
+
   Future<void> updateProfile(User user) async {
     _isLoading = true;
     notifyListeners();
