@@ -1,7 +1,12 @@
+import 'package:emosque_mobile/models/models.dart';
+import 'package:emosque_mobile/providers/providers.dart';
+import 'package:emosque_mobile/views/sekertaris/dropdown_perizinanNama.dart';
+import 'package:emosque_mobile/views/sekertaris/dropdown_perizinanPJ.dart';
 import 'package:emosque_mobile/widgets/calender_picker_date.dart';
 import 'package:emosque_mobile/widgets/form.dart';
 import 'package:emosque_mobile/widgets/textfieldDeskripsi.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CreatePerizinanSekertaris extends StatefulWidget {
   const CreatePerizinanSekertaris({super.key});
@@ -12,12 +17,15 @@ class CreatePerizinanSekertaris extends StatefulWidget {
 }
 
 class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
-  final TextEditingController kegiatanController = TextEditingController();
-  final TextEditingController perizinanController = TextEditingController();
-  final TextEditingController deskripsiController = TextEditingController();
-  final TextEditingController pengajuController = TextEditingController();
-  final TextEditingController penanggungJawabController =
+  final TextEditingController _kegiatanController = TextEditingController();
+  final TextEditingController _perizinanController = TextEditingController();
+  final TextEditingController _deskripsiController = TextEditingController();
+  final TextEditingController _pengajuController = TextEditingController();
+  final TextEditingController _penanggungJawabController =
       TextEditingController();
+  String pj = 'PJ-1';
+  String namaPerizinan = 'pernikahan';
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -45,7 +53,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                       height: 5,
                     ),
                     TextFormField(
-                      controller: kegiatanController,
+                      controller: _kegiatanController,
                       decoration: const InputDecoration(
                         hintText: 'Masukkan nama kegiatan',
                         border: OutlineInputBorder(
@@ -67,15 +75,18 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                     const SizedBox(
                       height: 5,
                     ),
-                    TextFormField(
-                      controller: kegiatanController,
-                      decoration: const InputDecoration(
-                        hintText: 'Masukkan nama perizinan',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8)),
-                        ),
-                      ),
-                    ),
+                    DropdownPerizinanNama(
+                        initialValue: namaPerizinan,
+                        onChanged: (newValue) {
+                          setState(() {
+                            namaPerizinan = newValue ?? 'pernikahan';
+                          });
+                        },
+                        options: const [
+                          'pernikahan',
+                          'pengajian',
+                          'penyuluhan'
+                        ]),
                   ],
                 ),
               ),
@@ -91,7 +102,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                       height: 5,
                     ),
                     TextFormField(
-                      controller: kegiatanController,
+                      controller: _deskripsiController,
                       decoration: const InputDecoration(
                         hintText: 'Masukkan deskripsi kegiatan',
                         border: OutlineInputBorder(
@@ -118,7 +129,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                       height: 5,
                     ),
                     TextFormField(
-                      controller: kegiatanController,
+                      controller: _pengajuController,
                       decoration: const InputDecoration(
                         hintText: 'Masukkan nama pengaju',
                         border: OutlineInputBorder(
@@ -130,33 +141,74 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                 ),
               ),
               SizedBox(height: 16),
-              SizedBox(
-                width: size.width * 0.9,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const Text("Nama Penanggung Jawab"),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextFormField(
-                      controller: kegiatanController,
-                      decoration: const InputDecoration(
-                        hintText: 'Masukkan nama penanggung jawab',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8)),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              DropdownPerizinanPJ(
+                  initialValue: pj,
+                  onChanged: (newValue) {
+                    setState(() {
+                      pj = newValue ?? 'PJ-1';
+                    });
+                  },
+                  options: const ['PJ-1', 'PJ-2', 'PJ-3']),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (_kegiatanController.text.isEmpty ||
+                          _perizinanController.text.isEmpty ||
+                          _deskripsiController.text.isEmpty ||
+                          _pengajuController.text.isEmpty ||
+                          _penanggungJawabController.text.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Data tidak boleh kosong"),
+                          ),
+                        );
+                        return;
+                      }
+
+                      int namaPerizinanToValue(String namaPerizinan) {
+                        switch (namaPerizinan) {
+                          case 'pernikahan':
+                            return 1;
+                          case 'pengajian':
+                            return 2;
+                          case 'penyuluhan':
+                            return 3;
+                          default:
+                            return 0;
+                        }
+                      }
+
+                      int pjToValue(String pj) {
+                        switch (pj) {
+                          case 'PJ-1':
+                            return 1;
+                          case 'PJ-2':
+                            return 2;
+                          case 'PJ-3':
+                            return 3;
+                          default:
+                            return 0;
+                        }
+                      }
+
+                      final newPerizinan = Perizinan(
+                          0,
+                          _pengajuController.text,
+                          "tanggal",
+                          _deskripsiController.text,
+                          namaPerizinanToValue(namaPerizinan),
+                          pjToValue(pj),
+                          _perizinanController.text,
+                          '');
+                      final _perizinanProvider = Provider.of<PerizinanProvider>(
+                          context,
+                          listen: false);
+                      _perizinanProvider.createPerizinan(newPerizinan).then(
+                          (_) => Navigator.pushNamed(
+                              context, "/readPerizinanSekertaris"));
+                    },
                     child: Container(
                       margin: const EdgeInsets.only(right: 5, top: 10),
                       width: 80,
