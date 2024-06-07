@@ -47,7 +47,7 @@ class ZakatService {
   }
 
   Future<Zakat> updateZakat(
-      int idZakat, Zakat updatedZakat, String token) async {
+      int idZakat, CreateZakat updatedZakat, String token) async {
     final url = Uri.parse('${ApiHelper.baseUrl}/zakat-fitrah/$idZakat');
     try {
       final response = await http.put(url,

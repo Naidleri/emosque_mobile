@@ -57,7 +57,7 @@ class ZakatProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> updateZakat(int idZakat, Zakat updatedZakat) async {
+  Future<void> updateZakat(int idZakat, CreateZakat updatedZakat) async {
     _isLoading = true;
     notifyListeners();
 

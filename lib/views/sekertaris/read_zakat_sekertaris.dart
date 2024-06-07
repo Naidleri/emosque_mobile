@@ -114,6 +114,7 @@ class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
                       context,
                       '/updateZakatSekertaris',
                       arguments: {
+                        'idZakat': zakat.idZakat,
                         'namaPezakat': zakat.namaPezakat,
                         'jumlahZakat': zakat.jumlahZakat,
                         'namaJenisZakat': zakat.namaJenisZakat,
