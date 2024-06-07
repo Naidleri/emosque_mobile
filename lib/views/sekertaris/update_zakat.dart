@@ -37,7 +37,7 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
     if (args != null) {
       setState(() {
-        idZakat = args['idZakat'];
+        idZakat = args['idZakat'] ?? 0;
         namaPezakat = args['namaPezakat'] ?? '';
         jumlahZakat = args['jumlahZakat'] ?? 0;
         if (args['namaJenisZakat'] != null) {
@@ -158,9 +158,11 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
                 jenis: jenisToValue(jenis));
             final _zakatProvider =
                 Provider.of<ZakatProvider>(context, listen: false);
-            _zakatProvider.updateZakat(idZakat, updateZakat);
-
-            Navigator.pushNamed(context, '/readZakatSekertaris');
+            _zakatProvider.updateZakat(idZakat, updateZakat).then((_) =>
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ReadZakatSekertaris())));
           },
           child: const Center(
             child: Row(
