@@ -81,7 +81,7 @@ class _CreateZakatSekertarisState extends State<CreateZakatSekertaris> {
               switch (jenis) {
                 case 'Beras':
                   return 1;
-                case 'Uang':
+                case 'Uang Tunai':
                   return 2;
                 default:
                   return 0;
