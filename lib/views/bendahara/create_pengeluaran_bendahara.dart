@@ -2,11 +2,28 @@ import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CreatePengeluaranBendaharaPage extends StatelessWidget {
+class CreatePengeluaranBendaharaPage extends StatefulWidget {
   CreatePengeluaranBendaharaPage({super.key});
+
+  @override
+  State<CreatePengeluaranBendaharaPage> createState() =>
+      _CreatePengeluaranBendaharaPageState();
+}
+
+class _CreatePengeluaranBendaharaPageState
+    extends State<CreatePengeluaranBendaharaPage> {
   final judul = TextEditingController();
+
   final nominal = TextEditingController();
+
   final deskripsi = TextEditingController();
+  DateTime? selectedDate;
+  void _handleDateSelection(DateTime date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
+
   Widget textField(String text, String hint, TextEditingController controller,
       BuildContext context) {
     return Container(
@@ -37,7 +54,6 @@ class CreatePengeluaranBendaharaPage extends StatelessWidget {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +62,9 @@ class CreatePengeluaranBendaharaPage extends StatelessWidget {
         title: Text(
           "Pengeluaran",
           style: GoogleFonts.poppins(
-              fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green[700]),
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
+              color: Colors.green[700]),
         ),
         centerTitle: true,
       ),
@@ -54,11 +72,11 @@ class CreatePengeluaranBendaharaPage extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              textField(
-                  "Judul Pengeluaran", "Masukan Judul Pengeluaran", judul, context),
+              textField("Judul Pengeluaran", "Masukan Judul Pengeluaran", judul,
+                  context),
               textField("Nominal", "Masukan Nominal", nominal, context),
               textField("Deskripsi", "Masukan Deskripsi", deskripsi, context),
-              const calender(),
+              Calender(onDateSelected: _handleDateSelection),
               const SizedBox(
                 height: 80,
               ),
@@ -105,4 +123,3 @@ class CreatePengeluaranBendaharaPage extends StatelessWidget {
     );
   }
 }
-

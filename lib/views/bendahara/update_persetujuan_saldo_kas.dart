@@ -14,12 +14,21 @@ class UpdatePersetujuanSaldoKas extends StatefulWidget {
     required this.deskripsi,
   });
   @override
-  State<UpdatePersetujuanSaldoKas> createState() => _UpdatePersetujuanSaldoKasState();
+  State<UpdatePersetujuanSaldoKas> createState() =>
+      _UpdatePersetujuanSaldoKasState();
 }
+
 class _UpdatePersetujuanSaldoKasState extends State<UpdatePersetujuanSaldoKas> {
   late TextEditingController judulController;
   late TextEditingController nominalController;
   late TextEditingController deskripsiController;
+  DateTime? selectedDate;
+  void _handleDateSelection(DateTime date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -27,6 +36,7 @@ class _UpdatePersetujuanSaldoKasState extends State<UpdatePersetujuanSaldoKas> {
     nominalController = TextEditingController(text: widget.nominal.toString());
     deskripsiController = TextEditingController(text: widget.deskripsi);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +73,7 @@ class _UpdatePersetujuanSaldoKasState extends State<UpdatePersetujuanSaldoKas> {
                 deskripsiController,
                 context,
               ),
-              const calender(),
+              Calender(onDateSelected: _handleDateSelection),
               const SizedBox(
                 height: 80,
               ),
@@ -150,6 +160,7 @@ class _UpdatePersetujuanSaldoKasState extends State<UpdatePersetujuanSaldoKas> {
       ),
     );
   }
+
   Widget textField(
     String text,
     String hint,
@@ -189,8 +200,3 @@ class _UpdatePersetujuanSaldoKasState extends State<UpdatePersetujuanSaldoKas> {
     );
   }
 }
-
-
-
-
-

@@ -23,6 +23,12 @@ class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
   late TextEditingController judulController;
   late TextEditingController nominalController;
   late TextEditingController deskripsiController;
+  DateTime? selectedDate;
+  void _handleDateSelection(DateTime date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
 
   @override
   void initState() {
@@ -69,7 +75,7 @@ class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
                 deskripsiController,
                 context,
               ),
-              const calender(),
+              Calender(onDateSelected: _handleDateSelection),
               const SizedBox(
                 height: 80,
               ),

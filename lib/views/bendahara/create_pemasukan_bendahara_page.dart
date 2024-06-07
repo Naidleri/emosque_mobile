@@ -2,11 +2,30 @@ import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CreatePemasukanBendaharaPage extends StatelessWidget {
+class CreatePemasukanBendaharaPage extends StatefulWidget {
   CreatePemasukanBendaharaPage({super.key});
+
+  @override
+  State<CreatePemasukanBendaharaPage> createState() =>
+      _CreatePemasukanBendaharaPageState();
+}
+
+class _CreatePemasukanBendaharaPageState
+    extends State<CreatePemasukanBendaharaPage> {
   final judul = TextEditingController();
+
   final nominal = TextEditingController();
+
   final deskripsi = TextEditingController();
+
+  DateTime? selectedDate;
+
+  void _handleDateSelection(DateTime date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
+
   Widget textField(String text, String hint, TextEditingController controller,
       BuildContext context) {
     return Container(
@@ -37,7 +56,6 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +64,9 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
         title: Text(
           "Pemasukan",
           style: GoogleFonts.poppins(
-              fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green[700]),
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
+              color: Colors.green[700]),
         ),
         centerTitle: true,
       ),
@@ -58,7 +78,7 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
                   "Judul Pemasukan", "Masukan Judul Pemasukan", judul, context),
               textField("Nominal", "Masukan Nominal", nominal, context),
               textField("Deskripsi", "Masukan Deskripsi", deskripsi, context),
-              const calender(),
+              Calender(onDateSelected: _handleDateSelection),
               const SizedBox(
                 height: 80,
               ),
@@ -87,8 +107,7 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
                   backgroundColor: WidgetStateProperty.all(Colors.green[700]),
                   shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(10.0),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
                 ),
@@ -105,4 +124,3 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
     );
   }
 }
-

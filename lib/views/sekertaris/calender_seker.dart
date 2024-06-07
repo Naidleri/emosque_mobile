@@ -10,6 +10,13 @@ class MyCalenderSeker extends StatefulWidget {
 }
 
 class _MyCalenderSekerState extends State<MyCalenderSeker> {
+  DateTime? selectedDate;
+  void _handleDateSelection(DateTime date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
+
   // CalendarFormat _calendarFormat = CalendarFormat.month;
   // DateTime _focusedDay = DateTime.now();
   // late DateTime _selectedDay = DateTime.now();
@@ -26,13 +33,15 @@ class _MyCalenderSekerState extends State<MyCalenderSeker> {
           title: const Text(
             'Kalender',
             style: TextStyle(
-                color: Colors.green,
-                fontSize: 25,
-                fontWeight: FontWeight.bold),
+                color: Colors.green, fontSize: 25, fontWeight: FontWeight.bold),
           ),
         ),
         body: ListView(
-          children: const [calender()],
+          children: [
+            Calender(
+              onDateSelected: _handleDateSelection,
+            )
+          ],
         ),
       ),
     );
