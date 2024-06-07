@@ -1,3 +1,4 @@
+import 'package:emosque_mobile/models/models.dart';
 import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/widgets/fillButton.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,22 @@ class _ProfileSekertarisState extends State<ProfileSekertaris> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-        () => Provider.of<UserProvider>(context, listen: false).getProfile());
+    checkToken();
+    getUserData();
+  }
+
+   void getUserData() {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    userProvider.getProfile();
+  }
+
+  Future<void> checkToken() async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    final token = await userProvider.getTokenFromStorage();
+    if (token == null) {
+      // Jika tidak ada token, arahkan pengguna ke halaman login
+      Navigator.pushReplacementNamed(context, '/login');
+    }
   }
 
   Widget text(String judul, String text, BuildContext context) {
@@ -55,8 +70,11 @@ class _ProfileSekertarisState extends State<ProfileSekertaris> {
 
   @override
   Widget build(BuildContext context) {
-    final _userProvider = Provider.of<UserProvider>(context, listen: false);
-    final _userData = _userProvider.users.first;
+    final UserProvider userProvider = Provider.of<UserProvider>(context);
+    if (userProvider.users.isEmpty) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    final User loggedInUser = userProvider.users.first;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -89,8 +107,8 @@ class _ProfileSekertarisState extends State<ProfileSekertaris> {
                     NetworkImage('https://example.com/your-image-url.jpg'),
               ),
             ),
-            text('Username', _userData.name, context),
-            text('Email', _userData.email, context),
+            text('Username', loggedInUser.name, context),
+            text('Email', loggedInUser.email, context),
             text('Role pengurus', 'Sekretaris Takmir', context),
             SizedBox(
               height: 20,
@@ -98,7 +116,7 @@ class _ProfileSekertarisState extends State<ProfileSekertaris> {
             fillButton(
                 text: 'Log out',
                 onPressed: () {
-                  _userProvider.logoutUser(context).then((_) {
+                  userProvider.logoutUser(context).then((_) {
                     Navigator.pushReplacementNamed(context, '/login');
                   });
                 }),
