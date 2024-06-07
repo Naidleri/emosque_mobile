@@ -62,7 +62,7 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
                     ),
                   ),
                   onPressed: () {
-                    Provider.of<Perizinan>(context, listen: false)
+                    Provider.of<PerizinanProvider>(context, listen: false)
                           .deletePerizinan(perizinan.idDetailPerizinan)
                           .then((_) {
                         showDialog(
@@ -71,7 +71,7 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
                             return AlertDialog(
                               title: const Text('Berhasil dihapus'),
                               content:
-                                  const Text('Data qurban berhasil dihapus'),
+                                  const Text('Data perizinan berhasil dihapus'),
                               actions: [
                                 ElevatedButton(
                                   child: const Text('OK'),
@@ -85,7 +85,7 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
                         );
                       }).catchError((error) {
                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text('data qurban gagal dihapus'),
+                            content: Text('data perizinan gagal dihapus'),
                           ));
                       });
                   },
