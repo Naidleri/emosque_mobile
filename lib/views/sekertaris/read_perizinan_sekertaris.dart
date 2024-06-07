@@ -61,7 +61,34 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Provider.of<Perizinan>(context, listen: false)
+                          .deletePerizinan(perizinan.idDetailPerizinan)
+                          .then((_) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text('Berhasil dihapus'),
+                              content:
+                                  const Text('Data qurban berhasil dihapus'),
+                              actions: [
+                                ElevatedButton(
+                                  child: const Text('OK'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }).catchError((error) {
+                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('data qurban gagal dihapus'),
+                          ));
+                      });
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
