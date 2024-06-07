@@ -19,10 +19,17 @@ class UpdatePengeluaranBendahara extends StatefulWidget {
       _UpdatePengeluaranBendaharaState();
 }
 
-class _UpdatePengeluaranBendaharaState extends State<UpdatePengeluaranBendahara> {
+class _UpdatePengeluaranBendaharaState
+    extends State<UpdatePengeluaranBendahara> {
   late TextEditingController judulController;
   late TextEditingController nominalController;
   late TextEditingController deskripsiController;
+  DateTime? selectedDate;
+  void _handleDateSelection(DateTime date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
 
   @override
   void initState() {
@@ -69,7 +76,7 @@ class _UpdatePengeluaranBendaharaState extends State<UpdatePengeluaranBendahara>
                 deskripsiController,
                 context,
               ),
-              const calender(),
+              Calender(onDateSelected: _handleDateSelection),
               const SizedBox(
                 height: 80,
               ),

@@ -6,9 +6,20 @@ import 'package:emosque_mobile/widgets/formDeskripsi.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CreatePersetujuanSaldoKas extends StatelessWidget {
+class CreatePersetujuanSaldoKas extends StatefulWidget {
   const CreatePersetujuanSaldoKas({super.key});
 
+  @override
+  State<CreatePersetujuanSaldoKas> createState() => _CreatePersetujuanSaldoKasState();
+}
+
+class _CreatePersetujuanSaldoKasState extends State<CreatePersetujuanSaldoKas> {
+    DateTime? selectedDate;
+  void _handleDateSelection(DateTime date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,7 +52,7 @@ class CreatePersetujuanSaldoKas extends StatelessWidget {
                   title: "Deskripsi",
                   hint: "Masukkan Deskripsi Pemasukan",
                 ),
-                calender(),
+                Calender(onDateSelected: _handleDateSelection),
                 SizedBox(
                   height: 49,
                 ),

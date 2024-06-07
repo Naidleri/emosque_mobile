@@ -13,7 +13,12 @@ class UpdateQurbanSekertaris extends StatefulWidget {
 
 class _UpdateQurbanSekertarisState extends State<UpdateQurbanSekertaris> {
   String? jenis;
-
+  DateTime? selectedDate;
+  void _handleDateSelection(DateTime date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +47,7 @@ class _UpdateQurbanSekertarisState extends State<UpdateQurbanSekertaris> {
                 });
               },
             ),
-            const calender(),
+            Calender(onDateSelected: _handleDateSelection ,),
             Container(
               margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
               child: Column(

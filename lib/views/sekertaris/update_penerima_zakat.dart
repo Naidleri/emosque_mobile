@@ -13,6 +13,13 @@ class UpdatePenerimaZakatSekertaris extends StatefulWidget {
 
 class _UpdatePenerimaZakatSekertaris
     extends State<UpdatePenerimaZakatSekertaris> {
+  DateTime? selectedDate;
+  void _handleDateSelection(DateTime date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,7 +156,7 @@ class _UpdatePenerimaZakatSekertaris
                   ],
                 ),
               ),
-              const calender(),
+              Calender(onDateSelected: _handleDateSelection),
               Container(
                 margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
                 child: Column(

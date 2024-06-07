@@ -11,6 +11,12 @@ class CreateQurbanSekertaris extends StatefulWidget {
 
 class _CreateQurbanSekertarisState extends State<CreateQurbanSekertaris> {
   String? jenis;
+  DateTime? selectedDate;
+  void _handleDateSelection(DateTime date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +34,10 @@ class _CreateQurbanSekertarisState extends State<CreateQurbanSekertaris> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const InputForm(judul: "Nama Orang Berqurban", hint: "Masukkan Nama"),
-            const InputForm(judul: "Deskripsi", hint: "Masukkan Deskripsi Qurban"),
+            const InputForm(
+                judul: "Nama Orang Berqurban", hint: "Masukkan Nama"),
+            const InputForm(
+                judul: "Deskripsi", hint: "Masukkan Deskripsi Qurban"),
             DropdownQurban(
               initialValue: jenis,
               onChanged: (newValue) {
@@ -38,7 +46,7 @@ class _CreateQurbanSekertarisState extends State<CreateQurbanSekertaris> {
                 });
               },
             ),
-            const calender(),
+            Calender(onDateSelected: _handleDateSelection),
             Container(
               margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
               child: Column(
@@ -46,8 +54,7 @@ class _CreateQurbanSekertarisState extends State<CreateQurbanSekertaris> {
                 children: [
                   const Text(
                     "Dokumentasi Qurban",
-                    style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 16),

@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
+class Calender extends StatefulWidget {
+  final Function(DateTime) onDateSelected;
 
-class calender extends StatefulWidget {
-  const calender({
-    super.key,
-  });
+  const Calender({super.key, required this.onDateSelected});
 
   @override
-  State<calender> createState() => _calenderState();
+  State<Calender> createState() => _CalenderState();
 }
 
-class _calenderState extends State<calender> {
+class _CalenderState extends State<Calender> {
   DateTime today = DateTime.now();
+
   void _onDaySelected(DateTime day, DateTime focusedDay) {
     setState(() {
       today = day;
     });
+    widget.onDateSelected(day); 
   }
 
   @override

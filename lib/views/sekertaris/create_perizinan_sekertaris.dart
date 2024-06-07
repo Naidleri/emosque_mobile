@@ -2,11 +2,10 @@ import 'package:emosque_mobile/models/models.dart';
 import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/views/sekertaris/dropdown_perizinanNama.dart';
 import 'package:emosque_mobile/views/sekertaris/dropdown_perizinanPJ.dart';
-import 'package:emosque_mobile/widgets/calender_picker_date.dart';
-import 'package:emosque_mobile/widgets/form.dart';
-import 'package:emosque_mobile/widgets/textfieldDeskripsi.dart';
+import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class CreatePerizinanSekertaris extends StatefulWidget {
   const CreatePerizinanSekertaris({super.key});
@@ -17,14 +16,18 @@ class CreatePerizinanSekertaris extends StatefulWidget {
 }
 
 class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
-  final TextEditingController _kegiatanController = TextEditingController();
-  final TextEditingController _perizinanController = TextEditingController();
   final TextEditingController _deskripsiController = TextEditingController();
   final TextEditingController _pengajuController = TextEditingController();
-  final TextEditingController _penanggungJawabController =
-      TextEditingController();
+
   String pj = 'PJ-1';
   String namaPerizinan = 'pernikahan';
+  DateTime? selectedDate;
+
+  void _handleDateSelection(DateTime date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,28 +45,6 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
         children: [
           Column(
             children: [
-              SizedBox(
-                width: size.width * 0.9,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const Text("Nama Kegiatan"),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextFormField(
-                      controller: _kegiatanController,
-                      decoration: const InputDecoration(
-                        hintText: 'Masukkan nama kegiatan',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8)),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               SizedBox(height: 16),
               SizedBox(
                 width: size.width * 0.9,
@@ -72,9 +53,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const Text("Nama Perizinan"),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    const SizedBox(height: 5),
                     DropdownPerizinanNama(
                         initialValue: namaPerizinan,
                         onChanged: (newValue) {
@@ -98,9 +77,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const Text("Deskripsi"),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    const SizedBox(height: 5),
                     TextFormField(
                       controller: _deskripsiController,
                       decoration: const InputDecoration(
@@ -116,7 +93,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
               SizedBox(height: 16),
               Container(
                 margin: EdgeInsets.only(bottom: 16),
-                child: CalenderPicker(),
+                child: Calender(onDateSelected: _handleDateSelection),
               ),
               SizedBox(
                 width: size.width * 0.9,
@@ -125,9 +102,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const Text("Nama Pengaju"),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    const SizedBox(height: 5),
                     TextFormField(
                       controller: _pengajuController,
                       decoration: const InputDecoration(
@@ -154,11 +129,9 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                 children: [
                   TextButton(
                     onPressed: () {
-                      if (_kegiatanController.text.isEmpty ||
-                          _perizinanController.text.isEmpty ||
-                          _deskripsiController.text.isEmpty ||
+                      if (_deskripsiController.text.isEmpty ||
                           _pengajuController.text.isEmpty ||
-                          _penanggungJawabController.text.isEmpty) {
+                          selectedDate == null) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text("Data tidak boleh kosong"),
@@ -194,14 +167,15 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                       }
 
                       final newPerizinan = Perizinan(
-                          0,
-                          _pengajuController.text,
-                          "tanggal",
-                          _deskripsiController.text,
-                          namaPerizinanToValue(namaPerizinan),
-                          pjToValue(pj),
-                          _perizinanController.text,
-                          '');
+                        0,
+                        _pengajuController.text,
+                        DateFormat('yyyy-MM-dd').format(selectedDate!),
+                        _deskripsiController.text,
+                        namaPerizinanToValue(namaPerizinan),
+                        pjToValue(pj),
+                        '',
+                        '',
+                      );
                       final _perizinanProvider = Provider.of<PerizinanProvider>(
                           context,
                           listen: false);
