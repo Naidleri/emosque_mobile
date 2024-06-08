@@ -4,6 +4,8 @@ import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
+
 
 class CreatePemasukanBendaharaPage extends StatefulWidget {
   CreatePemasukanBendaharaPage({super.key});
@@ -16,11 +18,8 @@ class CreatePemasukanBendaharaPage extends StatefulWidget {
 class _CreatePemasukanBendaharaPageState
     extends State<CreatePemasukanBendaharaPage> {
   final judul = TextEditingController();
-
   final nominal = TextEditingController();
-
   final deskripsi = TextEditingController();
-
   DateTime? selectedDate;
 
   void _handleDateSelection(DateTime date) {
@@ -104,14 +103,24 @@ class _CreatePemasukanBendaharaPageState
               bottom: 25,
               child: ElevatedButton(
                 onPressed: () {
+                  if (selectedDate == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Silakan pilih tanggal terlebih dahulu'),
+                      ),
+                    );
+                    return;
+                  }
+
+                  final formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate!);
+
                   final newKas = SaldoKas(
                       0,
                       judul.text,
                       'pemasukan',
-                      selectedDate.toString(),
+                      formattedDate,
                       int.parse(nominal.text),
                       deskripsi.text);
-                      print(selectedDate.toString());
                   Provider.of<KasProvider>(context, listen: false)
                       .createKas(newKas)
                       .then((_) {
@@ -142,8 +151,8 @@ class _CreatePemasukanBendaharaPageState
                   Navigator.pop(context);
                 },
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Colors.green[700]),
-                  shape: WidgetStateProperty.all(
+                  backgroundColor: MaterialStateProperty.all(Colors.green[700]),
+                  shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),

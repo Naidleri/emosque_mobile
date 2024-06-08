@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:intl/intl.dart';
+
 class Calender extends StatefulWidget {
   final Function(DateTime) onDateSelected;
 
@@ -18,7 +19,7 @@ class _CalenderState extends State<Calender> {
     setState(() {
       today = day;
     });
-    widget.onDateSelected(day); 
+    widget.onDateSelected(day);
   }
 
   @override
