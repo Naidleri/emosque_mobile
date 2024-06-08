@@ -40,10 +40,8 @@ class Perizinan{
       'nama_pengaju': namaPengaju,
       'tgl_kegiatan': tanggal,
       'deskripsi': deskripsi,
-      'perizinan_id': perizinanId,
-      'pj_id': pjId,
-      'nama_perizinan': namaPerizinan,
-      'nama_pj': namaPJ
+      'id_perizinan': perizinanId,
+      'id_pj': pjId,
     };
   }
 }

@@ -165,11 +165,11 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                             return 0;
                         }
                       }
-
+                      final formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate!);
                       final newPerizinan = Perizinan(
                         0,
                         _pengajuController.text,
-                        DateFormat('yyyy-MM-dd').format(selectedDate!),
+                        formattedDate,
                         _deskripsiController.text,
                         namaPerizinanToValue(namaPerizinan),
                         pjToValue(pj),

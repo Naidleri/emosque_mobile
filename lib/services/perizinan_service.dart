@@ -7,7 +7,7 @@ class PerizinanService {
       final response = await http.post(
         url,
         headers: ApiHelper.getHeaders(token),
-        body: jsonEncode(newPerizinan)
+        body: jsonEncode(newPerizinan.toJson())
       );
       final responseData = ApiHelper.handleResponse(response);
       final newPerizinanData = Perizinan.fromJson(responseData['data']);
