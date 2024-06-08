@@ -1,6 +1,9 @@
+import 'package:emosque_mobile/models/models.dart';
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class CreatePemasukanBendaharaPage extends StatefulWidget {
   CreatePemasukanBendaharaPage({super.key});
@@ -101,6 +104,41 @@ class _CreatePemasukanBendaharaPageState
               bottom: 25,
               child: ElevatedButton(
                 onPressed: () {
+                  final newKas = SaldoKas(
+                      0,
+                      judul.text,
+                      'pemasukan',
+                      selectedDate.toString(),
+                      int.parse(nominal.text),
+                      deskripsi.text);
+                      print(selectedDate.toString());
+                  Provider.of<KasProvider>(context, listen: false)
+                      .createKas(newKas)
+                      .then((_) {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Berhasil'),
+                          content: const Text('Data pemasukan berhasil ditambahkan'),
+                          actions: [
+                            ElevatedButton(
+                              child: const Text('OK'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }).catchError((error) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Gagal menambah data pemasukan'),
+                      ),
+                    );
+                  });
                   Navigator.pop(context);
                 },
                 style: ButtonStyle(

@@ -170,14 +170,12 @@ class RegisterJamaahPage extends StatelessWidget {
             Text.rich(
               TextSpan(
                 children: [
-                  const TextSpan(text: "Sudah memiliki akun ? ", style: TextStyle(fontSize: 16)),
+                  const TextSpan(
+                      text: "Sudah memiliki akun ? ",
+                      style: TextStyle(fontSize: 16)),
                   TextSpan(
                       text: "Login",
-                      style: TextStyle(
-                        color: Colors.green[700],
-                        fontSize: 16
-
-                      ),
+                      style: TextStyle(color: Colors.green[700], fontSize: 16),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           Navigator.push(
