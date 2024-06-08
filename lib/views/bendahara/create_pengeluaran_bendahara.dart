@@ -1,6 +1,10 @@
+import 'package:emosque_mobile/models/models.dart';
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class CreatePengeluaranBendaharaPage extends StatefulWidget {
   CreatePengeluaranBendaharaPage({super.key});
@@ -13,11 +17,10 @@ class CreatePengeluaranBendaharaPage extends StatefulWidget {
 class _CreatePengeluaranBendaharaPageState
     extends State<CreatePengeluaranBendaharaPage> {
   final judul = TextEditingController();
-
   final nominal = TextEditingController();
-
   final deskripsi = TextEditingController();
   DateTime? selectedDate;
+
   void _handleDateSelection(DateTime date) {
     setState(() {
       selectedDate = date;
@@ -99,14 +102,58 @@ class _CreatePengeluaranBendaharaPageState
               bottom: 25,
               child: ElevatedButton(
                 onPressed: () {
+                  if (selectedDate == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Silakan pilih tanggal terlebih dahulu'),
+                      ),
+                    );
+                    return;
+                  }
+
+                  final formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate!);
+
+                  final newKas = SaldoKas(
+                      0,
+                      judul.text,
+                      'pengeluaran', // Indicate it's an expenditure
+                      formattedDate,
+                      int.parse(nominal.text),
+                      deskripsi.text);
+                  Provider.of<KasProvider>(context, listen: false)
+                      .createKas(newKas)
+                      .then((_) {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Berhasil'),
+                          content: const Text('Data pengeluaran berhasil ditambahkan'),
+                          actions: [
+                            ElevatedButton(
+                              child: const Text('OK'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }).catchError((error) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Gagal menambah data pengeluaran'),
+                      ),
+                    );
+                  });
                   Navigator.pop(context);
                 },
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Colors.green[700]),
-                  shape: WidgetStateProperty.all(
+                  backgroundColor: MaterialStateProperty.all(Colors.green[700]),
+                  shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(10.0), // Set corner radius
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
                 ),

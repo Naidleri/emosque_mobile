@@ -1,14 +1,19 @@
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class UpdatePengeluaranBendahara extends StatefulWidget {
+  final int idKas;
   final String judul;
   final int nominal;
   final String deskripsi;
 
   const UpdatePengeluaranBendahara({
     super.key,
+    required this.idKas,
     required this.judul,
     required this.nominal,
     required this.deskripsi,
@@ -25,6 +30,7 @@ class _UpdatePengeluaranBendaharaState
   late TextEditingController nominalController;
   late TextEditingController deskripsiController;
   DateTime? selectedDate;
+
   void _handleDateSelection(DateTime date) {
     setState(() {
       selectedDate = date;
@@ -100,11 +106,13 @@ class _UpdatePengeluaranBendaharaState
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
+                  // Implement update functionality here
                   Navigator.pop(context);
                 },
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Colors.green[700]),
-                  shape: WidgetStateProperty.all(
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.green[700]),
+                  shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
@@ -129,22 +137,36 @@ class _UpdatePengeluaranBendaharaState
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Provider.of<KasProvider>(context, listen: false)
+                      .deleteKas(widget.idKas)
+                      .then((_) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Data pengeluaran berhasil dihapus'),
+                      ),
+                    );
+                    Navigator.pop(context);
+                  }).catchError((error) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Gagal menghapus data pengeluaran'),
+                      ),
+                    );
+                  });
                 },
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(
+                  backgroundColor: MaterialStateProperty.all(
                       const Color.fromARGB(255, 255, 255, 255)),
-                  shape: WidgetStateProperty.all(
+                  shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  side: WidgetStateProperty.all(
+                  side: MaterialStateProperty.all(
                     const BorderSide(
                       color: Colors.green, // Warna stroke
                       width: 1.0, // Ketebalan stroke
-                      style: BorderStyle
-                          .solid, // Gaya stroke (solid, dashed, atau dotted)
+                      style: BorderStyle.solid, // Gaya stroke (solid, dashed, atau dotted)
                     ),
                   ),
                 ),
