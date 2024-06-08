@@ -15,18 +15,18 @@ class _YayasanState extends State<Yayasan> {
         title: Text(
           "Yayasan",
           style: GoogleFonts.poppins(
-              color: Color.fromRGBO(6, 215, 115, 1),
+              color: Colors.green[700],
               fontSize: 25,
               fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: Column(
           children: [
             Container(
-              decoration: BoxDecoration(border: Border(top: BorderSide())),
+              decoration: const BoxDecoration(border: Border(top: BorderSide())),
               child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: 3,
@@ -35,10 +35,10 @@ class _YayasanState extends State<Yayasan> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ReadYayasanSekertaris()),
+                        MaterialPageRoute(builder: (context) => const ReadYayasanSekertaris()),
                       );
                     },
-                    child: ListTile(
+                    child: const ListTile(
                       contentPadding:
                           EdgeInsets.only(top: 12, left: 25, right: 25),
                       title: Text(
@@ -56,7 +56,7 @@ class _YayasanState extends State<Yayasan> {
                 },
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
           ],
         ),
       ),
@@ -68,7 +68,7 @@ class _YayasanState extends State<Yayasan> {
           style: ElevatedButton.styleFrom(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            backgroundColor: Color.fromRGBO(6, 215, 115, 1),
+            backgroundColor: Colors.green[700],
           ),
           onPressed: () {
             // Navigator.push(

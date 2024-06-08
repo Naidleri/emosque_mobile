@@ -26,15 +26,15 @@ class _PersetujuanSaldoKasState extends State<PersetujuanSaldoKas> with SingleTi
           style: textTextStyle.copyWith(
             fontWeight: FontWeight.bold,
             fontSize: 24.0,
-            color: Color(0xff06D773),
+            color: Colors.green[700],
           ),
         ),
         centerTitle: true,
         bottom: TabBar(
           controller: _tabController,
-          labelColor: Color(0xff06D773), // Warna teks tab aktif
-          indicatorColor: Color(0xff06D773), // Warna indikator aktif
-          tabs: [
+          labelColor: Colors.green[700], // Warna teks tab aktif
+          indicatorColor: Colors.green[700], // Warna indikator aktif
+          tabs: const [
             Tab(text: 'Belum Disetujui'),
             Tab(text: 'Disetujui'),
             Tab(text: 'Dibatalkan'),
@@ -43,24 +43,24 @@ class _PersetujuanSaldoKasState extends State<PersetujuanSaldoKas> with SingleTi
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [
+        children: const [
           // Content untuk tab "Belum Disetujui"
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: PersetujuanSaldoKas(
 
             ),
           ),
           // Content untuk tab "Disetujui"
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: PersetujuanSaldoKas(
 
             ),
           ),
           // Content untuk tab "Dibatalkan"
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: PersetujuanSaldoKas(
               
             ),

@@ -204,7 +204,7 @@ class HomePageBendahara extends StatelessWidget {
               style: GoogleFonts.poppins(
                   fontSize: 24,
                   fontWeight: FontWeight.w700,
-                  color: Colors.green),
+                  color: Colors.green[700]),
             ),
           ),
         ),
@@ -227,7 +227,7 @@ class HomePageBendahara extends StatelessWidget {
                       color: Colors.white,
                       size: 18,
                     ),
-                    color: Colors.green),
+                    color: Colors.green[700]),
                 // masuk ke file pengeluaran_bendahara
                 cardMenu("assets/images/dompet.png", "Pengeluaran", () {
                   Navigator.pushNamed(context, "/readpengeluaranbendahara");

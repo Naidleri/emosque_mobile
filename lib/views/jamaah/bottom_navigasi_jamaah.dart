@@ -53,7 +53,7 @@ class _BottomNavigasiJamaahState extends State<BottomNavigasiJamaah> {
             label: 'Profile',
           ),
         ],
-        selectedItemColor: Colors.green,
+        selectedItemColor: Colors.green[700],
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,

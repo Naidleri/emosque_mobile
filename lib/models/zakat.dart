@@ -34,3 +34,23 @@ class Zakat {
     };
   }
 }
+
+class CreateZakat {
+  final String nama;
+  final int jumlah;
+  final int jenis;
+
+  CreateZakat({
+    required this.nama,
+    required this.jumlah,
+    required this.jenis,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      "nama_pezakat": nama,
+      "jumlah_zakat": jumlah,
+      "zakat_jenis_id": jenis
+    };
+  }
+}

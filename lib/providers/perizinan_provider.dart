@@ -40,4 +40,18 @@ class PerizinanProvider extends ChangeNotifier{
      _isLoading = false;
     notifyListeners();
   }
+
+  Future<void> deletePerizinan (int idPerizinan) async {
+    _isLoading = true;
+    notifyListeners();
+    try{
+      final storedToken = await _secureStorage.read(key: 'token');
+      final data = await _perizinanService.deletePerizinan(idPerizinan, storedToken!);
+    }catch(e){
+      print('error delete perizinan data');
+      throw Exception('failed to delete perizinan $e');
+    }
+    _isLoading = false;
+    notifyListeners();
+  }
 }

@@ -1,6 +1,5 @@
 import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/views/bendahara/update_pengeluaran_bendahara.dart';
-import 'package:emosque_mobile/views/bendahara/update_persetujuan_saldo_kas.dart';
 import 'package:emosque_mobile/widgets/picker_date.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -103,7 +102,7 @@ class _ReadPengeluaranBendaharaState extends State<ReadPengeluaranBendahara> {
         title: Text(
           "Pengeluaran",
           style: GoogleFonts.poppins(
-              fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green),
+              fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green[700]),
         ),
         centerTitle: true,
       ),
@@ -166,8 +165,8 @@ class _ReadPengeluaranBendaharaState extends State<ReadPengeluaranBendahara> {
                 Navigator.pushNamed(context, '/createPengeluaranBendahara');
               },
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.green),
-                shape: MaterialStateProperty.all(
+                backgroundColor: WidgetStateProperty.all(Colors.green[700]),
+                shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),

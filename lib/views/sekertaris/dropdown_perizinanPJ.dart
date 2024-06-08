@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DropdownQurban extends StatefulWidget {
-  final String? initialValue;
+class DropdownPerizinanPJ extends StatefulWidget {
+  final String initialValue;
   final ValueChanged<String?> onChanged;
+  final List<String> options;
 
-  DropdownQurban({
+  DropdownPerizinanPJ({
     required this.initialValue,
     required this.onChanged,
+    required this.options,
   });
 
   @override
-  _DropdownQurbanState createState() => _DropdownQurbanState();
+  _DropdownPerizinanPJState createState() => _DropdownPerizinanPJState();
 }
 
-class _DropdownQurbanState extends State<DropdownQurban> {
-  String? jenis;
-  List<String> jenisZakat = ['Sapi', 'Kambing'];
+class _DropdownPerizinanPJState extends State<DropdownPerizinanPJ> {
+  late String jenis;
 
   @override
   void initState() {
@@ -31,13 +32,6 @@ class _DropdownQurbanState extends State<DropdownQurban> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Jenis Qurban",
-            style: GoogleFonts.poppins(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
           Container(
             margin: EdgeInsets.only(top: 12),
             height: 50,
@@ -51,33 +45,29 @@ class _DropdownQurbanState extends State<DropdownQurban> {
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(horizontal: 16),
                     border: InputBorder.none,
-                    hintText: 'Pilih Jenis Qurban',
-                    hintStyle: GoogleFonts.poppins(
-                      color: Colors.black,
-                    ) // Set hint text here
-                    ),
+                    hintText: 'Pilih penanggung jawab perizinan',
+                    hintStyle:
+                        GoogleFonts.poppins(color: Colors.black, fontSize: 14)),
                 icon: Icon(Icons.keyboard_arrow_down, color: Colors.black),
                 dropdownColor: Colors.green[700],
                 value: jenis,
                 onChanged: (String? newValue) {
                   setState(() {
-                    jenis = newValue;
+                    jenis = newValue ?? widget.initialValue;
                   });
-                  jenis = newValue;
                   widget.onChanged(newValue);
                 },
-                items: jenisZakat.map<DropdownMenuItem<String>>((String value) {
+                items: widget.options
+                    .map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Container(
                       child: Padding(
-                        padding: const EdgeInsets.all(
-                            0), // Add padding to the dropdown item
+                        padding: const EdgeInsets.all(0),
                         child: Text(
                           value,
-                          style: TextStyle (
-                            color: Colors.black,
-                          ),
+                          style: GoogleFonts.poppins(
+                              color: Colors.black, fontSize: 14),
                         ),
                       ),
                     ),

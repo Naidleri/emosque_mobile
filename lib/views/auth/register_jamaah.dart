@@ -13,16 +13,17 @@ class RegisterJamaahPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               "Daftar untuk Jamaah",
               style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w700,
-                  color: Color.fromARGB(255, 6, 215, 115)),
+                  color: Colors.green[700]),
             ),
             const SizedBox(
               height: 40,
@@ -149,7 +150,7 @@ class RegisterJamaahPage extends StatelessWidget {
                   });
                 },
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Colors.green),
+                  backgroundColor: WidgetStateProperty.all(Colors.green[700]),
                   shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius:
@@ -169,12 +170,12 @@ class RegisterJamaahPage extends StatelessWidget {
             Text.rich(
               TextSpan(
                 children: [
-                  const TextSpan(text: "Sudah memiliki akun ? "),
+                  const TextSpan(
+                      text: "Sudah memiliki akun ? ",
+                      style: TextStyle(fontSize: 16)),
                   TextSpan(
                       text: "Login",
-                      style: const TextStyle(
-                        color: Color.fromARGB(255, 6, 215, 115),
-                      ),
+                      style: TextStyle(color: Colors.green[700], fontSize: 16),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           Navigator.push(

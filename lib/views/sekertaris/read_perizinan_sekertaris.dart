@@ -61,7 +61,34 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Provider.of<PerizinanProvider>(context, listen: false)
+                          .deletePerizinan(perizinan.idDetailPerizinan)
+                          .then((_) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text('Berhasil dihapus'),
+                              content:
+                                  const Text('Data perizinan berhasil dihapus'),
+                              actions: [
+                                ElevatedButton(
+                                  child: const Text('OK'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }).catchError((error) {
+                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('data perizinan gagal dihapus'),
+                          ));
+                      });
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -129,7 +156,7 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
         title: Text(
           "Perizinan",
           style: GoogleFonts.poppins(
-              color: const Color.fromRGBO(6, 215, 115, 1),
+              color: Colors.green[700],
               fontSize: 25,
               fontWeight: FontWeight.bold),
         ),
@@ -161,7 +188,7 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
           style: ElevatedButton.styleFrom(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            backgroundColor: const Color.fromRGBO(6, 215, 115, 1),
+            backgroundColor: Colors.green[700],
           ),
           onPressed: () {
             Navigator.pushNamed(context, '/createPerizinanSekertaris');

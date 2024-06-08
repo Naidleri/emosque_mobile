@@ -9,7 +9,7 @@ class HomepageTakmir extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Laporan', style: TextStyle(color: Color(0xff06D773), fontSize: 24.0, fontWeight: FontWeight.bold)),
+        title: Text('Laporan', style: TextStyle(color: Colors.green[700], fontSize: 24.0, fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
       body: Padding(
@@ -20,7 +20,7 @@ class HomepageTakmir extends StatelessWidget {
             children: [
               // Saldo Kas Section
               const Card(
-                color: Color(0xFF06D773),
+                color: Colors.green,
                 child: Padding(
                   padding: EdgeInsets.all(25.0),
                   child: Column(

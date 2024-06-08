@@ -55,7 +55,7 @@ class _BottomNavigasiTakmirState extends State<BottomNavigasiTakmir> {
             label: 'Profile',
           ),
         ],
-        selectedItemColor: Colors.green,
+        selectedItemColor: Colors.green[700],
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,

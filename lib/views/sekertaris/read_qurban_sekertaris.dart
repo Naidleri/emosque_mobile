@@ -73,7 +73,34 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
                         borderRadius: BorderRadius.circular(5),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Provider.of<QurbanProvider>(context, listen: false)
+                          .deleteQurban(qurban.idQurban)
+                          .then((_) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text('Berhasil dihapus'),
+                              content:
+                                  const Text('Data qurban berhasil dihapus'),
+                              actions: [
+                                ElevatedButton(
+                                  child: const Text('OK'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }).catchError((error) {
+                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('data qurban gagal dihapus'),
+                          ));
+                      });
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -139,7 +166,9 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
         title: Text(
           "Qurban",
           style: GoogleFonts.poppins(
-              color: Colors.green, fontSize: 25, fontWeight: FontWeight.bold),
+              color: Colors.green[700],
+              fontSize: 25,
+              fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -169,7 +198,7 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
           style: ElevatedButton.styleFrom(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            backgroundColor: const Color.fromRGBO(6, 215, 115, 1),
+            backgroundColor: Colors.green[700],
           ),
           onPressed: () {
             Navigator.pushNamed(context, '/createZakatSekertaris');

@@ -27,7 +27,10 @@ class _BottomNavigasiSekertarisState extends State<BottomNavigasiSekertaris> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: <Widget>[
+        HomepageSekertaris(),
+        ProfileSekertaris()
+      ][_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
@@ -47,7 +50,7 @@ class _BottomNavigasiSekertarisState extends State<BottomNavigasiSekertaris> {
             label: 'Profile',
           ),
         ],
-        selectedItemColor: Colors.green,
+        selectedItemColor: Colors.green[700],
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,

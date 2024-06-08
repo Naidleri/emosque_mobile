@@ -19,10 +19,17 @@ class UpdatePengeluaranBendahara extends StatefulWidget {
       _UpdatePengeluaranBendaharaState();
 }
 
-class _UpdatePengeluaranBendaharaState extends State<UpdatePengeluaranBendahara> {
+class _UpdatePengeluaranBendaharaState
+    extends State<UpdatePengeluaranBendahara> {
   late TextEditingController judulController;
   late TextEditingController nominalController;
   late TextEditingController deskripsiController;
+  DateTime? selectedDate;
+  void _handleDateSelection(DateTime date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
 
   @override
   void initState() {
@@ -42,7 +49,7 @@ class _UpdatePengeluaranBendaharaState extends State<UpdatePengeluaranBendahara>
           style: GoogleFonts.poppins(
             fontSize: 24,
             fontWeight: FontWeight.w700,
-            color: Colors.green,
+            color: Colors.green[700],
           ),
         ),
         centerTitle: true,
@@ -69,7 +76,7 @@ class _UpdatePengeluaranBendaharaState extends State<UpdatePengeluaranBendahara>
                 deskripsiController,
                 context,
               ),
-              const calender(),
+              Calender(onDateSelected: _handleDateSelection),
               const SizedBox(
                 height: 80,
               ),
@@ -96,7 +103,7 @@ class _UpdatePengeluaranBendaharaState extends State<UpdatePengeluaranBendahara>
                   Navigator.pop(context);
                 },
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Colors.green),
+                  backgroundColor: WidgetStateProperty.all(Colors.green[700]),
                   shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
@@ -146,7 +153,7 @@ class _UpdatePengeluaranBendaharaState extends State<UpdatePengeluaranBendahara>
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    color: Colors.green,
+                    color: Colors.green[700],
                   ),
                 ),
               ),

@@ -62,7 +62,27 @@ class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Provider.of<ZakatProvider>(context, listen: false)
+                        .deleteZakat(zakat.idZakat);
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Berhasil dihapus'),
+                          content: const Text('Data zakat berhasil dihapus'),
+                          actions: [
+                            ElevatedButton(
+                              child: const Text('OK'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -90,7 +110,16 @@ class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/updateZakatSekertaris');
+                    Navigator.pushNamed(
+                      context,
+                      '/updateZakatSekertaris',
+                      arguments: {
+                        'idZakat': zakat.idZakat,
+                        'namaPezakat': zakat.namaPezakat,
+                        'jumlahZakat': zakat.jumlahZakat,
+                        'namaJenisZakat': zakat.namaJenisZakat,
+                      },
+                    );
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -119,55 +148,57 @@ class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
     );
   }
 
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    resizeToAvoidBottomInset: false,
-    appBar: AppBar(
-      title: Text(
-        "Zakat",
-        style: GoogleFonts.poppins(
-            color: Colors.green, fontSize: 25, fontWeight: FontWeight.bold),
-      ),
-      centerTitle: true,
-    ),
-    body: Consumer<ZakatProvider>(
-      builder: (context, zakatProvider, child) {
-        if (zakatProvider.isLoading) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        if (zakatProvider.zakatFitrah.isEmpty) {
-          return const Center(child: Text('No data available.'));
-        }
-        return ListView.builder(
-          itemCount: zakatProvider.zakatFitrah.length,
-          itemBuilder: (context, index) {
-            final zakat = zakatProvider.zakatFitrah[index];
-            return cardZakat(zakat, context);
-          },
-        );
-      },
-    ),
-    bottomSheet: Container(
-      height: 50,
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5)),
-          backgroundColor: const Color.fromRGBO(6, 215, 115, 1),
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: Text(
+          "Zakat",
+          style: GoogleFonts.poppins(
+              color: Colors.green[700],
+              fontSize: 25,
+              fontWeight: FontWeight.bold),
         ),
-        onPressed: () {
-          Navigator.pushNamed(context, '/createZakatSekertaris');
+        centerTitle: true,
+      ),
+      body: Consumer<ZakatProvider>(
+        builder: (context, zakatProvider, child) {
+          if (zakatProvider.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (zakatProvider.zakatFitrah.isEmpty) {
+            return const Center(child: Text('No data available.'));
+          }
+          return ListView.builder(
+            itemCount: zakatProvider.zakatFitrah.length,
+            itemBuilder: (context, index) {
+              final zakat = zakatProvider.zakatFitrah[index];
+              return cardZakat(zakat, context);
+            },
+          );
         },
-        child: const Center(
-          child: Text(
-            'Tambah Catatan',
-            style: TextStyle(color: Colors.white, fontSize: 20),
+      ),
+      bottomSheet: Container(
+        height: 50,
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            backgroundColor: Colors.green[700],
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/createZakatSekertaris');
+          },
+          child: const Center(
+            child: Text(
+              'Tambah Catatan',
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
           ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 }

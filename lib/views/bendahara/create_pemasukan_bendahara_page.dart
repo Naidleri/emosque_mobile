@@ -1,12 +1,33 @@
+import 'package:emosque_mobile/models/models.dart';
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
-class CreatePemasukanBendaharaPage extends StatelessWidget {
+
+class CreatePemasukanBendaharaPage extends StatefulWidget {
   CreatePemasukanBendaharaPage({super.key});
+
+  @override
+  State<CreatePemasukanBendaharaPage> createState() =>
+      _CreatePemasukanBendaharaPageState();
+}
+
+class _CreatePemasukanBendaharaPageState
+    extends State<CreatePemasukanBendaharaPage> {
   final judul = TextEditingController();
   final nominal = TextEditingController();
   final deskripsi = TextEditingController();
+  DateTime? selectedDate;
+
+  void _handleDateSelection(DateTime date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
+
   Widget textField(String text, String hint, TextEditingController controller,
       BuildContext context) {
     return Container(
@@ -29,14 +50,13 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
                   hintText: hint,
                   border: const OutlineInputBorder(),
                   focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.greenAccent))),
+                      borderSide: BorderSide(color: Colors.green))),
             ),
           )
         ],
       ),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +66,9 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
         title: Text(
           "Pemasukan",
           style: GoogleFonts.poppins(
-              fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green),
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
+              color: Colors.green[700]),
         ),
         centerTitle: true,
       ),
@@ -58,7 +80,7 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
                   "Judul Pemasukan", "Masukan Judul Pemasukan", judul, context),
               textField("Nominal", "Masukan Nominal", nominal, context),
               textField("Deskripsi", "Masukan Deskripsi", deskripsi, context),
-              const calender(),
+              Calender(onDateSelected: _handleDateSelection),
               const SizedBox(
                 height: 80,
               ),
@@ -81,14 +103,58 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
               bottom: 25,
               child: ElevatedButton(
                 onPressed: () {
+                  if (selectedDate == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Silakan pilih tanggal terlebih dahulu'),
+                      ),
+                    );
+                    return;
+                  }
+
+                  final formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate!);
+
+                  final newKas = SaldoKas(
+                      0,
+                      judul.text,
+                      'pemasukan',
+                      formattedDate,
+                      int.parse(nominal.text),
+                      deskripsi.text);
+                  Provider.of<KasProvider>(context, listen: false)
+                      .createKas(newKas)
+                      .then((_) {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Berhasil'),
+                          content: const Text('Data pemasukan berhasil ditambahkan'),
+                          actions: [
+                            ElevatedButton(
+                              child: const Text('OK'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }).catchError((error) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Gagal menambah data pemasukan'),
+                      ),
+                    );
+                  });
                   Navigator.pop(context);
                 },
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Colors.green),
-                  shape: WidgetStateProperty.all(
+                  backgroundColor: MaterialStateProperty.all(Colors.green[700]),
+                  shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(10.0), // Set corner radius
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
                 ),
@@ -105,4 +171,3 @@ class CreatePemasukanBendaharaPage extends StatelessWidget {
     );
   }
 }
-

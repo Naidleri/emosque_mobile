@@ -8,7 +8,7 @@ class KasService {
       final response = await http.post(
         url,
         headers: ApiHelper.getHeaders(token),
-        body: jsonEncode(newKas),
+        body: jsonEncode(newKas.toJson()),
       );
       final responseData = ApiHelper.handleResponse(response);
       final saldoKas = SaldoKas.fromJson(responseData['data']);

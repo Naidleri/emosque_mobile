@@ -32,4 +32,19 @@ class PerizinanService {
       return ApiHelper.handleError(e);
     }
   }
+
+  Future<Perizinan> deletePerizinan (int idPerizinan, String token) async {
+    final url = Uri.parse('${ApiHelper.baseUrl}/perizinan/$idPerizinan');
+    try{
+      final response = await http.delete(
+        url,
+        headers: ApiHelper.getHeaders(token),
+      );
+      final responseData = ApiHelper.handleResponse(response);
+      final deletedPerizinanData = Perizinan.fromJson(responseData['data']);
+      return deletedPerizinanData;
+    }catch(e){
+      return ApiHelper.handleError(e);
+    }
+  }
 }

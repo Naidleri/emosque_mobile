@@ -13,6 +13,13 @@ class UpdatePenerimaZakatSekertaris extends StatefulWidget {
 
 class _UpdatePenerimaZakatSekertaris
     extends State<UpdatePenerimaZakatSekertaris> {
+  DateTime? selectedDate;
+  void _handleDateSelection(DateTime date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +27,7 @@ class _UpdatePenerimaZakatSekertaris
         title: Text(
           "Penyaluran Zakat",
           style: GoogleFonts.poppins(
-              color: const Color.fromRGBO(6, 215, 115, 1),
+              color: Colors.green[700],
               fontSize: 25,
               fontWeight: FontWeight.bold),
         ),
@@ -146,24 +153,10 @@ class _UpdatePenerimaZakatSekertaris
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: FontWeight.w500),
                     ),
-                    // Container(
-                    //   margin: EdgeInsets.only(top: 16),
-                    //   height: 52,
-                    //             // Mengatur lebar Container kedua menjadi maksimal
-                    //   width: double.infinity,
-                    //   padding: EdgeInsets.only(left: 12),
-                    //   decoration: BoxDecoration(
-                    //   border: Border.all(
-                    //   color: Color.fromRGBO(172, 172, 172, 1),
-                    //   width: 0.7
-                    //         ),
-                    //     borderRadius: BorderRadius.circular(8)
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
-              const calender(),
+              Calender(onDateSelected: _handleDateSelection),
               Container(
                 margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
                 child: Column(

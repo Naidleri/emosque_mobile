@@ -23,14 +23,13 @@ class _CalenderPickerState extends State<CalenderPicker> {
         Container(
           padding: EdgeInsets.only(left: 25),
           width: size.width * 1,
-          child: Text(
-            'tanggal',
+          child: const Text(
+            'Tanggal',
             textAlign: TextAlign.left,
           ),
         ),
         Container(
           width: size.width * 0.9,
-          height: size.height * 0.5,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border:
@@ -38,7 +37,8 @@ class _CalenderPickerState extends State<CalenderPicker> {
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(left: 30, right: 30, top: 10),
+                margin:
+                    EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
                 decoration: BoxDecoration(),
                 child: TableCalendar(
                   firstDay: DateTime.utc(2010, 10, 16),
@@ -76,98 +76,94 @@ class _CalenderPickerState extends State<CalenderPicker> {
                   },
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Stack(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(top: 7),
-                        margin: EdgeInsets.only(left: 5, right: 5, top: 10),
-                        width: 100,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(17),
-                            border: Border.all(width: 1, color: Colors.black)),
-                        child: Text(
-                          date1 != null
-                              ? DateFormat('yyyy-MM-dd').format(date1!)
-                              : '',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(right: 5),
+                          width: 90,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(17),
+                              border:
+                                  Border.all(width: 1, color: Colors.black)),
+                          child: Center(
+                            child: Text(
+                              date1 != null
+                                  ? DateFormat('yyyy-MM-dd').format(date1!)
+                                  : '',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        top: -3,
-                        left: 13,
-                        child: Container(
+                        Container(
                           padding: EdgeInsets.only(left: 3),
                           height: 20,
                           width: 40,
                           decoration: BoxDecoration(color: Colors.white),
                           child: Text('From'),
                         ),
-                      ),
-                    ],
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(top: 7),
-                        margin: EdgeInsets.only(left: 5, right: 5, top: 10),
-                        width: 100,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(17),
-                            border: Border.all(width: 1, color: Colors.black)),
-                        child: Text(
-                          date2 != null
-                              ? DateFormat('yyyy-MM-dd').format(date2!)
-                              : '',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
+                      ],
+                    ),
+                    Stack(
+                      children: [
+                        Container(
+                          width: 90,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(17),
+                              border:
+                                  Border.all(width: 1, color: Colors.black)),
+                          child: Center(
+                            child: Text(
+                              date2 != null
+                                  ? DateFormat('yyyy-MM-dd').format(date2!)
+                                  : '',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        top: -3,
-                        left: 13,
-                        child: Container(
+                        Container(
                           padding: EdgeInsets.only(left: 3),
                           height: 20,
                           width: 25,
                           decoration: BoxDecoration(color: Colors.white),
                           child: Text('To'),
                         ),
-                      ),
-                    ],
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Container(
-                      padding: EdgeInsets.only(top: 7),
-                      margin: EdgeInsets.only(left: 5, right: 5, top: 10),
-                      width: 100,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Color(0xff06d773),
-                        borderRadius: BorderRadius.circular(17),
-                      ),
-                      child: Text(
-                        'Set Data',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w500),
+                      ],
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Container(
+                        width: 100,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Color(0xff06d773),
+                          borderRadius: BorderRadius.circular(17),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Set Data',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               )
             ],
           ),
