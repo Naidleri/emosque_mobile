@@ -132,6 +132,7 @@ class _ReadPemasukanBendaharaPageState extends State<ReadPemasukanBendaharaPage>
                           context,
                           MaterialPageRoute(
                             builder: (context) => UpdatePemasukanBendahara(
+                              idKas: kas.idSaldoKas,
                               judul: kas.judul,
                               nominal: kas.nominal,
                               deskripsi: kas.deskripsi,
