@@ -1,16 +1,24 @@
+import 'package:provider/provider.dart';
 import '../../widgets/picker_date.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:emosque_mobile/providers/providers.dart';
 
 class RiwayatTransaksi extends StatefulWidget {
   const RiwayatTransaksi({super.key});
 
   @override
-  State<RiwayatTransaksi> createState() =>
-      _PengeluaranBendaharaPageState();
+  State<RiwayatTransaksi> createState() => _RiwayatTransaksiState();
 }
 
-class _PengeluaranBendaharaPageState extends State<RiwayatTransaksi> {
+class _RiwayatTransaksiState extends State<RiwayatTransaksi> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+        () => Provider.of<KasProvider>(context, listen: false).getAllKas());
+  }
+
   Widget search() {
     return Container(
       height: 60,
@@ -19,16 +27,14 @@ class _PengeluaranBendaharaPageState extends State<RiwayatTransaksi> {
       decoration: BoxDecoration(
           border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.circular(10)),
-      child: const Row(
+      child: Row(
         children: [
-
-          // Icon
-          Icon(Icons.search, color: Colors.black54),
-          SizedBox(width: 10.0),
+          const Icon(Icons.search, color: Colors.black54),
+          const SizedBox(width: 10.0),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(right: 12.0),
-              child: TextField(
+              padding: const EdgeInsets.only(right: 12.0),
+              child: const TextField(
                 decoration: InputDecoration(
                   hintText: 'Cari transaksi',
                   border: InputBorder.none,
@@ -42,7 +48,7 @@ class _PengeluaranBendaharaPageState extends State<RiwayatTransaksi> {
   }
 
   Widget cardRiwayat(Icon icon, String judul, String tanggal, String uang,
-      VoidCallback onTap, double lebar) {
+      VoidCallback onTap, double lebar, Color color) {
     return InkWell(
       onTap: onTap,
       child: SizedBox(
@@ -56,8 +62,7 @@ class _PengeluaranBendaharaPageState extends State<RiwayatTransaksi> {
                 Container(
                   margin: const EdgeInsets.only(right: 10),
                   decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(99)),
+                      color: color, borderRadius: BorderRadius.circular(99)),
                   padding: const EdgeInsets.all(8.0),
                   child: icon,
                 ),
@@ -97,6 +102,7 @@ class _PengeluaranBendaharaPageState extends State<RiwayatTransaksi> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,78 +111,55 @@ class _PengeluaranBendaharaPageState extends State<RiwayatTransaksi> {
         title: Text(
           "Riwayat Transaksi",
           style: GoogleFonts.poppins(
-              fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green[700]),
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
+              color: Colors.green[700]),
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const PickerDate(),
-            search(),
-            cardRiwayat(
-            const Icon(Icons.arrow_back, size: 12, color: Colors.white),
-            "Sumbangan",
-            "26 April 2024",
-            "Rp 850.000",
-            () {}, 
-            350.0, 
-            ),
-            cardRiwayat(
-            const Icon(Icons.arrow_back, size: 12, color: Colors.white),
-            "Hasil Wakaf",
-            "19 April 2024",
-            "Rp 800.000",
-            () {}, 
-            350.0, 
-            ),
-            cardRiwayat(
-            const Icon(Icons.arrow_forward, size: 12, color: Colors.white),
-            "Pembangunan",
-            "19 April 2024",
-            "Rp 850.000",
-            () {}, 
-            350.0, 
-            ),
-        
-            cardRiwayat(
-            const Icon(Icons.arrow_back, size: 12, color: Colors.white),
-            "Kotak Amal",
-            "19 April 2024",
-            "Rp 200.000",
-            () {}, 
-            350.0, 
-            ),
-        
-            cardRiwayat(
-            const Icon(Icons.arrow_forward, size: 12, color: Colors.white,),
-            "Santunan Anak Yatim",
-            "15 April 2024",
-            "Rp 850.000",
-            () {}, 
-            350.0, 
-            ),
-        
-            cardRiwayat(
-            const Icon(Icons.arrow_forward, size: 12, color: Colors.white,),
-            "Konsumsi Rapat",
-            "12 April 2024",
-            "Rp 450.000",
-            () {}, 
-            350.0, 
-            ),
-        
-            cardRiwayat(
-            const Icon(Icons.arrow_back, size: 12, color: Colors.white,),
-            "Kotak Amal",
-            "8 April 2024",
-            "Rp 150.000",
-            () {}, 
-            350.0, 
-            ),
-          ],
-        ),
+      body: Consumer<KasProvider>(
+        builder: (context, kasProvider, child) {
+          if (kasProvider.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          final transaksiList = kasProvider.saldoKas.toList();
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const PickerDate(),
+              search(),
+              Expanded(
+                  child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                child: ListView.builder(
+                  itemCount: transaksiList.length,
+                  itemBuilder: (context, index) {
+                    final transaksi = transaksiList[index];
+                    return cardRiwayat(
+                      Icon(
+                        transaksi.jenis == 'pemasukan'
+                            ? Icons.arrow_back
+                            : Icons.arrow_forward,
+                        size: 16,
+                        color: Colors.white,
+                      ),
+                      transaksi.judul,
+                      transaksi.tanggal,
+                      "Rp ${transaksi.nominal}",
+                      () {},
+                      MediaQuery.of(context).size.width * 0.9,
+                      transaksi.jenis == 'pemasukan'
+                          ? Colors.green
+                          : Colors.red,
+                    );
+                  },
+                ),
+              )),
+            ],
+          );
+        },
       ),
     );
   }
