@@ -32,7 +32,7 @@ class LaporanKas{
       json['saldo_keluar'] as int,
       json['total_saldo'] as int,
       json['deskripsi'] as String,
-      json['persetujuan'] as bool,
+      json['persetujuan'] ?? false,
       json['catatan'] as String,
     );
   }
