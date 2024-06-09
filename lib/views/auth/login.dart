@@ -5,13 +5,26 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _passController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final TextEditingController _nameController = TextEditingController();
-    final TextEditingController _passController = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
@@ -159,7 +172,8 @@ class LoginPage extends StatelessWidget {
                 });
               },
               style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(Colors.green[700]),
+                backgroundColor:
+                    WidgetStateProperty.all(Colors.green[700]),
                 shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius:
