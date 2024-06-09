@@ -29,7 +29,6 @@ class _CreatePersetujuanSaldoKasState extends State<CreatePersetujuanSaldoKas> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          leading: const Icon(Icons.arrow_back_ios_new),
           title: Text(
             "Persetujuan Saldo Kas",
             style: GoogleFonts.poppins(
