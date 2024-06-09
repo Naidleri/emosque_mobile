@@ -31,6 +31,7 @@ import 'package:emosque_mobile/views/sekertaris/update_qurban.dart';
 import 'package:emosque_mobile/views/sekertaris/update_zakat.dart';
 import 'package:emosque_mobile/views/sekertaris/yayasan.dart';
 import 'package:emosque_mobile/views/sekertaris/read_zakat_sekertaris.dart';
+import 'package:emosque_mobile/views/takmir/bottom_navigasi_takmir.dart';
 import 'package:emosque_mobile/views/takmir/homepage_takmir.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +42,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -93,23 +94,30 @@ class MyApp extends StatelessWidget {
           '/qurbanJamaah': (context) => const QurbanJamaah(),
           // sekertaris
           '/homepageSekertaris': (context) => const BottomNavigasiSekertaris(),
-          '/readPerizinanSekertaris': (context) => const ReadPerizinanSekertaris(),
-          '/readZakatFitrahSekertaris': (context) => const ReadZakatSekertaris(),
+          '/readPerizinanSekertaris': (context) =>
+              const ReadPerizinanSekertaris(),
+          '/readZakatFitrahSekertaris': (context) =>
+              const ReadZakatSekertaris(),
           '/readQurbanSekertaris': (context) => const ReadQurbanSekertaris(),
           '/readYayasanSekertaris': (context) => const ReadYayasanSekertaris(),
-          '/createPerizinanSekertaris': (context) => const CreatePerizinanSekertaris(),
+          '/createPerizinanSekertaris': (context) =>
+              const CreatePerizinanSekertaris(),
           '/createZakatSekertaris': (context) => CreateZakatSekertaris(),
           '/createQurbanSekertaris': (context) => CreateQurbanSekertaris(),
-          '/createPenerimaZakatSekertaris': (context) => CreatePenerimaZakatSekertaris(),
-          '/updatePerizinanSekertaris': (context) => const UpdatePerizinanSekertaris(),
-          '/updatePenerimaZakatSekertaris': (context) => const UpdatePenerimaZakatSekertaris(),
-          '/updateQurbanSekertaris': (context) => const UpdateQurbanSekertaris(),
+          '/createPenerimaZakatSekertaris': (context) =>
+              CreatePenerimaZakatSekertaris(),
+          '/updatePerizinanSekertaris': (context) =>
+              const UpdatePerizinanSekertaris(),
+          '/updatePenerimaZakatSekertaris': (context) =>
+              const UpdatePenerimaZakatSekertaris(),
+          '/updateQurbanSekertaris': (context) =>
+              const UpdateQurbanSekertaris(),
           '/updateZakatSekertaris': (context) => UpdateZakatSekertaris(),
           // '/readSapiSekertaris': (context) => ReadSapi(qurbanId: ,),
           '/yayasanSekertaris': (context) => Yayasan(),
           '/calenderSekertaris': (context) => const MyCalenderSeker(),
           // Takmir
-          '/homepageTakmir': (context) => const HomepageTakmir(),
+          '/homepageTakmir': (context) => const BottomNavigasiTakmir(),
         },
         home: const LoginPage(),
       ),
