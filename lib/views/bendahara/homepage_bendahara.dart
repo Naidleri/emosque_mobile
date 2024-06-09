@@ -22,9 +22,9 @@ class _HomePageBendaharaState extends State<HomePageBendahara> {
     double lebar = MediaQuery.of(context).size.width * 0.86;
     return Consumer<KasProvider>(
       builder: (context, kasProvider, child) {
-        final totalSaldo = 0000000;
-        final totalPemasukan = 0000000000;
-        final totalPengeluaran = 0000000;
+        final totalSaldo = 000;
+        final totalPemasukan = 000;
+        final totalPengeluaran = 000;
 
         return Center(
           child: Container(
@@ -155,7 +155,7 @@ class _HomePageBendaharaState extends State<HomePageBendahara> {
   }
 
   Widget cardDropDown(Icon icon, String judul, String tanggal, String uang,
-      VoidCallback onTap, double lebar) {
+      VoidCallback onTap, double lebar, Color color) {
     return InkWell(
       onTap: onTap,
       child: SizedBox(
@@ -169,7 +169,7 @@ class _HomePageBendaharaState extends State<HomePageBendahara> {
                 Container(
                   margin: const EdgeInsets.only(right: 10),
                   decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: color,
                       borderRadius: BorderRadius.circular(99)),
                   padding: const EdgeInsets.all(8.0),
                   child: icon,
@@ -300,16 +300,18 @@ class _HomePageBendaharaState extends State<HomePageBendahara> {
               ),
               ...transaksiList.take(3).map((transaksi) {
                 return cardDropDown(
-                    const Icon(
-                      Icons.arrow_forward,
-                      size: 16,
-                      color: Colors.white,
-                    ),
-                    transaksi.judul,
-                    transaksi.tanggal,
-                    "Rp ${transaksi.nominal}",
-                    () {},
-                    lebar);
+                  Icon(
+                    transaksi.jenis == 'pemasukan' ? Icons.arrow_back : Icons.arrow_forward,
+                    size: 16,
+                    color: Colors.white,
+                  ),
+                  transaksi.judul,
+                  transaksi.tanggal,
+                  "Rp ${transaksi.nominal}",
+                  () {},
+                  lebar,
+                  transaksi.jenis == 'pemasukan' ? Colors.green : Colors.red,
+                );
               }).toList(),
             ]),
           );
