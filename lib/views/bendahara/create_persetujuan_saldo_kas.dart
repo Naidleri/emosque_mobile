@@ -1,8 +1,8 @@
 // ignore_for_file: file_names
 import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:emosque_mobile/widgets/fillButton.dart';
-import 'package:emosque_mobile/widgets/form.dart';
-import 'package:emosque_mobile/widgets/formDeskripsi.dart';
+import 'package:emosque_mobile/widgets/form_deskripsi_widget.dart';
+import 'package:emosque_mobile/widgets/form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,11 +20,13 @@ class _CreatePersetujuanSaldoKasState extends State<CreatePersetujuanSaldoKas> {
       selectedDate = date;
     });
   }
+  final judul = TextEditingController();
+  final saldoMasuk = TextEditingController();
+  final saldoKeluar = TextEditingController();
+  final deskripsi = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           centerTitle: true,
           leading: const Icon(Icons.arrow_back_ios_new),
@@ -40,33 +42,39 @@ class _CreatePersetujuanSaldoKasState extends State<CreatePersetujuanSaldoKas> {
           children: [
             Column(
               children: [
-                form(
+                FormWidget(
                   title: "Judul Persetujuan",
                   hint: "Masukkan Judul Persetujuan",
+                  controller: judul
                 ),
-                form(
-                  title: "Nominal",
-                  hint: "Masukkan Nominal",
+                FormWidget(
+                  title: "Saldo Masuk",
+                  hint: "Masukkan Saldo Masuk",
+                  controller: saldoMasuk
                 ),
-                formDeskripsi(
+                FormWidget(
+                  title: "Saldo Keluar",
+                  hint: "Masukkan Saldo Keluar",
+                  controller: saldoMasuk
+                ),
+                FormDeskripsiWidget(
                   title: "Deskripsi",
-                  hint: "Masukkan Deskripsi Pemasukan",
+                  hint: "Masukkan Deskripsi Pemasukan", controller: deskripsi,
                 ),
                 Calender(onDateSelected: _handleDateSelection),
-                SizedBox(
+                const SizedBox(
                   height: 49,
                 ),
                 fillButton(
                   text: "Kirim Persetujuan", onPressed: (){},
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 36,
                 )
               ],
             ),
           ],
         ),
-      ),
     );
   }
 }

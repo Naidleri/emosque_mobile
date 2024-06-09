@@ -51,12 +51,12 @@ class _LoginPageState extends State<LoginPage> {
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.bold,
                       fontSize: 16),
-                ), // Ganti dari "Email" ke "Name"
+                ), 
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                 child: TextField(
-                  controller: _nameController, // Tambahkan controller
+                  controller: _nameController,
                   decoration: const InputDecoration(
                     hintText: 'Masukkan username',
                     border: OutlineInputBorder(),
@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                 child: TextField(
-                  controller: _passController, // Tambahkan controller
+                  controller: _passController,
                   obscureText: true,
                   decoration: const InputDecoration(
                     hintText: 'Masukkan kata sandi',

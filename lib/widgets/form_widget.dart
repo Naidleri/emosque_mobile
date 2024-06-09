@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-class form extends StatelessWidget {
+class FormWidget extends StatelessWidget {
   final String title;
   final String hint;
+  final TextEditingController controller;
 
-  const form({required this.title, required this.hint, super.key});
-
+  const FormWidget(
+      {required this.title,
+      required this.hint,
+      required this.controller,
+      super.key});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,17 +24,16 @@ class form extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                     color: Colors.black))),
         Center(
-          child: Container(
+          child: SizedBox(
             height: 55,
-            width: 309,
+            width: MediaQuery.of(context).size.width * 0.86,
             child: TextField(
+              controller: controller,
               decoration: InputDecoration(
-                hintText: hint,
-                border:  const OutlineInputBorder(),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.greenAccent)
-                )
-              ),
+                  hintText: hint,
+                  border: const OutlineInputBorder(),
+                  focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.greenAccent))),
             ),
           ),
         ),
