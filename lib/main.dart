@@ -5,10 +5,10 @@ import 'package:emosque_mobile/views/auth/register_pengurus.dart';
 import 'package:emosque_mobile/views/bendahara/bottom_navigasi_bendahara.dart';
 import 'package:emosque_mobile/views/bendahara/create_persetujuan_saldo_kas.dart';
 import 'package:emosque_mobile/views/bendahara/create_pemasukan_bendahara_page.dart';
-import 'package:emosque_mobile/views/bendahara/delete_persetujuan_saldo_kas.dart.dart';
+import 'package:emosque_mobile/views/bendahara/delete_persetujuan_saldo_kas.dart';
+import 'package:emosque_mobile/views/bendahara/persetujuan_saldo_kas.dart';
 import 'package:emosque_mobile/views/bendahara/read_pemasukan_bendahara_page.dart';
 import 'package:emosque_mobile/views/bendahara/read_pengeluaran_bendahara.dart';
-import 'package:emosque_mobile/views/bendahara/read_persetujuan_saldo_kas.dart';
 import 'package:emosque_mobile/views/bendahara/riwayat_transaksi.dart';
 import 'package:emosque_mobile/views/bendahara/create_pengeluaran_bendahara.dart';
 import 'package:emosque_mobile/views/jamaah/kalender_jamaah.dart';
@@ -22,7 +22,6 @@ import 'package:emosque_mobile/views/sekertaris/create_perizinan_sekertaris.dart
 import 'package:emosque_mobile/views/sekertaris/update_perizinan_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/read_perizinan_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/read_qurban_sekertaris.dart';
-import 'package:emosque_mobile/views/sekertaris/read_sapi.dart';
 import 'package:emosque_mobile/views/sekertaris/read_yayasan_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/create_qurban_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/create_zakat_sekertaris.dart';
@@ -32,7 +31,6 @@ import 'package:emosque_mobile/views/sekertaris/update_zakat.dart';
 import 'package:emosque_mobile/views/sekertaris/yayasan.dart';
 import 'package:emosque_mobile/views/sekertaris/read_zakat_sekertaris.dart';
 import 'package:emosque_mobile/views/takmir/bottom_navigasi_takmir.dart';
-import 'package:emosque_mobile/views/takmir/homepage_takmir.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -68,7 +66,7 @@ class MyApp extends StatelessWidget {
         routes: {
           // akun
           '/login': (context) => const LoginPage(),
-          '/registerJamaah': (context) => RegisterJamaahPage(),
+          '/registerJamaah': (context) => const RegisterJamaahPage(),
           '/registerPengurus': (context) => const RegisterPengurusPage(),
           // bendahara
           '/readpemasukanbendahara': (context) =>
@@ -76,7 +74,7 @@ class MyApp extends StatelessWidget {
           '/readpengeluaranbendahara': (context) =>
               const ReadPengeluaranBendahara(),
           '/readpersetujuanbendahara': (context) =>
-              const ReadPersetujuanSaldoKas(),
+              const ReadPersetujuanBendahara(),
           '/createPemasukanBendahara': (context) =>
               CreatePemasukanBendaharaPage(),
           '/createPengeluaranBendahara': (context) =>
@@ -112,7 +110,7 @@ class MyApp extends StatelessWidget {
               const UpdatePenerimaZakatSekertaris(),
           '/updateQurbanSekertaris': (context) =>
               const UpdateQurbanSekertaris(),
-          '/updateZakatSekertaris': (context) => UpdateZakatSekertaris(),
+          '/updateZakatSekertaris': (context) => const UpdateZakatSekertaris(),
           // '/readSapiSekertaris': (context) => ReadSapi(qurbanId: ,),
           '/yayasanSekertaris': (context) => Yayasan(),
           '/calenderSekertaris': (context) => const MyCalenderSeker(),

@@ -1,20 +1,28 @@
+import 'package:emosque_mobile/providers/providers.dart';
+import 'package:emosque_mobile/widgets/approve_batal.dart';
+import 'package:emosque_mobile/widgets/approve_belum.dart';
+import 'package:emosque_mobile/widgets/approve_setuju.dart';
+import 'package:emosque_mobile/widgets/dialog_batal.dart';
+import 'package:emosque_mobile/widgets/dialog_belum.dart';
+import 'package:emosque_mobile/widgets/dialog_setuju.dart';
 import 'package:flutter/material.dart';
-import 'package:emosque_mobile/utils/const.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-class PersetujuanSaldoKas extends StatefulWidget {
-  const PersetujuanSaldoKas({super.key});
+class ReadPersetujuanBendahara extends StatefulWidget {
+  const ReadPersetujuanBendahara({super.key});
 
   @override
-  _PersetujuanSaldoKasState createState() => _PersetujuanSaldoKasState();
+  _ReadPersetujuanBendaharaState createState() => _ReadPersetujuanBendaharaState();
 }
 
-class _PersetujuanSaldoKasState extends State<PersetujuanSaldoKas> with SingleTickerProviderStateMixin {
+class _ReadPersetujuanBendaharaState extends State<ReadPersetujuanBendahara>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this, initialIndex: 0); // Mengarahkan ke tab "Belum Disetujui"
+    _tabController = TabController(length: 3, vsync: this, initialIndex: 0);
   }
 
   @override
@@ -23,7 +31,7 @@ class _PersetujuanSaldoKasState extends State<PersetujuanSaldoKas> with SingleTi
       appBar: AppBar(
         title: Text(
           'Persetujuan Kas Masjid',
-          style: textTextStyle.copyWith(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 24.0,
             color: Colors.green[700],
@@ -32,8 +40,8 @@ class _PersetujuanSaldoKasState extends State<PersetujuanSaldoKas> with SingleTi
         centerTitle: true,
         bottom: TabBar(
           controller: _tabController,
-          labelColor: Colors.green[700], // Warna teks tab aktif
-          indicatorColor: Colors.green[700], // Warna indikator aktif
+          labelColor: Colors.green[700],
+          indicatorColor: Colors.green[700],
           tabs: const [
             Tab(text: 'Belum Disetujui'),
             Tab(text: 'Disetujui'),
@@ -43,31 +51,143 @@ class _PersetujuanSaldoKasState extends State<PersetujuanSaldoKas> with SingleTi
       ),
       body: TabBarView(
         controller: _tabController,
-        children: const [
-          // Content untuk tab "Belum Disetujui"
+        children: [
           Padding(
-            padding: EdgeInsets.all(20.0),
-            child: PersetujuanSaldoKas(
-
+            padding: const EdgeInsets.all(20.0),
+            child: FutureBuilder<void>(
+              future:
+                  Provider.of<KasProvider>(context, listen: false).getAllKas(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else {
+                  var kasList = Provider.of<KasProvider>(context).saldoKas;
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: kasList.length,
+                    itemBuilder: (context, index) {
+                      var kas = kasList[index];
+                      return GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return DialogBelum(
+                                title: kas.judul,
+                                catatan: '',
+                              );
+                            },
+                          );
+                        },
+                        child: ApproveBelum(
+                          judul: kas.judul,
+                          nominal: kas.nominal,
+                          date: kas.tanggal,
+                        ),
+                      );
+                    },
+                  );
+                }
+              },
             ),
           ),
-          // Content untuk tab "Disetujui"
           Padding(
-            padding: EdgeInsets.all(20.0),
-            child: PersetujuanSaldoKas(
-
+            padding: const EdgeInsets.all(20.0),
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: 1,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return const DialogSetuju(
+                          title: 'Kas Masjid',
+                          totalSaldo: 'Rp 50.000,00',
+                          tanggal: '20 Des 2023',
+                        );
+                      },
+                    );
+                  },
+                  child: ApproveSetuju(
+                    title: 'Kas Masjid ${index + 1}',
+                    amount: 'Rp 50.000,00',
+                    date: '20 Des 2023',
+                  ),
+                );
+              },
             ),
           ),
           // Content untuk tab "Dibatalkan"
           Padding(
-            padding: EdgeInsets.all(20.0),
-            child: PersetujuanSaldoKas(
-              
+            padding: const EdgeInsets.all(10.0),
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: 1,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return const DialogBatal(
+                          title: 'Kas Masjid',
+                          totalSaldo: 'Rp 50.000,00',
+                          tanggal: '20 Des 2023',
+                          catatan: 'Tidak sesuai dengan catatan saya',
+                        );
+                      },
+                    );
+                  },
+                  child: ApproveBatal(
+                    title: 'Kas Masjid ${index + 1}',
+                    amount: 'Rp 50.000,00',
+                    date: '20 Des 2023',
+                  ),
+                );
+              },
             ),
           ),
         ],
       ),
-      //bottomNavigationBar: BottomTabBar(),
+      bottomSheet: Stack(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 90,
+            color: Colors.white,
+          ),
+          Positioned(
+            top: 10,
+            right: 20,
+            left: 20,
+            bottom: 25,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/createPersetujuanSaldoKasBendahara');
+              },
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(Colors.green[700]),
+                shape: WidgetStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+              child: Text(
+                "Tambahkan Pengeluaran",
+                style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
