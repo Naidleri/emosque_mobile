@@ -96,9 +96,9 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
                           },
                         );
                       }).catchError((error) {
-                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text('data qurban gagal dihapus'),
-                          ));
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text('data qurban gagal dihapus'),
+                        ));
                       });
                     },
                     child: Row(
@@ -128,7 +128,8 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/updateQurbanSekertaris');
+                      Navigator.pushNamed(context, '/updateQurbanSekertaris',
+                          arguments: {'idQurban': qurban.idQurban});
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -201,11 +202,11 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
             backgroundColor: Colors.green[700],
           ),
           onPressed: () {
-            Navigator.pushNamed(context, '/createZakatSekertaris');
+            Navigator.pushNamed(context, '/createQurbanSekertaris');
           },
           child: const Center(
             child: Text(
-              'Tambah Catatan',
+              'Tambah Qurban',
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
           ),
