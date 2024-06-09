@@ -165,7 +165,9 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                             return 0;
                         }
                       }
-                      final formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate!);
+
+                      final formattedDate =
+                          DateFormat('yyyy-MM-dd').format(selectedDate!);
                       final newPerizinan = Perizinan(
                         0,
                         _pengajuController.text,
@@ -181,7 +183,14 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                           listen: false);
                       _perizinanProvider.createPerizinan(newPerizinan).then(
                           (_) => Navigator.pushNamed(
-                              context, "/readPerizinanSekertaris"));
+                                      context, "/readPerizinanSekertaris")
+                                  .catchError((error) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Gagal membuat perizinan'),
+                                  ),
+                                );
+                              }));
                     },
                     child: Container(
                       margin: const EdgeInsets.only(right: 5, top: 10),

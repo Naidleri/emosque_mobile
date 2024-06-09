@@ -13,13 +13,13 @@ class QurbanProvider extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  Future<void> createQurban (Qurban newQurban) async {
+  Future<void> createQurban(Qurban newQurban) async {
     _isLoading = true;
     notifyListeners();
-    try{
+    try {
       final storedToken = await _secureStorage.read(key: 'token');
-      final data = await _qurbanService.createQurban(newQurban, storedToken!); 
-    }catch(e){
+      final data = await _qurbanService.createQurban(newQurban, storedToken!);
+    } catch (e) {
       print('Error create qurban: $e');
       throw Exception('Failed to create qurban $e');
     }
@@ -27,44 +27,45 @@ class QurbanProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getAllQurban () async {
+  Future<void> getAllQurban() async {
     _isLoading = true;
     notifyListeners();
-    try{
+    try {
       final data = await _qurbanService.getAllQurban();
       _qurban = data;
-    }catch(e){
-        print('Error get allqurban: $e');
+    } catch (e) {
+      print('Error get allqurban: $e');
       throw Exception('Failed to get all qurban $e');
     }
-     _isLoading = false;
+    _isLoading = false;
     notifyListeners();
   }
 
-  Future<void> getQurbanById (int idQurban) async {
+  Future<void> getQurbanById(int idQurban) async {
     _isLoading = true;
     notifyListeners();
-    try{
+    try {
       final storedToken = await _secureStorage.read(key: 'token');
       final data = await _qurbanService.getQurbanById(idQurban, storedToken!);
       _qurban.clear();
       _qurban.add(data);
-    }catch(e){
-        print('Error get qurban: $e');
+    } catch (e) {
+      print('Error get qurban: $e');
       throw Exception('Failed to get qurban $e');
     }
-     _isLoading = false;
+    _isLoading = false;
     notifyListeners();
   }
 
-  Future<void> updateQurban (int idQurban, Qurban updatedQurban) async {
+  Future<void> updateQurban(int idQurban, Qurban updatedQurban) async {
     _isLoading = true;
     notifyListeners();
 
-    try{
+    try {
       final storedToken = await _secureStorage.read(key: 'token');
-      final data = await _qurbanService.updateQurban(idQurban, updatedQurban, storedToken!);
-    }catch(e){
+      final data = await _qurbanService.updateQurban(
+          idQurban, updatedQurban, storedToken!);
+    } catch (e) {
       print('Error update qurban: $e');
       throw Exception('Failed to update qurban $e');
     }
@@ -72,14 +73,14 @@ class QurbanProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> deleteQurban (int idQurban) async {
+  Future<void> deleteQurban(int idQurban) async {
     _isLoading = true;
     notifyListeners();
 
-    try{
+    try {
       final storedToken = await _secureStorage.read(key: 'token');
       final data = await _qurbanService.deleteQurban(idQurban, storedToken!);
-    }catch(e){
+    } catch (e) {
       print('Error delete qurban: $e');
       throw Exception('Failed to delete qurban $e');
     }

@@ -33,17 +33,18 @@ class _CreatePersetujuanSaldoKasState extends State<CreatePersetujuanSaldoKas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        leading: const Icon(Icons.arrow_back_ios_new),
-        title: Text(
-          "Persetujuan Saldo Kas",
-          style: GoogleFonts.poppins(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.green[700]),
+        appBar: AppBar(
+          centerTitle: true,
+          leading: const Icon(Icons.arrow_back_ios_new),
+          title: Text(
+            "Persetujuan Saldo Kas",
+            style: GoogleFonts.poppins(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.green[700]),
+          ),
+
         ),
-      ),
       body: ListView(
         children: [
           Column(

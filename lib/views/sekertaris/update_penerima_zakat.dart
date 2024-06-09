@@ -170,7 +170,6 @@ class _UpdatePenerimaZakatSekertaris
                     Container(
                       margin: const EdgeInsets.only(top: 16),
                       height: 52,
-                      // Mengatur lebar Container kedua menjadi maksimal
                       width: double.infinity,
                       padding: const EdgeInsets.only(left: 12),
                       decoration: BoxDecoration(

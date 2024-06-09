@@ -111,8 +111,9 @@ class MyApp extends StatelessWidget {
               const UpdatePerizinanSekertaris(),
           '/updatePenerimaZakatSekertaris': (context) =>
               const UpdatePenerimaZakatSekertaris(),
-          '/updateQurbanSekertaris': (context) =>
-              const UpdateQurbanSekertaris(),
+          '/updateQurbanSekertaris': (context) => const UpdateQurbanSekertaris(
+                idQurban: 0,
+              ),
           '/updateZakatSekertaris': (context) => const UpdateZakatSekertaris(),
           // '/readSapiSekertaris': (context) => ReadSapi(qurbanId: ,),
           '/yayasanSekertaris': (context) => Yayasan(),
