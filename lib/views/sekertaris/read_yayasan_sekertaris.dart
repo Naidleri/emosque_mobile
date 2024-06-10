@@ -157,20 +157,20 @@ class _ReadYayasanSekertarisState extends State<ReadYayasanSekertaris>
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                cardYayasan('Agus', '10 Des 2020', '11 Kg', () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (_) =>
-                  //             ReadDetailPenerimaZakat(qurban: )));
-                }, context),
-                cardYayasan('Agus', '10 Des 2020', '11 Kg', () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (_) =>
-                  //             ReadDetailPenerimaZakat(qurban: )));
-                }, context),
+                // cardYayasan('Agus', '10 Des 2020', '11 Kg', () {
+                //   Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (_) =>
+                //               ReadDetailPenerimaZakat(qurban: )));
+                // }, context),
+                // cardYayasan('Agus', '10 Des 2020', '11 Kg', () {
+                //   Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (_) =>
+                //               ReadDetailPenerimaZakat(qurban: )));
+                // }
               ],
             ),
           ),

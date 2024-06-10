@@ -15,6 +15,11 @@ class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
   @override
   void initState() {
     super.initState();
+
+    _loadZakatData();
+  }
+
+  void _loadZakatData() {
     Future.microtask(
         () => Provider.of<ZakatProvider>(context, listen: false).getAllZakat());
   }
@@ -119,7 +124,11 @@ class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
                         'jumlahZakat': zakat.jumlahZakat,
                         'namaJenisZakat': zakat.namaJenisZakat,
                       },
-                    );
+                    ).then((result) {
+                      if (result == true) {
+                        _loadZakatData();
+                      }
+                    });
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
