@@ -43,12 +43,12 @@ class LaporanProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  Future<void> approveLaporan (int idLaporan) async{
+  Future<void> approveLaporan (int idLaporan, String catatan) async{
     _isLoading = true;
     notifyListeners();
     try{
       final storedToken = await _secureStorage.read(key: 'token');
-      final data = await _laporanService.approveLaporan(idLaporan, storedToken!);
+      final data = await _laporanService.approveLaporan(idLaporan, catatan, storedToken!);
     }catch(e){
       print('Error approve laporan kas: $e');
       throw Exception('Failed to approve laporan kas $e');
@@ -57,12 +57,12 @@ class LaporanProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  Future<void> rejectLaporan (int idLaporan) async{
+  Future<void> rejectLaporan (int idLaporan, String catatan) async{
     _isLoading = true;
     notifyListeners();
     try{
       final storedToken = await _secureStorage.read(key: 'token');
-      final data = await _laporanService.rejectLaporan(idLaporan, storedToken!);
+      final data = await _laporanService.rejectLaporan(idLaporan, catatan, storedToken!);
     }catch(e){
       print('Error reject laporan kas: $e');
       throw Exception('Failed to reject laporan kas $e');

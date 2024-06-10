@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class DialogBelum extends StatelessWidget {
   final String title;
   final String catatan;
-  final Function setuju;
-  final Function tidakSetuju;
+  final Function(String) setuju; // Updated to accept a String parameter
+  final Function(String) tidakSetuju; // Updated to accept a String parameter
 
   const DialogBelum({
-    super.key,
+    Key? key,
     required this.title,
     required this.catatan,
     required this.setuju,
@@ -95,7 +95,6 @@ class DialogBelum extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xff06D773),
@@ -110,7 +109,7 @@ class DialogBelum extends StatelessWidget {
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      setuju();
+                      setuju(_catatanController.text); // Pass the catatan value
                       Navigator.of(context).pop();
                     }
                   },
@@ -130,7 +129,7 @@ class DialogBelum extends StatelessWidget {
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      tidakSetuju();
+                      tidakSetuju(_catatanController.text); // Pass the catatan value
                       Navigator.of(context).pop();
                     }
                   },

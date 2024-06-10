@@ -85,17 +85,17 @@ class _ReadPersetujuanBendaharaState extends State<ReadPersetujuanBendahara>
                               return DialogBelum(
                                         title: laporan.judul,
                                         catatan: laporan.catatan ?? '',
-                                        setuju: () {
+                                        setuju: (catatan) {
                                           Provider.of<LaporanProvider>(context,
                                                   listen: false)
                                               .approveLaporan(
-                                                  laporan.idLaporan);
+                                                  laporan.idLaporan, '');
                                         },
-                                        tidakSetuju: () {
+                                        tidakSetuju: (catatan) {
                                           Provider.of<LaporanProvider>(context,
                                                   listen: false)
                                               .rejectLaporan(
-                                                  laporan.idLaporan);
+                                                  laporan.idLaporan, '');
                                         },
                                       );
                             },
@@ -145,17 +145,17 @@ class _ReadPersetujuanBendaharaState extends State<ReadPersetujuanBendahara>
                               return DialogBelum(
                                         title: laporan.judul,
                                         catatan: laporan.catatan ?? '',
-                                        setuju: () {
+                                        setuju: (catatan) {
                                           Provider.of<LaporanProvider>(context,
                                                   listen: false)
                                               .approveLaporan(
-                                                  laporan.idLaporan);
+                                                  laporan.idLaporan, '');
                                         },
-                                        tidakSetuju: () {
+                                        tidakSetuju: (catatan) {
                                           Provider.of<LaporanProvider>(context,
                                                   listen: false)
                                               .rejectLaporan(
-                                                  laporan.idLaporan);
+                                                  laporan.idLaporan, '');
                                         },
                                       );
                             },
@@ -206,17 +206,17 @@ class _ReadPersetujuanBendaharaState extends State<ReadPersetujuanBendahara>
                               return DialogBelum(
                                         title: laporan.judul,
                                         catatan: laporan.catatan ?? '',
-                                        setuju: () {
+                                        setuju: (catatan) {
                                           Provider.of<LaporanProvider>(context,
                                                   listen: false)
                                               .approveLaporan(
-                                                  laporan.idLaporan);
+                                                  laporan.idLaporan, '');
                                         },
-                                        tidakSetuju: () {
+                                        tidakSetuju: (catatan) {
                                           Provider.of<LaporanProvider>(context,
                                                   listen: false)
                                               .rejectLaporan(
-                                                  laporan.idLaporan);
+                                                  laporan.idLaporan, '');
                                         },
                                       );
                             },
