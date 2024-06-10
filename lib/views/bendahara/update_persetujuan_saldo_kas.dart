@@ -129,9 +129,9 @@ class _UpdatePersetujuanSaldoKasState extends State<UpdatePersetujuanSaldoKas> {
                   Navigator.pop(context);
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
+                  backgroundColor: WidgetStateProperty.all(
                       const Color.fromARGB(255, 255, 255, 255)),
-                  shape: MaterialStateProperty.all(
+                  shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),

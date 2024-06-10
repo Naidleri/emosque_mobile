@@ -1,20 +1,18 @@
-import 'package:emosque_mobile/widgets/approve_batal.dart';
-import 'package:emosque_mobile/widgets/approve_belum.dart';
-import 'package:emosque_mobile/widgets/approve_setuju.dart';
-import 'package:emosque_mobile/widgets/dialog_batal.dart';
-import 'package:emosque_mobile/widgets/dialog_belum.dart';
-import 'package:emosque_mobile/widgets/dialog_setuju.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import 'package:emosque_mobile/providers/providers.dart';
+import 'package:emosque_mobile/widgets/approve_belum.dart';
+import 'package:emosque_mobile/widgets/dialog_belum.dart';
 
 class ReadPersetujuanTakmir extends StatefulWidget {
   const ReadPersetujuanTakmir({super.key});
 
   @override
-  _ReadPersetujuanTakmirState createState() => _ReadPersetujuanTakmirState();
+  State<ReadPersetujuanTakmir> createState() => _ReadPersetujuanTakmirState();
 }
 
-class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir> with SingleTickerProviderStateMixin {
+class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -50,94 +48,67 @@ class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir> with Sing
       body: TabBarView(
         controller: _tabController,
         children: [
-          // Content untuk tab "Belum Disetujui"
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: ListView.builder(
+          buildLaporanList(context, false, true),
+          buildLaporanList(context, true, false),
+          buildLaporanList(context, false, false),
+        ],
+      ),
+    );
+  }
+
+  Widget buildLaporanList(BuildContext context, bool isApproved, bool isEmptyNote) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: FutureBuilder<void>(
+        future: Provider.of<LaporanProvider>(context, listen: false).getAllLaporan(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            var laporanList = Provider.of<LaporanProvider>(context).laporanKas;
+            var filteredLaporanList = laporanList.where((laporan) {
+              if (isApproved) {
+                return laporan.persetujuan;
+              } else {
+                return !laporan.persetujuan && (isEmptyNote ? laporan.catatan.isEmpty : laporan.catatan.isNotEmpty);
+              }
+            }).toList();
+
+            return ListView.builder(
               shrinkWrap: true,
-              itemCount: 1,
+              itemCount: filteredLaporanList.length,
               itemBuilder: (context, index) {
+                var laporan = filteredLaporanList[index];
                 return GestureDetector(
                   onTap: () {
                     showDialog(
                       context: context,
-                      builder: (BuildContext context) {
-                        return const DialogBelum(
-                          title: 'Kas Masjid',
-                          catatan: '',
+                      builder: (_) {
+                        return DialogBelum(
+                          title: laporan.judul,
+                          catatan: laporan.catatan ?? '',
+                          setuju: (catatan) {
+                            Provider.of<LaporanProvider>(context, listen: false).approveLaporan(laporan.idLaporan, catatan);
+                          },
+                          tidakSetuju: (catatan) {
+                            Provider.of<LaporanProvider>(context, listen: false).rejectLaporan(laporan.idLaporan, catatan);
+                          },
                         );
                       },
                     );
                   },
                   child: ApproveBelum(
-                    title: 'Kas Masjid ${index + 1}',
-                    amount: 'Rp 50.000,00',
-                    date: '20 Des 2023',
+                    judul: laporan.judul,
+                    nominal: laporan.totalSaldo,
+                    date: laporan.tanggal,
                   ),
                 );
               },
-            ),
-          ),
-          // Content untuk tab "Disetujui"
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: 1,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const DialogSetuju(
-                          title: 'Kas Masjid',
-                          totalSaldo: 'Rp 50.000,00',
-                          tanggal: '20 Des 2023',
-                        );
-                      },
-                    );
-                  },
-                  child: ApproveSetuju(
-                    title: 'Kas Masjid ${index + 1}',
-                    amount: 'Rp 50.000,00',
-                    date: '20 Des 2023',
-                  ),
-                );
-              },
-            ),
-          ),
-          // Content untuk tab "Dibatalkan"
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: 1,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const DialogBatal(
-                          title: 'Kas Masjid',
-                          totalSaldo: 'Rp 50.000,00',
-                          tanggal: '20 Des 2023',
-                          catatan: 'Tidak sesuai dengan catatan saya',
-                        );
-                      },
-                    );
-                  },
-                  child: ApproveBatal(
-                    title: 'Kas Masjid ${index + 1}',
-                    amount: 'Rp 50.000,00',
-                    date: '20 Des 2023',
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
+            );
+          }
+        },
       ),
     );
   }

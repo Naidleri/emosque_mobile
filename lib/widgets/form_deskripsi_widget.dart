@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class formDeskripsi extends StatelessWidget {
-  final title;
-  final hint;
-  const formDeskripsi({super.key, required this.title, required this.hint});
+class FormDeskripsiWidget extends StatelessWidget {
+  final String title;
+  final String hint;
+  final TextEditingController controller;
+  const FormDeskripsiWidget(
+      {super.key, required this.title, required this.hint, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +22,14 @@ class formDeskripsi extends StatelessWidget {
                     color: Colors.black))),
         SizedBox(
           height: 73,
-          width: 309,
+          width: MediaQuery.of(context).size.width * 0.86,
           child: TextField(
+            controller: controller,
             decoration: InputDecoration(
                 hintText: hint,
                 border: const OutlineInputBorder(),
                 focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.greenAccent))),
+                    borderSide: BorderSide(color: Colors.green))),
           ),
         ),
       ],

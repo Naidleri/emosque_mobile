@@ -8,19 +8,25 @@ class ReadPerizinanSekertaris extends StatefulWidget {
   const ReadPerizinanSekertaris({super.key});
 
   @override
-  State<ReadPerizinanSekertaris> createState() => _ReadPerizinanSekertarisState();
+  State<ReadPerizinanSekertaris> createState() =>
+      _ReadPerizinanSekertarisState();
 }
 
 class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    Future.microtask(()=> Provider.of<PerizinanProvider>(context, listen: false).getAllPerizinan());
+    _loadPerizinanData();
+  }
+
+  void _loadPerizinanData() {
+    Future.microtask(() =>
+        Provider.of<PerizinanProvider>(context, listen: false)
+            .getAllPerizinan());
   }
 
   Widget cardPerizinan(Perizinan perizinan, BuildContext context) {
     return Container(
-
       decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(color: Color.fromRGBO(172, 172, 172, 1), width: 0.7),
@@ -63,31 +69,31 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
                   ),
                   onPressed: () {
                     Provider.of<PerizinanProvider>(context, listen: false)
-                          .deletePerizinan(perizinan.idDetailPerizinan)
-                          .then((_) {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text('Berhasil dihapus'),
-                              content:
-                                  const Text('Data perizinan berhasil dihapus'),
-                              actions: [
-                                ElevatedButton(
-                                  child: const Text('OK'),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }).catchError((error) {
-                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text('data perizinan gagal dihapus'),
-                          ));
-                      });
+                        .deletePerizinan(perizinan.idDetailPerizinan)
+                        .then((_) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text('Berhasil dihapus'),
+                            content:
+                                const Text('Data perizinan berhasil dihapus'),
+                            actions: [
+                              ElevatedButton(
+                                child: const Text('OK'),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }).catchError((error) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('data perizinan gagal dihapus'),
+                      ));
+                    });
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -117,9 +123,19 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
                   ),
                   onPressed: () {
                     Navigator.pushNamed(
-                      context, '/updatePerizinanSekertaris'
-                      
-                    );
+                      context,
+                      '/updatePerizinanSekertaris',
+                      arguments: {
+                        'idPerizinan': perizinan.perizinanId,
+                        'jenisPerizinan': perizinan.perizinanId,
+                        'deskripsi': perizinan.deskripsi,
+                        'namaPengaju': perizinan.namaPengaju,
+                      },
+                    ).then((result) {
+                      if (result == true) {
+                        _loadPerizinanData();
+                      }
+                    });
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

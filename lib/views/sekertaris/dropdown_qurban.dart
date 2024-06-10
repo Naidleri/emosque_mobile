@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DropdownQurban extends StatefulWidget {
-  final String? initialValue;
+  final String initialValue;
   final ValueChanged<String?> onChanged;
+  final List<String> options;
 
   DropdownQurban({
     required this.initialValue,
     required this.onChanged,
+    required this.options,
   });
 
   @override
@@ -15,8 +17,7 @@ class DropdownQurban extends StatefulWidget {
 }
 
 class _DropdownQurbanState extends State<DropdownQurban> {
-  String? jenis;
-  List<String> jenisZakat = ['Sapi', 'Kambing'];
+  late String jenis;
 
   @override
   void initState() {
@@ -61,21 +62,21 @@ class _DropdownQurbanState extends State<DropdownQurban> {
                 value: jenis,
                 onChanged: (String? newValue) {
                   setState(() {
-                    jenis = newValue;
+                    jenis = newValue ?? widget.initialValue;
                   });
-                  jenis = newValue;
+
                   widget.onChanged(newValue);
                 },
-                items: jenisZakat.map<DropdownMenuItem<String>>((String value) {
+                items: widget.options
+                    .map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Container(
                       child: Padding(
-                        padding: const EdgeInsets.all(
-                            0), // Add padding to the dropdown item
+                        padding: const EdgeInsets.all(0),
                         child: Text(
                           value,
-                          style: TextStyle (
+                          style: TextStyle(
                             color: Colors.black,
                           ),
                         ),

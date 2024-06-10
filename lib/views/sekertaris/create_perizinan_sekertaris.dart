@@ -166,10 +166,12 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                         }
                       }
 
+                      final formattedDate =
+                          DateFormat('yyyy-MM-dd').format(selectedDate!);
                       final newPerizinan = Perizinan(
                         0,
                         _pengajuController.text,
-                        DateFormat('yyyy-MM-dd').format(selectedDate!),
+                        formattedDate,
                         _deskripsiController.text,
                         namaPerizinanToValue(namaPerizinan),
                         pjToValue(pj),
@@ -180,8 +182,22 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                           context,
                           listen: false);
                       _perizinanProvider.createPerizinan(newPerizinan).then(
-                          (_) => Navigator.pushNamed(
-                              context, "/readPerizinanSekertaris"));
+                        (_) {
+                          Navigator.pushNamed(
+                              context, "/readPerizinanSekertaris");
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Perizinan berhasil dibuat'),
+                            ),
+                          );
+                        },
+                      ).catchError((error) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Gagal membuat perizinan'),
+                          ),
+                        );
+                      });
                     },
                     child: Container(
                       margin: const EdgeInsets.only(right: 5, top: 10),

@@ -1,14 +1,18 @@
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class UpdatePemasukanBendahara extends StatefulWidget {
+  final int idKas;
   final String judul;
   final int nominal;
   final String deskripsi;
 
   const UpdatePemasukanBendahara({
     super.key,
+    required this.idKas,
     required this.judul,
     required this.nominal,
     required this.deskripsi,
@@ -128,7 +132,33 @@ class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Provider.of<KasProvider>(context, listen: false)
+                      .deleteKas(widget.idKas)
+                      .then((_) {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Berhasil dihapus'),
+                          content: const Text('Data kas berhasil dihapus'),
+                          actions: [
+                            ElevatedButton(
+                              child: const Text('OK'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }).catchError((error) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Data kas gagal dihapus'),
+                      ),
+                    );
+                  });
                 },
                 style: ButtonStyle(
                   backgroundColor: WidgetStateProperty.all(

@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ReadPersetujuanSaldoKas extends StatefulWidget {
   const ReadPersetujuanSaldoKas({super.key});
-
+  
   @override
   State<ReadPersetujuanSaldoKas> createState() => _MyWidgetState();
 }

@@ -5,10 +5,10 @@ import 'package:emosque_mobile/views/auth/register_pengurus.dart';
 import 'package:emosque_mobile/views/bendahara/bottom_navigasi_bendahara.dart';
 import 'package:emosque_mobile/views/bendahara/create_persetujuan_saldo_kas.dart';
 import 'package:emosque_mobile/views/bendahara/create_pemasukan_bendahara_page.dart';
-import 'package:emosque_mobile/views/bendahara/delete_persetujuan_saldo_kas.dart.dart';
+import 'package:emosque_mobile/views/bendahara/delete_persetujuan_saldo_kas.dart';
+import 'package:emosque_mobile/views/bendahara/persetujuan_saldo_kas.dart';
 import 'package:emosque_mobile/views/bendahara/read_pemasukan_bendahara_page.dart';
 import 'package:emosque_mobile/views/bendahara/read_pengeluaran_bendahara.dart';
-import 'package:emosque_mobile/views/bendahara/read_persetujuan_saldo_kas.dart';
 import 'package:emosque_mobile/views/bendahara/riwayat_transaksi.dart';
 import 'package:emosque_mobile/views/bendahara/create_pengeluaran_bendahara.dart';
 import 'package:emosque_mobile/views/jamaah/kalender_jamaah.dart';
@@ -17,12 +17,12 @@ import 'package:emosque_mobile/views/jamaah/profile_jamaah.dart';
 import 'package:emosque_mobile/views/jamaah/qurban_jamaah.dart';
 import 'package:emosque_mobile/views/sekertaris/bottom_navigasi_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/calender_seker.dart';
+import 'package:emosque_mobile/views/sekertaris/create_penerima_qurban_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/create_penerima_zakat_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/create_perizinan_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/update_perizinan_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/read_perizinan_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/read_qurban_sekertaris.dart';
-import 'package:emosque_mobile/views/sekertaris/read_sapi.dart';
 import 'package:emosque_mobile/views/sekertaris/read_yayasan_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/create_qurban_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/create_zakat_sekertaris.dart';
@@ -31,7 +31,8 @@ import 'package:emosque_mobile/views/sekertaris/update_qurban.dart';
 import 'package:emosque_mobile/views/sekertaris/update_zakat.dart';
 import 'package:emosque_mobile/views/sekertaris/yayasan.dart';
 import 'package:emosque_mobile/views/sekertaris/read_zakat_sekertaris.dart';
-import 'package:emosque_mobile/views/takmir/homepage_takmir.dart';
+import 'package:emosque_mobile/views/takmir/bottom_navigasi_takmir.dart';
+import 'package:emosque_mobile/views/takmir/read_laporan_takmir.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -41,7 +42,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -61,13 +62,16 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => PerizinanProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => LaporanProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
           // akun
           '/login': (context) => const LoginPage(),
-          '/registerJamaah': (context) => RegisterJamaahPage(),
+          '/registerJamaah': (context) => const RegisterJamaahPage(),
           '/registerPengurus': (context) => const RegisterPengurusPage(),
           // bendahara
           '/readpemasukanbendahara': (context) =>
@@ -75,7 +79,7 @@ class MyApp extends StatelessWidget {
           '/readpengeluaranbendahara': (context) =>
               const ReadPengeluaranBendahara(),
           '/readpersetujuanbendahara': (context) =>
-              const ReadPersetujuanSaldoKas(),
+              const ReadPersetujuanBendahara(),
           '/createPemasukanBendahara': (context) =>
               CreatePemasukanBendaharaPage(),
           '/createPengeluaranBendahara': (context) =>
@@ -93,23 +97,33 @@ class MyApp extends StatelessWidget {
           '/qurbanJamaah': (context) => const QurbanJamaah(),
           // sekertaris
           '/homepageSekertaris': (context) => const BottomNavigasiSekertaris(),
-          '/readPerizinanSekertaris': (context) => const ReadPerizinanSekertaris(),
-          '/readZakatFitrahSekertaris': (context) => const ReadZakatSekertaris(),
+          '/readPerizinanSekertaris': (context) =>
+              const ReadPerizinanSekertaris(),
+          '/readZakatFitrahSekertaris': (context) =>
+              const ReadZakatSekertaris(),
           '/readQurbanSekertaris': (context) => const ReadQurbanSekertaris(),
           '/readYayasanSekertaris': (context) => const ReadYayasanSekertaris(),
-          '/createPerizinanSekertaris': (context) => const CreatePerizinanSekertaris(),
+          '/createPerizinanSekertaris': (context) =>
+              const CreatePerizinanSekertaris(),
           '/createZakatSekertaris': (context) => CreateZakatSekertaris(),
           '/createQurbanSekertaris': (context) => CreateQurbanSekertaris(),
-          '/createPenerimaZakatSekertaris': (context) => CreatePenerimaZakatSekertaris(),
-          '/updatePerizinanSekertaris': (context) => const UpdatePerizinanSekertaris(),
-          '/updatePenerimaZakatSekertaris': (context) => const UpdatePenerimaZakatSekertaris(),
-          '/updateQurbanSekertaris': (context) => const UpdateQurbanSekertaris(),
-          '/updateZakatSekertaris': (context) => UpdateZakatSekertaris(),
+          '/createPenerimaZakatSekertaris': (context) =>
+              const CreatePenerimaZakatSekertaris(),
+          '/createPenerimaQurbanSekertaris': (context) => const CreatePenerimaQurbanSekertaris(),
+          '/updatePerizinanSekertaris': (context) =>
+              const UpdatePerizinanSekertaris(),
+          '/updatePenerimaZakatSekertaris': (context) =>
+              const UpdatePenerimaZakatSekertaris(),
+          '/updateQurbanSekertaris': (context) => const UpdateQurbanSekertaris(
+                idQurban: 0,
+              ),
+          '/updateZakatSekertaris': (context) => const UpdateZakatSekertaris(),
           // '/readSapiSekertaris': (context) => ReadSapi(qurbanId: ,),
           '/yayasanSekertaris': (context) => Yayasan(),
           '/calenderSekertaris': (context) => const MyCalenderSeker(),
           // Takmir
-          '/homepageTakmir': (context) => const HomepageTakmir(),
+          '/homepageTakmir': (context) => const BottomNavigasiTakmir(),
+          '/readLaporanTakmir': (context) => const ReadLaporanTakmir()
         },
         home: const LoginPage(),
       ),

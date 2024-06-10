@@ -132,6 +132,7 @@ class _ReadPemasukanBendaharaPageState extends State<ReadPemasukanBendaharaPage>
                           context,
                           MaterialPageRoute(
                             builder: (context) => UpdatePemasukanBendahara(
+                              idKas: kas.idSaldoKas,
                               judul: kas.judul,
                               nominal: kas.nominal,
                               deskripsi: kas.deskripsi,
@@ -164,8 +165,8 @@ class _ReadPemasukanBendaharaPageState extends State<ReadPemasukanBendaharaPage>
                 Navigator.pushNamed(context, '/createPemasukanBendahara');
               },
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.green[700]),
-                shape: MaterialStateProperty.all(
+                backgroundColor: WidgetStateProperty.all(Colors.green[700]),
+                shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),

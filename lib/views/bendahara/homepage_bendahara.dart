@@ -1,93 +1,122 @@
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:google_fonts/google_fonts.dart';
-// Halaman pertama 
-class HomePageBendahara extends StatelessWidget {
+import 'package:provider/provider.dart';
+
+class HomePageBendahara extends StatefulWidget {
   const HomePageBendahara({super.key});
+
+  @override
+  State<HomePageBendahara> createState() => _HomePageBendaharaState();
+}
+
+class _HomePageBendaharaState extends State<HomePageBendahara> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() => Provider.of<KasProvider>(context, listen: false).getAllKas());
+  }
+
   Widget mainCard(BuildContext context) {
     double lebar = MediaQuery.of(context).size.width * 0.86;
-    return Center(
-      child: Container(
-        margin: const EdgeInsets.only(top: 30),
-        width: lebar,
-        height: 200,
-        decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(
-              Radius.circular(10),
-            ),
-            color: Colors.green),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30, left: 25, bottom: 10),
-              child: Text(
-                "Total Saldo Kas",
-                style: GoogleFonts.poppins(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 25),
-              child: Text(
-                "Rp 8.888.000",
-                style: GoogleFonts.poppins(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white),
-              ),
-            ),
-            Row(
+    return Consumer<KasProvider>(
+      builder: (context, kasProvider, child) {
+        final transaksiList = kasProvider.saldoKas.toList();
+
+        // Calculate totals
+        final totalPemasukan = transaksiList
+            .where((transaksi) => transaksi.jenis == 'pemasukan')
+            .fold(0, (sum, transaksi) => sum + transaksi.nominal);
+        final totalPengeluaran = transaksiList
+            .where((transaksi) => transaksi.jenis == 'pengeluaran')
+            .fold(0, (sum, transaksi) => sum + transaksi.nominal);
+        final totalSaldo = totalPemasukan - totalPengeluaran;
+
+        return Center(
+          child: Container(
+            margin: const EdgeInsets.only(top: 30),
+            width: lebar,
+            height: 200,
+            decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
+                color: Colors.green),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 25, right: 20, top: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Total Pemasukan",
-                          style: GoogleFonts.poppins(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white)),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Text("Rp 800.000",
-                            style: GoogleFonts.poppins(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white)),
-                      )
-                    ],
+                  padding: const EdgeInsets.only(top: 30, left: 25, bottom: 10),
+                  child: Text(
+                    "Total Saldo Kas",
+                    style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Total Pengeluaran",
-                          style: GoogleFonts.poppins(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white)),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Text("Rp 2.000.000",
-                            style: GoogleFonts.poppins(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white)),
-                      )
-                    ],
+                  padding: const EdgeInsets.only(left: 25),
+                  child: Text(
+                    "Rp $totalSaldo",
+                    style: GoogleFonts.poppins(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white),
                   ),
                 ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25, right: 20, top: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Total Pemasukan",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white)),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Text("Rp $totalPemasukan",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white)),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Total Pengeluaran",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white)),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Text("Rp $totalPengeluaran",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white)),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                )
               ],
-            )
-          ],
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -133,7 +162,7 @@ class HomePageBendahara extends StatelessWidget {
   }
 
   Widget cardDropDown(Icon icon, String judul, String tanggal, String uang,
-      VoidCallback onTap, double lebar) {
+      VoidCallback onTap, double lebar, Color color) {
     return InkWell(
       onTap: onTap,
       child: SizedBox(
@@ -147,7 +176,7 @@ class HomePageBendahara extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.only(right: 10),
                   decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: color,
                       borderRadius: BorderRadius.circular(99)),
                   padding: const EdgeInsets.all(8.0),
                   child: icon,
@@ -209,102 +238,91 @@ class HomePageBendahara extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(children: [
-          mainCard(context),
-          Container(
-            width: lebar,
-            margin: const EdgeInsets.only(top: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // masuk ke file pemasukan_bendahara
-                cardMenu("assets/images/dompet.png", "Pemasukan", () {
-                  Navigator.pushNamed(context, "/readpemasukanbendahara");
-                },
-                    icon: const Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
-                      size: 18,
+      body: Consumer<KasProvider>(
+        builder: (context, kasProvider, child) {
+          if (kasProvider.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          final transaksiList = kasProvider.saldoKas.toList();
+
+          return SingleChildScrollView(
+            child: Column(children: [
+              mainCard(context),
+              Container(
+                width: lebar,
+                margin: const EdgeInsets.only(top: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    cardMenu("assets/images/dompet.png", "Pemasukan", () {
+                      Navigator.pushNamed(context, "/readpemasukanbendahara");
+                    },
+                        icon: const Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                          size: 18,
+                        ),
+                        color: Colors.green[700]),
+                    cardMenu("assets/images/dompet.png", "Pengeluaran", () {
+                      Navigator.pushNamed(context, "/readpengeluaranbendahara");
+                    },
+                        icon: const Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                          size: 18,
+                        ),
+                        color: Colors.red),
+                    cardMenu(
+                      "assets/images/persetujuan.png",
+                      "Persetujuan\nSaldo Kas",
+                      () {
+                        Navigator.pushNamed(context, "/readpersetujuanbendahara");
+                      },
                     ),
-                    color: Colors.green[700]),
-                // masuk ke file pengeluaran_bendahara
-                cardMenu("assets/images/dompet.png", "Pengeluaran", () {
-                  Navigator.pushNamed(context, "/readpengeluaranbendahara");
-                },
-                    icon: const Icon(
-                      Icons.arrow_forward,
-                      color: Colors.white,
-                      size: 18,
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 30),
+                width: lebar,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Transaksi terakhir",
+                      style: GoogleFonts.poppins(
+                          fontSize: 20, fontWeight: FontWeight.w700),
                     ),
-                    color: Colors.red),
-                cardMenu(
-                  "assets/images/persetujuan.png",
-                  "Persetujuan\nSaldo Kas",
-                  () {
-                    Navigator.pushNamed(
-                        context, "/readpersetujuanbendahara");
-                  },
+                    GestureDetector(
+                      child: const Text(
+                        "Lihat semua",
+                      ),
+                      onTap: () {
+                        Navigator.pushNamed(context, "/riwayatTransaksiBendahara");
+                      },
+                    )
+                  ],
                 ),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 30),
-            width: lebar,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Transaksi terakhir",
-                  style: GoogleFonts.poppins(
-                      fontSize: 20, fontWeight: FontWeight.w700),
-                ),
-                GestureDetector(
-                  child: const Text(
-                    "Lihat semua",
+              ),
+              ...transaksiList.take(3).map((transaksi) {
+                return cardDropDown(
+                  Icon(
+                    transaksi.jenis == 'pemasukan' ? Icons.arrow_back : Icons.arrow_forward,
+                    size: 16,
+                    color: Colors.white,
                   ),
-                  onTap: () {
-                    Navigator.pushNamed(context, "/riwayatTransaksiBendahara");
-                  },
-                )
-              ],
-            ),
-          ),
-          cardDropDown(
-              const Icon(
-                Icons.arrow_forward,
-                size: 16,
-                color: Colors.white,
-              ),
-              "Pembangunan",
-              "09 April 2024",
-              "Rp 800.000",
-              () {},
-              lebar),
-          cardDropDown(
-              const Icon(
-                Icons.arrow_forward,
-                size: 16,
-                color: Colors.white,
-              ),
-              "Pembangunan",
-              "09 April 2024",
-              "Rp 800.000",
-              () {},
-              lebar),
-          cardDropDown(
-              const Icon(
-                Icons.arrow_forward,
-                size: 16,
-                color: Colors.white,
-              ),
-              "Pembangunan",
-              "09 April 2024",
-              "Rp 800.000",
-              () {},
-              lebar),
-        ]),
+                  transaksi.judul,
+                  transaksi.tanggal,
+                  "Rp ${transaksi.nominal}",
+                  () {},
+                  lebar,
+                  transaksi.jenis == 'pemasukan' ? Colors.green : Colors.red,
+                );
+              }).toList(),
+            ]),
+          );
+        },
       ),
     );
   }

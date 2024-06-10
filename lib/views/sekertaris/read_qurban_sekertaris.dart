@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/views/sekertaris/read_sapi.dart';
-import 'package:emosque_mobile/models/models.dart'; // Pastikan untuk mengimpor model Qurban
+import 'package:emosque_mobile/models/models.dart';
 
 class ReadQurbanSekertaris extends StatefulWidget {
   const ReadQurbanSekertaris({super.key});
@@ -16,6 +16,10 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
   @override
   void initState() {
     super.initState();
+    _loadQurbanData();
+  }
+
+  void _loadQurbanData() {
     Future.microtask(() =>
         Provider.of<QurbanProvider>(context, listen: false).getAllQurban());
   }
@@ -89,6 +93,7 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
                                   child: const Text('OK'),
                                   onPressed: () {
                                     Navigator.pop(context);
+                                    _loadQurbanData();
                                   },
                                 ),
                               ],
@@ -96,9 +101,9 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
                           },
                         );
                       }).catchError((error) {
-                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text('data qurban gagal dihapus'),
-                          ));
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text('data qurban gagal dihapus'),
+                        ));
                       });
                     },
                     child: Row(
@@ -128,7 +133,13 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/updateQurbanSekertaris');
+                      Navigator.pushNamed(context, '/updateQurbanSekertaris',
+                              arguments: {'idQurban': qurban.idQurban})
+                          .then((result) {
+                        if (result == true) {
+                          _loadQurbanData();
+                        }
+                      });
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -201,11 +212,11 @@ class _ReadQurbanSekertarisState extends State<ReadQurbanSekertaris> {
             backgroundColor: Colors.green[700],
           ),
           onPressed: () {
-            Navigator.pushNamed(context, '/createZakatSekertaris');
+            Navigator.pushNamed(context, '/createQurbanSekertaris');
           },
           child: const Center(
             child: Text(
-              'Tambah Catatan',
+              'Tambah Qurban',
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
           ),
