@@ -79,27 +79,7 @@ class _ReadPersetujuanBendaharaState extends State<ReadPersetujuanBendahara>
                       var laporan = filteredLaporanList[index];
                       return GestureDetector(
                         onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return DialogBelum(
-                                        title: laporan.judul,
-                                        catatan: laporan.catatan ?? '',
-                                        setuju: (catatan) {
-                                          Provider.of<LaporanProvider>(context,
-                                                  listen: false)
-                                              .approveLaporan(
-                                                  laporan.idLaporan, '');
-                                        },
-                                        tidakSetuju: (catatan) {
-                                          Provider.of<LaporanProvider>(context,
-                                                  listen: false)
-                                              .rejectLaporan(
-                                                  laporan.idLaporan, '');
-                                        },
-                                      );
-                            },
-                          );
+                          
                         },
                         child: ApproveBelum(
                           judul: laporan.judul,
@@ -139,27 +119,7 @@ class _ReadPersetujuanBendaharaState extends State<ReadPersetujuanBendahara>
                       var laporan = filteredLaporanList[index];
                       return GestureDetector(
                         onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return DialogBelum(
-                                        title: laporan.judul,
-                                        catatan: laporan.catatan ?? '',
-                                        setuju: (catatan) {
-                                          Provider.of<LaporanProvider>(context,
-                                                  listen: false)
-                                              .approveLaporan(
-                                                  laporan.idLaporan, '');
-                                        },
-                                        tidakSetuju: (catatan) {
-                                          Provider.of<LaporanProvider>(context,
-                                                  listen: false)
-                                              .rejectLaporan(
-                                                  laporan.idLaporan, '');
-                                        },
-                                      );
-                            },
-                          );
+                         
                         },
                         child: ApproveBelum(
                           judul: laporan.judul,
@@ -200,27 +160,7 @@ class _ReadPersetujuanBendaharaState extends State<ReadPersetujuanBendahara>
                       var laporan = filteredLaporanList[index];
                       return GestureDetector(
                         onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return DialogBelum(
-                                        title: laporan.judul,
-                                        catatan: laporan.catatan ?? '',
-                                        setuju: (catatan) {
-                                          Provider.of<LaporanProvider>(context,
-                                                  listen: false)
-                                              .approveLaporan(
-                                                  laporan.idLaporan, '');
-                                        },
-                                        tidakSetuju: (catatan) {
-                                          Provider.of<LaporanProvider>(context,
-                                                  listen: false)
-                                              .rejectLaporan(
-                                                  laporan.idLaporan, '');
-                                        },
-                                      );
-                            },
-                          );
+                          
                         },
                         child: ApproveBelum(
                           judul: laporan.judul,
@@ -262,7 +202,7 @@ class _ReadPersetujuanBendaharaState extends State<ReadPersetujuanBendahara>
                 ),
               ),
               child: Text(
-                "Tambahkan Pengeluaran",
+                "Tambahkan Laporan",
                 style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
