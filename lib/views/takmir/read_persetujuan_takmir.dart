@@ -54,36 +54,43 @@ class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir>
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: FutureBuilder<void>(
-              future:
-                  Provider.of<KasProvider>(context, listen: false).getAllKas(),
+              future: Provider.of<LaporanProvider>(context, listen: false)
+                  .getAllLaporan(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
                   return Center(child: Text('Error: ${snapshot.error}'));
                 } else {
-                  var kasList = Provider.of<KasProvider>(context).saldoKas;
+                  var laporanList =
+                      Provider.of<LaporanProvider>(context).laporanKas;
+                  // Filter laporanList based on persetujuan and catatan conditions
+                  var filteredLaporanList = laporanList
+                      .where((laporan) =>
+                          !laporan.persetujuan && laporan.catatan.isEmpty)
+                      .toList();
+
                   return ListView.builder(
                     shrinkWrap: true,
-                    itemCount: kasList.length,
+                    itemCount: filteredLaporanList.length,
                     itemBuilder: (context, index) {
-                      var kas = kasList[index];
+                      var laporan = filteredLaporanList[index];
                       return GestureDetector(
                         onTap: () {
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
                               return DialogBelum(
-                                title: kas.judul,
+                                title: laporan.judul,
                                 catatan: '',
                               );
                             },
                           );
                         },
                         child: ApproveBelum(
-                          judul: kas.judul,
-                          nominal: kas.nominal,
-                          date: kas.tanggal,
+                          judul: laporan.judul,
+                          nominal: laporan.totalSaldo,
+                          date: laporan.tanggal,
                         ),
                       );
                     },
@@ -94,59 +101,97 @@ class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir>
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: 1,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const DialogSetuju(
-                          title: 'Kas Masjid',
-                          totalSaldo: 'Rp 50.000,00',
-                          tanggal: '20 Des 2023',
-                        );
-                      },
-                    );
-                  },
-                  child: ApproveSetuju(
-                    title: 'Kas Masjid ${index + 1}',
-                    amount: 'Rp 50.000,00',
-                    date: '20 Des 2023',
-                  ),
-                );
+            child: FutureBuilder<void>(
+              future: Provider.of<LaporanProvider>(context, listen: false)
+                  .getAllLaporan(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else {
+                  var laporanList =
+                      Provider.of<LaporanProvider>(context).laporanKas;
+                  // Filter laporanList based on persetujuan and catatan conditions
+                  var filteredLaporanList = laporanList
+                      .where((laporan) => laporan.persetujuan)
+                      .toList();
+
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: filteredLaporanList.length,
+                    itemBuilder: (context, index) {
+                      var laporan = filteredLaporanList[index];
+                      return GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return DialogBelum(
+                                title: laporan.judul,
+                                catatan: '',
+                              );
+                            },
+                          );
+                        },
+                        child: ApproveBelum(
+                          judul: laporan.judul,
+                          nominal: laporan.totalSaldo,
+                          date: laporan.tanggal,
+                        ),
+                      );
+                    },
+                  );
+                }
               },
             ),
           ),
           // Content untuk tab "Dibatalkan"
           Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: 1,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const DialogBatal(
-                          title: 'Kas Masjid',
-                          totalSaldo: 'Rp 50.000,00',
-                          tanggal: '20 Des 2023',
-                          catatan: 'Tidak sesuai dengan catatan saya',
-                        );
-                      },
-                    );
-                  },
-                  child: ApproveBatal(
-                    title: 'Kas Masjid ${index + 1}',
-                    amount: 'Rp 50.000,00',
-                    date: '20 Des 2023',
-                  ),
-                );
+            padding: const EdgeInsets.all(20.0),
+            child: FutureBuilder<void>(
+              future: Provider.of<LaporanProvider>(context, listen: false)
+                  .getAllLaporan(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else {
+                  var laporanList =
+                      Provider.of<LaporanProvider>(context).laporanKas;
+                  // Filter laporanList based on persetujuan and catatan conditions
+                  var filteredLaporanList = laporanList
+                      .where((laporan) =>
+                          !laporan.persetujuan && !laporan.catatan.isEmpty)
+                      .toList();
+
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: filteredLaporanList.length,
+                    itemBuilder: (context, index) {
+                      var laporan = filteredLaporanList[index];
+                      return GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return DialogBelum(
+                                title: laporan.judul,
+                                catatan: '',
+                              );
+                            },
+                          );
+                        },
+                        child: ApproveBelum(
+                          judul: laporan.judul,
+                          nominal: laporan.totalSaldo,
+                          date: laporan.tanggal,
+                        ),
+                      );
+                    },
+                  );
+                }
               },
             ),
           ),
