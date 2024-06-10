@@ -22,6 +22,7 @@ class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this, initialIndex: 0);
+    final catatan = TextEditingController();
   }
 
   @override
@@ -76,17 +77,29 @@ class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir>
                     itemBuilder: (context, index) {
                       var laporan = filteredLaporanList[index];
                       return GestureDetector(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return DialogBelum(
-                                title: laporan.judul,
-                                catatan: '',
-                              );
-                            },
-                          );
-                        },
+                         onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (_) {
+                                      return DialogBelum(
+                                        title: laporan.judul,
+                                        catatan: laporan.catatan ?? '',
+                                        setuju: () {
+                                          Provider.of<LaporanProvider>(context,
+                                                  listen: false)
+                                              .approveLaporan(
+                                                  laporan.idLaporan);
+                                        },
+                                        tidakSetuju: () {
+                                          Provider.of<LaporanProvider>(context,
+                                                  listen: false)
+                                              .rejectLaporan(
+                                                  laporan.idLaporan);
+                                        },
+                                      );
+                                    },
+                                  );
+                                },
                         child: ApproveBelum(
                           judul: laporan.judul,
                           nominal: laporan.totalSaldo,
@@ -128,9 +141,21 @@ class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir>
                             context: context,
                             builder: (BuildContext context) {
                               return DialogBelum(
-                                title: laporan.judul,
-                                catatan: '',
-                              );
+                                        title: laporan.judul,
+                                        catatan: laporan.catatan ?? '',
+                                        setuju: () {
+                                          Provider.of<LaporanProvider>(context,
+                                                  listen: false)
+                                              .approveLaporan(
+                                                  laporan.idLaporan);
+                                        },
+                                        tidakSetuju: () {
+                                          Provider.of<LaporanProvider>(context,
+                                                  listen: false)
+                                              .rejectLaporan(
+                                                  laporan.idLaporan);
+                                        },
+                                      );
                             },
                           );
                         },
@@ -177,9 +202,21 @@ class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir>
                             context: context,
                             builder: (BuildContext context) {
                               return DialogBelum(
-                                title: laporan.judul,
-                                catatan: '',
-                              );
+                                        title: laporan.judul,
+                                        catatan: laporan.catatan ?? '',
+                                        setuju: () {
+                                          Provider.of<LaporanProvider>(context,
+                                                  listen: false)
+                                              .approveLaporan(
+                                                  laporan.idLaporan);
+                                        },
+                                        tidakSetuju: () {
+                                          Provider.of<LaporanProvider>(context,
+                                                  listen: false)
+                                              .rejectLaporan(
+                                                  laporan.idLaporan);
+                                        },
+                                      );
                             },
                           );
                         },

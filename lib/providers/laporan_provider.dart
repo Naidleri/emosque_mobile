@@ -42,4 +42,32 @@ class LaporanProvider extends ChangeNotifier{
     _isLoading = false;
     notifyListeners();
   }
+
+  Future<void> approveLaporan (int idLaporan) async{
+    _isLoading = true;
+    notifyListeners();
+    try{
+      final storedToken = await _secureStorage.read(key: 'token');
+      final data = await _laporanService.approveLaporan(idLaporan, storedToken!);
+    }catch(e){
+      print('Error approve laporan kas: $e');
+      throw Exception('Failed to approve laporan kas $e');
+    }
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> rejectLaporan (int idLaporan) async{
+    _isLoading = true;
+    notifyListeners();
+    try{
+      final storedToken = await _secureStorage.read(key: 'token');
+      final data = await _laporanService.rejectLaporan(idLaporan, storedToken!);
+    }catch(e){
+      print('Error reject laporan kas: $e');
+      throw Exception('Failed to reject laporan kas $e');
+    }
+    _isLoading = false;
+    notifyListeners();
+  }
 }

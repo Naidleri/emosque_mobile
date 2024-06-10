@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 class DialogBelum extends StatelessWidget {
   final String title;
   final String catatan;
+  final Function setuju;
+  final Function tidakSetuju;
 
   const DialogBelum({
     Key? key,
     required this.title,
     required this.catatan,
+    required this.setuju,
+    required this.tidakSetuju,
   }) : super(key: key);
 
   @override
@@ -24,13 +28,17 @@ class DialogBelum extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Pembatalan',
-            style: TextStyle(color: Color(0xFF225779), fontWeight: FontWeight.bold, fontSize: 13),
+            'Apakah Anda menyetujui laporan keuangan ini?',
+            style: TextStyle(
+              color: Color(0xFF225779),
+              fontWeight: FontWeight.bold,
+              fontSize: 13,
+            ),
           ),
           IconButton(
             icon: Icon(
               Icons.close,
-              color: Color(0xFFF04438), // Warna ikon
+              color: Color(0xFFF04438),
             ),
             onPressed: () {
               Navigator.of(context).pop();
@@ -47,16 +55,20 @@ class DialogBelum extends StatelessWidget {
             Center(
               child: Text(
                 title,
-                style: TextStyle(color: Color(0xFF225779), fontWeight: FontWeight.bold, fontSize: 13),
+                style: TextStyle(
+                  color: Color(0xFF225779),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                ),
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(height: 20),
             Text(
               'Catatan',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 12.0,
-                color: Color(0xFF225779)
+                color: Color(0xFF225779),
               ),
             ),
             SizedBox(height: 10.0),
@@ -64,7 +76,7 @@ class DialogBelum extends StatelessWidget {
               controller: _catatanController,
               maxLines: 5,
               decoration: InputDecoration(
-                hintText: 'Masukan catatan..',
+                hintText: 'Masukkan catatan..',
                 filled: true,
                 fillColor: Color(0xFFFFF0F0),
                 border: OutlineInputBorder(
@@ -83,25 +95,7 @@ class DialogBelum extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 32,
-                    ),
-                    foregroundColor: Color(0xFF225779),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(7.0),
-                    ),
-                    side: BorderSide(
-                      color: Color(0xFF225779),
-                    )
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('Batal'),
-                ),
+                
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xff06D773),
@@ -111,15 +105,36 @@ class DialogBelum extends StatelessWidget {
                     ),
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
-                      horizontal: 32
-                    )
+                      horizontal: 32,
+                    ),
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
+                      setuju();
                       Navigator.of(context).pop();
                     }
                   },
-                  child: Text('Kirim'),
+                  child: Text('Setuju'),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7.0),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 32,
+                    ),
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      tidakSetuju();
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  child: Text('Tidak Setuju'),
                 ),
               ],
             ),
