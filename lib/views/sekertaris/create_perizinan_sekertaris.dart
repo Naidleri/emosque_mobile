@@ -4,6 +4,7 @@ import 'package:emosque_mobile/views/sekertaris/dropdown_perizinanNama.dart';
 import 'package:emosque_mobile/views/sekertaris/dropdown_perizinanPJ.dart';
 import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -199,13 +200,23 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                       decoration: BoxDecoration(
                           color: Colors.green[700],
                           borderRadius: BorderRadius.circular(7)),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.add,
-                            size: 15,
-                            color: Colors.white,
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                border: Border.all(
+                                    width: 1.0,
+                                    color: const Color(0xFFFFFFFF))),
+                            child: Icon(
+                              Icons.add,
+                              size: 15,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
                           ),
                           Text(
                             'Save',
