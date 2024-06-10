@@ -36,9 +36,11 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              decoration: const BoxDecoration(border: Border(top: BorderSide())),
+              decoration:
+                  const BoxDecoration(border: Border(top: BorderSide())),
               child: ListTile(
-                contentPadding: const EdgeInsets.only(top: 12, left: 25, right: 25),
+                contentPadding:
+                    const EdgeInsets.only(top: 12, left: 25, right: 25),
                 title: Text(
                   zakat.namaPezakat,
                   style: GoogleFonts.poppins(
@@ -75,7 +77,8 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
             const SizedBox(height: 30),
             LayoutBuilder(
               builder: (context, constraints) {
-                double buttonWidth = constraints.maxWidth * 0.4; // 40% of the screen width
+                double buttonWidth =
+                    constraints.maxWidth * 0.4; // 40% of the screen width
 
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -112,16 +115,20 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
                       height: 40, // Increased height for better touch target
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(55, 163, 165, 1),
+                          backgroundColor:
+                              const Color.fromRGBO(55, 163, 165, 1),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         onPressed: () {
                           // Handle update action
-                          Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => const UpdateZakatSekertaris(),
-                          ));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const UpdateZakatSekertaris(),
+                              ));
                         },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,

@@ -67,7 +67,9 @@ class _DropdownPerizinanPJState extends State<DropdownPerizinanPJ> {
                         child: Text(
                           value,
                           style: GoogleFonts.poppins(
-                              color: Colors.black, fontSize: 14),
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),

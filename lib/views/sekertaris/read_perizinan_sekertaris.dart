@@ -189,6 +189,7 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
           }
 
           return ListView.builder(
+            padding: EdgeInsets.only(bottom: 100),
             itemCount: perizinanProvider.perizinan.length,
             itemBuilder: (context, index) {
               final perizinan = perizinanProvider.perizinan[index];
