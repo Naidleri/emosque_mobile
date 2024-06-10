@@ -17,6 +17,7 @@ import 'package:emosque_mobile/views/jamaah/profile_jamaah.dart';
 import 'package:emosque_mobile/views/jamaah/qurban_jamaah.dart';
 import 'package:emosque_mobile/views/sekertaris/bottom_navigasi_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/calender_seker.dart';
+import 'package:emosque_mobile/views/sekertaris/create_penerima_qurban_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/create_penerima_zakat_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/create_perizinan_sekertaris.dart';
 import 'package:emosque_mobile/views/sekertaris/update_perizinan_sekertaris.dart';
@@ -107,7 +108,8 @@ class MyApp extends StatelessWidget {
           '/createZakatSekertaris': (context) => CreateZakatSekertaris(),
           '/createQurbanSekertaris': (context) => CreateQurbanSekertaris(),
           '/createPenerimaZakatSekertaris': (context) =>
-              CreatePenerimaZakatSekertaris(),
+              const CreatePenerimaZakatSekertaris(),
+          '/createPenerimaQurbanSekertaris': (context) => const CreatePenerimaQurbanSekertaris(),
           '/updatePerizinanSekertaris': (context) =>
               const UpdatePerizinanSekertaris(),
           '/updatePenerimaZakatSekertaris': (context) =>

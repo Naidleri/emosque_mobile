@@ -18,8 +18,11 @@ class DetailLaporanPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Laporan Mingguan', style: TextStyle(color: Colors.white,)),
-        backgroundColor: Color(0xff06D773),
+        title: const Text('Laporan Mingguan',
+            style: TextStyle(
+              color: Colors.white,
+            )),
+        backgroundColor: Colors.green[700],
         iconTheme: const IconThemeData(
           color: Colors.white,
         ),
@@ -28,8 +31,8 @@ class DetailLaporanPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(40.0),
           child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.86,
-            height: MediaQuery.of(context).size.height * 0.5,
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: MediaQuery.of(context).size.height * 0.7,
             child: Card(
               color: Colors.white,
               shape: RoundedRectangleBorder(
@@ -40,37 +43,52 @@ class DetailLaporanPage extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal:  20.0, vertical: 40.00),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 40.00),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Center(
                       child: Text(
                         title,
-                        style: const TextStyle(color: Color(0xFF225779), fontSize: 18.0, fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                            color: Color(0xFF225779),
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                     const SizedBox(height: 2.0),
-                    const Text(
-                      'Rincian',
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold, color: Color(0xFF225779)),
-                    ),
-                    const SizedBox(height: 20.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: rincian.entries
-                          .map((entry) => ListTile(
-                                title: Text(
-                                  entry.key,
-                                  style: const TextStyle(fontSize: 16.0, color: Color(0xFF225779)),
-                                ),
-                                trailing: Text(
-                                  entry.value,
-                                  style: const TextStyle(fontSize: 16.0, color: Color(0xFF225779)),
-                                ),
-                              ))
-                          .toList(),
+                      children: [
+                        const Text(
+                          'Rincian',
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF225779)),
+                        ),
+                        const SizedBox(height: 20.0),
+                        Column(
+                          children: rincian.entries
+                              .map((entry) => ListTile(
+                                    title: Text(
+                                      entry.key,
+                                      style: const TextStyle(
+                                          fontSize: 16.0,
+                                          color: Color(0xFF225779)),
+                                    ),
+                                    trailing: Text(
+                                      entry.value,
+                                      style: const TextStyle(
+                                          fontSize: 16.0,
+                                          color: Color(0xFF225779)),
+                                    ),
+                                  ))
+                              .toList(),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 20.0),
                     Row(
@@ -78,27 +96,37 @@ class DetailLaporanPage extends StatelessWidget {
                       children: [
                         const Text(
                           'Total',
-                          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Color(0xFF225779)),
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF225779)),
                         ),
                         Text(
                           amount,
-                          style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Color(0xFF225779)),
+                          style: const TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF225779)),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 40.0,),
+                    const SizedBox(
+                      height: 40.0,
+                    ),
                     Column(
                       children: [
                         const Center(
                           child: Text(
                             'Tanggal',
-                            style: TextStyle(fontSize: 16.0, color: Color(0xFF225779)),
+                            style: TextStyle(
+                                fontSize: 16.0, color: Color(0xFF225779)),
                           ),
                         ),
                         Center(
                           child: Text(
                             date,
-                            style: const TextStyle(fontSize: 16.0, color: Color(0xFF225779)),
+                            style: const TextStyle(
+                                fontSize: 16.0, color: Color(0xFF225779)),
                           ),
                         )
                       ],

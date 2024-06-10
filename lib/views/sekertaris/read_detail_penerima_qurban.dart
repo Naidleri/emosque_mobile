@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:emosque_mobile/models/models.dart';
 
-class ReadSapi extends StatelessWidget {
+class ReadDetailPenerimaQurban extends StatelessWidget {
   final Qurban qurban;
 
-  const ReadSapi({required this.qurban, Key? key}) : super(key: key);
+  const ReadDetailPenerimaQurban({required this.qurban, super.key});
 
   @override
   Widget build(BuildContext context) {

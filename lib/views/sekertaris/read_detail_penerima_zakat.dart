@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:emosque_mobile/models/models.dart';
 
-class ReadSapi extends StatelessWidget {
-  final Qurban qurban;
+class ReadDetailPenerimaZakat extends StatelessWidget {
+  final Zakat zakat;
 
-  const ReadSapi({required this.qurban, Key? key}) : super(key: key);
+  const ReadDetailPenerimaZakat({required this.zakat, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class ReadSapi extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Qurban",
+          "zakat",
           style: GoogleFonts.poppins(
               color: Colors.green[700],
               fontSize: 25,
@@ -40,12 +40,12 @@ class ReadSapi extends StatelessWidget {
               child: ListTile(
                 contentPadding: const EdgeInsets.only(top: 12, left: 25, right: 25),
                 title: Text(
-                  qurban.nama,
+                  zakat.namaPezakat,
                   style: GoogleFonts.poppins(
                       fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 subtitle: Text(
-                  qurban.deskripsi,
+                  zakat.namaJenisZakat,
                   style: GoogleFonts.poppins(
                       fontSize: 17, fontWeight: FontWeight.w400),
                 ),
@@ -64,7 +64,7 @@ class ReadSapi extends StatelessWidget {
                   ),
                 ),
                 Image.network(
-                  'https://pbm2024.site/public/${qurban.dokumentasi}',
+                  'https://pbm2024.site/public/${zakat.dokumentasi}',
                   width: 150,
                   height: 100,
                   fit: BoxFit.cover,
