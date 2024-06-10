@@ -14,12 +14,12 @@ class ProfileJamaah extends StatefulWidget {
 
 class _ProfileJamaahState extends State<ProfileJamaah> {
   @override
-  void initState(){
-    super.initState();
-    Future.microtask(()=> Provider.of<UserProvider>(context, listen: false).getProfile());
-  }
+  // void initState(){
+  //   super.initState();
+  //   Future.microtask(()=> Provider.of<UserProvider>(context, listen: false).getProfile());
+  // }
 
-  Widget text(String judul,String text, BuildContext context) {
+  Widget text(String judul, String text, BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(5),
       child: Column(
@@ -32,12 +32,19 @@ class _ProfileJamaahState extends State<ProfileJamaah> {
           ),
           const SizedBox(height: 5),
           Container(
-            decoration: BoxDecoration(border: Border.all(width: 2, color: Colors.green), borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(
+                border: Border.all(width: 2, color: Colors.green),
+                borderRadius: BorderRadius.circular(10)),
             padding: const EdgeInsets.only(top: 16, left: 15),
             height: 60,
             width: MediaQuery.of(context).size.width * 0.85,
-            child: Text(text, style: GoogleFonts.poppins(
-                fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black),),
+            child: Text(
+              text,
+              style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black),
+            ),
           )
         ],
       ),
@@ -62,23 +69,37 @@ class _ProfileJamaahState extends State<ProfileJamaah> {
       body: Center(
         child: Column(
           children: [
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             badges.Badge(
               badgeStyle: const badges.BadgeStyle(badgeColor: Colors.green),
               position: badges.BadgePosition.bottomStart(),
-              badgeContent: IconButton(onPressed: () {}, icon: const Icon(Icons.edit, color: Colors.white,)),
-              child: const CircleAvatar(radius: 60, 
-                backgroundImage: NetworkImage('https://example.com/your-image-url.jpg'),),
+              badgeContent: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.edit,
+                    color: Colors.white,
+                  )),
+              child: const CircleAvatar(
+                radius: 60,
+                backgroundImage:
+                    NetworkImage('https://example.com/your-image-url.jpg'),
+              ),
             ),
             text('Username', _userData.name, context),
             text('Email', _userData.email, context),
             text('Role pengurus', 'Jamaah', context),
-            const SizedBox(height: 20,),
-            fillButton(text: 'Log out', onPressed: (){
-              _userProvider.logoutUser(context).then((_){
-                Navigator.pushReplacementNamed(context, '/login');
-              });
-            }),
+            const SizedBox(
+              height: 20,
+            ),
+            fillButton(
+                text: 'Log out',
+                onPressed: () {
+                  _userProvider.logoutUser(context).then((_) {
+                    Navigator.pushReplacementNamed(context, '/login');
+                  });
+                }),
           ],
         ),
       ),

@@ -52,23 +52,23 @@ class UserProvider extends ChangeNotifier {
     _token = null;
   }
 
-  Future<void> getProfile() async {
-    _isLoading = true;
-    notifyListeners();
-    try {
-      final storedToken = await _secureStorage.read(key: 'token');
-      if (storedToken != null) {
-        final responseData = await _userService.getProfile(storedToken);
-        _users.clear();
-        _users.add(User.fromJson(responseData['data']));
-      }
-    } catch (e) {
-      print('Error getting profile: $e');
-      throw Exception('Failed to get profile');
-    }
-    _isLoading = false;
-    notifyListeners();
-  }
+  // Future<void> getProfile() async {
+  //   _isLoading = true;
+  //   notifyListeners();
+  //   try {
+  //     final storedToken = await _secureStorage.read(key: 'token');
+  //     if (storedToken != null) {
+  //       final responseData = await _userService.getProfile(storedToken);
+  //       _users.clear();
+  //       _users.add(User.fromJson(responseData['data']));
+  //     }
+  //   } catch (e) {
+  //     print('Error getting profile: $e');
+  //     throw Exception('Failed to get profile');
+  //   }
+  //   _isLoading = false;
+  //   notifyListeners();
+  // }
 
   Future<void> updateProfile(User user) async {
     _isLoading = true;
