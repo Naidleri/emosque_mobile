@@ -64,7 +64,7 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
                   ),
                 ),
                 Image.network(
-                  'https://pbm2024.site/public/${zakat.dokumentasi}',
+                  'https://pbm2024.site/public/',
                   width: 150,
                   height: 100,
                   fit: BoxFit.cover,
