@@ -68,14 +68,14 @@ class _HomePageBendaharaState extends State<HomePageBendahara> {
                         children: [
                           Text("Total Pemasukan",
                               style: GoogleFonts.poppins(
-                                  fontSize: 12,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.white)),
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: Text("Rp $totalPemasukan",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 12,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white)),
                           )
@@ -89,14 +89,14 @@ class _HomePageBendaharaState extends State<HomePageBendahara> {
                         children: [
                           Text("Total Pengeluaran",
                               style: GoogleFonts.poppins(
-                                  fontSize: 12,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.white)),
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: Text("Rp $totalPengeluaran",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 12,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white)),
                           )

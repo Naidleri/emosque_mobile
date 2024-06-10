@@ -27,4 +27,19 @@ class LaporanProvider extends ChangeNotifier{
     notifyListeners();
   }
 
+   Future<void> getAllLaporan () async {
+    _isLoading = true;
+    notifyListeners();
+
+    try{
+      final data = await _laporanService.getAllLaporan();
+      _laporanKas = data;
+    }catch(e){
+      print('Error get all laporan saldo kas: $e');
+      throw Exception('Failed to get all laporan  saldo kas $e');
+    }
+
+    _isLoading = false;
+    notifyListeners();
+  }
 }
