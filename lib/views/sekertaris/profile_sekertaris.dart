@@ -19,13 +19,13 @@ class _ProfileSekertarisState extends State<ProfileSekertaris> {
   void initState() {
     super.initState();
     checkToken();
-    getUserData();
+    // getUserData();
   }
 
-   void getUserData() {
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
-    userProvider.getProfile();
-  }
+  //  void getUserData() {
+  //   final userProvider = Provider.of<UserProvider>(context, listen: false);
+  //   userProvider.getProfile();
+  // }
 
   Future<void> checkToken() async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);

@@ -45,8 +45,8 @@ class RegisterUser {
     required this.roleId,
   });
 
-  Map<String, dynamic> toJson(){
-    return{
+  Map<String, dynamic> toJson() {
+    return {
       'name': name,
       'email': email,
       'password': password,
@@ -64,10 +64,7 @@ class LoginUser {
     required this.password,
   });
 
-  Map<String, dynamic> toJson(){
-    return{
-      'name': name,
-      'password': password
-    };
+  Map<String, dynamic> toJson() {
+    return {'name': name, 'password': password};
   }
 }
