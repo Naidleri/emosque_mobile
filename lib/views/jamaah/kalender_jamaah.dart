@@ -1,9 +1,10 @@
+import 'package:emosque_mobile/models/models.dart';
+import 'package:emosque_mobile/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'dart:collection';
 
-// Dummy Event class
 class Event {
   final String date;
   final String name;
@@ -26,34 +27,52 @@ class _MyKalenderJamaahState extends State<KalenderJamaah> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
+  int _selectedYear = DateTime.now().year;
+  int _selectedMonth = DateTime.now().month;
 
   final LinkedHashMap<DateTime, List<Event>> _kEvents =
       LinkedHashMap<DateTime, List<Event>>(
     equals: isSameDay,
     hashCode: getHashCode,
-  )..addAll(_kEventSource);
+  );
 
-  static final Map<DateTime, List<Event>> _kEventSource = {
-    for (var item in List.generate(50, (index) => index))
-      DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5): List.generate(
-        item % 4 + 1,
-        (index) => Event(
-          '${DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5).toLocal()}',
-          'Event $item | ${index + 1}',
-        ),
-      ),
-  }..addAll({
-      kToday: [
-        Event('${kToday.toLocal()}', 'Today\'s Event 1'),
-        Event('${kToday.toLocal()}', 'Today\'s Event 2'),
-      ],
-    });
+  bool _isLoading = false;
+  final PerizinanService _perizinanService = PerizinanService();
 
   @override
   void initState() {
     super.initState();
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
+    _fetchEvents();
+  }
+
+  Future<void> _fetchEvents() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final List<Perizinan> perizinanList =
+          await _perizinanService.getAllPerizinan();
+      setState(() {
+        _kEvents.clear();
+        for (var perizinan in perizinanList) {
+          DateTime date = DateTime.parse(perizinan.tanggal);
+          if (_kEvents[date] == null) {
+            _kEvents[date] = [];
+          }
+          _kEvents[date]?.add(Event(perizinan.tanggal, perizinan.deskripsi));
+        }
+        _selectedEvents.value = _getEventsForDay(_selectedDay!);
+      });
+    } catch (e) {
+      print('Error fetching events: $e');
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   @override
@@ -95,6 +114,49 @@ class _MyKalenderJamaahState extends State<KalenderJamaah> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 7),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              DropdownButton<int>(
+                value: _selectedYear,
+                items: List.generate(
+                        50, (index) => DateTime.now().year - 25 + index)
+                    .map<DropdownMenuItem<int>>((int value) {
+                  return DropdownMenuItem<int>(
+                    value: value,
+                    child: Text(value.toString()),
+                  );
+                }).toList(),
+                onChanged: (int? newValue) {
+                  setState(() {
+                    if (newValue != null) {
+                      _selectedYear = newValue;
+                      _focusedDay = DateTime(_selectedYear, _selectedMonth);
+                    }
+                  });
+                },
+              ),
+              SizedBox(width: 20),
+              DropdownButton<int>(
+                value: _selectedMonth,
+                items: List.generate(12, (index) => index + 1)
+                    .map<DropdownMenuItem<int>>((int value) {
+                  return DropdownMenuItem<int>(
+                    value: value,
+                    child: Text(value.toString()),
+                  );
+                }).toList(),
+                onChanged: (int? newValue) {
+                  setState(() {
+                    if (newValue != null) {
+                      _selectedMonth = newValue;
+                      _focusedDay = DateTime(_selectedYear, _selectedMonth);
+                    }
+                  });
+                },
+              ),
+            ],
+          ),
           TableCalendar(
             locale: "en_US",
             rowHeight: 43,
@@ -108,7 +170,7 @@ class _MyKalenderJamaahState extends State<KalenderJamaah> {
               ),
               leftChevronIcon: Icon(
                 Icons.chevron_left,
-                color: Colors.black,
+                color: Color.fromARGB(255, 179, 84, 84),
               ),
               rightChevronIcon: Icon(
                 Icons.chevron_right,
@@ -116,6 +178,12 @@ class _MyKalenderJamaahState extends State<KalenderJamaah> {
               ),
             ),
             calendarStyle: CalendarStyle(
+              markerMargin: EdgeInsets.symmetric(horizontal: 1.0),
+              markerDecoration: BoxDecoration(
+                color: Colors.green[700],
+              ),
+              markerSize: 5,
+              isTodayHighlighted: true,
               defaultTextStyle: const TextStyle(
                 fontSize: 14,
                 color: Colors.black,
@@ -133,8 +201,8 @@ class _MyKalenderJamaahState extends State<KalenderJamaah> {
                 color: Colors.grey[800],
               ),
             ),
-            firstDay: kFirstDay,
-            lastDay: kLastDay,
+            firstDay: DateTime(DateTime.now().year - 10),
+            lastDay: DateTime(DateTime.now().year + 10),
             focusedDay: _focusedDay,
             selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
             calendarFormat: _calendarFormat,
@@ -162,7 +230,7 @@ class _MyKalenderJamaahState extends State<KalenderJamaah> {
                 if (value.isEmpty) {
                   return const Center(
                     child: Text(
-                      'No Events',
+                      'Tidak ada kegiatan',
                       style: TextStyle(fontSize: 20, color: Colors.grey),
                     ),
                   );
@@ -197,11 +265,13 @@ class _MyKalenderJamaahState extends State<KalenderJamaah> {
         children: [
           Text(
             formattedDate,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
           ),
           Text(
             event.name,
-            style: const TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+                fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -214,5 +284,3 @@ int getHashCode(DateTime key) {
 }
 
 final kToday = DateTime.now();
-final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
-final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
