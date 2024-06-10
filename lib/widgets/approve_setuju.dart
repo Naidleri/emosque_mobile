@@ -20,7 +20,7 @@ class ApproveSetuju extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
         color: const Color(0xFFF7F7F7), 
-        border: Border.all(color: const Color(0xff06D773), width: 1.0),
+        border: Border.all(color: Colors.green, width: 1.0),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

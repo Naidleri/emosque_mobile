@@ -14,7 +14,7 @@ class fillButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.greenAccent[700],
+            backgroundColor: Colors.green[700],
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(7))),
         child: Row(

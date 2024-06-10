@@ -1,10 +1,6 @@
 import 'package:emosque_mobile/providers/providers.dart';
-import 'package:emosque_mobile/widgets/approve_batal.dart';
 import 'package:emosque_mobile/widgets/approve_belum.dart';
-import 'package:emosque_mobile/widgets/approve_setuju.dart';
-import 'package:emosque_mobile/widgets/dialog_batal.dart';
 import 'package:emosque_mobile/widgets/dialog_belum.dart';
-import 'package:emosque_mobile/widgets/dialog_setuju.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +8,7 @@ class ReadPersetujuanTakmir extends StatefulWidget {
   const ReadPersetujuanTakmir({super.key});
 
   @override
-  _ReadPersetujuanTakmirState createState() => _ReadPersetujuanTakmirState();
+  State<ReadPersetujuanTakmir> createState() => _ReadPersetujuanTakmirState();
 }
 
 class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir>
@@ -188,7 +184,7 @@ class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir>
                   // Filter laporanList based on persetujuan and catatan conditions
                   var filteredLaporanList = laporanList
                       .where((laporan) =>
-                          !laporan.persetujuan && !laporan.catatan.isEmpty)
+                          !laporan.persetujuan && laporan.catatan.isNotEmpty)
                       .toList();
 
                   return ListView.builder(

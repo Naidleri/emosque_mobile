@@ -31,6 +31,7 @@ import 'package:emosque_mobile/views/sekertaris/update_zakat.dart';
 import 'package:emosque_mobile/views/sekertaris/yayasan.dart';
 import 'package:emosque_mobile/views/sekertaris/read_zakat_sekertaris.dart';
 import 'package:emosque_mobile/views/takmir/bottom_navigasi_takmir.dart';
+import 'package:emosque_mobile/views/takmir/read_laporan_takmir.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -120,6 +121,7 @@ class MyApp extends StatelessWidget {
           '/calenderSekertaris': (context) => const MyCalenderSeker(),
           // Takmir
           '/homepageTakmir': (context) => const BottomNavigasiTakmir(),
+          '/readLaporanTakmir': (context) => const ReadLaporanTakmir()
         },
         home: const LoginPage(),
       ),

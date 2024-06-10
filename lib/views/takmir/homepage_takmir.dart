@@ -1,5 +1,6 @@
 import 'package:emosque_mobile/providers/providers.dart';
-import 'package:emosque_mobile/widgets/laporan_detail.dart';
+import 'package:emosque_mobile/views/takmir/read_laporan_takmir.dart';
+import 'package:emosque_mobile/widgets/detail_laporan_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/laporan_card.dart';
@@ -22,7 +23,11 @@ class _HomepageTakmirState extends State<HomepageTakmir> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Laporan', style: TextStyle(color: Colors.green[700], fontSize: 24.0, fontWeight: FontWeight.bold)),
+        title: Text('Laporan',
+            style: TextStyle(
+                color: Colors.green[700],
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
       body: Consumer<LaporanProvider>(
@@ -71,7 +76,8 @@ class _HomepageTakmirState extends State<HomepageTakmir> {
                                 children: [
                                   Text(
                                     'Total Pemasukan',
-                                    style: TextStyle(color: Colors.white, fontSize: 16.0),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16.0),
                                   ),
                                   SizedBox(height: 5.0),
                                   Text(
@@ -88,7 +94,8 @@ class _HomepageTakmirState extends State<HomepageTakmir> {
                                 children: [
                                   Text(
                                     'Total Pengeluaran',
-                                    style: TextStyle(color: Colors.white, fontSize: 16.0),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16.0),
                                   ),
                                   SizedBox(height: 5.0),
                                   Text(
@@ -115,10 +122,17 @@ class _HomepageTakmirState extends State<HomepageTakmir> {
                       children: [
                         const Text(
                           'Laporan perminggu',
-                          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) =>
+                                        const ReadLaporanTakmir()));
+                          },
                           child: const Text(
                             'Lihat Semua',
                             style: TextStyle(
@@ -134,7 +148,7 @@ class _HomepageTakmirState extends State<HomepageTakmir> {
                   const SizedBox(height: 10.0),
                   ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: laporanList.take(3).length,
                     itemBuilder: (context, index) {
                       final laporan = laporanList[index];
@@ -147,10 +161,10 @@ class _HomepageTakmirState extends State<HomepageTakmir> {
                                 title: 'Kas Masjid Minggu ${index + 1}',
                                 amount: 'Rp ${laporan.totalSaldo}',
                                 date: laporan.tanggal,
-                                rincian: const {
-                            'Amal Jumat': 'Rp 470.000',
-                            'Amal Harian': 'Rp 30.000',
-                          },
+                                rincian: {
+                                  'Amal Jumat': 'Rp 470.000',
+                                  'Amal Harian': 'Rp 30.000',
+                                },
                               ),
                             ),
                           );

@@ -5,7 +5,7 @@ class PickerDate extends StatefulWidget {
   const PickerDate({super.key});
 
   @override
-  _PickerDateState createState() => _PickerDateState();
+  State<PickerDate> createState() => _PickerDateState();
 }
 class _PickerDateState extends State<PickerDate> {
   int pilihBulan = 1;
@@ -32,7 +32,7 @@ class _PickerDateState extends State<PickerDate> {
       margin: const EdgeInsets.all(20),
       padding: const EdgeInsets.only(left: 10),
       decoration: BoxDecoration(
-          color: Colors.green[400], borderRadius: BorderRadius.circular(10)),
+          color: Colors.green[700], borderRadius: BorderRadius.circular(10)),
       child: InkWell(
         onTap: () {
           _showPicker();
@@ -83,7 +83,7 @@ class _PickerDateState extends State<PickerDate> {
             child: SizedBox(
               height: 250, // Set your desired height
               child: CupertinoPicker(
-                backgroundColor: Colors.green,
+                backgroundColor: Colors.green[700],
                 itemExtent: 50,
                 scrollController: FixedExtentScrollController(
                   initialItem: pilihBulan - 1,
@@ -109,7 +109,7 @@ class _PickerDateState extends State<PickerDate> {
             child: SizedBox(
               height: 250, // Set your desired height
               child: CupertinoPicker(
-                backgroundColor: Colors.green,
+                backgroundColor: Colors.green[700],
                 itemExtent: 50,
                 scrollController: FixedExtentScrollController(
                   initialItem: pilihTahun - 2000,

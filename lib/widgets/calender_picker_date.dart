@@ -53,12 +53,12 @@ class _CalenderPickerState extends State<CalenderPicker> {
                         day.isBefore(date2!.add(Duration(days: 1)));
                   },
                   calendarStyle: CalendarStyle(
-                    rangeHighlightColor: Color(0xff06d773).withOpacity(0.5),
+                    rangeHighlightColor: Colors.green.withOpacity(0.5),
                     selectedDecoration: BoxDecoration(
-                      color: Color(0xff06d773),
+                      color: Colors.green[700],
                       shape: BoxShape.circle,
                     ),
-                    todayDecoration: BoxDecoration(
+                    todayDecoration: const BoxDecoration(
                       color: Colors.transparent,
                     ),
                   ),
@@ -148,7 +148,7 @@ class _CalenderPickerState extends State<CalenderPicker> {
                         width: 100,
                         height: 40,
                         decoration: BoxDecoration(
-                          color: Color(0xff06d773),
+                          color: Colors.green[700],
                           borderRadius: BorderRadius.circular(17),
                         ),
                         child: const Center(

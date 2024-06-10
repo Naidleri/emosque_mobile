@@ -7,7 +7,7 @@ class DialogBelum extends StatelessWidget {
   final Function tidakSetuju;
 
   const DialogBelum({
-    Key? key,
+    super.key,
     required this.title,
     required this.catatan,
     required this.setuju,
@@ -22,7 +22,7 @@ class DialogBelum extends StatelessWidget {
     return AlertDialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(7.0),
-        side: BorderSide(color: Color(0xFF225779), width: 1),
+        side: const BorderSide(color: Color(0xFF225779), width: 1),
       ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,7 +36,7 @@ class DialogBelum extends StatelessWidget {
             ),
           ),
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.close,
               color: Color(0xFFF04438),
             ),
@@ -71,17 +71,17 @@ class DialogBelum extends StatelessWidget {
                 color: Color(0xFF225779),
               ),
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextFormField(
               controller: _catatanController,
               maxLines: 5,
               decoration: InputDecoration(
                 hintText: 'Masukkan catatan..',
                 filled: true,
-                fillColor: Color(0xFFFFF0F0),
+                fillColor: const Color(0xFFFFF0F0),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(7.0),
-                  borderSide: BorderSide(color: Color(0xFFF04438)),
+                  borderSide: const BorderSide(color: Color(0xFFF04438)),
                 ),
               ),
               validator: (value) {
@@ -91,7 +91,7 @@ class DialogBelum extends StatelessWidget {
                 return null;
               },
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

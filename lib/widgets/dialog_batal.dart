@@ -7,12 +7,12 @@ class DialogBatal extends StatelessWidget {
   final String catatan;
 
   const DialogBatal({
-    Key? key,
+    super.key,
     required this.title,
     required this.totalSaldo,
     required this.tanggal,
     required this.catatan,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +20,12 @@ class DialogBatal extends StatelessWidget {
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(7.0),
-        side: BorderSide(color: Color(0xFF225779), width: 1),
+        side: const BorderSide(color: Color(0xFF225779), width: 1),
       ),
       title: Center(
         child: Text(
           title,
-          style: TextStyle(color: Color(0xFF225779), fontWeight: FontWeight.bold, fontSize: 13),
+          style: const TextStyle(color: Color(0xFF225779), fontWeight: FontWeight.bold, fontSize: 13),
         )
       ),
       content: Column(
@@ -35,40 +35,40 @@ class DialogBatal extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'Total Saldo',
                 style: TextStyle(color: Color(0xFF225779), fontWeight: FontWeight.bold, fontSize: 12),
               ),
               Text(
                 totalSaldo,
-                style: TextStyle(color: Color(0xFFF04438), fontWeight: FontWeight.bold, fontSize: 12),
+                style: const TextStyle(color: Color(0xFFF04438), fontWeight: FontWeight.bold, fontSize: 12),
               ),
             ],
           ),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'Tanggal',
                 style: TextStyle(color: Color(0xFF225779), fontWeight: FontWeight.bold, fontSize: 12),),
               Text(
                 tanggal,
-                style: TextStyle(color: Color(0xFF225779), fontSize: 12),
+                style: const TextStyle(color: Color(0xFF225779), fontSize: 12),
               ),
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Container(
             decoration: BoxDecoration(
-              border: Border.all(color: Color(0xFFF04438)),
+              border: Border.all(color: const Color(0xFFF04438)),
               borderRadius: BorderRadius.circular(7.0),
             ),
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Catatan',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -76,18 +76,18 @@ class DialogBatal extends StatelessWidget {
                     color: Color(0xFF225779)
                   ),
                 ),
-                SizedBox(height: 5.0),
+                const SizedBox(height: 5.0),
                 Text(
                   catatan,
-                  style: TextStyle(color: Color(0xFF225779), fontSize: 16.0),
+                  style: const TextStyle(color: Color(0xFF225779), fontSize: 16.0),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xff06D773),
+              backgroundColor: Colors.green[700],
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(24.0),
@@ -100,7 +100,7 @@ class DialogBatal extends StatelessWidget {
             onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('Kembali'),
+                  child: const Text('Kembali'),
           )
         ],
       ),
