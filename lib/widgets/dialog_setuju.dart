@@ -6,11 +6,11 @@ class DialogSetuju extends StatelessWidget {
   final String tanggal;
 
   const DialogSetuju({
-    Key? key,
+    super.key,
     required this.title,
     required this.totalSaldo,
     required this.tanggal,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +18,12 @@ class DialogSetuju extends StatelessWidget {
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(7.0),
-        side: BorderSide(color: Color(0xFF225779), width: 1),
+        side: const BorderSide(color: Color(0xFF225779), width: 1),
       ),
       title: Center(
         child: Text(
           title,
-          style: TextStyle(color: Color(0xFF225779), fontWeight: FontWeight.bold, fontSize: 13),
+          style: const TextStyle(color: Color(0xFF225779), fontWeight: FontWeight.bold, fontSize: 13),
         )
       ),
       content: Column(
@@ -33,33 +33,33 @@ class DialogSetuju extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'Total Saldo',
                 style: TextStyle(color: Color(0xFF225779), fontWeight: FontWeight.bold, fontSize: 12),
               ),
               Text(
                 totalSaldo,
-                style: TextStyle(color: Color(0xff06D773), fontWeight: FontWeight.bold, fontSize: 12),
+                style: TextStyle(color: Colors.green[700], fontWeight: FontWeight.bold, fontSize: 12),
               ),
             ],
           ),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'Tanggal',
                 style: TextStyle(color: Color(0xFF225779), fontWeight: FontWeight.bold, fontSize: 12),),
               Text(
                 tanggal,
-                style: TextStyle(color: Color(0xFF225779), fontSize: 12),
+                style: const TextStyle(color: Color(0xFF225779), fontSize: 12),
               ),
             ],
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xff06D773),
+              backgroundColor: Colors.green[700],
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(24.0),
@@ -72,7 +72,7 @@ class DialogSetuju extends StatelessWidget {
             onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('Kembali'),
+                  child: const Text('Kembali'),
           )
         ],
       ),

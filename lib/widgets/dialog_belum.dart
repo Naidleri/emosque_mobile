@@ -5,10 +5,10 @@ class DialogBelum extends StatelessWidget {
   final String catatan;
 
   const DialogBelum({
-    Key? key,
+    super.key,
     required this.title,
     required this.catatan,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +18,17 @@ class DialogBelum extends StatelessWidget {
     return AlertDialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(7.0),
-        side: BorderSide(color: Color(0xFF225779), width: 1),
+        side: const BorderSide(color: Color(0xFF225779), width: 1),
       ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
+          const Text(
             'Pembatalan',
             style: TextStyle(color: Color(0xFF225779), fontWeight: FontWeight.bold, fontSize: 13),
           ),
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.close,
               color: Color(0xFFF04438), // Warna ikon
             ),
@@ -47,11 +47,11 @@ class DialogBelum extends StatelessWidget {
             Center(
               child: Text(
                 title,
-                style: TextStyle(color: Color(0xFF225779), fontWeight: FontWeight.bold, fontSize: 13),
+                style: const TextStyle(color: Color(0xFF225779), fontWeight: FontWeight.bold, fontSize: 13),
               ),
             ),
-            SizedBox(height: 20,),
-            Text(
+            const SizedBox(height: 20,),
+            const Text(
               'Catatan',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -59,17 +59,17 @@ class DialogBelum extends StatelessWidget {
                 color: Color(0xFF225779)
               ),
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextFormField(
               controller: _catatanController,
               maxLines: 5,
               decoration: InputDecoration(
                 hintText: 'Masukan catatan..',
                 filled: true,
-                fillColor: Color(0xFFFFF0F0),
+                fillColor: const Color(0xFFFFF0F0),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(7.0),
-                  borderSide: BorderSide(color: Color(0xFFF04438)),
+                  borderSide: const BorderSide(color: Color(0xFFF04438)),
                 ),
               ),
               validator: (value) {
@@ -79,7 +79,7 @@ class DialogBelum extends StatelessWidget {
                 return null;
               },
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -89,22 +89,22 @@ class DialogBelum extends StatelessWidget {
                       vertical: 8,
                       horizontal: 32,
                     ),
-                    foregroundColor: Color(0xFF225779),
+                    foregroundColor: const Color(0xFF225779),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(7.0),
                     ),
-                    side: BorderSide(
+                    side: const BorderSide(
                       color: Color(0xFF225779),
                     )
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('Batal'),
+                  child: const Text('Batal'),
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xff06D773),
+                    backgroundColor: Colors.green[700],
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(7.0),
@@ -119,7 +119,7 @@ class DialogBelum extends StatelessWidget {
                       Navigator.of(context).pop();
                     }
                   },
-                  child: Text('Kirim'),
+                  child: const Text('Kirim'),
                 ),
               ],
             ),

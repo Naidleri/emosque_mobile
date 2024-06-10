@@ -12,7 +12,7 @@ class Button extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.greenAccent,
+          color: Colors.green,
           width: 2
         ),
         borderRadius: BorderRadius.circular(5)

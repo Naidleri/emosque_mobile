@@ -29,7 +29,7 @@ class FormDeskripsiWidget extends StatelessWidget {
                 hintText: hint,
                 border: const OutlineInputBorder(),
                 focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.greenAccent))),
+                    borderSide: BorderSide(color: Colors.green))),
           ),
         ),
       ],
