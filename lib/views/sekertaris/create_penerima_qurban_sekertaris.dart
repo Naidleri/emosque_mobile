@@ -4,16 +4,16 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'input_form.dart';
 
-class CreatePenerimaZakatSekertaris extends StatefulWidget {
-  const CreatePenerimaZakatSekertaris({super.key});
+class CreatePenerimaQurbanSekertaris extends StatefulWidget {
+  const CreatePenerimaQurbanSekertaris({super.key});
 
   @override
-  State<CreatePenerimaZakatSekertaris> createState() =>
-      _CreatePenerimaZakatSekertarisState();
+  State<CreatePenerimaQurbanSekertaris> createState() =>
+      _CreatePenerimaQurbanSekertarisState();
 }
 
-class _CreatePenerimaZakatSekertarisState
-    extends State<CreatePenerimaZakatSekertaris> {
+class _CreatePenerimaQurbanSekertarisState
+    extends State<CreatePenerimaQurbanSekertaris> {
   DateTime? selectedDate;
   void _handleDateSelection(DateTime date) {
     setState(() {
@@ -26,7 +26,7 @@ class _CreatePenerimaZakatSekertarisState
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Penerima Zakat",
+          "Penerima Qurban",
           style: GoogleFonts.poppins(
               color: Colors.green[700],
               fontSize: 25,
