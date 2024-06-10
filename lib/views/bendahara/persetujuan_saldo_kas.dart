@@ -56,35 +56,35 @@ class _ReadPersetujuanBendaharaState extends State<ReadPersetujuanBendahara>
             padding: const EdgeInsets.all(20.0),
             child: FutureBuilder<void>(
               future:
-                  Provider.of<KasProvider>(context, listen: false).getAllKas(),
+                  Provider.of<LaporanProvider>(context, listen: false).getAllLaporan(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
                   return Center(child: Text('Error: ${snapshot.error}'));
                 } else {
-                  var kasList = Provider.of<KasProvider>(context).saldoKas;
+                  var laporanList = Provider.of<LaporanProvider>(context).laporanKas;
                   return ListView.builder(
                     shrinkWrap: true,
-                    itemCount: kasList.length,
+                    itemCount: laporanList.length,
                     itemBuilder: (context, index) {
-                      var kas = kasList[index];
+                      var laporan = laporanList[index];
                       return GestureDetector(
                         onTap: () {
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
                               return DialogBelum(
-                                title: kas.judul,
+                                title: laporan.judul,
                                 catatan: '',
                               );
                             },
                           );
                         },
                         child: ApproveBelum(
-                          judul: kas.judul,
-                          nominal: kas.nominal,
-                          date: kas.tanggal,
+                          judul: laporan.judul,
+                          nominal: laporan.totalSaldo,
+                          date: laporan.tanggal,
                         ),
                       );
                     },
