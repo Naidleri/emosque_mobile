@@ -32,4 +32,30 @@ class LaporanService {
       return ApiHelper.handleError(e);
     }
   }
+
+  Future<void> approveLaporan(int idLaporan , String catatan, String token) async{
+    final url = Uri.parse('${ApiHelper.baseUrl}/laporan/$idLaporan?approval=true');
+    try{
+      final response = await http.post(
+        url,
+        headers: ApiHelper.getHeaders(token),
+        body: jsonEncode({'catatan': catatan})
+      );
+    }catch(e){
+      return ApiHelper.handleError(e);
+    }
+  }
+
+  Future<void> rejectLaporan(int idLaporan , String catatan, String token) async{
+    final url = Uri.parse('${ApiHelper.baseUrl}/laporan/$idLaporan?approval=false');
+    try{
+      final response = await http.post(
+        url,
+        headers: ApiHelper.getHeaders(token),
+        body: jsonEncode({'catatan': catatan})
+      );
+    }catch(e){
+      return ApiHelper.handleError(e);
+    }
+  }
 }
