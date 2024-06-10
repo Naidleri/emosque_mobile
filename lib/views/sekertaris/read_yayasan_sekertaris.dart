@@ -158,19 +158,19 @@ class _ReadYayasanSekertarisState extends State<ReadYayasanSekertaris>
             child: Column(
               children: [
                 cardYayasan('Agus', '10 Des 2020', '11 Kg', () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) =>
-                              ReadDetailPenerimaZakat(qurban: )));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (_) =>
+                  //             ReadDetailPenerimaZakat(qurban: )));
                 }, context),
                 cardYayasan('Agus', '10 Des 2020', '11 Kg', () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) =>
-                              ReadDetailPenerimaZakat(qurban: )));
-                }
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (_) =>
+                  //             ReadDetailPenerimaZakat(qurban: )));
+                }, context),
               ],
             ),
           ),
@@ -179,17 +179,19 @@ class _ReadYayasanSekertarisState extends State<ReadYayasanSekertaris>
             child: Column(
               children: [
                 cardYayasan('Agus', '10 Des 2020', '11 Kg', () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) =>
-                              ReadDetailPenerimaQurban(qurban: )));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (_) =>
+                  //             ReadDetailPenerimaZakat(qurban: )));
+                }, context),
                 cardYayasan('Agus', '10 Des 2020', '11 Kg', () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) =>
-                              ReadDetailPenerimaQurban(qurban: )));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (_) =>
+                  //             ReadDetailPenerimaZakat(qurban: )));
+                }, context),
               ],
             ),
           ),

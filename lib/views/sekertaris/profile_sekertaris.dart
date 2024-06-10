@@ -117,7 +117,7 @@ class _ProfileSekertarisState extends State<ProfileSekertaris> {
                 text: 'Log out',
                 onPressed: () {
                   userProvider.logoutUser(context).then((_) {
-                    Navigator.pushReplacementNamed(context, '/login');
+                    Navigator.pushNamedAndRemoveUntil(context, '/login',(Route<dynamic> route) => false,);
                   });
                 }),
           ],
