@@ -16,6 +16,7 @@ class _HomepageTakmirState extends State<HomepageTakmir> {
   @override
   void initState() {
     super.initState();
+    Future.microtask(() => Provider.of<KasProvider>(context, listen: false).getAllKas());
     Future.microtask(() => Provider.of<LaporanProvider>(context, listen: false).getAllLaporan());
   }
 
@@ -30,159 +31,185 @@ class _HomepageTakmirState extends State<HomepageTakmir> {
                 fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
-      body: Consumer<LaporanProvider>(
-        builder: (context, laporanProvider, child) {
-          if (laporanProvider.isLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      body: Column(
+        children: [
+          Consumer<KasProvider>(
+            builder: (context, kasProvider, child) {
+              if (kasProvider.isLoading) {
+                return const Center(child: CircularProgressIndicator());
+              }
 
-          final laporanList = laporanProvider.laporanKas.toList();
+              final transaksiList = kasProvider.saldoKas.toList();
 
-          return Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // Saldo Kas Section
-                  const Card(
-                    color: Colors.green,
-                    child: Padding(
-                      padding: EdgeInsets.all(25.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Text(
-                            'Total Saldo Kas',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14.0,
-                            ),
-                          ),
-                          Text(
-                            'Rp 8.888.000',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 32.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 10.0),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Total Pemasukan',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16.0),
-                                  ),
-                                  SizedBox(height: 5.0),
-                                  Text(
-                                    'Rp 800.000',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16.0,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Total Pengeluaran',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16.0),
-                                  ),
-                                  SizedBox(height: 5.0),
-                                  Text(
-                                    'Rp 2.000.000',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16.0,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20.0),
-                  // Laporan perminggu Section
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // Menghitung total pemasukan, pengeluaran, dan saldo
+              final totalPemasukan = transaksiList
+                  .where((transaksi) => transaksi.jenis == 'pemasukan')
+                  .fold(0, (sum, transaksi) => sum + transaksi.nominal);
+              final totalPengeluaran = transaksiList
+                  .where((transaksi) => transaksi.jenis == 'pengeluaran')
+                  .fold(0, (sum, transaksi) => sum + transaksi.nominal);
+              final totalSaldo = totalPemasukan - totalPengeluaran;
+
+              return Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Card(
+                  color: Colors.green,
+                  child: Padding(
+                    padding: const EdgeInsets.all(25.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         const Text(
-                          'Laporan perminggu',
+                          'Total Saldo Kas',
                           style: TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.bold),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) =>
-                                        const ReadLaporanTakmir()));
-                          },
-                          child: const Text(
-                            'Lihat Semua',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF225779),
-                            ),
+                            color: Colors.white,
+                            fontSize: 14.0,
                           ),
+                        ),
+                        Text(
+                          'Rp $totalSaldo',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 32.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 10.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'Total Pemasukan',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16.0),
+                                ),
+                                const SizedBox(height: 5.0),
+                                Text(
+                                  'Rp $totalPemasukan',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'Total Pengeluaran',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16.0),
+                                ),
+                                const SizedBox(height: 5.0),
+                                Text(
+                                  'Rp $totalPengeluaran',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 10.0),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: laporanList.take(3).length,
-                    itemBuilder: (context, index) {
-                      final laporan = laporanList[index];
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DetailLaporanPage(
-                                title: 'Kas Masjid Minggu ${index + 1}',
-                                amount: 'Rp ${laporan.totalSaldo}',
-                                date: laporan.tanggal,
-                                rincian: {
-                                  'Amal Jumat': 'Rp 470.000',
-                                  'Amal Harian': 'Rp 30.000',
-                                },
+                ),
+              );
+            },
+          ),
+          Expanded(
+            child: Consumer<LaporanProvider>(
+              builder: (context, laporanProvider, child) {
+                if (laporanProvider.isLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+
+                final laporanList = laporanProvider.laporanKas.toList();
+
+                return Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        // Laporan perminggu Section
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                'Laporan perminggu',
+                                style: TextStyle(
+                                    fontSize: 18.0, fontWeight: FontWeight.bold),
                               ),
-                            ),
-                          );
-                        },
-                        child: LaporanCard(
-                          title: laporan.judul,
-                          amount: laporan.totalSaldo.toString(),
-                          date: laporan.tanggal,
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) =>
+                                              const ReadLaporanTakmir()));
+                                },
+                                child: const Text(
+                                  'Lihat Semua',
+                                  style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF225779),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      );
-                    },
+                        const SizedBox(height: 10.0),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: laporanList.take(3).length,
+                          itemBuilder: (context, index) {
+                            final laporan = laporanList[index];
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailLaporanPage(
+                                      title: 'Kas Masjid Minggu ${index + 1}',
+                                      amount: 'Rp ${laporan.totalSaldo}',
+                                      date: laporan.tanggal,
+                                      rincian: {
+                                        'Amal Jumat': 'Rp 470.000',
+                                        'Amal Harian': 'Rp 30.000',
+                                      },
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: LaporanCard(
+                                title: laporan.judul,
+                                amount: laporan.totalSaldo.toString(),
+                                date: laporan.tanggal,
+                              ),
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 20.0),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 20.0),
-                ],
-              ),
+                );
+              },
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }

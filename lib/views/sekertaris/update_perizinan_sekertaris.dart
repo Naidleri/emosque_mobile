@@ -19,6 +19,10 @@ class _UpdatePerizinanSekertarisState extends State<UpdatePerizinanSekertaris> {
     });
   }
 
+  late int idPerizinan;
+  late int jenisPerizinan;
+  late String deskripsiLama;
+  late String namaPengajuLama;
   final namaKegiatan = TextEditingController();
   final namaPerizinan = TextEditingController();
   final deskripsi = TextEditingController();

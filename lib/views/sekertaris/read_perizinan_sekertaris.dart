@@ -16,6 +16,13 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
   @override
   void initState() {
     super.initState();
+<<<<<<< HEAD
+=======
+    _loadPerizinanData();
+  }
+
+  void _loadPerizinanData() {
+>>>>>>> 37983637e9399706bcc50c49bb40a8fbb12423be
     Future.microtask(() =>
         Provider.of<PerizinanProvider>(context, listen: false)
             .getAllPerizinan());
@@ -118,7 +125,24 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
                     ),
                   ),
                   onPressed: () {
+<<<<<<< HEAD
                     Navigator.pushNamed(context, '/updatePerizinanSekertaris');
+=======
+                    Navigator.pushNamed(
+                      context,
+                      '/updatePerizinanSekertaris',
+                      arguments: {
+                        'idPerizinan': perizinan.perizinanId,
+                        'jenisPerizinan': perizinan.perizinanId,
+                        'deskripsi': perizinan.deskripsi,
+                        'namaPengaju': perizinan.namaPengaju,
+                      },
+                    ).then((result) {
+                      if (result == true) {
+                        _loadPerizinanData();
+                      }
+                    });
+>>>>>>> 37983637e9399706bcc50c49bb40a8fbb12423be
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

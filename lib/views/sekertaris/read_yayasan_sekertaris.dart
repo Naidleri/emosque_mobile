@@ -156,6 +156,7 @@ class _ReadYayasanSekertarisState extends State<ReadYayasanSekertaris>
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
+<<<<<<< HEAD
                 // children: [
                 //   cardYayasan('Agus', '10 Des 2020', '11 Kg', () {
                 //     // Navigator.push(
@@ -173,10 +174,30 @@ class _ReadYayasanSekertarisState extends State<ReadYayasanSekertaris>
                 //   }
                 // ],
                 ),
+=======
+              children: [
+                // cardYayasan('Agus', '10 Des 2020', '11 Kg', () {
+                //   Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (_) =>
+                //               ReadDetailPenerimaZakat(qurban: )));
+                // }, context),
+                // cardYayasan('Agus', '10 Des 2020', '11 Kg', () {
+                //   Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (_) =>
+                //               ReadDetailPenerimaZakat(qurban: )));
+                // }
+              ],
+            ),
+>>>>>>> 37983637e9399706bcc50c49bb40a8fbb12423be
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
+<<<<<<< HEAD
                 // children: [
                 //   cardYayasan('Agus', '10 Des 2020', '11 Kg', () {
                 //     // Navigator.push(
@@ -192,6 +213,23 @@ class _ReadYayasanSekertarisState extends State<ReadYayasanSekertaris>
                 //     //             ReadDetailPenerimaQurban(qurban: )));
                 // ],
                 ),
+=======
+              children: [
+                // cardYayasan('Agus', '10 Des 2020', '11 Kg', () {
+                //   Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (_) =>
+                //               ReadDetailPenerimaQurban(qurban: )));
+                // cardYayasan('Agus', '10 Des 2020', '11 Kg', () {
+                //   Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (_) =>
+                //               ReadDetailPenerimaQurban(qurban: )));
+              ],
+            ),
+>>>>>>> 37983637e9399706bcc50c49bb40a8fbb12423be
           ),
         ],
       ),

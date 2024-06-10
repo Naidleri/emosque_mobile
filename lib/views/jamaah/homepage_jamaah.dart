@@ -1,12 +1,22 @@
 import 'package:emosque_mobile/providers/providers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class HomepageJamaah extends StatelessWidget {
+class HomepageJamaah extends StatefulWidget {
   const HomepageJamaah({super.key});
 
+  @override
+  State<HomepageJamaah> createState() => _HomepageJamaahState();
+}
+
+class _HomepageJamaahState extends State<HomepageJamaah> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() => Provider.of<KasProvider>(context, listen: false).getAllKas());
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,9 +77,20 @@ class HomepageJamaah extends StatelessWidget {
     double lebar = MediaQuery.of(context).size.width * 0.86;
     return Consumer<KasProvider>(
       builder: (context, kasProvider, child) {
-        final totalSaldo = 000;
-        final totalPemasukan = 000;
-        final totalPengeluaran = 000;
+        if (kasProvider.isLoading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        final transaksiList = kasProvider.saldoKas.toList();
+
+        // Menghitung total pemasukan, pengeluaran, dan saldo
+        final totalPemasukan = transaksiList
+            .where((transaksi) => transaksi.jenis == 'pemasukan')
+            .fold(0, (sum, transaksi) => sum + transaksi.nominal);
+        final totalPengeluaran = transaksiList
+            .where((transaksi) => transaksi.jenis == 'pengeluaran')
+            .fold(0, (sum, transaksi) => sum + transaksi.nominal);
+        final totalSaldo = totalPemasukan - totalPengeluaran;
 
         return Center(
           child: Container(

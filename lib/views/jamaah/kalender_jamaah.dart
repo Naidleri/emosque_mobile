@@ -184,6 +184,12 @@ class _MyKalenderJamaahState extends State<KalenderJamaah> {
               ),
               markerSize: 5,
               isTodayHighlighted: true,
+              todayDecoration: BoxDecoration(
+                  shape: BoxShape.circle, color: Colors.green.shade300),
+              selectedDecoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.green.shade300,
+              ),
               defaultTextStyle: const TextStyle(
                 fontSize: 14,
                 color: Colors.black,
@@ -258,7 +264,7 @@ class _MyKalenderJamaahState extends State<KalenderJamaah> {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        color: Colors.blue,
+        color: Colors.green.shade700,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
