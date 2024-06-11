@@ -126,10 +126,13 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
                       context,
                       '/updatePerizinanSekertaris',
                       arguments: {
-                        'idPerizinan': perizinan.perizinanId,
+                        'idPerizinan': perizinan.idDetailPerizinan,
+                        'namaPerizinan': perizinan.namaPerizinan,
                         'jenisPerizinan': perizinan.perizinanId,
                         'deskripsi': perizinan.deskripsi,
-                        'namaPengaju': perizinan.namaPengaju,
+                        'namaPengajuLama': perizinan.namaPengaju,
+                        'pjId': perizinan.pjId,
+                        'namaPj': perizinan.namaPJ,
                       },
                     ).then((result) {
                       if (result == true) {
