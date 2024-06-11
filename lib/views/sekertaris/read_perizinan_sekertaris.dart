@@ -176,6 +176,7 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
               fontSize: 25,
               fontWeight: FontWeight.bold),
         ),
+        actions: [],
         centerTitle: true,
       ),
       body: Consumer<PerizinanProvider>(
