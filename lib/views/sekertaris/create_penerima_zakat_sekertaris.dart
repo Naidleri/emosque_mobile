@@ -212,7 +212,8 @@ class _CreatePenerimaZakatSekertarisState
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
+              margin: const EdgeInsets.only(
+                  top: 16, left: 20, right: 20, bottom: 100),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -278,7 +279,7 @@ class _CreatePenerimaZakatSekertarisState
                   color: Colors.white,
                   size: 17,
                 ),
-                SizedBox(width: 10),
+                SizedBox(width: 5),
                 Text(
                   'Save',
                   style: TextStyle(color: Colors.white, fontSize: 16),

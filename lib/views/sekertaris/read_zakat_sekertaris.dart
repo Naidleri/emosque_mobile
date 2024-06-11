@@ -180,6 +180,7 @@ class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
             return const Center(child: Text('No data available.'));
           }
           return ListView.builder(
+            padding: EdgeInsets.only(bottom: 100),
             itemCount: zakatProvider.zakatFitrah.length,
             itemBuilder: (context, index) {
               final zakat = zakatProvider.zakatFitrah[index];

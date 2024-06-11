@@ -53,16 +53,14 @@ class _DropdownZakatState extends State<DropdownZakat> {
                     contentPadding: EdgeInsets.symmetric(horizontal: 16),
                     border: InputBorder.none,
                     hintText: 'Pilih Jenis Zakat',
-                    hintStyle: GoogleFonts.poppins(
-                        color: Colors.black, fontSize: 14) 
-                    ),
+                    hintStyle:
+                        GoogleFonts.poppins(color: Colors.black, fontSize: 14)),
                 icon: Icon(Icons.keyboard_arrow_down, color: Colors.black),
                 dropdownColor: Colors.green[700],
                 value: jenis,
                 onChanged: (String? newValue) {
                   setState(() {
-                    jenis =
-                        newValue ?? widget.initialValue;
+                    jenis = newValue ?? widget.initialValue;
                   });
                   widget.onChanged(newValue);
                 },
@@ -76,7 +74,7 @@ class _DropdownZakatState extends State<DropdownZakat> {
                         child: Text(
                           value,
                           style: GoogleFonts.poppins(
-                              color: Colors.black, fontSize: 14),
+                              color: Colors.white, fontSize: 14),
                         ),
                       ),
                     ),

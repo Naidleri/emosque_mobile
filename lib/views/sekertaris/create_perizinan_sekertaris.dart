@@ -140,7 +140,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                         );
                         return;
                       }
-
+                      Navigator.pop(context);
                       int namaPerizinanToValue(String namaPerizinan) {
                         switch (namaPerizinan) {
                           case 'pernikahan':

@@ -6,7 +6,7 @@ import 'package:emosque_mobile/models/models.dart';
 class ReadDetailPenerimaZakat extends StatelessWidget {
   final Zakat zakat;
 
-  const ReadDetailPenerimaZakat({required this.zakat, super.key});
+  const ReadDetailPenerimaZakat({required this.zakat, super.key, required qurban});
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
                   ),
                 ),
                 Image.network(
-                  'https://pbm2024.site/public/',
+                  'https://pbm2024.site/public/}',
                   width: 150,
                   height: 100,
                   fit: BoxFit.cover,
