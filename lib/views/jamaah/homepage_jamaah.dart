@@ -16,7 +16,22 @@ class _HomepageJamaahState extends State<HomepageJamaah> {
     super.initState();
     Future.microtask(() => Provider.of<KasProvider>(context, listen: false).getAllKas());
   }
-  
+ Widget callUser() {
+    final _userProvider = Provider.of<UserProvider>(context, listen: false);
+    final _userData = _userProvider.users.first;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(top: 10, left: 30),
+          child: Text(
+            "Selamat datang ${_userData.name}",
+            style:  TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.green[700]),
+          ),
+        ),
+      ],
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +51,7 @@ class _HomepageJamaahState extends State<HomepageJamaah> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              callUser(),
               mainCard(context),
               const SizedBox(height: 20),
               cardMenu('Qurban', const Color.fromARGB(255, 61, 169, 171), () {
