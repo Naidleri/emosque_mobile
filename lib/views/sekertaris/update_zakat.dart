@@ -27,6 +27,7 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
     super.initState();
     namaPezakat = '';
     jumlahZakat = 0;
+    idZakat = 0;
   }
 
   @override
@@ -120,7 +121,7 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: Container(
         height: 40,
-        width: 125,
+        width: 130,
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -139,7 +140,7 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
               );
               return;
             }
-
+            Navigator.pop(context);
             int jenisToValue(String jenis) {
               switch (jenis) {
                 case 'Beras':
@@ -157,11 +158,7 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
                 jenis: jenisToValue(jenis));
             final _zakatProvider =
                 Provider.of<ZakatProvider>(context, listen: false);
-            _zakatProvider.updateZakat(idZakat, updateZakat).then((_) =>
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ReadZakatSekertaris())));
+            _zakatProvider.updateZakat(idZakat, updateZakat);
           },
           child: const Center(
             child: Row(

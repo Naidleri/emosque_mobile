@@ -76,7 +76,7 @@ class _CreateZakatSekertarisState extends State<CreateZakatSekertaris> {
               );
               return;
             }
-
+            Navigator.pop(context);
             int jenisToValue(String jenis) {
               switch (jenis) {
                 case 'Beras':

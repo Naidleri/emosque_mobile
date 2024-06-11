@@ -5,15 +5,29 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class RegisterPengurusPage extends StatelessWidget {
+class RegisterPengurusPage extends StatefulWidget {
   const RegisterPengurusPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController _nameController = TextEditingController();
+  State<RegisterPengurusPage> createState() => _RegisterPengurusPageState();
+}
+
+class _RegisterPengurusPageState extends State<RegisterPengurusPage> {
+  TextEditingController _nameController = TextEditingController();
     TextEditingController _passController = TextEditingController();
     TextEditingController _emailController = TextEditingController();
     TextEditingController _keyController = TextEditingController();
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _passController.dispose();
+    _emailController.dispose();
+    _keyController.dispose();
+    super.dispose();
+  }
+  @override
+  Widget build(BuildContext context) {
+    
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Center(
