@@ -44,8 +44,12 @@ class _UpdateZakatSekertarisState extends State<UpdateZakatSekertaris> {
           jenisLama = args['namaJenisZakat'];
         }
       });
-      _namaController.text = namaPezakat;
-      _jumlahController.text = jumlahZakat.toString();
+      if (_namaController.text.isEmpty) {
+        _namaController.text = namaPezakat;
+      }
+      if (_jumlahController.text.isEmpty) {
+        _jumlahController.text = jumlahZakat.toString();
+      }
     }
   }
 
