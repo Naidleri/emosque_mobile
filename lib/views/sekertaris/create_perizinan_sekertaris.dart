@@ -37,7 +37,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'Perizinan',
+          'Tambah Perizinan',
           style: TextStyle(
               color: Colors.green, fontSize: 25, fontWeight: FontWeight.bold),
         ),
