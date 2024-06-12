@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:emosque_mobile/models/models.dart';
 
 class ReadDetailPenerimaQurban extends StatelessWidget {
-  // final Qurban qurban;
 
   const ReadDetailPenerimaQurban({ super.key});
 
@@ -127,7 +126,7 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: buttonWidth,
-                      height: 40, // Increased height for better touch target
+                      height: 40, 
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.red,
@@ -136,7 +135,7 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          // Handle delete action
+                       
                         },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,

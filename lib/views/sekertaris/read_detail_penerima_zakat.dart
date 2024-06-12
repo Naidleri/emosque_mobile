@@ -1,7 +1,9 @@
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/views/sekertaris/update_zakat.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:emosque_mobile/models/models.dart';
+import 'package:provider/provider.dart';
 
 class ReadDetailPenerimaZakat extends StatelessWidget {
   final YayasanZakat yayasanZakat;
@@ -53,7 +55,9 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
                     Text(
                       yayasanZakat.namaYayasan,
                       style: GoogleFonts.poppins(
-                          fontSize: 20, fontWeight: FontWeight.w500,  color: Colors.green),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.green),
                     ),
                   ],
                 ),
@@ -72,12 +76,16 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
                       Text(
                         "Tanggal Penyerahan : ",
                         style: GoogleFonts.poppins(
-                            fontSize: 20, fontWeight: FontWeight.w500, ),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                       Text(
                         "Rp. ${yayasanZakat.tanggal}",
                         style: GoogleFonts.poppins(
-                            fontSize: 20, fontWeight: FontWeight.w500,  color: Colors.green),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.green),
                       ),
                     ],
                   ),
@@ -96,7 +104,9 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
                       Text(
                         "Rp. ${yayasanZakat.rekapanUang}",
                         style: GoogleFonts.poppins(
-                            fontSize: 20, fontWeight: FontWeight.w500,  color: Colors.green),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.green),
                       ),
                     ],
                   ),
@@ -115,7 +125,9 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
                       Text(
                         "${yayasanZakat.rekapanBeras} kg",
                         style: GoogleFonts.poppins(
-                            fontSize: 20, fontWeight: FontWeight.w500,  color: Colors.green),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.green),
                       ),
                     ],
                   ),
@@ -152,7 +164,33 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          // Handle delete action
+                          Provider.of<YayasanZProvider>(context, listen: false)
+                              .deleteYayasan(yayasanZakat.idYayasanZakat)
+                              .then((_) {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text('Berhasil dihapus'),
+                                  content: const Text(
+                                      'Data yayasan penerima berhasil dihapus'),
+                                  actions: [
+                                    ElevatedButton(
+                                      child: const Text('OK'),
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, '/homepageSekertaris');
+
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }).catchError((error) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text('data yayasan penerima gagal dihapus'),
+                            ));
+                          });
                         },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,

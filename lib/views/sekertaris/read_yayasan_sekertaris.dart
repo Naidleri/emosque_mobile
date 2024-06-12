@@ -70,7 +70,35 @@ class _ReadYayasanSekertarisState extends State<ReadYayasanSekertaris>
                         borderRadius: BorderRadius.circular(5),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Provider.of<YayasanZProvider>(context, listen: false)
+                              .deleteYayasan(yayasan.idYayasanZakat)
+                              .then((_) {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text('Berhasil dihapus'),
+                                  content: const Text(
+                                      'Data yayasan penerima berhasil dihapus'),
+                                  actions: [
+                                    ElevatedButton(
+                                      child: const Text('OK'),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }).catchError((error) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text('data yayasan penerima gagal dihapus'),
+                            ));
+                          });
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
