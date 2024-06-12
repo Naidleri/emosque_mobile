@@ -4,7 +4,7 @@ class YayasanZProvider extends ChangeNotifier{
   List<YayasanZakat> _yayasanZakat = [];
   List<YayasanZakat> get yayasanZakat => _yayasanZakat;
 
-  final KasService _yayasanService = KasService();
+  final YayasanZService _yayasanService = YayasanZService();
   final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
 
   String? _token;
@@ -18,7 +18,7 @@ class YayasanZProvider extends ChangeNotifier{
     notifyListeners();
     try{
       final storedToken = await _secureStorage.read(key: 'token');
-      await _yayasanService.createKas(newYayasan, storedToken!);
+      await _yayasanService.createYayasan(newYayasan, storedToken!);
       await getAllYayasan();
     }catch(e){
       print('Error create yayasan penerima zakat: $e');
@@ -33,7 +33,7 @@ class YayasanZProvider extends ChangeNotifier{
     notifyListeners();
 
     try{
-      final data = await _yayasanService.getAllKas();
+      final data = await _yayasanService.getAllYayasan();
       _yayasanZakat = data;
     }catch(e){
       print('Error get all  yayasan penerima zakat: $e');
