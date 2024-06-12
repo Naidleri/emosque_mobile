@@ -163,139 +163,143 @@ class _CreateQurbanSekertarisState extends State<CreateQurbanSekertaris> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
-            Container(
-              height: 40,
-              width: 110,
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  backgroundColor: Colors.green[700],
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  height: 40,
+                  width: 110,
+                  margin: const EdgeInsets.only(right: 30, bottom: 30, top: 20),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      backgroundColor: Colors.green[700],
+                    ),
+                    onPressed: () async {
+                      if (_namaController.text.isEmpty ||
+                          _deskripsiController.text.isEmpty ||
+                          selectedDate == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Data tidak boleh kosong"),
+                          ),
+                        );
+                        return;
+                      }
+                
+                      int jenisToValue(String jenisQurban) {
+                        switch (jenisQurban) {
+                          case 'Sapi':
+                            return 1;
+                          case 'Kambing':
+                            return 2;
+                          default:
+                            return 0;
+                        }
+                      }
+                
+                      final formattedDate =
+                          DateFormat('yyyy-MM-dd').format(selectedDate!);
+                
+                      try {
+                        final storedToken = await _secureStorage.read(key: 'token');
+                        if (storedToken == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Token tidak tersedia"),
+                            ),
+                          );
+                          return;
+                        }
+                        var request = http.MultipartRequest('POST',
+                            Uri.parse('https://pbm2024.site/public/api/qurban'));
+                        final headers = ApiHelper.getHeaders(storedToken);
+                        request.headers.addAll(headers);
+                
+                        request.fields['nama_orang_berqurban'] =
+                            _namaController.text;
+                        request.fields['tanggal'] = formattedDate;
+                        request.fields['deskripsi'] = _deskripsiController.text;
+                        request.fields['qurban_jenis_id'] =
+                            jenisToValue(jenis).toString();
+                
+                        if (_image != null) {
+                          var pic = await http.MultipartFile.fromPath(
+                              'dokumentasi', _image!.path);
+                          print('File Name: ${pic.filename}');
+                          request.files.add(pic);
+                        }
+                
+                        var response = await request.send();
+                        var responseBody = await response.stream.bytesToString();
+                
+                        if (response.statusCode == 200) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Data qurban berhasil ditambahkan"),
+                            ),
+                          );
+                          Navigator.pushNamed(context, '/readQurbanSekertaris');
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                  'Gagal menambah data qurban. Status code: ${response.statusCode}, Message: $responseBody'),
+                            ),
+                          );
+                        }
+                      } catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Terjadi kesalahan: $e'),
+                          ),
+                        );
+                      }
+                
+                      // final newQurban = Qurban(
+                      //     0,
+                      //     _namaController.text,
+                      //     formattedDate,
+                      //     'dokumentasi',
+                      //     _deskripsiController.text,
+                      //     '',
+                      //     jenisToValue(jenis));
+                      // final _kasProvider =
+                      //     Provider.of<QurbanProvider>(context, listen: false);
+                      // _kasProvider
+                      //     .createQurban(newQurban)
+                      //     .then((_) => Navigator.pushReplacementNamed(
+                      //         context, '/readZakatFitrahSekertaris'))
+                      //     .catchError((error) {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     const SnackBar(
+                      //       content: Text('Gagal menambahkan zakat'),
+                      //     ),
+                      //   );
+                      // });
+                    },
+                    child: const Row(
+                      children: [
+                        Icon(
+                          Icons.add_circle_outline,
+                          color: Colors.white,
+                          size: 17,
+                        ),
+                        SizedBox(
+                          width: 10,
+                          height: 20,
+                        ),
+                        Text(
+                          'Save',
+                          style: TextStyle(color: Colors.white, fontSize: 14),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                onPressed: () async {
-                  if (_namaController.text.isEmpty ||
-                      _deskripsiController.text.isEmpty ||
-                      selectedDate == null) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Data tidak boleh kosong"),
-                      ),
-                    );
-                    return;
-                  }
-
-                  int jenisToValue(String jenisQurban) {
-                    switch (jenisQurban) {
-                      case 'Sapi':
-                        return 1;
-                      case 'Kambing':
-                        return 2;
-                      default:
-                        return 0;
-                    }
-                  }
-
-                  final formattedDate =
-                      DateFormat('yyyy-MM-dd').format(selectedDate!);
-
-                  try {
-                    final storedToken = await _secureStorage.read(key: 'token');
-                    if (storedToken == null) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Token tidak tersedia"),
-                        ),
-                      );
-                      return;
-                    }
-
-                    var request = http.MultipartRequest('POST',
-                        Uri.parse('https://pbm2024.site/public/api/qurban'));
-                    final headers = ApiHelper.getHeaders(storedToken);
-                    request.headers.addAll(headers);
-
-                    request.fields['nama_orang_berqurban'] =
-                        _namaController.text;
-                    request.fields['tanggal'] = formattedDate;
-                    request.fields['deskripsi'] = _deskripsiController.text;
-                    request.fields['qurban_jenis_id'] =
-                        jenisToValue(jenis).toString();
-
-                    if (_image != null) {
-                      var pic = await http.MultipartFile.fromPath(
-                          'dokumentasi', _image!.path);
-                      print('File Name: ${pic.filename}');
-                      request.files.add(pic);
-                    }
-
-                    var response = await request.send();
-                    var responseBody = await response.stream.bytesToString();
-
-                    if (response.statusCode == 200) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Data qurban berhasil ditambahkan"),
-                        ),
-                      );
-                      Navigator.pushNamed(context, '/readQurbanSekertaris');
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                              'Gagal menambah data qurban. Status code: ${response.statusCode}, Message: $responseBody'),
-                        ),
-                      );
-                    }
-                  } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Terjadi kesalahan: $e'),
-                      ),
-                    );
-                  }
-
-                  // final newQurban = Qurban(
-                  //     0,
-                  //     _namaController.text,
-                  //     formattedDate,
-                  //     'dokumentasi',
-                  //     _deskripsiController.text,
-                  //     '',
-                  //     jenisToValue(jenis));
-                  // final _kasProvider =
-                  //     Provider.of<QurbanProvider>(context, listen: false);
-                  // _kasProvider
-                  //     .createQurban(newQurban)
-                  //     .then((_) => Navigator.pushReplacementNamed(
-                  //         context, '/readZakatFitrahSekertaris'))
-                  //     .catchError((error) {
-                  //   ScaffoldMessenger.of(context).showSnackBar(
-                  //     const SnackBar(
-                  //       content: Text('Gagal menambahkan zakat'),
-                  //     ),
-                  //   );
-                  // });
-                },
-                child: const Row(
-                  children: [
-                    Icon(
-                      Icons.add_circle_outline,
-                      color: Colors.white,
-                      size: 17,
-                    ),
-                    SizedBox(
-                      width: 10,
-                      height: 20,
-                    ),
-                    Text(
-                      'Save',
-                      style: TextStyle(color: Colors.white, fontSize: 14),
-                    ),
-                  ],
-                ),
-              ),
+              ],
             ),
           ],
         ),

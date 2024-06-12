@@ -48,7 +48,7 @@ class _DropdownPerizinanPJState extends State<DropdownPerizinanPJ> {
                     hintText: 'Pilih penanggung jawab perizinan',
                     hintStyle:
                         GoogleFonts.poppins(color: Colors.black, fontSize: 14)),
-                icon: Icon(Icons.keyboard_arrow_down, color: Colors.black),
+                icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
                 dropdownColor: Colors.green[700],
                 value: jenis,
                 onChanged: (String? newValue) {
@@ -61,16 +61,14 @@ class _DropdownPerizinanPJState extends State<DropdownPerizinanPJ> {
                     .map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: Container(
-                      child: Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: Text(
-                          value,
-                          style: GoogleFonts.poppins(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(0),
+                      child: Text(
+                        value,
+                        style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: 14,
+                            ),
                       ),
                     ),
                   );

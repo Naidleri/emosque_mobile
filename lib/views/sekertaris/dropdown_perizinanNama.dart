@@ -47,9 +47,9 @@ class _DropdownPerizinanNamaState extends State<DropdownPerizinanNama> {
                     hintText: 'Pilih penanggung jawab perizinan',
                     hintStyle:
                         GoogleFonts.poppins(color: Colors.black, fontSize: 14)),
-                icon: Icon(Icons.keyboard_arrow_down, color: Colors.black),
+                icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
                 dropdownColor: Colors.green[700],
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 value: jenis,
                 onChanged: (String? newValue) {
                   setState(() {
@@ -68,8 +68,7 @@ class _DropdownPerizinanNamaState extends State<DropdownPerizinanNama> {
                           value,
                           style: GoogleFonts.poppins(
                               color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 14,),
                         ),
                       ),
                     ),

@@ -46,7 +46,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
         children: [
           Column(
             children: [
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               SizedBox(
                 width: size.width * 0.9,
                 child: Column(
@@ -70,7 +70,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                   ],
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               SizedBox(
                 width: size.width * 0.9,
                 child: Column(
@@ -91,9 +91,9 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                   ],
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Container(
-                margin: EdgeInsets.only(bottom: 16),
+                margin: const EdgeInsets.only(bottom: 16),
                 child: Calender(onDateSelected: _handleDateSelection),
               ),
               SizedBox(
@@ -116,7 +116,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                   ],
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               DropdownPerizinanPJ(
                   initialValue: pj,
                   onChanged: (newValue) {
@@ -201,9 +201,9 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                       });
                     },
                     child: Container(
-                      margin: const EdgeInsets.only(right: 5, top: 10),
-                      width: 80,
-                      height: 30,
+                      margin: const EdgeInsets.only(right: 20, top: 20),
+                      height: 40,
+                      width: 110,
                       decoration: BoxDecoration(
                           color: Colors.green[700],
                           borderRadius: BorderRadius.circular(7)),
@@ -216,16 +216,16 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                                 border: Border.all(
                                     width: 1.0,
                                     color: const Color(0xFFFFFFFF))),
-                            child: Icon(
+                            child: const Icon(
                               Icons.add,
                               size: 15,
                               color: Colors.white,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
-                          Text(
+                          const Text(
                             'Save',
                             style: TextStyle(
                                 fontSize: 15,

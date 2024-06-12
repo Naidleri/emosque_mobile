@@ -210,9 +210,9 @@ class _UpdatePerizinanSekertarisState extends State<UpdatePerizinanSekertaris> {
                       }
                     },
                     child: Container(
-                      margin: EdgeInsets.only(right: size.width * 0.1, top: 10),
-                      width: 80,
-                      height: 30,
+                      margin: EdgeInsets.only(right: size.width * 0.02, top: 10),
+                      height: 40,
+                      width: 110,
                       decoration: BoxDecoration(
                         color: const Color(0xff37A3A5),
                         borderRadius: BorderRadius.circular(7),

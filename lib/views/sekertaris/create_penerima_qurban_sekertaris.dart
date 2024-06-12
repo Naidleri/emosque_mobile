@@ -43,7 +43,11 @@ class _CreatePenerimaQurbanSekertarisState
                 judul: "Rekapan Total Beras",
                 hint: "Masukkan Rekapan Total Beras"),
             Container(
-              margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
+              margin: const EdgeInsets.only(
+                top: 16,
+                left: 20,
+                right: 20,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -126,7 +130,7 @@ class _CreatePenerimaQurbanSekertarisState
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500),
                               decoration: const InputDecoration(
-                                  hintText: "500.000",
+                                  hintText: "Masukan nominal",
                                   hintStyle: TextStyle(
                                       color: Color.fromRGBO(136, 136, 136, 1),
                                       fontSize: 14,
@@ -212,7 +216,8 @@ class _CreatePenerimaQurbanSekertarisState
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
+              margin: const EdgeInsets.only(
+                  top: 16, left: 20, right: 20, bottom: 100),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -222,7 +227,7 @@ class _CreatePenerimaQurbanSekertarisState
                         fontSize: 12, fontWeight: FontWeight.w500),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(top: 16),
+                    margin: const EdgeInsets.only(top: 16, bottom: 20),
                     height: 86,
                     width: double.infinity,
                     padding: const EdgeInsets.only(left: 12),
@@ -257,7 +262,7 @@ class _CreatePenerimaQurbanSekertarisState
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: Container(
         height: 40,
-        width: 110,
+        width: 115,
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
