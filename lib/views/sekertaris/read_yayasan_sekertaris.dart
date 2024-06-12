@@ -51,11 +51,7 @@ class _ReadYayasanSekertarisState extends State<ReadYayasanSekertaris>
                 style: GoogleFonts.poppins(
                     fontSize: 12, fontWeight: FontWeight.w400),
               ),
-              trailing: Text(
-                '${yayasan.rekapanBeras} Kg',
-                style: GoogleFonts.poppins(
-                    fontSize: 16, fontWeight: FontWeight.w400),
-              ),
+              
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,

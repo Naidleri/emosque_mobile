@@ -132,6 +132,7 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
                         'deskripsi': perizinan.deskripsi,
                         'namaPengajuLama': perizinan.namaPengaju,
                         'pjId': perizinan.pjId,
+                        'tanggal': perizinan.tanggal,
                         'namaPj': perizinan.namaPJ,
                       },
                     ).then((result) {

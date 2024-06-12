@@ -136,7 +136,7 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30),
                   child: Image.network(
-                    'https://pbm2024.site/public/${yayasanZakat.idYayasanZakat}',
+                    'https://pbm2024.site/public/${yayasanZakat.gambarSurat}',
                     width: MediaQuery.of(context).size.width * 0.9,
                     fit: BoxFit.cover,
                     alignment: Alignment.topLeft,
