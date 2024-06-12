@@ -10,3 +10,4 @@ part 'zakat_service.dart';
 part 'qurban_service.dart';
 part 'perizinan_service.dart';
 part 'laporan_service.dart';
+part 'yayasanZ_service.dart';
