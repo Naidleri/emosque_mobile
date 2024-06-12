@@ -2,11 +2,14 @@ import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:emosque_mobile/models/models.dart';
 
 class UpdatePengeluaranBendahara extends StatefulWidget {
   final int idKas;
   final String judul;
+  final String tanggal;
   final int nominal;
   final String deskripsi;
 
@@ -14,6 +17,7 @@ class UpdatePengeluaranBendahara extends StatefulWidget {
     super.key,
     required this.idKas,
     required this.judul,
+    required this.tanggal,
     required this.nominal,
     required this.deskripsi,
   });
@@ -42,6 +46,9 @@ class _UpdatePengeluaranBendaharaState
     judulController = TextEditingController(text: widget.judul);
     nominalController = TextEditingController(text: widget.nominal.toString());
     deskripsiController = TextEditingController(text: widget.deskripsi);
+    if (widget.tanggal.isNotEmpty) {
+          selectedDate = DateFormat('yyyy-MM-dd').parse(widget.tanggal);
+        }
   }
 
   @override
@@ -105,7 +112,33 @@ class _UpdatePengeluaranBendaharaState
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  // Implement update functionality here
+                  if (judulController.text.isEmpty ||
+                      nominalController.text.isEmpty ||
+                      deskripsiController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Data tidak boleh kosong')),
+                    );
+                  }
+                  final formattedDate =
+                      DateFormat('yyyy-MM-dd').format(selectedDate!);
+                  final updateKas = SaldoKas(
+                      0,
+                      judulController.text,
+                      'pengeluaran',
+                      formattedDate,
+                      int.parse(nominalController.text),
+                      deskripsiController.text);
+                  Provider.of<KasProvider>(context, listen: false)
+                      .updateKas(widget.idKas, updateKas)
+                      .then((_) => Navigator.pushReplacementNamed(
+                                  context, '/readpemasukanbendahara')
+                              .catchError((error) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text('Error update kas'),
+                            ));
+                          }));
+
                   Navigator.pop(context);
                 },
                 style: ButtonStyle(

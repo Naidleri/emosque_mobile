@@ -144,6 +144,7 @@ class _ReadPemasukanBendaharaPageState
                                 builder: (context) => UpdatePemasukanBendahara(
                                   idKas: kas.idSaldoKas,
                                   judul: kas.judul,
+                                  tanggal: kas.tanggal,
                                   nominal: kas.nominal,
                                   deskripsi: kas.deskripsi,
                                 ),
