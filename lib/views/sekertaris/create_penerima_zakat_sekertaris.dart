@@ -3,6 +3,7 @@ import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:emosque_mobile/models/models.dart';
@@ -43,13 +44,14 @@ class _CreatePenerimaZakatSekertarisState
       }
     });
   }
-
   Future<void> _submitForm() async {
+     final formattedDate =
+                          DateFormat('yyyy-MM-dd').format(selectedDate!);
     if (_formKey.currentState?.validate() ?? false) {
       final newYayasan = YayasanZakat(
         0,
         _namaYayasanController.text,
-        selectedDate?.toIso8601String() ?? DateTime.now().toIso8601String(),
+        formattedDate,
         int.parse(_rekapanUangController.text),
         int.parse(_rekapanBerasController.text),
         '',
@@ -94,113 +96,9 @@ class _CreatePenerimaZakatSekertarisState
               InputForm(
                 judul: "Rekapan Total Beras",
                 hint: "Masukkan Rekapan Total Beras",
-                controller: _rekapanBerasController,
-                
+                controller: _rekapanBerasController,             
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Rekapan Total Uang",
-                      style: GoogleFonts.poppins(
-                          fontSize: 12, fontWeight: FontWeight.w500),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 16),
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 52,
-                            width: 52,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: const Color.fromRGBO(172, 172, 172, 1),
-                                  width: 0.7),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(8),
-                                bottomLeft: Radius.circular(8),
-                                topRight: Radius.circular(0),
-                                bottomRight: Radius.circular(0),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Rp",
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.poppins(
-                                  color: const Color.fromRGBO(136, 136, 136, 1),
-                                  fontSize: 16.5,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              height: 52,
-                              width: double.infinity,
-                              padding: const EdgeInsets.only(left: 12),
-                              decoration: const BoxDecoration(
-                                border: Border(
-                                  right: BorderSide(
-                                      color: Color.fromRGBO(172, 172, 172, 1),
-                                      width: 0.7),
-                                  top: BorderSide(
-                                      color: Color.fromRGBO(172, 172, 172, 1),
-                                      width: 0.7),
-                                  bottom: BorderSide(
-                                      color: Color.fromRGBO(172, 172, 172, 1),
-                                      width: 0.7),
-                                  left: BorderSide.none,
-                                ),
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(0),
-                                  bottomLeft: Radius.circular(0),
-                                  topRight: Radius.circular(8),
-                                  bottomRight: Radius.circular(8),
-                                ),
-                              ),
-                              child: TextFormField(
-                                controller: _rekapanUangController,
-                                keyboardType: TextInputType.number,
-                                autofocus: false,
-                                cursorColor:
-                                    const Color.fromRGBO(172, 172, 172, 1),
-                                style: GoogleFonts.poppins(
-                                    color:
-                                        const Color.fromRGBO(136, 136, 136, 1),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500),
-                                decoration: const InputDecoration(
-                                    hintText: "500.000",
-                                    hintStyle: TextStyle(
-                                        color: Color.fromRGBO(136, 136, 136, 1),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500),
-                                    focusedBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                    border: UnderlineInputBorder(
-                                        borderSide: BorderSide.none)),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Rekapan Total Uang is required';
-                                  }
-                                  if (int.tryParse(value) == null) {
-                                    return 'Enter a valid number';
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              
               Container(
                 margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
                 child: Column(

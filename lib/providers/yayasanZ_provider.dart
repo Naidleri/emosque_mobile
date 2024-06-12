@@ -14,12 +14,17 @@ class YayasanZProvider extends ChangeNotifier{
   bool get isLoading => _isLoading;
 
   Future<void> createYayasan(YayasanZakat yayasan, File? image) async {
+    _isLoading = true;
+    notifyListeners();
     try {
       await _yayasanService.createYayasan(yayasan, image);
-      notifyListeners();  // Notify listeners after successful creation
+      await getAllYayasan();
     } catch (e) {
       throw Exception("Failed to create Yayasan: $e");
     }
+    
+    _isLoading = false;
+    notifyListeners();
   }
 
   Future<void> getAllYayasan () async {
