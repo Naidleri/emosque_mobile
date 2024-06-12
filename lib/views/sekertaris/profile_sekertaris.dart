@@ -22,11 +22,6 @@ class _ProfileSekertarisState extends State<ProfileSekertaris> {
     // getUserData();
   }
 
-  //  void getUserData() {
-  //   final userProvider = Provider.of<UserProvider>(context, listen: false);
-  //   userProvider.getProfile();
-  // }
-
   Future<void> checkToken() async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     final token = await userProvider.getTokenFromStorage();

@@ -81,7 +81,7 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Rp. ${yayasanZakat.tanggal}",
+                        "${yayasanZakat.tanggal}",
                         style: GoogleFonts.poppins(
                             fontSize: 20,
                             fontWeight: FontWeight.w500,

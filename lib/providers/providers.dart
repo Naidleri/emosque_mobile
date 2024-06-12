@@ -15,3 +15,4 @@ part 'perizinan_provider.dart';
 part 'laporan_provider.dart';
 part 'qurban_provider.dart';
 part 'yayasanZ_provider.dart';
+part 'yayasanQ_provider.dart';

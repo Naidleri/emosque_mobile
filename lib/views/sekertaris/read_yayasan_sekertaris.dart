@@ -23,10 +23,11 @@ class _ReadYayasanSekertarisState extends State<ReadYayasanSekertaris>
     _tabController = TabController(length: 2, vsync: this, initialIndex: 0);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<YayasanZProvider>(context, listen: false).getAllYayasan();
+      Provider.of<YayasanQProvider>(context, listen: false).getAllYayasan();
     });
   }
 
-  Widget cardYayasan(YayasanZakat yayasan, VoidCallback onTap, BuildContext context) {
+  Widget cardYayasanZ(YayasanZakat yayasan, VoidCallback onTap, BuildContext context) {
     return InkWell(
       onTap: onTap,
       child: Container(
@@ -51,7 +52,6 @@ class _ReadYayasanSekertarisState extends State<ReadYayasanSekertaris>
                 style: GoogleFonts.poppins(
                     fontSize: 12, fontWeight: FontWeight.w400),
               ),
-              
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -68,32 +68,31 @@ class _ReadYayasanSekertarisState extends State<ReadYayasanSekertaris>
                     ),
                     onPressed: () {
                       Provider.of<YayasanZProvider>(context, listen: false)
-                              .deleteYayasan(yayasan.idYayasanZakat)
-                              .then((_) {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: const Text('Berhasil dihapus'),
-                                  content: const Text(
-                                      'Data yayasan penerima berhasil dihapus'),
-                                  actions: [
-                                    ElevatedButton(
-                                      child: const Text('OK'),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-
-                                      },
-                                    ),
-                                  ],
-                                );
-                              },
+                          .deleteYayasan(yayasan.idYayasanZakat)
+                          .then((_) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text('Berhasil dihapus'),
+                              content: const Text(
+                                  'Data yayasan penerima berhasil dihapus'),
+                              actions: [
+                                ElevatedButton(
+                                  child: const Text('OK'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
                             );
-                          }).catchError((error) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text('data yayasan penerima gagal dihapus'),
-                            ));
-                          });
+                          },
+                        );
+                      }).catchError((error) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text('data yayasan penerima gagal dihapus'),
+                        ));
+                      });
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -124,6 +123,131 @@ class _ReadYayasanSekertarisState extends State<ReadYayasanSekertaris>
                     onPressed: () {
                       Navigator.pushNamed(
                           context, '/updatePenerimaZakatSekertaris');
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.update,
+                          color: Colors.white,
+                          size: 15,
+                        ),
+                        const SizedBox(width: 5),
+                        Text(
+                          "Update",
+                          style: GoogleFonts.poppins(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+   Widget cardYayasanQ(YayasanQurban yayasan, VoidCallback onTap, BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 150,
+        decoration: const BoxDecoration(
+          border: Border(
+            top: BorderSide(color: Color.fromRGBO(172, 172, 172, 1), width: 0.7),
+            bottom: BorderSide(color: Color.fromRGBO(172, 172, 172, 1), width: 0.7),
+          ),
+        ),
+        child: Column(
+          children: [
+            ListTile(
+              contentPadding: const EdgeInsets.only(left: 25, right: 25),
+              title: Text(
+                yayasan.namaYayasan,
+                style: GoogleFonts.poppins(
+                    fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+              subtitle: Text(
+                yayasan.tanggal,
+                style: GoogleFonts.poppins(
+                    fontSize: 12, fontWeight: FontWeight.w400),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(10),
+                  height: 40,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    onPressed: () {
+                      Provider.of<YayasanQProvider>(context, listen: false)
+                          .deleteYayasan(yayasan.idYayasanQurban)
+                          .then((_) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text('Berhasil dihapus'),
+                              content: const Text(
+                                  'Data yayasan penerima berhasil dihapus'),
+                              actions: [
+                                ElevatedButton(
+                                  child: const Text('OK'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }).catchError((error) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text('data yayasan penerima gagal dihapus'),
+                        ));
+                      });
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.delete, color: Colors.white, size: 15),
+                        const SizedBox(width: 5),
+                        Text(
+                          "Delete",
+                          style: GoogleFonts.poppins(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.all(10),
+                  height: 40,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(55, 163, 165, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                          context, '/updatePenerimaQurbanSekertaris');
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -193,12 +317,11 @@ class _ReadYayasanSekertarisState extends State<ReadYayasanSekertaris>
                   itemCount: provider.yayasanZakat.length,
                   itemBuilder: (context, index) {
                     final yayasan = provider.yayasanZakat[index];
-                    return cardYayasan(yayasan, () {
+                    return cardYayasanZ(yayasan, () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (_) => ReadDetailPenerimaZakat(yayasanZakat: yayasan),
-                          
                         ),
                       );
                     }, context);
@@ -209,33 +332,29 @@ class _ReadYayasanSekertarisState extends State<ReadYayasanSekertaris>
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                cardYayasan(
-                  YayasanZakat(0, 'Agus', '10 Des 2020', 0, 11, ''),
-                  () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => ReadDetailPenerimaQurban(),
-                      ),
-                    );
+            child: Consumer<YayasanQProvider>(
+              builder: (context, provider, child) {
+                if (provider.isLoading) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                if (provider.yayasanQurban.isEmpty) {
+                  return Center(child: Text('No data available.'));
+                }
+                return ListView.builder(
+                  itemCount: provider.yayasanQurban.length,
+                  itemBuilder: (context, index) {
+                    final yayasan = provider.yayasanQurban[index];
+                    return cardYayasanQ(yayasan, () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => ReadDetailPenerimaQurban(yayasanQurban: yayasan),
+                        ),
+                      );
+                    }, context);
                   },
-                  context,
-                ),
-                cardYayasan(
-                  YayasanZakat(0, 'Agus', '10 Des 2020', 0, 11, ''),
-                  () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => ReadDetailPenerimaQurban(),
-                      ),
-                    );
-                  },
-                  context,
-                ),
-              ],
+                );
+              },
             ),
           ),
         ],

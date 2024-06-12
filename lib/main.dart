@@ -69,6 +69,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => YayasanZProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => YayasanQProvider(),
         )
       ],
       child: MaterialApp(

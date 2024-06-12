@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:emosque_mobile/models/models.dart';
 
 class ReadDetailPenerimaQurban extends StatelessWidget {
-
-  const ReadDetailPenerimaQurban({ super.key});
+  final YayasanQurban yayasanQurban;
+  const ReadDetailPenerimaQurban({ super.key, required this.yayasanQurban});
 
   @override
   Widget build(BuildContext context) {
@@ -51,16 +51,13 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      'Nama yayasan',
+                      yayasanQurban.namaYayasan,
                       style: GoogleFonts.poppins(
-                          fontSize: 20, fontWeight: FontWeight.w500),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.green),
                     ),
                   ],
-                ),
-                subtitle: Text(
-                  'tanggal rekapan',
-                  style: GoogleFonts.poppins(
-                      fontSize: 17, fontWeight: FontWeight.w400),
                 ),
               ),
             ),
@@ -68,7 +65,29 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-               
+                ListTile(
+                  contentPadding:
+                      const EdgeInsets.only(top: 12, left: 25, right: 25),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Tanggal Penyerahan : ",
+                        style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        "${yayasanQurban.tanggal}",
+                        style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.green),
+                      ),
+                    ],
+                  ),
+                ),
                  ListTile(
                   contentPadding:
                       const EdgeInsets.only(top: 12, left: 25, right: 25),
@@ -76,14 +95,16 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Rekapan Daging Sapi : ",
+                        "Rekapan daging sapi : ",
                         style: GoogleFonts.poppins(
                             fontSize: 20, fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        "200 Kg",
+                        "${yayasanQurban.rekapanSapi} Kh",
                         style: GoogleFonts.poppins(
-                            fontSize: 20, fontWeight: FontWeight.w500),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.green),
                       ),
                     ],
                   ),
@@ -95,23 +116,29 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Rekapan Daging Kambing : ",
+                        "Rekapan daging kambing : ",
                         style: GoogleFonts.poppins(
                             fontSize: 20, fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        "200 Kg",
+                        "${yayasanQurban.rekapanKambing} kg",
                         style: GoogleFonts.poppins(
-                            fontSize: 20, fontWeight: FontWeight.w500),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.green),
                       ),
                     ],
                   ),
                 ),
-                Image.network(
-                  'https://pbm2024.site/public/}',
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  fit: BoxFit.cover,
-                  alignment: Alignment.topLeft,
+                const SizedBox(height: 20),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Image.network(
+                    'https://pbm2024.site/public/${yayasanQurban.gambarSurat}',
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    fit: BoxFit.cover,
+                    alignment: Alignment.topLeft,
+                  ),
                 ),
               ],
             ),

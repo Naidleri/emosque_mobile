@@ -12,3 +12,4 @@ part 'qurban_service.dart';
 part 'perizinan_service.dart';
 part 'laporan_service.dart';
 part 'yayasanZ_service.dart';
+part 'yayasanQ_service.dart';
