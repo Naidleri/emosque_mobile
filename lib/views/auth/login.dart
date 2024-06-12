@@ -131,7 +131,8 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               width: MediaQuery.of(context).size.width * 0.9,
               height: 50,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
               child: ElevatedButton(
                 onPressed: () {
                   if (_nameController.text.isEmpty ||
@@ -154,20 +155,32 @@ class _LoginPageState extends State<LoginPage> {
                     final User loggedInUser = users.first;
                     switch (loggedInUser.roleId) {
                       case 2:
-                        Navigator.pushReplacementNamed(
-                            context, '/homepageBendahara');
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          '/homepageBendahara',
+                          (Route<dynamic> route) => false,
+                        );
                         break;
                       case 3:
-                        Navigator.pushReplacementNamed(
-                            context, '/homepageSekertaris');
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          '/homepageSekertaris',
+                          (Route<dynamic> route) => false,
+                        );
                         break;
                       case 4:
-                        Navigator.pushReplacementNamed(
-                            context, '/homepageTakmir');
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          '/homepageTakmir',
+                          (Route<dynamic> route) => false,
+                        );
                         break;
                       default:
-                        Navigator.pushReplacementNamed(
-                            context, '/homepageJamaah');
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          '/homepageJamaah',
+                          (Route<dynamic> route) => false,
+                        );
                         break;
                     }
                   }).catchError((error) {
