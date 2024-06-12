@@ -124,7 +124,7 @@ class DialogBelum extends StatelessWidget {
                     ),
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
-                      horizontal: 32,
+                      horizontal: 15,
                     ),
                   ),
                   onPressed: () {

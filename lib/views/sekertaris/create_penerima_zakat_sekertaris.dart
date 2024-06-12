@@ -175,43 +175,6 @@ class _CreatePenerimaZakatSekertarisState
             ),
             Calender(onDateSelected: _handleDateSelection),
             Container(
-              margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Total Penerimaan",
-                    style: GoogleFonts.poppins(
-                        fontSize: 12, fontWeight: FontWeight.w500),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 16),
-                    height: 52,
-                    // Mengatur lebar Container kedua menjadi maksimal
-                    width: double.infinity,
-                    padding: const EdgeInsets.only(left: 12),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: const Color.fromRGBO(172, 172, 172, 1),
-                            width: 0.7),
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Center(
-                          child: Text("Rp 50.000, Beras 10 Kilogram",
-                              style: GoogleFonts.poppins(
-                                  color: const Color.fromRGBO(172, 172, 172, 1),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400)),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
               margin: const EdgeInsets.only(
                   top: 16, left: 20, right: 20, bottom: 100),
               child: Column(

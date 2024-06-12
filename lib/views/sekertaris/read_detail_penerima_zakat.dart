@@ -4,9 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:emosque_mobile/models/models.dart';
 
 class ReadDetailPenerimaZakat extends StatelessWidget {
-  final Zakat zakat;
+  // final Zakat zakat;
 
-  const ReadDetailPenerimaZakat({required this.zakat, super.key, required qurban});
+  const ReadDetailPenerimaZakat({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
           ),
         ),
         title: Text(
-          "zakat",
+          "Detail Zakat",
           style: GoogleFonts.poppins(
               color: Colors.green[700],
               fontSize: 25,
@@ -41,13 +41,24 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
               child: ListTile(
                 contentPadding:
                     const EdgeInsets.only(top: 12, left: 25, right: 25),
-                title: Text(
-                  zakat.namaPezakat,
-                  style: GoogleFonts.poppins(
-                      fontSize: 20, fontWeight: FontWeight.w500),
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Nama Yayasan : ',
+                      style: GoogleFonts.poppins(
+                          fontSize: 20, fontWeight: FontWeight.w500),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      'Nama yayasan',
+                      style: GoogleFonts.poppins(
+                          fontSize: 20, fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
                 subtitle: Text(
-                  zakat.namaJenisZakat,
+                  'tanggal rekapan',
                   style: GoogleFonts.poppins(
                       fontSize: 17, fontWeight: FontWeight.w400),
                 ),
@@ -55,20 +66,49 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
             ),
             const SizedBox(height: 5),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ListTile(
                   contentPadding:
                       const EdgeInsets.only(top: 12, left: 25, right: 25),
-                  title: Text(
-                    "Sapi",
-                    style: GoogleFonts.poppins(
-                        fontSize: 20, fontWeight: FontWeight.w500),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Rekapan Total Uang : ",
+                        style: GoogleFonts.poppins(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        "Rp. 1000000",
+                        style: GoogleFonts.poppins(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                ),
+                ListTile(
+                  contentPadding:
+                      const EdgeInsets.only(top: 12, left: 25, right: 25),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Rekapan Total Beras : ",
+                        style: GoogleFonts.poppins(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        "100 kg",
+                        style: GoogleFonts.poppins(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                    ],
                   ),
                 ),
                 Image.network(
                   'https://pbm2024.site/public/}',
-                  width: 150,
-                  height: 100,
+                  width: MediaQuery.of(context).size.width * 0.9,
                   fit: BoxFit.cover,
                   alignment: Alignment.topLeft,
                 ),

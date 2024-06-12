@@ -4,9 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:emosque_mobile/models/models.dart';
 
 class ReadDetailPenerimaQurban extends StatelessWidget {
-  final Qurban qurban;
+  // final Qurban qurban;
 
-  const ReadDetailPenerimaQurban({required this.qurban, super.key});
+  const ReadDetailPenerimaQurban({ super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Qurban",
+          "Detail Qurban",
           style: GoogleFonts.poppins(
               color: Colors.green[700],
               fontSize: 25,
@@ -34,18 +34,32 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              decoration: const BoxDecoration(border: Border(top: BorderSide())),
+              decoration:
+                  const BoxDecoration(border: Border(top: BorderSide())),
               child: ListTile(
-                contentPadding: const EdgeInsets.only(top: 12, left: 25, right: 25),
-                title: Text(
-                  qurban.nama,
-                  style: GoogleFonts.poppins(
-                      fontSize: 20, fontWeight: FontWeight.w500),
+                contentPadding:
+                    const EdgeInsets.only(top: 12, left: 25, right: 25),
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Nama Yayasan : ',
+                      style: GoogleFonts.poppins(
+                          fontSize: 20, fontWeight: FontWeight.w500),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      'Nama yayasan',
+                      style: GoogleFonts.poppins(
+                          fontSize: 20, fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
                 subtitle: Text(
-                  qurban.deskripsi,
+                  'tanggal rekapan',
                   style: GoogleFonts.poppins(
                       fontSize: 17, fontWeight: FontWeight.w400),
                 ),
@@ -53,20 +67,50 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
             ),
             const SizedBox(height: 5),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+               
+                 ListTile(
+                  contentPadding:
+                      const EdgeInsets.only(top: 12, left: 25, right: 25),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Rekapan Daging Sapi : ",
+                        style: GoogleFonts.poppins(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        "200 Kg",
+                        style: GoogleFonts.poppins(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                ),
                 ListTile(
                   contentPadding:
                       const EdgeInsets.only(top: 12, left: 25, right: 25),
-                  title: Text(
-                    "Sapi",
-                    style: GoogleFonts.poppins(
-                        fontSize: 20, fontWeight: FontWeight.w500),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Rekapan Daging Kambing : ",
+                        style: GoogleFonts.poppins(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        "200 Kg",
+                        style: GoogleFonts.poppins(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                    ],
                   ),
                 ),
                 Image.network(
-                  'https://pbm2024.site/public/${qurban.dokumentasi}',
-                  width: 150,
-                  height: 100,
+                  'https://pbm2024.site/public/}',
+                  width: MediaQuery.of(context).size.width * 0.9,
                   fit: BoxFit.cover,
                   alignment: Alignment.topLeft,
                 ),
@@ -75,7 +119,8 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
             const SizedBox(height: 30),
             LayoutBuilder(
               builder: (context, constraints) {
-                double buttonWidth = constraints.maxWidth * 0.4; // 40% of the screen width
+                double buttonWidth =
+                    constraints.maxWidth * 0.4; // 40% of the screen width
 
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -112,16 +157,20 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
                       height: 40, // Increased height for better touch target
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(55, 163, 165, 1),
+                          backgroundColor:
+                              const Color.fromRGBO(55, 163, 165, 1),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         onPressed: () {
                           // Handle update action
-                          Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => const UpdateZakatSekertaris(),
-                          ));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const UpdateZakatSekertaris(),
+                              ));
                         },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,

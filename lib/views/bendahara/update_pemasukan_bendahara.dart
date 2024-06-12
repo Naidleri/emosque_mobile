@@ -123,7 +123,7 @@ class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
                       deskripsiController.text);
                   Provider.of<KasProvider>(context, listen: false)
                       .updateKas(widget.idKas, updateKas)
-                      .then((_) => Navigator.pushNamed(
+                      .then((_) => Navigator.pushReplacementNamed(
                                   context, '/readpemasukanbendahara')
                               .catchError((error) {
                             ScaffoldMessenger.of(context)
