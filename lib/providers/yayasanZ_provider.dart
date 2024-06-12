@@ -13,19 +13,13 @@ class YayasanZProvider extends ChangeNotifier{
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  Future<void> createYayasan (YayasanZakat newYayasan) async{
-    _isLoading = true;
-    notifyListeners();
-    try{
-      final storedToken = await _secureStorage.read(key: 'token');
-      await _yayasanService.createYayasan(newYayasan, storedToken!);
-      await getAllYayasan();
-    }catch(e){
-      print('Error create yayasan penerima zakat: $e');
-      throw Exception('Failed to create  yayasan penerima zakat $e');
+  Future<void> createYayasan(YayasanZakat yayasan, File? image) async {
+    try {
+      await _yayasanService.createYayasan(yayasan, image);
+      notifyListeners();  // Notify listeners after successful creation
+    } catch (e) {
+      throw Exception("Failed to create Yayasan: $e");
     }
-    _isLoading = false;
-    notifyListeners();
   }
 
   Future<void> getAllYayasan () async {

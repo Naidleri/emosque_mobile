@@ -258,27 +258,7 @@ class _CreateQurbanSekertarisState extends State<CreateQurbanSekertaris> {
                         );
                       }
                 
-                      // final newQurban = Qurban(
-                      //     0,
-                      //     _namaController.text,
-                      //     formattedDate,
-                      //     'dokumentasi',
-                      //     _deskripsiController.text,
-                      //     '',
-                      //     jenisToValue(jenis));
-                      // final _kasProvider =
-                      //     Provider.of<QurbanProvider>(context, listen: false);
-                      // _kasProvider
-                      //     .createQurban(newQurban)
-                      //     .then((_) => Navigator.pushReplacementNamed(
-                      //         context, '/readZakatFitrahSekertaris'))
-                      //     .catchError((error) {
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     const SnackBar(
-                      //       content: Text('Gagal menambahkan zakat'),
-                      //     ),
-                      //   );
-                      // });
+                     
                     },
                     child: const Row(
                       children: [
