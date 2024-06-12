@@ -80,7 +80,7 @@ class _ReadZakatSekertarisState extends State<ReadZakatSekertaris> {
                             ElevatedButton(
                               child: const Text('OK'),
                               onPressed: () {
-                                Navigator.pop(context);
+                                Navigator.pushNamed(context, '/readZakatFitrahSekertaris');
                               },
                             ),
                           ],

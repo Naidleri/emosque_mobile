@@ -18,12 +18,13 @@ class ZakatProvider extends ChangeNotifier {
     notifyListeners();
     try {
       final storedToken = await _secureStorage.read(key: 'token');
-      final data = await _zakatService.createZakat(newZakat, storedToken!);
+      await _zakatService.createZakat(newZakat, storedToken!);
+      await getAllZakat();
     } catch (e) {
       print('Error create zakat fitrah: $e');
       throw Exception('Failed to create zakat fitrah $e');
     }
-    _isLoading = true;
+    _isLoading = false;
     notifyListeners();
   }
 
@@ -63,8 +64,9 @@ class ZakatProvider extends ChangeNotifier {
 
     try {
       final storedToken = await _secureStorage.read(key: 'token');
-      final data =
-          await _zakatService.updateZakat(idZakat, updatedZakat, storedToken!);
+
+      await _zakatService.updateZakat(idZakat, updatedZakat, storedToken!);
+      await getAllZakat();
     } catch (e) {
       print('Error update zakat fitrah: $e');
       throw Exception('Failed to update zakat fitrah $e');

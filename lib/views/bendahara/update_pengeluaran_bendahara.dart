@@ -144,7 +144,7 @@ class _UpdatePengeluaranBendaharaState
                         content: Text('Data pengeluaran berhasil dihapus'),
                       ),
                     );
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context, "/readpengeluaranbendahara");
                   }).catchError((error) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(

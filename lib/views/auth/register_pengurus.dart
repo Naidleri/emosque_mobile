@@ -61,7 +61,7 @@ class _RegisterPengurusPageState extends State<RegisterPengurusPage> {
                     child: TextField(
                       controller: _nameController,
                       decoration: const InputDecoration(
-                        labelText: 'Masukkan nama',
+                       
                         hintText: 'Masukkan nama',
                         border: OutlineInputBorder(),
                       ),
@@ -89,7 +89,7 @@ class _RegisterPengurusPageState extends State<RegisterPengurusPage> {
                       controller: _passController,
                       obscureText: true,
                       decoration: const InputDecoration(
-                        labelText: 'Masukkan password',
+                        
                         hintText: 'Masukkan password',
                         border: OutlineInputBorder(),
                       ),
@@ -116,7 +116,7 @@ class _RegisterPengurusPageState extends State<RegisterPengurusPage> {
                     child: TextField(
                       controller: _emailController,
                       decoration: const InputDecoration(
-                        labelText: 'Masukkan email',
+                     
                         hintText: 'Masukkan email',
                         border: OutlineInputBorder(),
                       ),
@@ -143,7 +143,7 @@ class _RegisterPengurusPageState extends State<RegisterPengurusPage> {
                     child: TextField(
                       controller: _keyController,
                       decoration: const InputDecoration(
-                        labelText: 'Masukkan kunci pengurus',
+                        
                         hintText: 'Masukkan kunci pengurus',
                         border: OutlineInputBorder(),
                       ),

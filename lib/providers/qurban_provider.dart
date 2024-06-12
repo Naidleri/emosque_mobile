@@ -18,7 +18,8 @@ class QurbanProvider extends ChangeNotifier {
     notifyListeners();
     try {
       final storedToken = await _secureStorage.read(key: 'token');
-      final data = await _qurbanService.createQurban(newQurban, storedToken!);
+      await _qurbanService.createQurban(newQurban, storedToken!);
+      await getAllQurban();
     } catch (e) {
       print('Error create qurban: $e');
       throw Exception('Failed to create qurban $e');
@@ -79,7 +80,8 @@ class QurbanProvider extends ChangeNotifier {
 
     try {
       final storedToken = await _secureStorage.read(key: 'token');
-      final data = await _qurbanService.deleteQurban(idQurban, storedToken!);
+      await _qurbanService.deleteQurban(idQurban, storedToken!);
+      await getAllQurban();
     } catch (e) {
       print('Error delete qurban: $e');
       throw Exception('Failed to delete qurban $e');

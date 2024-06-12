@@ -7,11 +7,11 @@ class BottomNavigasiTakmir extends StatefulWidget {
   const BottomNavigasiTakmir({super.key});
 
   @override
-  State<BottomNavigasiTakmir> createState() => _BottomNavigasiTakmirState();
+  State<BottomNavigasiTakmir> createState() => BottomNavigasiTakmirState();
 }
 
-class _BottomNavigasiTakmirState extends State<BottomNavigasiTakmir> {
-  int _selectedIndex = 0;
+class BottomNavigasiTakmirState extends State<BottomNavigasiTakmir> {
+  int selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
     const HomepageTakmir(),
@@ -21,16 +21,16 @@ class _BottomNavigasiTakmirState extends State<BottomNavigasiTakmir> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      selectedIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: _widgetOptions.elementAt(selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
+        currentIndex: selectedIndex,
         onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

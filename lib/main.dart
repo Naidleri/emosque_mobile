@@ -1,4 +1,5 @@
 import 'package:emosque_mobile/providers/providers.dart';
+import 'package:emosque_mobile/utils/global.dart';
 import 'package:emosque_mobile/views/auth/login.dart';
 import 'package:emosque_mobile/views/auth/register_jamaah.dart';
 import 'package:emosque_mobile/views/auth/register_pengurus.dart';
@@ -33,6 +34,7 @@ import 'package:emosque_mobile/views/sekertaris/yayasan.dart';
 import 'package:emosque_mobile/views/sekertaris/read_zakat_sekertaris.dart';
 import 'package:emosque_mobile/views/takmir/bottom_navigasi_takmir.dart';
 import 'package:emosque_mobile/views/takmir/read_laporan_takmir.dart';
+import 'package:emosque_mobile/views/takmir/read_persetujuan_takmir.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -122,8 +124,8 @@ class MyApp extends StatelessWidget {
           '/yayasanSekertaris': (context) => Yayasan(),
           '/calenderSekertaris': (context) => const MyCalenderSeker(),
           // Takmir
-          '/homepageTakmir': (context) => const BottomNavigasiTakmir(),
-          '/readLaporanTakmir': (context) => const ReadLaporanTakmir()
+          '/homepageTakmir': (context) => BottomNavigasiTakmir(key: takmirNavigationKey),
+          '/readLaporanTakmir': (context) => const ReadLaporanTakmir(),
         },
         home: const LoginPage(),
       ),

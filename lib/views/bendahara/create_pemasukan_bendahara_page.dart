@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
-
 class CreatePemasukanBendaharaPage extends StatefulWidget {
   CreatePemasukanBendaharaPage({super.key});
 
@@ -112,15 +111,11 @@ class _CreatePemasukanBendaharaPageState
                     return;
                   }
 
-                  final formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate!);
+                  final formattedDate =
+                      DateFormat('yyyy-MM-dd').format(selectedDate!);
 
-                  final newKas = SaldoKas(
-                      0,
-                      judul.text,
-                      'pemasukan',
-                      formattedDate,
-                      int.parse(nominal.text),
-                      deskripsi.text);
+                  final newKas = SaldoKas(0, judul.text, 'pemasukan',
+                      formattedDate, int.parse(nominal.text), deskripsi.text);
                   Provider.of<KasProvider>(context, listen: false)
                       .createKas(newKas)
                       .then((_) {
@@ -129,12 +124,15 @@ class _CreatePemasukanBendaharaPageState
                       builder: (context) {
                         return AlertDialog(
                           title: const Text('Berhasil'),
-                          content: const Text('Data pemasukan berhasil ditambahkan'),
+                          content:
+                              const Text('Data pemasukan berhasil ditambahkan'),
                           actions: [
                             ElevatedButton(
                               child: const Text('OK'),
                               onPressed: () {
                                 Navigator.pop(context);
+                                Navigator.pushNamed(
+                                    context, '/readpemasukanbendahara');
                               },
                             ),
                           ],
@@ -148,7 +146,6 @@ class _CreatePemasukanBendaharaPageState
                       ),
                     );
                   });
-                  Navigator.pop(context);
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.green[700]),

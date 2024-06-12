@@ -28,7 +28,7 @@ class DialogBelum extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Apakah Anda menyetujui laporan keuangan ini?',
+            'Setujui laporan keuangan ini?',
             style: TextStyle(
               color: Color(0xFF225779),
               fontWeight: FontWeight.bold,

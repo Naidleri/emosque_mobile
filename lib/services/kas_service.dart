@@ -50,7 +50,7 @@ class KasService {
     }
   }
 
-  Future<SaldoKas> deleteKas (int idKas, String token) async {
+  Future<void> deleteKas (int idKas, String token) async {
     final url = Uri.parse('${ApiHelper.baseUrl}/saldo-kas/${idKas}');
     try{
       final response = await http.delete(
@@ -58,8 +58,7 @@ class KasService {
         headers: ApiHelper.getHeaders(token),
       );
       final responseData = ApiHelper.handleResponse(response);
-      final updatedKas = SaldoKas.fromJson(responseData['data']);
-      return updatedKas;
+      return responseData;
     }catch(e){
       return ApiHelper.handleError(e);
     }

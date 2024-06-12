@@ -18,8 +18,8 @@ class PerizinanProvider extends ChangeNotifier {
     notifyListeners();
     try {
       final storedToken = await _secureStorage.read(key: 'token');
-      final data =
-          await _perizinanService.createPerizinan(newPerizinan, storedToken!);
+      await _perizinanService.createPerizinan(newPerizinan, storedToken!);
+      await getAllPerizinan();
     } catch (e) {
       print('Error create perizinan: $e');
       throw Exception('Failed to create perizinan $e');
@@ -49,8 +49,9 @@ class PerizinanProvider extends ChangeNotifier {
 
     try {
       final storedToken = await _secureStorage.read(key: 'token');
-      final data = await _perizinanService.updatePerizinan(
+      await _perizinanService.updatePerizinan(
           idPerizinan, updatedPerizinan, storedToken!);
+      await getAllPerizinan();
     } catch (e) {
       print('Error update qurban: $e');
       throw Exception('Failed to update qurban $e');
@@ -64,8 +65,9 @@ class PerizinanProvider extends ChangeNotifier {
     notifyListeners();
     try {
       final storedToken = await _secureStorage.read(key: 'token');
-      final data =
-          await _perizinanService.deletePerizinan(idPerizinan, storedToken!);
+
+      await _perizinanService.deletePerizinan(idPerizinan, storedToken!);
+      await getAllPerizinan();
     } catch (e) {
       print('error delete perizinan data');
       throw Exception('failed to delete perizinan $e');

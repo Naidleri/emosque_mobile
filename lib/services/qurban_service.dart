@@ -1,7 +1,7 @@
 part of 'services.dart';
 
 class QurbanService {
-  Future<Qurban> createQurban (Qurban newQurban, String token) async {
+  Future<void> createQurban (Qurban newQurban, String token) async {
     final url = Uri.parse('${ApiHelper.baseUrl}/qurban');
     try{
       final response = await http.post(
@@ -10,8 +10,7 @@ class QurbanService {
         body: jsonEncode(newQurban)
       );
       final responseData = ApiHelper.handleResponse(response);
-      final newQurbanData = Qurban.fromJson(responseData['data']);
-      return newQurbanData;
+      return responseData;
     }catch(e){
       return ApiHelper.handleError(e);
     }
@@ -64,7 +63,7 @@ class QurbanService {
     }
   }
 
-  Future<Qurban> deleteQurban (int idQurban, String token) async {
+  Future<void> deleteQurban (int idQurban, String token) async {
     final url = Uri.parse('${ApiHelper.baseUrl}/qurban/$idQurban');
     try{
       final response = await http.delete(
@@ -72,8 +71,8 @@ class QurbanService {
         headers: ApiHelper.getHeaders(token),
       );
       final responseData = ApiHelper.handleResponse(response);
-      final deletedQurbanData = Qurban.fromJson(responseData['data']);
-      return deletedQurbanData;
+     
+      return responseData;
     }catch(e){
       return ApiHelper.handleError(e);
     }

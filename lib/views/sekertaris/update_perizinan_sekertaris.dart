@@ -191,10 +191,10 @@ class _UpdatePerizinanSekertarisState extends State<UpdatePerizinanSekertaris> {
                         '',
                       );
                       try {
-                        final _perizinanProvider =
+                        final perizinanProvider =
                             Provider.of<PerizinanProvider>(context,
                                 listen: false);
-                        await _perizinanProvider.updatePerizinan(
+                        await perizinanProvider.updatePerizinan(
                             idPerizinan, updatePerizinan);
                         Navigator.pushReplacement(
                           context,

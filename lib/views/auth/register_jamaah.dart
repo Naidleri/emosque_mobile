@@ -63,7 +63,7 @@ class _RegisterJamaahPageState extends State<RegisterJamaahPage> {
                   child: TextField(
                     controller: _nameController,
                     decoration: const InputDecoration(
-                      labelText: 'Masukkan nama',
+                    
                       hintText: 'Masukkan nama',
                       border: OutlineInputBorder(),
                     ),
@@ -92,7 +92,7 @@ class _RegisterJamaahPageState extends State<RegisterJamaahPage> {
                   child: TextField(
                     controller: _emailController,
                     decoration: const InputDecoration(
-                      labelText: 'Masukkan email',
+                    
                       hintText: 'Masukkan email',
                       border: OutlineInputBorder(),
                     ),
@@ -122,7 +122,7 @@ class _RegisterJamaahPageState extends State<RegisterJamaahPage> {
                     controller: _passController,
                     obscureText: true,
                     decoration: const InputDecoration(
-                      labelText: 'Masukkan password',
+                      
                       hintText: 'Masukkan password',
                       border: OutlineInputBorder(),
                     ),

@@ -1,7 +1,7 @@
 part of 'services.dart';
 
 class PerizinanService {
-  Future<Perizinan> createPerizinan(
+  Future<void> createPerizinan(
       Perizinan newPerizinan, String token) async {
     final url = Uri.parse('${ApiHelper.baseUrl}/perizinan');
     try {
@@ -9,8 +9,7 @@ class PerizinanService {
           headers: ApiHelper.getHeaders(token),
           body: jsonEncode(newPerizinan.toJson()));
       final responseData = ApiHelper.handleResponse(response);
-      final newPerizinanData = Perizinan.fromJson(responseData['data']);
-      return newPerizinanData;
+      return responseData;
     } catch (e) {
       return ApiHelper.handleError(e);
     }
@@ -34,7 +33,7 @@ class PerizinanService {
     }
   }
 
-  Future<Perizinan> updatePerizinan(
+  Future<void> updatePerizinan(
       int idPerizinan, Perizinan updatedPerizinan, String token) async {
     final url = Uri.parse('${ApiHelper.baseUrl}/perizinan/$idPerizinan');
     try {
@@ -42,14 +41,13 @@ class PerizinanService {
           headers: ApiHelper.getHeaders(token),
           body: jsonEncode(updatedPerizinan));
       final responseData = ApiHelper.handleResponse(response);
-      final updatedPerizinanData = Perizinan.fromJson(responseData['data']);
-      return updatedPerizinanData;
+      return responseData;
     } catch (e) {
       return ApiHelper.handleError(e);
     }
   }
 
-  Future<Perizinan> deletePerizinan(int idPerizinan, String token) async {
+  Future<void> deletePerizinan(int idPerizinan, String token) async {
     final url = Uri.parse('${ApiHelper.baseUrl}/perizinan/$idPerizinan');
     try {
       final response = await http.delete(
@@ -57,8 +55,7 @@ class PerizinanService {
         headers: ApiHelper.getHeaders(token),
       );
       final responseData = ApiHelper.handleResponse(response);
-      final deletedPerizinanData = Perizinan.fromJson(responseData['data']);
-      return deletedPerizinanData;
+      return responseData;
     } catch (e) {
       return ApiHelper.handleError(e);
     }

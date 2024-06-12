@@ -174,7 +174,9 @@ class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
                             ElevatedButton(
                               child: const Text('OK'),
                               onPressed: () {
-                                Navigator.pop(context);
+                                // Navigator.pop(context);
+                                Navigator.pushNamed(
+                                    context, '/readpemasukanbendahara');
                               },
                             ),
                           ],
