@@ -45,8 +45,8 @@ class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
     nominalController = TextEditingController(text: widget.nominal.toString());
     deskripsiController = TextEditingController(text: widget.deskripsi);
     if (widget.tanggal.isNotEmpty) {
-          selectedDate = DateFormat('yyyy-MM-dd').parse(widget.tanggal);
-        }
+      selectedDate = DateFormat('yyyy-MM-dd').parse(widget.tanggal);
+    }
   }
 
   @override
@@ -179,7 +179,7 @@ class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
                             ElevatedButton(
                               child: const Text('OK'),
                               onPressed: () {
-                                // Navigator.pop(context);
+                                Navigator.pop(context);
                                 Navigator.pushNamed(
                                     context, '/readpemasukanbendahara');
                               },
