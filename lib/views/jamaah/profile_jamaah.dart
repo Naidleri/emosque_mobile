@@ -89,7 +89,7 @@ class _ProfileJamaahState extends State<ProfileJamaah> {
             ),
             text('Username', _userData.name, context),
             text('Email', _userData.email, context),
-            text('Role pengurus', 'Jamaah', context),
+            text('Role', 'Jamaah', context),
             const SizedBox(
               height: 20,
             ),
