@@ -39,7 +39,7 @@ class PerizinanService {
     try {
       final response = await http.put(url,
           headers: ApiHelper.getHeaders(token),
-          body: jsonEncode(updatedPerizinan));
+          body: jsonEncode(updatedPerizinan.toJson()));
       final responseData = ApiHelper.handleResponse(response);
       return responseData;
     } catch (e) {

@@ -137,6 +137,7 @@ class _ReadPengeluaranBendaharaState extends State<ReadPengeluaranBendahara> {
                               builder: (context) => UpdatePengeluaranBendahara(
                                 idKas: kas.idSaldoKas,
                                 judul: kas.judul,
+                                tanggal: kas.tanggal,
                                 nominal: kas.nominal,
                                 deskripsi: kas.deskripsi,
                               ),

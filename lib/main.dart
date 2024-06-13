@@ -67,6 +67,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => LaporanProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => YayasanZProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => YayasanQProvider(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -111,7 +117,8 @@ class MyApp extends StatelessWidget {
           '/createQurbanSekertaris': (context) => CreateQurbanSekertaris(),
           '/createPenerimaZakatSekertaris': (context) =>
               const CreatePenerimaZakatSekertaris(),
-          '/createPenerimaQurbanSekertaris': (context) => const CreatePenerimaQurbanSekertaris(),
+          '/createPenerimaQurbanSekertaris': (context) =>
+              const CreatePenerimaQurbanSekertaris(),
           '/updatePerizinanSekertaris': (context) =>
               const UpdatePerizinanSekertaris(),
           '/updatePenerimaZakatSekertaris': (context) =>
@@ -124,7 +131,8 @@ class MyApp extends StatelessWidget {
           '/yayasanSekertaris': (context) => Yayasan(),
           '/calenderSekertaris': (context) => const MyCalenderSeker(),
           // Takmir
-          '/homepageTakmir': (context) => BottomNavigasiTakmir(key: takmirNavigationKey),
+          '/homepageTakmir': (context) =>
+              BottomNavigasiTakmir(key: takmirNavigationKey),
           '/readLaporanTakmir': (context) => const ReadLaporanTakmir(),
         },
         home: const LoginPage(),

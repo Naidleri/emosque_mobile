@@ -34,7 +34,7 @@ class KasService {
     }
   }
 
-  Future<SaldoKas> updateKas (int idKas, SaldoKas updatedKas, String token) async {
+  Future<void> updateKas (int idKas, SaldoKas updatedKas, String token) async {
     final url = Uri.parse('${ApiHelper.baseUrl}/saldo-kas/${idKas}');
     try{
       final response = await http.put(
@@ -43,8 +43,7 @@ class KasService {
         body: jsonEncode(updatedKas)
       );
       final responseData = ApiHelper.handleResponse(response);
-      final updatedKasData = SaldoKas.fromJson(responseData['data']);
-      return updatedKasData;
+      return responseData;
     }catch(e){
       return ApiHelper.handleError(e);
     }

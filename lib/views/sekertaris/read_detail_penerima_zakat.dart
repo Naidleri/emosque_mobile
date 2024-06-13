@@ -1,12 +1,14 @@
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/views/sekertaris/update_zakat.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:emosque_mobile/models/models.dart';
+import 'package:provider/provider.dart';
 
 class ReadDetailPenerimaZakat extends StatelessWidget {
-  // final Zakat zakat;
+  final YayasanZakat yayasanZakat;
 
-  const ReadDetailPenerimaZakat({super.key});
+  const ReadDetailPenerimaZakat({super.key, required this.yayasanZakat});
 
   @override
   Widget build(BuildContext context) {
@@ -51,16 +53,13 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      'Nama yayasan',
+                      yayasanZakat.namaYayasan,
                       style: GoogleFonts.poppins(
-                          fontSize: 20, fontWeight: FontWeight.w500),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.green),
                     ),
                   ],
-                ),
-                subtitle: Text(
-                  'tanggal rekapan',
-                  style: GoogleFonts.poppins(
-                      fontSize: 17, fontWeight: FontWeight.w400),
                 ),
               ),
             ),
@@ -75,14 +74,39 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
+                        "Tanggal Penyerahan : ",
+                        style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        "${yayasanZakat.tanggal}",
+                        style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.green),
+                      ),
+                    ],
+                  ),
+                ),
+                ListTile(
+                  contentPadding:
+                      const EdgeInsets.only(top: 12, left: 25, right: 25),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
                         "Rekapan Total Uang : ",
                         style: GoogleFonts.poppins(
                             fontSize: 20, fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        "Rp. 1000000",
+                        "Rp. ${yayasanZakat.rekapanUang}",
                         style: GoogleFonts.poppins(
-                            fontSize: 20, fontWeight: FontWeight.w500),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.green),
                       ),
                     ],
                   ),
@@ -99,18 +123,24 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
                             fontSize: 20, fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        "100 kg",
+                        "${yayasanZakat.rekapanBeras} kg",
                         style: GoogleFonts.poppins(
-                            fontSize: 20, fontWeight: FontWeight.w500),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.green),
                       ),
                     ],
                   ),
                 ),
-                Image.network(
-                  'https://pbm2024.site/public/}',
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  fit: BoxFit.cover,
-                  alignment: Alignment.topLeft,
+                const SizedBox(height: 20),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Image.network(
+                    'https://pbm2024.site/public/${yayasanZakat.gambarSurat}',
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    fit: BoxFit.cover,
+                    alignment: Alignment.topLeft,
+                  ),
                 ),
               ],
             ),
@@ -134,7 +164,33 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          // Handle delete action
+                          Provider.of<YayasanZProvider>(context, listen: false)
+                              .deleteYayasan(yayasanZakat.idYayasanZakat)
+                              .then((_) {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text('Berhasil dihapus'),
+                                  content: const Text(
+                                      'Data yayasan penerima berhasil dihapus'),
+                                  actions: [
+                                    ElevatedButton(
+                                      child: const Text('OK'),
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, '/homepageSekertaris');
+
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }).catchError((error) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text('data yayasan penerima gagal dihapus'),
+                            ));
+                          });
                         },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,

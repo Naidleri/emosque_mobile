@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 class UpdatePemasukanBendahara extends StatefulWidget {
   final int idKas;
   final String judul;
+  final String tanggal;
   final int nominal;
   final String deskripsi;
 
@@ -16,6 +17,7 @@ class UpdatePemasukanBendahara extends StatefulWidget {
     super.key,
     required this.idKas,
     required this.judul,
+    required this.tanggal,
     required this.nominal,
     required this.deskripsi,
   });
@@ -42,6 +44,9 @@ class _UpdatePemasukanBendaharaState extends State<UpdatePemasukanBendahara> {
     judulController = TextEditingController(text: widget.judul);
     nominalController = TextEditingController(text: widget.nominal.toString());
     deskripsiController = TextEditingController(text: widget.deskripsi);
+    if (widget.tanggal.isNotEmpty) {
+          selectedDate = DateFormat('yyyy-MM-dd').parse(widget.tanggal);
+        }
   }
 
   @override
