@@ -41,8 +41,8 @@ class _UpdatePerizinanSekertarisState extends State<UpdatePerizinanSekertaris> {
   String namaPerizinan = 'pernikahan';
   String namaPerizinanLama = 'pernikahan';
   String tanggal = '';
-  String pjLama = 'PJ-1';
-  String pj = 'PJ-1';
+  String pjLama = 'Pak Saiful';
+  String pj = 'Pak Saiful';
   TextEditingController _deskripsiController = TextEditingController();
   TextEditingController _namaPengajuController = TextEditingController();
 
@@ -66,7 +66,7 @@ class _UpdatePerizinanSekertarisState extends State<UpdatePerizinanSekertaris> {
         namaPengajuLama = args['namaPengajuLama'] ?? '';
         namaPerizinanLama = args['namaPerizinan'] ?? 'pernikahan';
         tanggal = args['tanggal'] ?? '';
-        pjLama = args['namaPj'] ?? 'PJ-1';
+        pjLama = args['namaPj'] ?? 'Pak Saiful';
         if (tanggal.isNotEmpty) {
           selectedDate = DateFormat('yyyy-MM-dd').parse(tanggal);
         }
@@ -111,7 +111,12 @@ class _UpdatePerizinanSekertarisState extends State<UpdatePerizinanSekertaris> {
                           namaPerizinan = newValue ?? 'pernikahan';
                         });
                       },
-                      options: const ['pernikahan', 'pengajian', 'penyuluhan'],
+                      options: const [
+                        'pernikahan',
+                        'pengajian',
+                        'penyuluhan',
+                        'hari besar'
+                      ],
                     ),
                   ],
                 ),
@@ -133,106 +138,111 @@ class _UpdatePerizinanSekertarisState extends State<UpdatePerizinanSekertaris> {
                 initialValue: pj,
                 onChanged: (newValue) {
                   setState(() {
-                    pj = newValue ?? 'PJ-1';
+                    pj = newValue ?? 'Pak Saiful';
                   });
                 },
-                options: const ['PJ-1', 'PJ-2', 'PJ-3'],
+                options: const ['Pak Saiful', 'Pak Bahri', 'Pak Ujang'],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-  onPressed: () async {
-    if (_deskripsiController.text.isEmpty || _namaPengajuController.text.isEmpty || selectedDate == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Data tidak boleh kosong"),
-        ),
-      );
-      return;
-    }
+                    onPressed: () async {
+                      if (_deskripsiController.text.isEmpty ||
+                          _namaPengajuController.text.isEmpty ||
+                          selectedDate == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Data tidak boleh kosong"),
+                          ),
+                        );
+                        return;
+                      }
 
-    int namaPerizinanToValue(String namaPerizinan) {
-      switch (namaPerizinan) {
-        case 'pernikahan':
-          return 1;
-        case 'pengajian':
-          return 2;
-        case 'penyuluhan':
-          return 3;
-        default:
-          return 0;
-      }
-    }
+                      int namaPerizinanToValue(String namaPerizinan) {
+                        switch (namaPerizinan) {
+                          case 'pernikahan':
+                            return 1;
+                          case 'pengajian':
+                            return 2;
+                          case 'penyuluhan':
+                            return 3;
+                          case 'hari besar':
+                            return 4;
+                          default:
+                            return 0;
+                        }
+                      }
 
-    int pjToValue(String pj) {
-      switch (pj) {
-        case 'PJ-1':
-          return 1;
-        case 'PJ-2':
-          return 2;
-        case 'PJ-3':
-          return 3;
-        default:
-          return 0;
-      }
-    }
+                      int pjToValue(String pj) {
+                        switch (pj) {
+                          case 'Pak Saiful':
+                            return 1;
+                          case 'Pak Bahri':
+                            return 2;
+                          case 'Pak Ujang':
+                            return 3;
+                          default:
+                            return 0;
+                        }
+                      }
 
-    final formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate!);
-    final updatePerizinan = Perizinan(
-      0,
-      _namaPengajuController.text,
-      formattedDate,
-      _deskripsiController.text,
-      namaPerizinanToValue(namaPerizinan),
-      pjToValue(pj),
-      '',
-      '',
-    );
-    try {
-      final perizinanProvider = Provider.of<PerizinanProvider>(context, listen: false);
-      await perizinanProvider.updatePerizinan(idPerizinan, updatePerizinan);
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => ReadPerizinanSekertaris()),
-      );
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error update perizinan: $e'),
-        ),
-      );
-    }
-  },
-  child: Container(
-    margin: EdgeInsets.only(right: size.width * 0.02, top: 10),
-    height: 40,
-    width: 110,
-    decoration: BoxDecoration(
-      color: const Color(0xff37A3A5),
-      borderRadius: BorderRadius.circular(7),
-    ),
-    child: const Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(
-          Icons.update,
-          size: 15,
-          color: Colors.white,
-        ),
-        Text(
-          'Update',
-          style: TextStyle(
-            fontSize: 15,
-            color: Colors.white,
-            fontWeight: FontWeight.w500,
-          ),
-        )
-      ],
-    ),
-  ),
-),
-
+                      final formattedDate =
+                          DateFormat('yyyy-MM-dd').format(selectedDate!);
+                      final updatePerizinan = Perizinan(
+                        0,
+                        _namaPengajuController.text,
+                        formattedDate,
+                        _deskripsiController.text,
+                        namaPerizinanToValue(namaPerizinan),
+                        pjToValue(pj),
+                        '',
+                        '',
+                      );
+                      try {
+                        final perizinanProvider =
+                            Provider.of<PerizinanProvider>(context,
+                                listen: false);
+                        await perizinanProvider.updatePerizinan(
+                            idPerizinan, updatePerizinan);
+                        Navigator.pop(context);
+                      } catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Error update perizinan: $e'),
+                          ),
+                        );
+                      }
+                    },
+                    child: Container(
+                      margin:
+                          EdgeInsets.only(right: size.width * 0.02, top: 10),
+                      height: 40,
+                      width: 110,
+                      decoration: BoxDecoration(
+                        color: const Color(0xff37A3A5),
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.update,
+                            size: 15,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            'Update',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(

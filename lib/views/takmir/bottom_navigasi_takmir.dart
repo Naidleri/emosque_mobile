@@ -1,4 +1,5 @@
 import 'package:emosque_mobile/views/bendahara/profile_bendahara.dart';
+import 'package:emosque_mobile/views/takmir/profile_takmir.dart';
 import 'package:emosque_mobile/views/takmir/read_persetujuan_takmir.dart';
 import 'package:emosque_mobile/views/takmir/homepage_takmir.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class BottomNavigasiTakmirState extends State<BottomNavigasiTakmir> {
   static final List<Widget> _widgetOptions = <Widget>[
     const HomepageTakmir(),
     const ReadPersetujuanTakmir(),
-    const ProfileBendahara()
+    const ProfileTakmir()
   ];
 
   void _onItemTapped(int index) {

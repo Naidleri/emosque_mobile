@@ -4,7 +4,6 @@ import 'package:emosque_mobile/views/sekertaris/dropdown_perizinanNama.dart';
 import 'package:emosque_mobile/views/sekertaris/dropdown_perizinanPJ.dart';
 import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -20,7 +19,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
   final TextEditingController _deskripsiController = TextEditingController();
   final TextEditingController _pengajuController = TextEditingController();
 
-  String pj = 'PJ-1';
+  String pj = 'Pak Saiful';
   String namaPerizinan = 'pernikahan';
   DateTime? selectedDate;
 
@@ -65,7 +64,8 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                         options: const [
                           'pernikahan',
                           'pengajian',
-                          'penyuluhan'
+                          'penyuluhan',
+                          'hari besar'
                         ]),
                   ],
                 ),
@@ -121,10 +121,10 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                   initialValue: pj,
                   onChanged: (newValue) {
                     setState(() {
-                      pj = newValue ?? 'PJ-1';
+                      pj = newValue ?? 'Pak Saiful';
                     });
                   },
-                  options: const ['PJ-1', 'PJ-2', 'PJ-3']),
+                  options: const ['Pak Saiful', 'Pak Bahri', 'Pak Ujang']),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -160,7 +160,7 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                         switch (pj) {
                           case 'Pak Saiful':
                             return 1;
-                          case 'Pak Bahri2':
+                          case 'Pak Bahri':
                             return 2;
                           case 'Pak Ujang':
                             return 3;

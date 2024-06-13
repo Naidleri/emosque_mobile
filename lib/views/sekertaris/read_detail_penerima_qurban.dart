@@ -132,7 +132,7 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: Image.network(
                     'https://pbm2024.site/public/${yayasanQurban.gambarSurat}',
                     width: MediaQuery.of(context).size.width * 0.9,
