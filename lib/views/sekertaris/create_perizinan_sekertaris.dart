@@ -143,12 +143,14 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
                       Navigator.pop(context);
                       int namaPerizinanToValue(String namaPerizinan) {
                         switch (namaPerizinan) {
-                          case 'pernikahan':
+                          case 'Pernikahan':
                             return 1;
-                          case 'pengajian':
+                          case 'Pengajian':
                             return 2;
-                          case 'penyuluhan':
+                          case 'Penyuluhan':
                             return 3;
+                          case 'Hari besar':
+                            return 4;
                           default:
                             return 0;
                         }
@@ -156,11 +158,11 @@ class _CreatePerizinanSekertarisState extends State<CreatePerizinanSekertaris> {
 
                       int pjToValue(String pj) {
                         switch (pj) {
-                          case 'PJ-1':
+                          case 'Pak Saiful':
                             return 1;
-                          case 'PJ-2':
+                          case 'Pak Bahri2':
                             return 2;
-                          case 'PJ-3':
+                          case 'Pak Ujang':
                             return 3;
                           default:
                             return 0;

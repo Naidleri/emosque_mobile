@@ -84,7 +84,7 @@ class _ProfileJamaahState extends State<ProfileJamaah> {
               child: const CircleAvatar(
                 radius: 60,
                 backgroundImage:
-                    NetworkImage('https://example.com/your-image-url.jpg'),
+                    AssetImage('assets/images/profile.png'),
               ),
             ),
             text('Username', _userData.name, context),

@@ -104,7 +104,7 @@ class _ProfileSekertarisState extends State<ProfileSekertaris> {
               child: const CircleAvatar(
                 radius: 60,
                 backgroundImage:
-                    NetworkImage('https://example.com/your-image-url.jpg'),
+                    AssetImage('assets/images/profile.png'),
               ),
             ),
             text('Username', loggedInUser.name, context),
