@@ -5,11 +5,12 @@ class FormWidget extends StatelessWidget {
   final String title;
   final String hint;
   final TextEditingController controller;
-
+  final onChanged;
   const FormWidget(
       {required this.title,
       required this.hint,
       required this.controller,
+      this.onChanged,
       super.key});
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,7 @@ class FormWidget extends StatelessWidget {
                   border: const OutlineInputBorder(),
                   focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.green))),
+              onChanged: onChanged,
             ),
           ),
         ),

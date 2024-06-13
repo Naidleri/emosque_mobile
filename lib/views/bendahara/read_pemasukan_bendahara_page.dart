@@ -9,14 +9,18 @@ class ReadPemasukanBendaharaPage extends StatefulWidget {
   const ReadPemasukanBendaharaPage({super.key});
 
   @override
-  State<ReadPemasukanBendaharaPage> createState() => _ReadPemasukanBendaharaPageState();
+  State<ReadPemasukanBendaharaPage> createState() =>
+      _ReadPemasukanBendaharaPageState();
 }
 
-class _ReadPemasukanBendaharaPageState extends State<ReadPemasukanBendaharaPage> {
+class _ReadPemasukanBendaharaPageState
+    extends State<ReadPemasukanBendaharaPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => Provider.of<KasProvider>(context, listen: false).getAllKas());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<KasProvider>(context, listen: false).getAllKas();
+    });
   }
 
   Widget search() {
@@ -101,7 +105,9 @@ class _ReadPemasukanBendaharaPageState extends State<ReadPemasukanBendaharaPage>
         title: Text(
           "Pemasukan",
           style: GoogleFonts.poppins(
-              fontSize: 24, fontWeight: FontWeight.w700, color: Colors.green[700]),
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
+              color: Colors.green[700]),
         ),
         centerTitle: true,
       ),
@@ -111,40 +117,47 @@ class _ReadPemasukanBendaharaPageState extends State<ReadPemasukanBendaharaPage>
             return const Center(child: CircularProgressIndicator());
           }
 
-          final pemasukanList = kasProvider.saldoKas.where((kas) => kas.jenis == 'pemasukan').toList();
+          final pemasukanList = kasProvider.saldoKas
+              .where((kas) => kas.jenis == 'pemasukan')
+              .toList();
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const PickerDate(),
-              search(),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: pemasukanList.length,
-                  itemBuilder: (context, index) {
-                    final kas = pemasukanList[index];
-                    return cardHistoryPemasukan(
-                      kas.judul,
-                      kas.tanggal,
-                      kas.nominal,
-                      () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => UpdatePemasukanBendahara(
-                              idKas: kas.idSaldoKas,
-                              judul: kas.judul,
-                              nominal: kas.nominal,
-                              deskripsi: kas.deskripsi,
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 90), // Menambahkan padding 40
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const PickerDate(),
+                search(),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: pemasukanList.length,
+                    itemBuilder: (context, index) {
+                      final kas = pemasukanList[index];
+                      return cardHistoryPemasukan(
+                          kas.judul,
+                          kas.tanggal,
+                          kas.nominal,
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => UpdatePemasukanBendahara(
+                                  idKas: kas.idSaldoKas,
+                                  judul: kas.judul,
+                                  tanggal: kas.tanggal,
+                                  nominal: kas.nominal,
+                                  deskripsi: kas.deskripsi,
+                                ),
+                              ),
+                            );
+                          },
+  
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         },
       ),

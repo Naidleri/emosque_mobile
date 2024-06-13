@@ -84,12 +84,12 @@ class _ProfileJamaahState extends State<ProfileJamaah> {
               child: const CircleAvatar(
                 radius: 60,
                 backgroundImage:
-                    NetworkImage('https://example.com/your-image-url.jpg'),
+                    AssetImage('assets/images/profile.png'),
               ),
             ),
             text('Username', _userData.name, context),
             text('Email', _userData.email, context),
-            text('Role pengurus', 'Jamaah', context),
+            text('Role', 'Jamaah', context),
             const SizedBox(
               height: 20,
             ),
@@ -97,7 +97,7 @@ class _ProfileJamaahState extends State<ProfileJamaah> {
                 text: 'Log out',
                 onPressed: () {
                   _userProvider.logoutUser(context).then((_) {
-                    Navigator.pushReplacementNamed(context, '/login');
+                    Navigator.pushNamedAndRemoveUntil(context, '/login',(Route<dynamic> route) => false,);
                   });
                 }),
           ],

@@ -56,7 +56,7 @@ class ProfileTakmir extends StatelessWidget {
               position: badges.BadgePosition.bottomStart(),
               badgeContent: IconButton(onPressed: () {}, icon: const Icon(Icons.edit, color: Colors.white,)),
               child: const CircleAvatar(radius: 60, 
-                backgroundImage: NetworkImage('https://example.com/your-image-url.jpg'),),
+                backgroundImage: AssetImage('assets/images/profile.png'),),
             ),
             text('Username', _userData.name, context),
             text('Email', _userData.email, context),
@@ -64,7 +64,7 @@ class ProfileTakmir extends StatelessWidget {
             const SizedBox(height: 20,),
             fillButton(text: 'Log out', onPressed: (){
               _userProvider.logoutUser(context).then((_){
-                Navigator.pushReplacementNamed(context, '/login');
+                Navigator.pushNamedAndRemoveUntil(context, '/login',(Route<dynamic> route) => false,);
               });
             }),
           ],

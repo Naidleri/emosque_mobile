@@ -58,7 +58,7 @@ class ReadSapi extends StatelessWidget {
                   contentPadding:
                       const EdgeInsets.only(top: 12, left: 25, right: 25),
                   title: Text(
-                    "Sapi",
+                    qurban.namaJenis,
                     style: GoogleFonts.poppins(
                         fontSize: 20, fontWeight: FontWeight.w500),
                   ),

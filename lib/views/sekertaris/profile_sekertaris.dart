@@ -22,11 +22,6 @@ class _ProfileSekertarisState extends State<ProfileSekertaris> {
     // getUserData();
   }
 
-  //  void getUserData() {
-  //   final userProvider = Provider.of<UserProvider>(context, listen: false);
-  //   userProvider.getProfile();
-  // }
-
   Future<void> checkToken() async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     final token = await userProvider.getTokenFromStorage();
@@ -104,7 +99,7 @@ class _ProfileSekertarisState extends State<ProfileSekertaris> {
               child: const CircleAvatar(
                 radius: 60,
                 backgroundImage:
-                    NetworkImage('https://example.com/your-image-url.jpg'),
+                    AssetImage('assets/images/profile.png'),
               ),
             ),
             text('Username', loggedInUser.name, context),
@@ -117,7 +112,7 @@ class _ProfileSekertarisState extends State<ProfileSekertaris> {
                 text: 'Log out',
                 onPressed: () {
                   userProvider.logoutUser(context).then((_) {
-                    Navigator.pushReplacementNamed(context, '/login');
+                    Navigator.pushNamedAndRemoveUntil(context, '/login',(Route<dynamic> route) => false,);
                   });
                 }),
           ],

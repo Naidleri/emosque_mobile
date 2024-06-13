@@ -19,7 +19,22 @@ class _HomepageTakmirState extends State<HomepageTakmir> {
     Future.microtask(() => Provider.of<KasProvider>(context, listen: false).getAllKas());
     Future.microtask(() => Provider.of<LaporanProvider>(context, listen: false).getAllLaporan());
   }
-
+Widget callUser() {
+    final _userProvider = Provider.of<UserProvider>(context, listen: false);
+    final _userData = _userProvider.users.first;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(top: 10, left: 30),
+          child: Text(
+            "Selamat datang ${_userData.name}",
+            style:  TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.green[700]),
+          ),
+        ),
+      ],
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +48,7 @@ class _HomepageTakmirState extends State<HomepageTakmir> {
       ),
       body: Column(
         children: [
+          callUser(),
           Consumer<KasProvider>(
             builder: (context, kasProvider, child) {
               if (kasProvider.isLoading) {

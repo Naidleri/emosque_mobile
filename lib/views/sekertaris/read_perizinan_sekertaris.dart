@@ -126,10 +126,14 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
                       context,
                       '/updatePerizinanSekertaris',
                       arguments: {
-                        'idPerizinan': perizinan.perizinanId,
+                        'idPerizinan': perizinan.idDetailPerizinan,
+                        'namaPerizinan': perizinan.namaPerizinan,
                         'jenisPerizinan': perizinan.perizinanId,
                         'deskripsi': perizinan.deskripsi,
-                        'namaPengaju': perizinan.namaPengaju,
+                        'namaPengajuLama': perizinan.namaPengaju,
+                        'pjId': perizinan.pjId,
+                        'tanggal': perizinan.tanggal,
+                        'namaPj': perizinan.namaPJ,
                       },
                     ).then((result) {
                       if (result == true) {
@@ -189,6 +193,7 @@ class _ReadPerizinanSekertarisState extends State<ReadPerizinanSekertaris> {
           }
 
           return ListView.builder(
+            padding: EdgeInsets.only(bottom: 100),
             itemCount: perizinanProvider.perizinan.length,
             itemBuilder: (context, index) {
               final perizinan = perizinanProvider.perizinan[index];

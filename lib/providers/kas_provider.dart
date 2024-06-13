@@ -19,6 +19,7 @@ class KasProvider extends ChangeNotifier{
     try{
       final storedToken = await _secureStorage.read(key: 'token');
       final data = await _kasService.createKas(newKas, storedToken!);
+      await getAllKas();
     }catch(e){
       print('Error create saldo kas: $e');
       throw Exception('Failed to create saldo kas $e');
@@ -49,7 +50,8 @@ class KasProvider extends ChangeNotifier{
 
     try{
       final storedToken = await _secureStorage.read(key: 'token');
-      final data = await _kasService.updateKas(idKas, updatedKas, storedToken!);
+      await _kasService.updateKas(idKas, updatedKas, storedToken!);
+      await getAllKas();
     }catch(e){
       print('Error update saldo kas: $e');
       throw Exception('Failed to update saldo kas $e');

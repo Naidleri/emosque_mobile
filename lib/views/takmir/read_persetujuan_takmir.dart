@@ -1,3 +1,4 @@
+import 'package:emosque_mobile/utils/global.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:emosque_mobile/providers/providers.dart';
@@ -56,11 +57,13 @@ class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir>
     );
   }
 
-  Widget buildLaporanList(BuildContext context, bool isApproved, bool isEmptyNote) {
+  Widget buildLaporanList(
+      BuildContext context, bool isApproved, bool isEmptyNote) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: FutureBuilder<void>(
-        future: Provider.of<LaporanProvider>(context, listen: false).getAllLaporan(),
+        future: Provider.of<LaporanProvider>(context, listen: false)
+            .getAllLaporan(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -72,7 +75,10 @@ class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir>
               if (isApproved) {
                 return laporan.persetujuan;
               } else {
-                return !laporan.persetujuan && (isEmptyNote ? laporan.catatan.isEmpty : laporan.catatan.isNotEmpty);
+                return !laporan.persetujuan &&
+                    (isEmptyNote
+                        ? laporan.catatan.isEmpty
+                        : laporan.catatan.isNotEmpty);
               }
             }).toList();
 
@@ -90,10 +96,38 @@ class _ReadPersetujuanTakmirState extends State<ReadPersetujuanTakmir>
                           title: laporan.judul,
                           catatan: laporan.catatan ?? '',
                           setuju: (catatan) {
-                            Provider.of<LaporanProvider>(context, listen: false).approveLaporan(laporan.idLaporan, catatan);
+                            Provider.of<LaporanProvider>(context, listen: false)
+                                .approveLaporan(laporan.idLaporan, catatan)
+                                .then((_) {
+                              // takmirNavigationKey.currentState?.setState(() {
+                              //   takmirNavigationKey
+                              //       .currentState?.selectedIndex = 1;
+                              // });
+                              Navigator.pushReplacementNamed(
+                                  context, '/homepageTakmir');
+                            }).catchError((error) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content:
+                                      Text('Gagal menyetujui laporan: $error'),
+                                ),
+                              );
+                            });
                           },
                           tidakSetuju: (catatan) {
-                            Provider.of<LaporanProvider>(context, listen: false).rejectLaporan(laporan.idLaporan, catatan);
+                            Provider.of<LaporanProvider>(context, listen: false)
+                                .rejectLaporan(laporan.idLaporan, catatan)
+                                .then((_) {
+                              Navigator.pushReplacementNamed(
+                                  context, '/homepageTakmir');
+                            }).catchError((error) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content:
+                                      Text('Gagal menolak laporan: $error'),
+                                ),
+                              );
+                            });
                           },
                         );
                       },

@@ -84,7 +84,7 @@ class _ProfileBendaharaState extends State<ProfileBendahara> {
               child: const CircleAvatar(
                 radius: 60,
                 backgroundImage:
-                    NetworkImage('https://example.com/your-image-url.jpg'),
+                    AssetImage('assets/images/profile.png'),
               ),
             ),
             text('Username', _userData.name, context),
@@ -97,7 +97,7 @@ class _ProfileBendaharaState extends State<ProfileBendahara> {
                 text: 'Log out',
                 onPressed: () {
                   _userProvider.logoutUser(context).then((_) {
-                    Navigator.pushReplacementNamed(context, '/login');
+                    Navigator.pushNamedAndRemoveUntil(context, '/login',(Route<dynamic> route) => false,);
                   });
                 }),
           ],

@@ -31,7 +31,7 @@ class _ReadPersetujuanBendaharaState extends State<ReadPersetujuanBendahara>
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Persetujuan Kas Masjid',
+          'Laporan Kas Masjid',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 24.0,

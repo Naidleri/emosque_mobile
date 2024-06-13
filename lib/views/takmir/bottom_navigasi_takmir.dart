@@ -1,4 +1,5 @@
 import 'package:emosque_mobile/views/bendahara/profile_bendahara.dart';
+import 'package:emosque_mobile/views/takmir/profile_takmir.dart';
 import 'package:emosque_mobile/views/takmir/read_persetujuan_takmir.dart';
 import 'package:emosque_mobile/views/takmir/homepage_takmir.dart';
 import 'package:flutter/material.dart';
@@ -7,30 +8,30 @@ class BottomNavigasiTakmir extends StatefulWidget {
   const BottomNavigasiTakmir({super.key});
 
   @override
-  State<BottomNavigasiTakmir> createState() => _BottomNavigasiTakmirState();
+  State<BottomNavigasiTakmir> createState() => BottomNavigasiTakmirState();
 }
 
-class _BottomNavigasiTakmirState extends State<BottomNavigasiTakmir> {
-  int _selectedIndex = 0;
+class BottomNavigasiTakmirState extends State<BottomNavigasiTakmir> {
+  int selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
     const HomepageTakmir(),
     const ReadPersetujuanTakmir(),
-    const ProfileBendahara()
+    const ProfileTakmir()
   ];
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      selectedIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: _widgetOptions.elementAt(selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
+        currentIndex: selectedIndex,
         onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

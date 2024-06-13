@@ -37,7 +37,7 @@ class _CreatePersetujuanSaldoKasState extends State<CreatePersetujuanSaldoKas> {
           centerTitle: true,
           leading: const Icon(Icons.arrow_back_ios_new),
           title: Text(
-            "Persetujuan Saldo Kas",
+            "Laporan Saldo Kas",
             style: GoogleFonts.poppins(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -50,8 +50,8 @@ class _CreatePersetujuanSaldoKasState extends State<CreatePersetujuanSaldoKas> {
           Column(
             children: [
               FormWidget(
-                  title: "Judul Persetujuan",
-                  hint: "Masukkan Judul Persetujuan",
+                  title: "Judul Laporan",
+                  hint: "Masukkan Judul Laporan",
                   controller: judul),
               FormWidget(
                   title: "Saldo Masuk",
@@ -103,7 +103,9 @@ class _CreatePersetujuanSaldoKasState extends State<CreatePersetujuanSaldoKas> {
                             ElevatedButton(
                               child: const Text('OK'),
                               onPressed: () {
-                                Navigator.pop(context);
+                                // Navigator.pop(context);
+                                Navigator.pushNamed(
+                                    context, '/readpersetujuanbendahara');
                               },
                             ),
                           ],

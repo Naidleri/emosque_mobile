@@ -28,7 +28,7 @@ class DialogBelum extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Apakah Anda menyetujui laporan keuangan ini?',
+            'Setujui laporan keuangan ini?',
             style: TextStyle(
               color: Color(0xFF225779),
               fontWeight: FontWeight.bold,
@@ -124,7 +124,7 @@ class DialogBelum extends StatelessWidget {
                     ),
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
-                      horizontal: 32,
+                      horizontal: 15,
                     ),
                   ),
                   onPressed: () {

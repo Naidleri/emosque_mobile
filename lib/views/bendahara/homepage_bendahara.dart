@@ -15,7 +15,25 @@ class _HomePageBendaharaState extends State<HomePageBendahara> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => Provider.of<KasProvider>(context, listen: false).getAllKas());
+    Future.microtask(
+        () => Provider.of<KasProvider>(context, listen: false).getAllKas());
+  }
+
+  Widget callUser() {
+    final _userProvider = Provider.of<UserProvider>(context, listen: false);
+    final _userData = _userProvider.users.first;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(top: 10, left: 30),
+          child: Text(
+            "Selamat datang ${_userData.name}",
+            style:  TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.green[700]),
+          ),
+        ),
+      ],
+    );
   }
 
   Widget mainCard(BuildContext context) {
@@ -35,7 +53,7 @@ class _HomePageBendaharaState extends State<HomePageBendahara> {
 
         return Center(
           child: Container(
-            margin: const EdgeInsets.only(top: 30),
+            margin: const EdgeInsets.only(top: 20),
             width: lebar,
             height: 200,
             decoration: const BoxDecoration(
@@ -69,7 +87,8 @@ class _HomePageBendaharaState extends State<HomePageBendahara> {
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 25, right: 20, top: 10),
+                      padding:
+                          const EdgeInsets.only(left: 25, right: 20, top: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -176,8 +195,7 @@ class _HomePageBendaharaState extends State<HomePageBendahara> {
                 Container(
                   margin: const EdgeInsets.only(right: 10),
                   decoration: BoxDecoration(
-                      color: color,
-                      borderRadius: BorderRadius.circular(99)),
+                      color: color, borderRadius: BorderRadius.circular(99)),
                   padding: const EdgeInsets.all(8.0),
                   child: icon,
                 ),
@@ -248,6 +266,7 @@ class _HomePageBendaharaState extends State<HomePageBendahara> {
 
           return SingleChildScrollView(
             child: Column(children: [
+              callUser(),
               mainCard(context),
               Container(
                 width: lebar,
@@ -277,7 +296,8 @@ class _HomePageBendaharaState extends State<HomePageBendahara> {
                       "assets/images/persetujuan.png",
                       "Persetujuan\nSaldo Kas",
                       () {
-                        Navigator.pushNamed(context, "/readpersetujuanbendahara");
+                        Navigator.pushNamed(
+                            context, "/readpersetujuanbendahara");
                       },
                     ),
                   ],
@@ -299,7 +319,8 @@ class _HomePageBendaharaState extends State<HomePageBendahara> {
                         "Lihat semua",
                       ),
                       onTap: () {
-                        Navigator.pushNamed(context, "/riwayatTransaksiBendahara");
+                        Navigator.pushNamed(
+                            context, "/riwayatTransaksiBendahara");
                       },
                     )
                   ],
@@ -308,7 +329,9 @@ class _HomePageBendaharaState extends State<HomePageBendahara> {
               ...transaksiList.take(3).map((transaksi) {
                 return cardDropDown(
                   Icon(
-                    transaksi.jenis == 'pemasukan' ? Icons.arrow_back : Icons.arrow_forward,
+                    transaksi.jenis == 'pemasukan'
+                        ? Icons.arrow_back
+                        : Icons.arrow_forward,
                     size: 16,
                     color: Colors.white,
                   ),

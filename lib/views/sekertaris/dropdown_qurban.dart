@@ -54,10 +54,10 @@ class _DropdownQurbanState extends State<DropdownQurban> {
                     border: InputBorder.none,
                     hintText: 'Pilih Jenis Qurban',
                     hintStyle: GoogleFonts.poppins(
-                      color: Colors.black,
+                      color: Colors.white,
                     ) // Set hint text here
                     ),
-                icon: Icon(Icons.keyboard_arrow_down, color: Colors.black),
+                icon: Icon(Icons.keyboard_arrow_down, color: Colors.white),
                 dropdownColor: Colors.green[700],
                 value: jenis,
                 onChanged: (String? newValue) {
@@ -76,8 +76,8 @@ class _DropdownQurbanState extends State<DropdownQurban> {
                         padding: const EdgeInsets.all(0),
                         child: Text(
                           value,
-                          style: TextStyle(
-                            color: Colors.black,
+                          style: const TextStyle(
+                            color: Colors.white,
                           ),
                         ),
                       ),

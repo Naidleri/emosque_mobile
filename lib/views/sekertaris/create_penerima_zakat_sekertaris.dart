@@ -1,7 +1,12 @@
+import 'dart:io';
+import 'package:emosque_mobile/providers/providers.dart';
 import 'package:emosque_mobile/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:emosque_mobile/models/models.dart';
 import 'input_form.dart';
 
 class CreatePenerimaZakatSekertaris extends StatefulWidget {
@@ -14,11 +19,54 @@ class CreatePenerimaZakatSekertaris extends StatefulWidget {
 
 class _CreatePenerimaZakatSekertarisState
     extends State<CreatePenerimaZakatSekertaris> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _namaYayasanController = TextEditingController();
+  final TextEditingController _rekapanBerasController = TextEditingController();
+  final TextEditingController _rekapanUangController = TextEditingController();
   DateTime? selectedDate;
+  File? _image;
+
   void _handleDateSelection(DateTime date) {
     setState(() {
       selectedDate = date;
     });
+  }
+
+  Future<void> _getImage() async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedImage != null) {
+        _image = File(pickedImage.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+  Future<void> _submitForm() async {
+     final formattedDate =
+                          DateFormat('yyyy-MM-dd').format(selectedDate!);
+    if (_formKey.currentState?.validate() ?? false) {
+      final newYayasan = YayasanZakat(
+        0,
+        _namaYayasanController.text,
+        formattedDate,
+        int.parse(_rekapanUangController.text),
+        int.parse(_rekapanBerasController.text),
+        '',
+      );
+
+      try {
+        await Provider.of<YayasanZProvider>(context, listen: false)
+            .createYayasan(newYayasan, _image);
+        Navigator.pop(context);
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to create Yayasan: $e')),
+        );
+      }
+    }
   }
 
   @override
@@ -35,258 +83,95 @@ class _CreatePenerimaZakatSekertarisState
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const InputForm(
-                judul: "Nama Yayasan", hint: "Masukkan Nama Yayasan"),
-            const InputForm(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              InputForm(
+                judul: "Nama Yayasan",
+                hint: "Masukkan Nama Yayasan",
+                controller: _namaYayasanController,
+                
+              ),
+              InputForm(
+                judul: "Rekapan Total Uang",
+                hint: "Masukkan Rekapan Total Uang",
+                controller: _rekapanUangController,             
+              ),
+              InputForm(
                 judul: "Rekapan Total Beras",
-                hint: "Masukkan Rekapan Total Beras"),
-            Container(
-              margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Rekapan Total Uang",
-                    style: GoogleFonts.poppins(
-                        fontSize: 12, fontWeight: FontWeight.w500),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 16),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 52,
-                          width: 52,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                color: const Color.fromRGBO(172, 172, 172, 1),
-                                width: 0.7),
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(8),
-                              bottomLeft: Radius.circular(8),
-                              topRight: Radius.circular(
-                                  0), // Tidak ada radius di sudut kanan atas
-                              bottomRight: Radius.circular(
-                                  0), // Tidak ada radius di sudut kanan bawah
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Rp",
-                              textAlign: TextAlign
-                                  .center, // Mengatur penempatan horizontal
-                              style: GoogleFonts.poppins(
-                                color: const Color.fromRGBO(136, 136, 136, 1),
-                                fontSize: 16.5,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
+                hint: "Masukkan Rekapan Total Beras",
+                controller: _rekapanBerasController,             
+              ),
+              
+              Container(
+                margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Tanggal Rekapan",
+                      style: GoogleFonts.poppins(
+                          fontSize: 12, fontWeight: FontWeight.w500),
+                    ),
+                    Calender(onDateSelected: _handleDateSelection),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(
+                    top: 16, left: 20, right: 20, bottom: 100),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Upload Bukti Surat",
+                      style: GoogleFonts.poppins(
+                          fontSize: 12, fontWeight: FontWeight.w500),
+                    ),
+                    GestureDetector(
+                      onTap: _getImage,
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 16),
+                        height: 86,
+                        width: double.infinity,
+                        padding: const EdgeInsets.only(left: 12),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: const Color.fromRGBO(172, 172, 172, 1),
+                              width: 0.7),
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        // Memberikan jarak antara kedua Container
-                        Expanded(
-                          // Menggunakan Expanded untuk Container kedua
-                          child: Container(
-                            height: 52,
-                            // Mengatur lebar Container kedua menjadi maksimal
-                            width: double.infinity,
-                            padding: const EdgeInsets.only(left: 12),
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                  right: BorderSide(
-                                    color: Color.fromRGBO(172, 172, 172, 1),
-                                    width: 0.7,
-                                  ),
-                                  top: BorderSide(
-                                    color: Color.fromRGBO(172, 172, 172, 1),
-                                    width: 0.7,
-                                  ),
-                                  bottom: BorderSide(
-                                    color: Color.fromRGBO(172, 172, 172, 1),
-                                    width: 0.7,
-                                  ),
-                                  left: BorderSide.none),
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(0),
-                                bottomLeft: Radius.circular(0),
-                                topRight: Radius.circular(
-                                    8), // Tidak ada radius di sudut kanan atas
-                                bottomRight: Radius.circular(
-                                    8), // Tidak ada radius di sudut kanan bawah
-                              ),
-                            ),
-                            child: TextFormField(
-                              autofocus: false,
-                              cursorColor:
-                                  const Color.fromRGBO(172, 172, 172, 1),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.add_circle_outline,
+                                color: Colors.grey, size: 32),
+                            const SizedBox(height: 5),
+                            Text(
+                              _image != null
+                                  ? _image!.path.split('/').last
+                                  : 'Upload File',
                               style: GoogleFonts.poppins(
                                   color: const Color.fromRGBO(136, 136, 136, 1),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500),
-                              decoration: const InputDecoration(
-                                  hintText: "500.000",
-                                  hintStyle: TextStyle(
-                                      color: Color.fromRGBO(136, 136, 136, 1),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500),
-                                  focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide.none),
-                                  border: UnderlineInputBorder(
-                                      borderSide: BorderSide.none)),
+                                  fontSize: 16),
                             ),
-                            // Widget lainnya di sini (jika ada)
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Tanggal Rekapan",
-                    style: GoogleFonts.poppins(
-                        fontSize: 12, fontWeight: FontWeight.w500),
-                  ),
-                  Container(
-                      // margin: EdgeInsets.only(top: 16),
-                      // height: 52,
-                      //           // Mengatur lebar Container kedua menjadi maksimal
-                      // width: double.infinity,
-                      // padding: EdgeInsets.only(left: 12),
-                      // decoration: BoxDecoration(
-                      // border: Border.all(
-                      // color: Color.fromRGBO(172, 172, 172, 1),
-                      // width: 0.7
-                      //       ),
-                      //   borderRadius: BorderRadius.circular(8)
-                      // ),
-
                       ),
-                ],
-              ),
-            ),
-            Calender(onDateSelected: _handleDateSelection),
-            Container(
-              margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Total Penerimaan",
-                    style: GoogleFonts.poppins(
-                        fontSize: 12, fontWeight: FontWeight.w500),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 16),
-                    height: 52,
-                    // Mengatur lebar Container kedua menjadi maksimal
-                    width: double.infinity,
-                    padding: const EdgeInsets.only(left: 12),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: const Color.fromRGBO(172, 172, 172, 1),
-                            width: 0.7),
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Center(
-                          child: Text("Rp 50.000, Beras 10 Kilogram",
-                              style: GoogleFonts.poppins(
-                                  color: const Color.fromRGBO(172, 172, 172, 1),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400)),
-                        ),
-                      ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 16, left: 20, right: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Upload Bukti Surat",
-                    style: GoogleFonts.poppins(
-                        fontSize: 12, fontWeight: FontWeight.w500),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 16),
-                    height: 86,
-                    width: double.infinity,
-                    padding: const EdgeInsets.only(left: 12),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: const Color.fromRGBO(172, 172, 172, 1),
-                            width: 0.7),
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.file_upload_outlined,
-                          size: 30,
-                          color: Color.fromRGBO(172, 172, 172, 1),
-                        ),
-                        Text("Upload Surat",
-                            style: GoogleFonts.poppins(
-                                color: Colors.black,
-                                fontSize: 13,
-                                fontWeight: FontWeight.w400)),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: Container(
-        height: 40,
-        width: 110,
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            backgroundColor: Colors.green[700],
-          ),
-          onPressed: () {
-            // Navigator.push(context, MaterialPageRoute(
-            //   builder: (context) => zakatFitrah(),
-            //   ));
-          },
-          child: const Center(
-            child: Row(
-              children: [
-                Icon(
-                  Icons.add_circle_outline,
-                  color: Colors.white,
-                  size: 17,
-                ),
-                SizedBox(width: 10),
-                Text(
-                  'Save',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-              ],
-            ),
-          ),
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _submitForm,
+        backgroundColor: Colors.green[700],
+        child: const Icon(Icons.save),
       ),
     );
   }

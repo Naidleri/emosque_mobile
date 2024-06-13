@@ -98,7 +98,7 @@ class _PickerDateState extends State<PickerDate> {
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
                             bulan,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                     ))
                     .toList(),
@@ -116,7 +116,7 @@ class _PickerDateState extends State<PickerDate> {
                 ),
                 onSelectedItemChanged: (int value) {
                   setState(() {
-                    pilihTahun = value;
+                    pilihTahun = 2000 + value;
                   });
                 },
                 children: _generateTahunItems(),
@@ -135,7 +135,7 @@ class _PickerDateState extends State<PickerDate> {
         padding: const EdgeInsets.all(12.0),
         child: Text(
           "$tahun",
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ), // Center text horizontally
         ),

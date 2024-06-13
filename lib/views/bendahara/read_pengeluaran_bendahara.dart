@@ -114,38 +114,42 @@ class _ReadPengeluaranBendaharaState extends State<ReadPengeluaranBendahara> {
 
           final pemasukanList = kasProvider.saldoKas.where((kas) => kas.jenis == 'pengeluaran').toList();
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const PickerDate(),
-              search(),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: pemasukanList.length,
-                  itemBuilder: (context, index) {
-                    final kas = pemasukanList[index];
-                    return cardHistoryPengeluaran(
-                      kas.judul,
-                      kas.tanggal,
-                      kas.nominal,
-                      () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => UpdatePengeluaranBendahara(
-                              idKas: kas.idSaldoKas,
-                              judul: kas.judul,
-                              nominal: kas.nominal,
-                              deskripsi: kas.deskripsi,
+          return Padding(
+            padding: EdgeInsets.only(bottom: 90),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const PickerDate(),
+                search(),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: pemasukanList.length,
+                    itemBuilder: (context, index) {
+                      final kas = pemasukanList[index];
+                      return cardHistoryPengeluaran(
+                        kas.judul,
+                        kas.tanggal,
+                        kas.nominal,
+                        () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UpdatePengeluaranBendahara(
+                                idKas: kas.idSaldoKas,
+                                judul: kas.judul,
+                                tanggal: kas.tanggal,
+                                nominal: kas.nominal,
+                                deskripsi: kas.deskripsi,
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                    );
-                  },
+                          );
+                        },
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         },
       ),
