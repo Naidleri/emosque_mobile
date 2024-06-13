@@ -94,6 +94,11 @@ class _CreatePenerimaZakatSekertarisState
                 
               ),
               InputForm(
+                judul: "Rekapan Total Uang",
+                hint: "Masukkan Rekapan Total Uang",
+                controller: _rekapanUangController,             
+              ),
+              InputForm(
                 judul: "Rekapan Total Beras",
                 hint: "Masukkan Rekapan Total Beras",
                 controller: _rekapanBerasController,             

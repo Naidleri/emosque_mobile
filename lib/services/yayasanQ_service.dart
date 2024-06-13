@@ -1,9 +1,12 @@
 part of 'services.dart';
 
 class YayasanQService {
-  Future<void> createYayasan(YayasanQurban yayasan, File? image) async {
+  Future<void> createYayasan(YayasanQurban yayasan, File? image, String storedToken) async {
+  
     final url = Uri.parse('${ApiHelper.baseUrl}/yayasan-qurban');
+    final headers = ApiHelper.getHeaders(storedToken);
     var request = http.MultipartRequest('POST', url);
+    request.headers.addAll(headers);
 
     request.fields['nama_yayasan'] = yayasan.namaYayasan;
     request.fields['tanggal'] = yayasan.tanggal;

@@ -17,7 +17,8 @@ class YayasanZProvider extends ChangeNotifier{
     _isLoading = true;
     notifyListeners();
     try {
-      await _yayasanService.createYayasan(yayasan, image);
+            final storedToken = await _secureStorage.read(key: 'token');
+      await _yayasanService.createYayasan(yayasan, image, storedToken!);
       await getAllYayasan();
     } catch (e) {
       throw Exception("Failed to create Yayasan: $e");

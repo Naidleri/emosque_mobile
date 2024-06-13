@@ -100,7 +100,7 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
                             fontSize: 20, fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        "${yayasanQurban.rekapanSapi} Kh",
+                        "${yayasanQurban.rekapanSapi} Kg",
                         style: GoogleFonts.poppins(
                             fontSize: 20,
                             fontWeight: FontWeight.w500,
