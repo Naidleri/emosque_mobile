@@ -5,7 +5,7 @@ import 'package:emosque_mobile/models/models.dart';
 
 class ReadDetailPenerimaQurban extends StatelessWidget {
   final YayasanQurban yayasanQurban;
-  const ReadDetailPenerimaQurban({ super.key, required this.yayasanQurban});
+  const ReadDetailPenerimaQurban({super.key, required this.yayasanQurban});
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +88,7 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
                     ],
                   ),
                 ),
-                 ListTile(
+                ListTile(
                   contentPadding:
                       const EdgeInsets.only(top: 12, left: 25, right: 25),
                   title: Column(
@@ -153,7 +153,7 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: buttonWidth,
-                      height: 40, 
+                      height: 40,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.red,
@@ -161,9 +161,7 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
                             borderRadius: BorderRadius.circular(5),
                           ),
                         ),
-                        onPressed: () {
-                       
-                        },
+                        onPressed: () {},
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -171,40 +169,6 @@ class ReadDetailPenerimaQurban extends StatelessWidget {
                             SizedBox(width: 5),
                             Text(
                               "Delete",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    SizedBox(
-                      width: buttonWidth,
-                      height: 40, // Increased height for better touch target
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromRGBO(55, 163, 165, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        onPressed: () {
-                          // Handle update action
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const UpdateZakatSekertaris(),
-                              ));
-                        },
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.update, color: Colors.white, size: 20),
-                            SizedBox(width: 5),
-                            Text(
-                              "Update",
                               style: TextStyle(color: Colors.white),
                             ),
                           ],

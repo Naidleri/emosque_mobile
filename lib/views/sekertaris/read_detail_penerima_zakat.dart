@@ -205,40 +205,6 @@ class ReadDetailPenerimaZakat extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 10),
-                    SizedBox(
-                      width: buttonWidth,
-                      height: 40, // Increased height for better touch target
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromRGBO(55, 163, 165, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        onPressed: () {
-                          // Handle update action
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const UpdateZakatSekertaris(),
-                              ));
-                        },
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.update, color: Colors.white, size: 20),
-                            SizedBox(width: 5),
-                            Text(
-                              "Update",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
                   ],
                 );
               },
